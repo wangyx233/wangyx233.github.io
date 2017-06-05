@@ -48,7 +48,7 @@
     <link href="https://wangyx233.github.io/2017/05/24/%E4%BC%98%E5%8C%96/"/>
     <id>https://wangyx233.github.io/2017/05/24/优化/</id>
     <published>2017-05-24T07:09:55.000Z</published>
-    <updated>2017-06-05T06:46:18.000Z</updated>
+    <updated>2017-06-05T12:11:58.000Z</updated>
     
     <content type="html"><![CDATA[<ol>
 <li>angular 页码跳转</li>
@@ -58,11 +58,10 @@
 <li>ng-if的使用影响dom节点设置</li>
 <li>angular 标签页 用ng-init 修改index</li>
 <li>dom操作，mouseover，keydown，keyup，keycode</li>
-<li>flot插件，highcharts插件使用<br>echarts的数据会每次merge，解决方法：<ol>
-<li>setoptions的选项</li>
-<li>每次对数组置空</li>
+<li>flot插件，highcharts插件使用<br>echarts的数据会每次merge，解决方法：<br> (1) setoptions的选项<br> (2) 每次对数组置空</li>
 </ol>
-</li>
+<a id="more"></a>
+<ol>
 <li>实际应用事件委托，委托给父元素，冒泡与阻止冒泡</li>
 <li>split会报错，可以用+’’处理</li>
 <li>对于样式处理，可以通过addclass removeclass。所以jq也要熟悉。</li>
@@ -71,6 +70,8 @@
 <li>浏览器兼容- vertical居中 safari失效</li>
 <li>git操作</li>
 <li>js时间计算精度问题</li>
+<li>hexo now()小括号编译错误</li>
+<li>hexo多个tag用[tag1,tag2]</li>
 </ol>
 ]]></content>
     
@@ -81,7 +82,11 @@
 &lt;li&gt;页面高度，加载&lt;br&gt; 包括scroll，scrollintoview&lt;/li&gt;
 &lt;li&gt;过滤器进行筛选&lt;/li&gt;
 &lt;li&gt;ng-repeat 配合ng-class&lt;/li&gt;
-&lt;li&gt;ng-if的使用影响dom节点设置
+&lt;li&gt;ng-if的使用影响dom节点设置&lt;/li&gt;
+&lt;li&gt;angular 标签页 用ng-init 修改index&lt;/li&gt;
+&lt;li&gt;dom操作，mouseover，keydown，keyup，keycode&lt;/li&gt;
+&lt;li&gt;flot插件，highcharts插件使用&lt;br&gt;echarts的数据会每次merge，解决方法：&lt;br&gt; (1) setoptions的选项&lt;br&gt; (2) 每次对数组置空&lt;/li&gt;
+&lt;/ol&gt;
     
     </summary>
     
@@ -127,22 +132,29 @@
     <link href="https://wangyx233.github.io/2017/04/11/hexo%E9%83%A8%E7%BD%B2github%E7%9A%84%E9%97%AE%E9%A2%98/"/>
     <id>https://wangyx233.github.io/2017/04/11/hexo部署github的问题/</id>
     <published>2017-04-11T12:03:27.000Z</published>
-    <updated>2017-06-05T10:01:13.000Z</updated>
+    <updated>2017-06-05T12:21:43.000Z</updated>
     
-    <content type="html"><![CDATA[<ol>
-<li>问题描述<br>hexo deploy 进行部署，pull的文件只包括html，是什么问题</li>
-</ol>
+    <content type="html"><![CDATA[<h5 id="用hexo搭建博客，配置直接部署到github的方法："><a href="#用hexo搭建博客，配置直接部署到github的方法：" class="headerlink" title="用hexo搭建博客，配置直接部署到github的方法："></a>用hexo搭建博客，配置直接部署到github的方法：</h5><p>1.安装 hexo-deployer-git插件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo-deployer-git --save</div></pre></td></tr></table></figure></p>
+<p>2.在hexo根目录的_config.yml中进行deploy的配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">    type: git</div><div class="line">    repo: [github repository url] //eg:git@github.com:xxx.git or https://github.com/xxx.git</div><div class="line">    branch: master //branch name</div><div class="line">    message: &quot;Blog updated: &#123;&#123; now（&apos;YYYY-MM-DD&apos;）&#125;&#125;&quot; //commit message</div><div class="line">Ps:注意缩进和空格</div></pre></td></tr></table></figure></p>
+<p>3.通过hexo deploy（即hexo d）命令进行部署，在此之前需要进行hexo generate（即hexo g）编译。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hexo-deployer-git插件的作用是生成.deploy_git文件，</div><div class="line">并且把hexo g编译后的public中的文件复制到.deploy_git文件夹下，</div><div class="line">然后进行git操作，推到远端github仓库。</div></pre></td></tr></table></figure></p>
+<h3 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h3><a id="more"></a>
+<p>1.在用hexo d进行第一次部署时，需要将从public拷贝到.deploy_git文件夹下的所有文件进行commit操作（hexo d部署只会更新静态的html文件）。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cd .deploy_git</div><div class="line">git add --all -f</div><div class="line">git commit -m &quot;message&quot;</div><div class="line">git push origin branch</div></pre></td></tr></table></figure></p>
+<p>2.说道部署至github，那前提是配置好github的username和password啦。</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;ol&gt;
-&lt;li&gt;问题描述&lt;br&gt;hexo deploy 进行部署，pull的文件只包括html，是什么问题&lt;/li&gt;
-&lt;/ol&gt;
-
+      &lt;h5 id=&quot;用hexo搭建博客，配置直接部署到github的方法：&quot;&gt;&lt;a href=&quot;#用hexo搭建博客，配置直接部署到github的方法：&quot; class=&quot;headerlink&quot; title=&quot;用hexo搭建博客，配置直接部署到github的方法：&quot;&gt;&lt;/a&gt;用hexo搭建博客，配置直接部署到github的方法：&lt;/h5&gt;&lt;p&gt;1.安装 hexo-deployer-git插件&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;npm install hexo-deployer-git --save&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;2.在hexo根目录的_config.yml中进行deploy的配置&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;deploy:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    type: git&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    repo: [github repository url] //eg:git@github.com:xxx.git or https://github.com/xxx.git&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    branch: master //branch name&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    message: &amp;quot;Blog updated: &amp;#123;&amp;#123; now（&amp;apos;YYYY-MM-DD&amp;apos;）&amp;#125;&amp;#125;&amp;quot; //commit message&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Ps:注意缩进和空格&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;3.通过hexo deploy（即hexo d）命令进行部署，在此之前需要进行hexo generate（即hexo g）编译。&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;hexo-deployer-git插件的作用是生成.deploy_git文件，&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;并且把hexo g编译后的public中的文件复制到.deploy_git文件夹下，&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;然后进行git操作，推到远端github仓库。&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h3 id=&quot;注意：&quot;&gt;&lt;a href=&quot;#注意：&quot; class=&quot;headerlink&quot; title=&quot;注意：&quot;&gt;&lt;/a&gt;注意：&lt;/h3&gt;
     
     </summary>
     
+    
+      <category term="hexo" scheme="https://wangyx233.github.io/tags/hexo/"/>
+    
+      <category term="github" scheme="https://wangyx233.github.io/tags/github/"/>
     
   </entry>
   
@@ -151,13 +163,14 @@
     <link href="https://wangyx233.github.io/2017/04/11/hello-world/"/>
     <id>https://wangyx233.github.io/2017/04/11/hello-world/</id>
     <published>2017-04-11T06:06:25.000Z</published>
-    <updated>2017-04-11T06:06:25.000Z</updated>
+    <updated>2017-06-05T12:13:57.000Z</updated>
     
     <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
 <h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<a id="more"></a>
 <h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
 <h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
@@ -166,7 +179,11 @@
     
     <summary type="html">
     
-      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;Quick-Start&quot;&gt;&lt;a href=&quot;#Quick-Start&quot; class=&quot;headerlink&quot; title=&quot;Quick Start&quot;&gt;&lt;/a&gt;Quick Start&lt;/h2&gt;&lt;h3 id=&quot;Create-a-new-post&quot;&gt;&lt;a href=&quot;#Create-a-new-post&quot; class=&quot;headerlink&quot; title=&quot;Create a new post&quot;&gt;&lt;/a&gt;Create a new post&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;$ hexo new &lt;span class=&quot;string&quot;&gt;&quot;My New Post&quot;&lt;/span&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/writing.html&quot;&gt;Writing&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Run-server&quot;&gt;&lt;a href=&quot;#Run-server&quot; class=&quot;headerlink&quot; title=&quot;Run server&quot;&gt;&lt;/a&gt;Run server&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;$ hexo server&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/server.html&quot;&gt;Server&lt;/a&gt;&lt;/p&gt;
     
     </summary>
     

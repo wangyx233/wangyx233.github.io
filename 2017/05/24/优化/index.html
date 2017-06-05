@@ -15,7 +15,7 @@
 <meta property="og:url" content="https://wangyx233.github.io/2017/05/24/优化/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="angular 页码跳转 页面高度，加载 包括scroll，scrollintoview 过滤器进行筛选 ng-repeat 配合ng-class ng-if的使用影响dom节点设置 angular 标签页 用ng-init 修改index dom操作，mouseover，keydown，keyup，keycode flot插件，highcharts插件使用echarts的数据会每次merge，">
-<meta property="og:updated_time" content="2017-06-05T06:46:18.000Z">
+<meta property="og:updated_time" content="2017-06-05T12:11:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="优化">
 <meta name="twitter:description" content="angular 页码跳转 页面高度，加载 包括scroll，scrollintoview 过滤器进行筛选 ng-repeat 配合ng-class ng-if的使用影响dom节点设置 angular 标签页 用ng-init 修改index dom操作，mouseover，keydown，keyup，keycode flot插件，highcharts插件使用echarts的数据会每次merge，">
@@ -168,11 +168,10 @@
 <li>ng-if的使用影响dom节点设置</li>
 <li>angular 标签页 用ng-init 修改index</li>
 <li>dom操作，mouseover，keydown，keyup，keycode</li>
-<li>flot插件，highcharts插件使用<br>echarts的数据会每次merge，解决方法：<ol>
-<li>setoptions的选项</li>
-<li>每次对数组置空</li>
+<li>flot插件，highcharts插件使用<br>echarts的数据会每次merge，解决方法：<br> (1) setoptions的选项<br> (2) 每次对数组置空</li>
 </ol>
-</li>
+<a id="more"></a>
+<ol>
 <li>实际应用事件委托，委托给父元素，冒泡与阻止冒泡</li>
 <li>split会报错，可以用+’’处理</li>
 <li>对于样式处理，可以通过addclass removeclass。所以jq也要熟悉。</li>
@@ -181,6 +180,8 @@
 <li>浏览器兼容- vertical居中 safari失效</li>
 <li>git操作</li>
 <li>js时间计算精度问题</li>
+<li>hexo now()小括号编译错误</li>
+<li>hexo多个tag用[tag1,tag2]</li>
 </ol>
 
       
@@ -363,6 +364,14 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">github</a>
+              </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">three.js</a>
