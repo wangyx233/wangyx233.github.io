@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://wangyx233.github.io">
-  <title>three.js学习指南 | Hexo</title>
+  <title>three.js学习笔记 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="主要分为三大部分，场景（scene）、照相机（camera）、渲染器（renderer） 首先定义容器的大小，利用照相机把作为容器的场景渲染到页面上。">
+  <meta name="description" content="一切都建立在引入three.js后，得到的全局变量THREE。对于页面中，存放渲染效果的元素，可以是普通的div，也可以是canvas。对于div，渲染时添加节点：1234var renderer = new THREE.WebGLRenderer();renderer.setSize(400, 300);document.getElementById(&amp;apos;test&amp;apos;).appe">
 <meta name="keywords" content="three.js">
 <meta property="og:type" content="article">
-<meta property="og:title" content="three.js学习指南">
+<meta property="og:title" content="three.js学习笔记">
 <meta property="og:url" content="https://wangyx233.github.io/2017/06/05/three.js学习指南/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="主要分为三大部分，场景（scene）、照相机（camera）、渲染器（renderer） 首先定义容器的大小，利用照相机把作为容器的场景渲染到页面上。">
-<meta property="og:updated_time" content="2017-06-05T07:25:16.000Z">
+<meta property="og:description" content="一切都建立在引入three.js后，得到的全局变量THREE。对于页面中，存放渲染效果的元素，可以是普通的div，也可以是canvas。对于div，渲染时添加节点：1234var renderer = new THREE.WebGLRenderer();renderer.setSize(400, 300);document.getElementById(&amp;apos;test&amp;apos;).appe">
+<meta property="og:updated_time" content="2017-06-07T07:30:42.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="three.js学习指南">
-<meta name="twitter:description" content="主要分为三大部分，场景（scene）、照相机（camera）、渲染器（renderer） 首先定义容器的大小，利用照相机把作为容器的场景渲染到页面上。">
+<meta name="twitter:title" content="three.js学习笔记">
+<meta name="twitter:description" content="一切都建立在引入three.js后，得到的全局变量THREE。对于页面中，存放渲染效果的元素，可以是普通的div，也可以是canvas。对于div，渲染时添加节点：1234var renderer = new THREE.WebGLRenderer();renderer.setSize(400, 300);document.getElementById(&amp;apos;test&amp;apos;).appe">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -147,7 +147,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      three.js学习指南
+      three.js学习笔记
     </h1>
   
 
@@ -160,10 +160,62 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ol>
+        <p>一切都建立在引入three.js后，得到的全局变量THREE。<br>对于页面中，存放渲染效果的元素，可以是普通的div，也可以是canvas。<br>对于div，渲染时添加节点：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var renderer = new THREE.WebGLRenderer();</div><div class="line">renderer.setSize(400, 300);</div><div class="line">document.getElementById(&apos;test&apos;).appendChild(renderer.domElement);</div><div class="line">renderer.setClearColor(0x000000);//清除原本所在页面颜色，并设置</div></pre></td></tr></table></figure></p>
+<p>而对于定义的canvas标签，其定义及渲染：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;canvas id=&quot;mainCanvas&quot; width=&quot;400px&quot; height=&quot;300px&quot; &gt;&lt;/canvas&gt;</div><div class="line">var renderer = new THREE.WebGLRenderer(&#123;</div><div class="line">                    canvas: document.getElementById(&apos;mainCanvas&apos;)&#125;);</div></pre></td></tr></table></figure></p>
+<p>基本概念</p>
+<ol>
 <li>主要分为三大部分，场景（scene）、照相机（camera）、渲染器（renderer）</li>
-<li>首先定义容器的大小，利用照相机把作为容器的场景渲染到页面上。</li>
+<li>首先定义容器渲染所在的DOM包括宽高、颜色等，利用照相机(投影方式)把作为容器的场景渲染到页面上。</li>
+<li>声明渲染器对象renderer，canvas对象的获取方法为renderer.domElement，相机也需要加到场景中去</li>
 </ol>
+<a id="more"></a>
+<h5 id="3D世界"><a href="#3D世界" class="headerlink" title="3D世界"></a>3D世界</h5><p>帧数：图形处理器每秒钟能够刷新几次，通常用fps（Frames Per Second）来表示。</p>
+<h6 id="最开始可以选择引入stat-js记录帧数"><a href="#最开始可以选择引入stat-js记录帧数" class="headerlink" title="最开始可以选择引入stat.js记录帧数"></a>最开始可以选择引入stat.js记录帧数</h6><p>1、new 一个stats对象，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">stats = new Stats();</div></pre></td></tr></table></figure></p>
+<p>2、将这个对象加入到html网页中去，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">stats.domElement.style.position = &apos;absolute&apos;;</div><div class="line">stats.domElement.style.left = &apos;0px&apos;;</div><div class="line">stats.domElement.style.top = &apos;0px&apos;;</div><div class="line">document.body.appendChild(stat.domElement);</div></pre></td></tr></table></figure></p>
+<p>3、调用函数来统计时间和帧数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">stats.update();</div><div class="line">或者</div><div class="line">stats.begin();</div><div class="line">funtion()&#123;&#125;;</div><div class="line">stats.end();</div></pre></td></tr></table></figure></p>
+<p>tween.js？</p>
+<h6 id="相机"><a href="#相机" class="headerlink" title="相机"></a>相机</h6><p>相机两种，正交投影相机和透视投影相机，前者是远近的比例相同，而后者具有近大远小的特点。<br>正交投影相机：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">THREE.OrthographicCamera(left, right, top, bottom, near, far)</div><div class="line">其中，near，far代表相机的深度，为正值。在视景体（Frustum）中的物体才会渲染到页面，相机截取的是对称的</div></pre></td></tr></table></figure>
+<p>透视投影相机：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">THREE.PerspectiveCamera( fov, aspect, near, far )</div><div class="line">fov 视角：视野范围的角度；aspect：横纵比 Width/Height; near:近平面的距离； far远平面的距离</div></pre></td></tr></table></figure>
+<p>相机有两个重要的参数</p>
+<blockquote>
+<p>camera.position：控制相机在整个3D环境中的位置（取值为3维坐标对象-THREE.Vector3(x,y,z)）<br>camera.lookAt：控制相机的焦点位置，决定相机的朝向（取值为3维坐标对象-THREE.Vector3(x,y,z)）</p>
+</blockquote>
+<p>光用THREE.Light(hex)，hex16进制的颜色表示；材质在很大程度上，是由光决定的。</p>
+<h6 id="场景："><a href="#场景：" class="headerlink" title="场景："></a>场景：</h6><p>场景中的物体，由几何形状(Geometry)和材质(Material)组成</p>
+<ul>
+<li>几何形状<br>1、立方体</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">THREE.CubeGeometry(width, height, depth, widthSegments, heightSegments, depthSegments)</div><div class="line">其中，后三个参数为宽，高，深度的分段</div></pre></td></tr></table></figure>
+<p>2、平面</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">THREE.PlaneGeometry(width, height, widthSegments, heightSegments)</div></pre></td></tr></table></figure>
+<p>3、球体</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">THREE.SphereGeometry(radius, segmentsWidth, segmentsHeight, phiStart, phiLength, thetaStart, thetaLength)</div><div class="line">其中，各参数分别为，半径，经度分割数，纬度分割数，经度开始弧度，经度跨越弧度，纬度开始弧度，纬度跨越弧度</div></pre></td></tr></table></figure>
+<p>4、圆形</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">THREE.CircleGeometry(radius, segments, thetaStart, thetaLength)</div></pre></td></tr></table></figure>
+<p>5、圆柱体，圆台等参考<a href="http://www.ituring.com.cn/book/miniarticle/50172" target="_blank" rel="external">http://www.ituring.com.cn/book/miniarticle/50172</a></p>
+<ul>
+<li>材质<br>1、 BasicMaterial基本材质不受光照阴影等的影响。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">THREE.MeshBasicMaterial(&#123;</div><div class="line">  visible：是否可见，默认为true</div><div class="line">  side：渲染面片正面或是反面，默认为正面THREE.FrontSide，可设置为反面THREE.BackSide，或双面THREE.DoubleSide</div><div class="line">  wireframe：是否渲染线而非面，默认为false</div><div class="line">  color：十六进制RGB颜色，如红色表示为0xff0000</div><div class="line">  map：使用纹理贴图</div><div class="line">  &#125;)</div></pre></td></tr></table></figure>
+<p>2、 Lambert材质（MeshLambertMaterial）是符合Lambert光照模型的材质。只考虑漫反射而不考虑镜面反射的效果，因而对于金属、镜子等需要镜面反射效果的物体就不适应。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">new THREE.MeshLambertMaterial(&#123;</div><div class="line">    color: //散射光反射能力</div><div class="line">    ambient: //环境光反射</div><div class="line">    emissive: 0xff0000 //自发光</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>3、 Phong材质（MeshPhongMaterial）是符合Phong光照模型的材质。和Lambert不同的是，Phong模型考虑了镜面反射的效果，因此对于金属、镜面的表现尤为适合。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">new THREE.MeshPhongMaterial(&#123;</div><div class="line">    color:</div><div class="line">    ambient: //环境光反射</div><div class="line">    emissive: 0xff0000 //自发光</div><div class="line">    specular: 0xff0000 //镜面反射系数</div><div class="line">    shininess: 1000 //当shininess值越大时，高光的光斑越小，默认值为30。</div></pre></td></tr></table></figure>
+<p>4、 法向材质可以将材质的颜色设置为其法向量的方向</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">new THREE.MeshNormalMaterial()</div></pre></td></tr></table></figure>
+<p>材质的颜色与照相机与该物体的角度相关<br>5、 材质纹理贴图</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var texture = THREE.ImageUtils.loadTexture(&apos;../img/0.png&apos;);</div><div class="line">其中，THREE.ImageUtils.loadTexture现在由THREE.TextureLoader()代替</div><div class="line">var loader = new THREE.TextureLoader();</div><div class="line">var texture = loader.load(&apos;url&apos;, function() &#123;</div><div class="line">    texture.wrapS = texture.wrapT = THREE.RepeatWrapping;</div><div class="line">    texture.repeat.set(8, 8);</div><div class="line">    renderer.render(scene, camera);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h6 id="场景中常见的物体"><a href="#场景中常见的物体" class="headerlink" title="场景中常见的物体"></a>场景中常见的物体</h6><p>点是基础，两个点组成一条线，不在一条直线上的三个点组成一个三角形面，这种模型成为Mesh模型.<br>一条线由点，材质，和颜色组成。<br>普通的点用THREE.Vector3定义放在THREE.Geometry对象vertices数组中，<br>材质由THREE.LineBasicMaterial定义，<br>线的定义<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var line = new THREE.Line( geometry, material, THREE.LinePieces );</div></pre></td></tr></table></figure></p>
+<p>最常见的物体–网格，除此之外还有线段（Line）、骨骼（Bone）、粒子系统（ParticleSystem）等</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Mesh(geometry, material)</div><div class="line">通过属性进行访问mesh.material = new THREE.MeshLambertMaterial(&#123;</div><div class="line">    color: 0xff0000</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>具有位置，缩放，和旋转三个属性。position、scale、rotation。它们都是THREE.Vector3实例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">mesh.position = new THREE.Vector3(1.5, -0.5, 0);</div><div class="line">mesh.position.set(1.5, -0.5, 0);</div><div class="line">mesh.position.z = 1;</div></pre></td></tr></table></figure>
+<h6 id="当当当-动画"><a href="#当当当-动画" class="headerlink" title="当当当 动画"></a>当当当 动画</h6><p>场景动起来的方式，一是物体在坐标轴里移动，摄像机不动；一种是物体不动，camera移动，用requestAnimationFrame(render)进行渲染循环<br>1、用定时器setInterval方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">id = setInterval(fun, time);</div><div class="line">clearInterval(id);</div><div class="line">帧数可以通过time控制，time = 1000ms/frame</div></pre></td></tr></table></figure>
+<p>2、用requestAnimationFrame方法，h5的方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var requestAnimationFrame = window.requestAnimationFrame</div><div class="line">        || window.mozRequestAnimationFrame</div><div class="line">        || window.webkitRequestAnimationFrame</div><div class="line">        || window.msRequestAnimationFrame;</div><div class="line">window.requestAnimationFrame = requestAnimationFrame;</div><div class="line">id = requestAnimationFrame(draw);</div></pre></td></tr></table></figure>
 
       
 
@@ -353,15 +405,15 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">three.js</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">three.js</a>
               </li>
             
             <div class="clearfix"></div>
@@ -412,7 +464,7 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">前端小透明&lt;br&gt;很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
   	  	
     	</section>
     
