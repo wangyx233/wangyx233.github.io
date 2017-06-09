@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wangyx233.github.io/"/>
-  <updated>2017-06-07T07:30:42.000Z</updated>
+  <updated>2017-06-09T08:03:50.000Z</updated>
   <id>https://wangyx233.github.io/</id>
   
   <author>
@@ -16,13 +16,13 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>three.js学习笔记</title>
+    <title>Three.js学习笔记</title>
     <link href="https://wangyx233.github.io/2017/06/05/three.js%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/"/>
     <id>https://wangyx233.github.io/2017/06/05/three.js学习指南/</id>
     <published>2017-06-05T05:59:18.000Z</published>
-    <updated>2017-06-07T07:30:42.000Z</updated>
+    <updated>2017-06-09T08:03:50.000Z</updated>
     
-    <content type="html"><![CDATA[<p>一切都建立在引入three.js后，得到的全局变量THREE。<br>对于页面中，存放渲染效果的元素，可以是普通的div，也可以是canvas。<br>对于div，渲染时添加节点：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var renderer = new THREE.WebGLRenderer();</div><div class="line">renderer.setSize(400, 300);</div><div class="line">document.getElementById(&apos;test&apos;).appendChild(renderer.domElement);</div><div class="line">renderer.setClearColor(0x000000);//清除原本所在页面颜色，并设置</div></pre></td></tr></table></figure></p>
+    <content type="html"><![CDATA[<p>一切都建立在引入Three.js后，得到的全局变量THREE。<br>对于页面中，存放渲染效果的元素，可以是普通的div，也可以是canvas。<br>对于div，渲染时添加节点：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var renderer = new THREE.WebGLRenderer();</div><div class="line">renderer.setSize(400, 300);</div><div class="line">document.getElementById(&apos;test&apos;).appendChild(renderer.domElement);</div><div class="line">renderer.setClearColor(0x000000);//清除原本所在页面颜色，并设置</div></pre></td></tr></table></figure></p>
 <p>而对于定义的canvas标签，其定义及渲染：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;canvas id=&quot;mainCanvas&quot; width=&quot;400px&quot; height=&quot;300px&quot; &gt;&lt;/canvas&gt;</div><div class="line">var renderer = new THREE.WebGLRenderer(&#123;</div><div class="line">                    canvas: document.getElementById(&apos;mainCanvas&apos;)&#125;);</div></pre></td></tr></table></figure></p>
 <p>基本概念</p>
 <ol>
@@ -44,7 +44,32 @@
 <blockquote>
 <p>camera.position：控制相机在整个3D环境中的位置（取值为3维坐标对象-THREE.Vector3(x,y,z)）<br>camera.lookAt：控制相机的焦点位置，决定相机的朝向（取值为3维坐标对象-THREE.Vector3(x,y,z)）</p>
 </blockquote>
-<p>光用THREE.Light(hex)，hex16进制的颜色表示；材质在很大程度上，是由光决定的。</p>
+<h6 id="要有光！"><a href="#要有光！" class="headerlink" title="要有光！"></a>要有光！</h6><p>光用THREE.Light(hex)，hex16进制的颜色表示；材质在很大程度上，是由光决定的。</p>
+<ul>
+<li>环境光<br>环境光没有明确的光源位置，在各处的亮度也是一致的，设定是只需指定光的。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">THREE.AmbientLight(hex)</div></pre></td></tr></table></figure>
+<p>环境光并不影响物体的color属性，而是ambient属性，默认值为0xffffff。所以，环境光一般设为白色或者灰色</p>
+<ul>
+<li>点光源<br>光源大小可以看做是一个点，照到不同物体上亮度是线性递减的。离光源越远，物体越暗。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">THREE.PointLight(hex, intensity, distance)</div><div class="line">其中，intensity是亮度，缺省值为1，表示100%亮度；distance是光源最远照射到的距离，缺省值为0。</div><div class="line">var light = new THREE.PointLight(0xffffff, 2, 100);</div><div class="line">light.position.set(0, 1.5, 2);</div><div class="line">scene.add(light);</div></pre></td></tr></table></figure>
+<ul>
+<li>平行光<br>对于任意平行的平面，平行光照射的亮度都是相同的，而与平面所在位置无关。而光源位置的设置异常关键。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">THREE.DirectionalLight(hex, intensity)</div><div class="line">light.position.set(2, 5, 3);</div></pre></td></tr></table></figure>
+<p>光源的位置并不意味着光从(2, 5, 3)点发出，而是以矢量(-2, -5, -3)的方向照射到所有平面。因此，平面亮度与平面的位置无关，而只与平面的法向量相关。</p>
+<ul>
+<li>聚光灯<br>类似圆锥形的光线，类似现实中的聚光灯模型。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">THREE.SpotLight(hex, intensity, distance, angle, exponent)</div><div class="line">angle是聚光灯的张角，缺省值是Math.PI / 3，最大值是Math.PI / 2；exponent是光强在偏离target的衰减指数（target需要定义，缺省值为(0, 0, 0)），缺省值是10。</div><div class="line">light.position.set(x1, y1, z1);</div><div class="line">light.target.position.set(x2, y2, z2);</div></pre></td></tr></table></figure>
+<p>target还可以指定为物体，实现真正的聚光灯效果。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var cube = new THREE.Mesh(new THREE.CubeGeometry(1, 1, 1),</div><div class="line">                    new THREE.MeshLambertMaterial(&#123;color: 0x00ff00&#125;));</div><div class="line">var light = new THREE.SpotLight(0xffff00, 1, 100, Math.PI / 6, 25);</div><div class="line">light.target = cube;</div></pre></td></tr></table></figure>
+<ul>
+<li>阴影<br>Three.js中，能形成阴影的光源只有THREE.DirectionalLight与THREE.SpotLight；能表现阴影效果的材质只有THREE.LambertMaterial与THREE.PhongMaterial。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">1. 初始化，渲染器渲染阴影</div><div class="line">renderer.shadowMapEnabled = true;</div><div class="line">2. 对于要产生阴影的物体调用</div><div class="line">xxx.castShadow = true;</div><div class="line">3. 接收阴影的物体</div><div class="line">xxx.receiveShadow = true;</div></pre></td></tr></table></figure>
+<p>同时，需要设置光源的阴影属性<br>1、 聚光灯，需要设置shadowCameraNear、shadowCameraFar、shadowCameraFov<br>2、 平行光，需要设置shadowCameraNear、shadowCameraFar、shadowCameraLeft、shadowCameraRight、shadowCameraTop以及shadowCameraBottom六个值，相当于正交投影照相机的六个面。只有在这六个面围成的长方体内的物体才能产生阴影效果。<br>在调试阴影效果时，可以开启相机位置：light.shadowCameraVisible = true。<br>阴影的深浅可以通过shadowDarkness设置(0,1)，值越小，阴影颜色越小。<br>另一种实现阴影的方法是Shadow Mapping，即阴影通过贴图的方式贴上来。贴图大小可通过shadowMapWidth与shadowMapHeight来设置。</p>
 <h6 id="场景："><a href="#场景：" class="headerlink" title="场景："></a>场景：</h6><p>场景中的物体，由几何形状(Geometry)和材质(Material)组成</p>
 <ul>
 <li>几何形状<br>1、立方体</li>
@@ -78,11 +103,23 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">id = setInterval(fun, time);</div><div class="line">clearInterval(id);</div><div class="line">帧数可以通过time控制，time = 1000ms/frame</div></pre></td></tr></table></figure>
 <p>2、用requestAnimationFrame方法，h5的方法</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var requestAnimationFrame = window.requestAnimationFrame</div><div class="line">        || window.mozRequestAnimationFrame</div><div class="line">        || window.webkitRequestAnimationFrame</div><div class="line">        || window.msRequestAnimationFrame;</div><div class="line">window.requestAnimationFrame = requestAnimationFrame;</div><div class="line">id = requestAnimationFrame(draw);</div></pre></td></tr></table></figure>
+<h6 id="支持引入外部模型"><a href="#支持引入外部模型" class="headerlink" title="支持引入外部模型"></a>支持引入外部模型</h6><p>需要加载额外的辅助函数，地址参考：<a href="https://github.com/mrdoob/three.js/tree/master/examples/js/loaders" target="_blank" rel="external">https://github.com/mrdoob/three.js/tree/master/examples/js/loaders</a><br>1、 例如，导入.obj格式的模型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var loader = new THREE.OBJLoader();</div><div class="line">loader.load(&apos;../lib/port.obj&apos;, function(obj) &#123;</div><div class="line">  //默认情况只有正面绘制，双面绘制</div><div class="line">    obj.traverse(function(child) &#123;</div><div class="line">        if (child instanceof THREE.Mesh) &#123;</div><div class="line">            child.material.side = THREE.DoubleSide;</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    mesh = obj;</div><div class="line">    scene.add(obj);//添加到场景</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>2、 对于引入模型的材质设置，有两种方式：</p>
+<ul>
+<li>在引入模型的回调函数中设置</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">obj.traverse(function(child) &#123;</div><div class="line">        if (child instanceof THREE.Mesh) &#123;</div><div class="line">            child.material = new THREE.MeshLambertMaterial(&#123;</div><div class="line">                color: 0xffff00,</div><div class="line">                side: THREE.DoubleSide</div><div class="line">            &#125;);</div><div class="line">        &#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>在模型软件中设置，并引用。例如，.obj的模型与.mtl的材质</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">//引入js</div><div class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;MTLLoader.js&quot;&gt;&lt;/script&gt;</div><div class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;OBJMTLLoader.js&quot;&gt;&lt;/script&gt;</div><div class="line">var loader = new THREE.OBJMTLLoader();</div><div class="line">loader.addEventListener(&apos;load&apos;, function(event) &#123;</div><div class="line">    var obj = event.content;</div><div class="line">    mesh = obj;</div><div class="line">    scene.add(obj);</div><div class="line">&#125;);</div><div class="line">loader.load(&apos;../lib/port.obj&apos;, &apos;../lib/port.mtl&apos;);</div></pre></td></tr></table></figure>
+<h6 id="不明觉厉着色器"><a href="#不明觉厉着色器" class="headerlink" title="不明觉厉着色器"></a>不明觉厉着色器</h6><p>WebGL基于OpenGL ES 2.0，着色器支持顶点着色器和片元着色器。<br>再战！<br>最常发生的错误就是忘记float类型和int类型不会自动转换</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;一切都建立在引入three.js后，得到的全局变量THREE。&lt;br&gt;对于页面中，存放渲染效果的元素，可以是普通的div，也可以是canvas。&lt;br&gt;对于div，渲染时添加节点：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;var renderer = new THREE.WebGLRenderer();&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;renderer.setSize(400, 300);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;document.getElementById(&amp;apos;test&amp;apos;).appendChild(renderer.domElement);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;renderer.setClearColor(0x000000);//清除原本所在页面颜色，并设置&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+      &lt;p&gt;一切都建立在引入Three.js后，得到的全局变量THREE。&lt;br&gt;对于页面中，存放渲染效果的元素，可以是普通的div，也可以是canvas。&lt;br&gt;对于div，渲染时添加节点：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;var renderer = new THREE.WebGLRenderer();&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;renderer.setSize(400, 300);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;document.getElementById(&amp;apos;test&amp;apos;).appendChild(renderer.domElement);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;renderer.setClearColor(0x000000);//清除原本所在页面颜色，并设置&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;而对于定义的canvas标签，其定义及渲染：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&amp;lt;canvas id=&amp;quot;mainCanvas&amp;quot; width=&amp;quot;400px&amp;quot; height=&amp;quot;300px&amp;quot; &amp;gt;&amp;lt;/canvas&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;var renderer = new THREE.WebGLRenderer(&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;                    canvas: document.getElementById(&amp;apos;mainCanvas&amp;apos;)&amp;#125;);&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;基本概念&lt;/p&gt;
 &lt;ol&gt;
@@ -94,7 +131,7 @@
     </summary>
     
     
-      <category term="three.js" scheme="https://wangyx233.github.io/tags/three-js/"/>
+      <category term="Three.js" scheme="https://wangyx233.github.io/tags/Three-js/"/>
     
   </entry>
   
