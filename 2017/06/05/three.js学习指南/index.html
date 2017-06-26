@@ -15,7 +15,7 @@
 <meta property="og:url" content="https://wangyx233.github.io/2017/06/05/three.js学习指南/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="一切都建立在引入Three.js后，得到的全局变量THREE。对于页面中，存放渲染效果的元素，可以是普通的div，也可以是canvas。对于div，渲染时添加节点：1234var renderer = new THREE.WebGLRenderer();renderer.setSize(400, 300);document.getElementById(&amp;apos;test&amp;apos;).appe">
-<meta property="og:updated_time" content="2017-06-09T08:03:50.000Z">
+<meta property="og:updated_time" content="2017-06-20T07:17:19.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Three.js学习笔记">
 <meta name="twitter:description" content="一切都建立在引入Three.js后，得到的全局变量THREE。对于页面中，存放渲染效果的元素，可以是普通的div，也可以是canvas。对于div，渲染时添加节点：1234var renderer = new THREE.WebGLRenderer();renderer.setSize(400, 300);document.getElementById(&amp;apos;test&amp;apos;).appe">
@@ -182,6 +182,7 @@
 <blockquote>
 <p>camera.position：控制相机在整个3D环境中的位置（取值为3维坐标对象-THREE.Vector3(x,y,z)）<br>camera.lookAt：控制相机的焦点位置，决定相机的朝向（取值为3维坐标对象-THREE.Vector3(x,y,z)）</p>
 </blockquote>
+<p>应用:<br>设置相机的焦点为原点或者物体的位置坐标，camera.lookAt(new THREE.Vector3(0,0,0))，改变相机的位置camera.position，可以实现围绕物体360度观看物体的效果。<br>相机lookAt与position的设置可以实现以不同视角观察物体的效果。</p>
 <h6 id="要有光！"><a href="#要有光！" class="headerlink" title="要有光！"></a>要有光！</h6><p>光用THREE.Light(hex)，hex16进制的颜色表示；材质在很大程度上，是由光决定的。</p>
 <ul>
 <li>环境光<br>环境光没有明确的光源位置，在各处的亮度也是一致的，设定是只需指定光的。</li>
@@ -208,7 +209,7 @@
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">1. 初始化，渲染器渲染阴影</div><div class="line">renderer.shadowMapEnabled = true;</div><div class="line">2. 对于要产生阴影的物体调用</div><div class="line">xxx.castShadow = true;</div><div class="line">3. 接收阴影的物体</div><div class="line">xxx.receiveShadow = true;</div></pre></td></tr></table></figure>
 <p>同时，需要设置光源的阴影属性<br>1、 聚光灯，需要设置shadowCameraNear、shadowCameraFar、shadowCameraFov<br>2、 平行光，需要设置shadowCameraNear、shadowCameraFar、shadowCameraLeft、shadowCameraRight、shadowCameraTop以及shadowCameraBottom六个值，相当于正交投影照相机的六个面。只有在这六个面围成的长方体内的物体才能产生阴影效果。<br>在调试阴影效果时，可以开启相机位置：light.shadowCameraVisible = true。<br>阴影的深浅可以通过shadowDarkness设置(0,1)，值越小，阴影颜色越小。<br>另一种实现阴影的方法是Shadow Mapping，即阴影通过贴图的方式贴上来。贴图大小可通过shadowMapWidth与shadowMapHeight来设置。</p>
-<h6 id="场景："><a href="#场景：" class="headerlink" title="场景："></a>场景：</h6><p>场景中的物体，由几何形状(Geometry)和材质(Material)组成</p>
+<h6 id="场景："><a href="#场景：" class="headerlink" title="场景："></a>场景：</h6><p>场景中的物体，由几何形状(Geometry)和材质(Material)组成，设置其name属性可以通过scene.getObjectByName(name)获取该物体对象;</p>
 <ul>
 <li>几何形状<br>1、立方体</li>
 </ul>
@@ -252,6 +253,9 @@
 <li>在模型软件中设置，并引用。例如，.obj的模型与.mtl的材质</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">//引入js</div><div class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;MTLLoader.js&quot;&gt;&lt;/script&gt;</div><div class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;OBJMTLLoader.js&quot;&gt;&lt;/script&gt;</div><div class="line">var loader = new THREE.OBJMTLLoader();</div><div class="line">loader.addEventListener(&apos;load&apos;, function(event) &#123;</div><div class="line">    var obj = event.content;</div><div class="line">    mesh = obj;</div><div class="line">    scene.add(obj);</div><div class="line">&#125;);</div><div class="line">loader.load(&apos;../lib/port.obj&apos;, &apos;../lib/port.mtl&apos;);</div></pre></td></tr></table></figure>
+<h6 id="控制器"><a href="#控制器" class="headerlink" title="控制器"></a>控制器</h6><blockquote>
+<p>FlyControls:飞行控制，用键盘和鼠标控制相机的移动和转动<br>OrbitControls::轨道控制器，模拟轨道中的卫星，绕某个对象旋转平移，用键盘和鼠标控制相机位置<br>PointerLockControls:指针锁定，鼠标离开画布依然能被捕捉到鼠标交互，主要用于游戏<br>TrackballControls：轨迹球控制器，通过键盘和鼠标控制前后左右平移和缩放场景<br>TransformControls:变换物体控制器，可以通过鼠标对物体的进行拖放等操作</p>
+</blockquote>
 <h6 id="不明觉厉着色器"><a href="#不明觉厉着色器" class="headerlink" title="不明觉厉着色器"></a>不明觉厉着色器</h6><p>WebGL基于OpenGL ES 2.0，着色器支持顶点着色器和片元着色器。<br>再战！<br>最常发生的错误就是忘记float类型和int类型不会自动转换</p>
 
       
@@ -345,6 +349,11 @@
       </div>
     </a>
   
+  
+    <a href="/2017/06/12/Canvas学习/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Canvas学习</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
@@ -442,15 +451,15 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Three.js</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Three.js</a>
               </li>
             
             <div class="clearfix"></div>

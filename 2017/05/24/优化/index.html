@@ -15,7 +15,7 @@
 <meta property="og:url" content="https://wangyx233.github.io/2017/05/24/优化/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="angular 页码跳转 页面高度，加载 包括scroll，scrollintoview 过滤器进行筛选 ng-repeat 配合ng-class ng-if的使用影响dom节点设置 angular 标签页 用ng-init 修改index dom操作，mouseover，keydown，keyup，keycode flot插件，highcharts插件使用echarts的数据会每次merge，">
-<meta property="og:updated_time" content="2017-06-06T03:41:58.000Z">
+<meta property="og:updated_time" content="2017-06-26T07:04:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="优化">
 <meta name="twitter:description" content="angular 页码跳转 页面高度，加载 包括scroll，scrollintoview 过滤器进行筛选 ng-repeat 配合ng-class ng-if的使用影响dom节点设置 angular 标签页 用ng-init 修改index dom操作，mouseover，keydown，keyup，keycode flot插件，highcharts插件使用echarts的数据会每次merge，">
@@ -175,13 +175,23 @@
 <li>实际应用事件委托，委托给父元素，冒泡与阻止冒泡</li>
 <li>split会报错，可以用+’’处理</li>
 <li>对于样式处理，可以通过addclass removeclass。所以jq也要熟悉。</li>
-<li>跨域问题解决，tophost是怎样实现的。</li>
+<li>跨域问题解决.</li>
 <li>angular路由，template模板可以进行选择</li>
 <li>浏览器兼容- vertical居中 safari失效</li>
 <li>git操作</li>
 <li>js时间计算精度问题</li>
 <li>hexo now()小括号编译错误</li>
 <li>hexo多个tag用[tag1,tag2]</li>
+<li>sessionStorage localStorage</li>
+<li>$scope.$watch(‘watchname’)</li>
+<li>flot 图表 多个labels 可以对应多个tooltips 没有数据提醒</li>
+<li>notify.js消息提醒</li>
+<li>echarts的tooltips可以通过html设置</li>
+<li>复制功能</li>
+<li>js &amp; 位操作，对应的位都是1则结果为1，有一个为0则为0</li>
+<li>angular ng-bind自带转义效果 可以防止xss攻击</li>
+<li>你最讨厌以下哪个 CSS 声明，并简述理由？<br>a. float      b. position      c. z-index      d. overflow<br>jQuery 中 .show/.hide 方法与 .css(‘display’: ‘block/none’) 有哪些区别？<br>CDN</li>
+<li>http是无状态的协议，无状态: 每次的请求和响应都是新的。<br>Content-Type 文本text/plain 网页text/html application/json img/gif<br>WEB使用HTTP协议作应用层协议，以封装HTTP文本信息，然后使用TCP/IP做传输层协议将它发到网络上。<br>缓存 cache-control Expires etag</li>
 </ol>
 
       
@@ -366,15 +376,15 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Three.js</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Three.js</a>
               </li>
             
             <div class="clearfix"></div>

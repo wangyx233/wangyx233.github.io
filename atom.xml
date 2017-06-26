@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wangyx233.github.io/"/>
-  <updated>2017-06-09T08:03:50.000Z</updated>
+  <updated>2017-06-26T10:56:51.000Z</updated>
   <id>https://wangyx233.github.io/</id>
   
   <author>
@@ -16,11 +16,100 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>一些设计知识~</title>
+    <link href="https://wangyx233.github.io/2017/06/21/%E5%86%99%E7%BB%99%E5%A4%A7%E5%AE%B6%E7%9C%8B%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B9%A6/"/>
+    <id>https://wangyx233.github.io/2017/06/21/写给大家看的设计书/</id>
+    <published>2017-06-21T03:37:56.000Z</published>
+    <updated>2017-06-26T10:56:51.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近要看的书好多，全都在排排坐，先挑了一本设计类的书籍《写给大家看的设计书》</p>
+<h3 id="设计的四大原则"><a href="#设计的四大原则" class="headerlink" title="设计的四大原则"></a>设计的四大原则</h3><h6 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h6><p>对比是为页面增加视觉效果的最有效的途径,也是在不同元素之间建立一种有组织的层次结构最有效方法。要记住一个重要规则:要想实现有效的对比,对比就必须 强烈。千万不要畏畏缩缩。<br>字体的对比，颜色的对比，一定要保持强烈，差别不大的对比没有效果。<br>对比的根本目的有两个,这两个目的相辅相成,无法分开。一个目的是增强页面的效果,如果一个页面看起来很有意思,往往更有可读性。另一个目的是有助于信息的组织。读者应当能立即了解信息以何种方式组织,以及从一项到另一项的逻辑流程。对比元素不能让读者混淆,也不能错误地强调重点(即本不该是重点的元素)。</p>
+<h6 id="重复-一致性"><a href="#重复-一致性" class="headerlink" title="重复-一致性"></a>重复-一致性</h6><p>设计的某些方面需要在整个作品中重复。控制读者视线，设计中视觉元素的重复可以将作品中的各部分连在一起,从而统一并增强整个作品。<br>重复的目的就是统一,并增强视觉效果。不要低估页面视觉效果的威力,如果一个作品看起来很有趣,它往往也更易于阅读。<br>要避免太多地重复一个元素,重复太多会让人讨厌。要注意对比的价值<br>可以通过字体选择、线宽、颜色、形状、大小、空间等来增加对比。 增加对比很容易,途径有很多,这可能是增加视觉效果最有意思也最让人满意的方 法了。重要的是:对比一定要强烈!</p>
+<a id="more"></a>
+<h6 id="对齐-统一性"><a href="#对齐-统一性" class="headerlink" title="对齐-统一性"></a>对齐-统一性</h6><p>任何元素都不能在页面上随意安放。每一项都应当与页面上的 某个内容存在某种视觉联系。<br>对齐方式的选择，左右对齐比居中对齐多了一条无形的对齐基准，效果更好。<br>不是不推荐居中，而是注意居中对齐的应用场景，让居中的效果明显一些，生动一些，比如调整位置，改变字体等。<br>在设计的最初，最好坚持，只使用一种对齐方式！<br>页面的元素不要所以摆放，确保互相有一种对齐方式，人的视觉喜欢有序的东西，并且利于信息的表达。</p>
+<blockquote>
+<p>绝对不要在左对齐的正文或缩进的文本上方将标题居中。如果文本没有明确的左边界和右边界,就无法区分标题是否确实居中,看起来它只是悬挂着而已。</p>
+</blockquote>
+<p>找到一条明确的对齐线，并且以此为标准；如果有照片或图片,让它们和一边或基线对齐，在打破规 则之前必须清楚规则是什么。<br>对齐的根本目的是使页面统一而且有条理。<br>注意：<br>要避免在页面上混合使用多种文本对齐方式(也就是说,不要将某些文本居中,而 另外一些文本右对齐)。<br>另外,要着力避免居中对齐,除非你有意识地想要创建一种比较正式、稳重(通常也更乏味)的表示。并不是完全杜绝使用居中对齐,有时可以有意地选择这种对齐方式,但是不要把它作为默认选择。</p>
+<h6 id="亲密性–有组织性"><a href="#亲密性–有组织性" class="headerlink" title="亲密性–有组织性"></a>亲密性–有组织性</h6><p>将相关的项组织在一起，在一个页面上,物理位置的接近就意味着存在关联。如果多个项相互之间有很近的亲密性,它们就会成为一个视觉单元,而不是多个孤<br>立的元素。<br>布局的时候一定要注意明确元素与其所属元素是否在一起，留意无关元素。<br>善用空白，注意各个元素之间的关系，关注空间。<br>注意：<br>1、避免一个页面上有太多孤立的元素。 不要在元素之间留出同样大小的空白,除非各组同属于一个子集。<br>2、标题、子标题、图表标题、图片能否归入其相关材料?在这个问题上一定要非常清 楚(哪怕只有一点含糊都要尽量避免)。在有很近亲密性的元素之间建立关系。<br>3、不同属一组的元素之间不要建立关系!如果元素彼此无关,要把它们分开。 不要仅仅因为有空白就把元素放在角落或中央。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近要看的书好多，全都在排排坐，先挑了一本设计类的书籍《写给大家看的设计书》&lt;/p&gt;
+&lt;h3 id=&quot;设计的四大原则&quot;&gt;&lt;a href=&quot;#设计的四大原则&quot; class=&quot;headerlink&quot; title=&quot;设计的四大原则&quot;&gt;&lt;/a&gt;设计的四大原则&lt;/h3&gt;&lt;h6 id=&quot;对比&quot;&gt;&lt;a href=&quot;#对比&quot; class=&quot;headerlink&quot; title=&quot;对比&quot;&gt;&lt;/a&gt;对比&lt;/h6&gt;&lt;p&gt;对比是为页面增加视觉效果的最有效的途径,也是在不同元素之间建立一种有组织的层次结构最有效方法。要记住一个重要规则:要想实现有效的对比,对比就必须 强烈。千万不要畏畏缩缩。&lt;br&gt;字体的对比，颜色的对比，一定要保持强烈，差别不大的对比没有效果。&lt;br&gt;对比的根本目的有两个,这两个目的相辅相成,无法分开。一个目的是增强页面的效果,如果一个页面看起来很有意思,往往更有可读性。另一个目的是有助于信息的组织。读者应当能立即了解信息以何种方式组织,以及从一项到另一项的逻辑流程。对比元素不能让读者混淆,也不能错误地强调重点(即本不该是重点的元素)。&lt;/p&gt;
+&lt;h6 id=&quot;重复-一致性&quot;&gt;&lt;a href=&quot;#重复-一致性&quot; class=&quot;headerlink&quot; title=&quot;重复-一致性&quot;&gt;&lt;/a&gt;重复-一致性&lt;/h6&gt;&lt;p&gt;设计的某些方面需要在整个作品中重复。控制读者视线，设计中视觉元素的重复可以将作品中的各部分连在一起,从而统一并增强整个作品。&lt;br&gt;重复的目的就是统一,并增强视觉效果。不要低估页面视觉效果的威力,如果一个作品看起来很有趣,它往往也更易于阅读。&lt;br&gt;要避免太多地重复一个元素,重复太多会让人讨厌。要注意对比的价值&lt;br&gt;可以通过字体选择、线宽、颜色、形状、大小、空间等来增加对比。 增加对比很容易,途径有很多,这可能是增加视觉效果最有意思也最让人满意的方 法了。重要的是:对比一定要强烈!&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>D3.js学习</title>
+    <link href="https://wangyx233.github.io/2017/06/21/D3.js%E5%AD%A6%E4%B9%A0/"/>
+    <id>https://wangyx233.github.io/2017/06/21/D3.js学习/</id>
+    <published>2017-06-21T02:47:53.000Z</published>
+    <updated>2017-06-21T03:37:59.000Z</updated>
+    
+    <content type="html"><![CDATA[<ol>
+<li>D3.js实现数据和元素的绑定<br>对于DOM结点的选择，d3.select(‘tag’)选择第一个元素,d3.selectAll(‘tag’)选择所有的元素。<br>对于数据的绑定，tag.datum()将一个数据绑定到元素上，tag.data()将数组内元素分别绑定各元素。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var body = d3.select(&apos;body&apos;);</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;ol&gt;
+&lt;li&gt;D3.js实现数据和元素的绑定&lt;br&gt;对于DOM结点的选择，d3.select(‘tag’)选择第一个元素,d3.selectAll(‘tag’)选择所有的元素。&lt;br&gt;对于数据的绑定，tag.datum()将一个数据绑定到元素上，tag.data()将数组内元
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Canvas学习</title>
+    <link href="https://wangyx233.github.io/2017/06/12/Canvas%E5%AD%A6%E4%B9%A0/"/>
+    <id>https://wangyx233.github.io/2017/06/12/Canvas学习/</id>
+    <published>2017-06-12T05:55:20.000Z</published>
+    <updated>2017-06-26T10:57:40.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>&lt;canvas&gt;标签定义一个矩形框画布，默认没有边框和内容,默认大小为300像素×150像素(wxh)。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;canvas id=&quot;myCanvas&quot; width=&quot;200&quot; height=&quot;100&quot;</div><div class="line">style=&quot;border:1px solid #000000;&quot;&gt;</div><div class="line">若浏览器不支持canvas标签，将显示这些文字</div><div class="line">&lt;/canvas&gt;</div></pre></td></tr></table></figure>
+<p>在Js文件中绘制Canvas元素。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var c=document.getElementById(&quot;myCanvas&quot;);</div><div class="line">if(c.getContext(&apos;2d&apos;))&#123; //支持性检查</div><div class="line">  var ctx=c.getContext(&quot;2d&quot;);//获取渲染上下文，参数为上下文的格式</div><div class="line">  ctx.fillStyle=&quot;#FF0000&quot;; //填充样式，可为颜色、图案、渐变等。</div><div class="line">  ctx.fillRect(0,0,150,75);//矩形的填充方法fillRect(x,y,width,height)，矩形左上角坐标为(0,0)</div><div class="line">&#125;else &#123;</div><div class="line">  // canvas-unsupported code here</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h6 id="画矩形"><a href="#画矩形" class="headerlink" title="画矩形"></a>画矩形</h6><p>canvas支持一种原生的图形绘制-矩形</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">fillRect(x, y, width, height) //绘制一个填充的矩形</div><div class="line">strokeRect(x, y, width, height) //绘制一个矩形的边框</div><div class="line">clearRect(x, y, width, height) //清除指定矩形区域，让清除部分完全透明</div><div class="line">rect(x, y, width, height) //绘制一个左上角坐标为（x,y），宽高为width以及height的矩形。</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h6 id="画路径"><a href="#画路径" class="headerlink" title="画路径"></a>画路径</h6><p>定义开始坐标 moveTo(x,y)<br>定义结束坐标 lineTo(x,y)<br>绘制路径轮廓 stroke()<br>beginPath() 新建一条路径，生成之后，图形绘制命令被指向到路径上生成路径。<br>closePath() 闭合路径之后图形绘制命令又重新指向到上下文中。<br>.fill() 进行图形的填充，会进行路径的自动闭合<br>.stroke() 绘制轮廓，需要配合closePath进行路径的闭合</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ctx.beginPath();</div><div class="line">ctx.moveTo(75,50);</div><div class="line">ctx.lineTo(100,75);</div><div class="line">ctx.lineTo(100,25);</div><div class="line">ctx.fill();</div></pre></td></tr></table></figure>
+<h6 id="画圆弧"><a href="#画圆弧" class="headerlink" title="画圆弧"></a>画圆弧</h6><p>用arc()方法，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">arc(x, y, radius, startAngle, endAngle, anticlockwise)</div><div class="line">画一个以（x,y）为圆心的以radius为半径的圆弧（圆），从startAngle开始到endAngle结束，按照anticlockwise给定的方向（默认为顺时针）来生成。</div><div class="line">注意：arc()函数中的角度单位是弧度，不是度数。角度与弧度的js表达式:radians=(Math.PI/180)*degrees</div></pre></td></tr></table></figure>
+<h6 id="画贝塞尔曲线"><a href="#画贝塞尔曲线" class="headerlink" title="画贝塞尔曲线"></a>画贝塞尔曲线</h6><p>quadraticCurveTo(cp1x, cp1y, x, y)<br>绘制二次贝塞尔曲线，cp1x,cp1y为一个控制点，x,y为结束点。<br>bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y)<br>绘制三次贝塞尔曲线，cp1x,cp1y为控制点一，cp2x,cp2y为控制点二，x,y为结束点。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">// 一颗心</div><div class="line">var heart = document.getElementById(&apos;heart&apos;);</div><div class="line">var heartx = heart.getContext(&apos;2d&apos;);</div><div class="line">heartx.beginPath();</div><div class="line">heartx.moveTo(75,40);</div><div class="line">heartx.bezierCurveTo(75,37,70,25,50,25);</div><div class="line">heartx.bezierCurveTo(20,25,20,62.5,20,62.5);</div><div class="line">heartx.bezierCurveTo(20,80,40,102,75,120);</div><div class="line">heartx.bezierCurveTo(110,102,130,80,130,62.5);</div><div class="line">heartx.bezierCurveTo(130,62.5,130,25,100,25);</div><div class="line">heartx.bezierCurveTo(85,25,75,37,75,40);</div><div class="line">heartx.fill();</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&amp;lt;canvas&amp;gt;标签定义一个矩形框画布，默认没有边框和内容,默认大小为300像素×150像素(wxh)。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&amp;lt;canvas id=&amp;quot;myCanvas&amp;quot; width=&amp;quot;200&amp;quot; height=&amp;quot;100&amp;quot;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;style=&amp;quot;border:1px solid #000000;&amp;quot;&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;若浏览器不支持canvas标签，将显示这些文字&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;lt;/canvas&amp;gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;在Js文件中绘制Canvas元素。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;var c=document.getElementById(&amp;quot;myCanvas&amp;quot;);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;if(c.getContext(&amp;apos;2d&amp;apos;))&amp;#123; //支持性检查&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  var ctx=c.getContext(&amp;quot;2d&amp;quot;);//获取渲染上下文，参数为上下文的格式&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  ctx.fillStyle=&amp;quot;#FF0000&amp;quot;; //填充样式，可为颜色、图案、渐变等。&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  ctx.fillRect(0,0,150,75);//矩形的填充方法fillRect(x,y,width,height)，矩形左上角坐标为(0,0)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;else &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  // canvas-unsupported code here&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h6 id=&quot;画矩形&quot;&gt;&lt;a href=&quot;#画矩形&quot; class=&quot;headerlink&quot; title=&quot;画矩形&quot;&gt;&lt;/a&gt;画矩形&lt;/h6&gt;&lt;p&gt;canvas支持一种原生的图形绘制-矩形&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;fillRect(x, y, width, height) //绘制一个填充的矩形&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;strokeRect(x, y, width, height) //绘制一个矩形的边框&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;clearRect(x, y, width, height) //清除指定矩形区域，让清除部分完全透明&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;rect(x, y, width, height) //绘制一个左上角坐标为（x,y），宽高为width以及height的矩形。&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>Three.js学习笔记</title>
     <link href="https://wangyx233.github.io/2017/06/05/three.js%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/"/>
     <id>https://wangyx233.github.io/2017/06/05/three.js学习指南/</id>
     <published>2017-06-05T05:59:18.000Z</published>
-    <updated>2017-06-09T08:03:50.000Z</updated>
+    <updated>2017-06-20T07:17:19.000Z</updated>
     
     <content type="html"><![CDATA[<p>一切都建立在引入Three.js后，得到的全局变量THREE。<br>对于页面中，存放渲染效果的元素，可以是普通的div，也可以是canvas。<br>对于div，渲染时添加节点：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var renderer = new THREE.WebGLRenderer();</div><div class="line">renderer.setSize(400, 300);</div><div class="line">document.getElementById(&apos;test&apos;).appendChild(renderer.domElement);</div><div class="line">renderer.setClearColor(0x000000);//清除原本所在页面颜色，并设置</div></pre></td></tr></table></figure></p>
 <p>而对于定义的canvas标签，其定义及渲染：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;canvas id=&quot;mainCanvas&quot; width=&quot;400px&quot; height=&quot;300px&quot; &gt;&lt;/canvas&gt;</div><div class="line">var renderer = new THREE.WebGLRenderer(&#123;</div><div class="line">                    canvas: document.getElementById(&apos;mainCanvas&apos;)&#125;);</div></pre></td></tr></table></figure></p>
@@ -44,6 +133,7 @@
 <blockquote>
 <p>camera.position：控制相机在整个3D环境中的位置（取值为3维坐标对象-THREE.Vector3(x,y,z)）<br>camera.lookAt：控制相机的焦点位置，决定相机的朝向（取值为3维坐标对象-THREE.Vector3(x,y,z)）</p>
 </blockquote>
+<p>应用:<br>设置相机的焦点为原点或者物体的位置坐标，camera.lookAt(new THREE.Vector3(0,0,0))，改变相机的位置camera.position，可以实现围绕物体360度观看物体的效果。<br>相机lookAt与position的设置可以实现以不同视角观察物体的效果。</p>
 <h6 id="要有光！"><a href="#要有光！" class="headerlink" title="要有光！"></a>要有光！</h6><p>光用THREE.Light(hex)，hex16进制的颜色表示；材质在很大程度上，是由光决定的。</p>
 <ul>
 <li>环境光<br>环境光没有明确的光源位置，在各处的亮度也是一致的，设定是只需指定光的。</li>
@@ -70,7 +160,7 @@
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">1. 初始化，渲染器渲染阴影</div><div class="line">renderer.shadowMapEnabled = true;</div><div class="line">2. 对于要产生阴影的物体调用</div><div class="line">xxx.castShadow = true;</div><div class="line">3. 接收阴影的物体</div><div class="line">xxx.receiveShadow = true;</div></pre></td></tr></table></figure>
 <p>同时，需要设置光源的阴影属性<br>1、 聚光灯，需要设置shadowCameraNear、shadowCameraFar、shadowCameraFov<br>2、 平行光，需要设置shadowCameraNear、shadowCameraFar、shadowCameraLeft、shadowCameraRight、shadowCameraTop以及shadowCameraBottom六个值，相当于正交投影照相机的六个面。只有在这六个面围成的长方体内的物体才能产生阴影效果。<br>在调试阴影效果时，可以开启相机位置：light.shadowCameraVisible = true。<br>阴影的深浅可以通过shadowDarkness设置(0,1)，值越小，阴影颜色越小。<br>另一种实现阴影的方法是Shadow Mapping，即阴影通过贴图的方式贴上来。贴图大小可通过shadowMapWidth与shadowMapHeight来设置。</p>
-<h6 id="场景："><a href="#场景：" class="headerlink" title="场景："></a>场景：</h6><p>场景中的物体，由几何形状(Geometry)和材质(Material)组成</p>
+<h6 id="场景："><a href="#场景：" class="headerlink" title="场景："></a>场景：</h6><p>场景中的物体，由几何形状(Geometry)和材质(Material)组成，设置其name属性可以通过scene.getObjectByName(name)获取该物体对象;</p>
 <ul>
 <li>几何形状<br>1、立方体</li>
 </ul>
@@ -114,6 +204,9 @@
 <li>在模型软件中设置，并引用。例如，.obj的模型与.mtl的材质</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">//引入js</div><div class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;MTLLoader.js&quot;&gt;&lt;/script&gt;</div><div class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;OBJMTLLoader.js&quot;&gt;&lt;/script&gt;</div><div class="line">var loader = new THREE.OBJMTLLoader();</div><div class="line">loader.addEventListener(&apos;load&apos;, function(event) &#123;</div><div class="line">    var obj = event.content;</div><div class="line">    mesh = obj;</div><div class="line">    scene.add(obj);</div><div class="line">&#125;);</div><div class="line">loader.load(&apos;../lib/port.obj&apos;, &apos;../lib/port.mtl&apos;);</div></pre></td></tr></table></figure>
+<h6 id="控制器"><a href="#控制器" class="headerlink" title="控制器"></a>控制器</h6><blockquote>
+<p>FlyControls:飞行控制，用键盘和鼠标控制相机的移动和转动<br>OrbitControls::轨道控制器，模拟轨道中的卫星，绕某个对象旋转平移，用键盘和鼠标控制相机位置<br>PointerLockControls:指针锁定，鼠标离开画布依然能被捕捉到鼠标交互，主要用于游戏<br>TrackballControls：轨迹球控制器，通过键盘和鼠标控制前后左右平移和缩放场景<br>TransformControls:变换物体控制器，可以通过鼠标对物体的进行拖放等操作</p>
+</blockquote>
 <h6 id="不明觉厉着色器"><a href="#不明觉厉着色器" class="headerlink" title="不明觉厉着色器"></a>不明觉厉着色器</h6><p>WebGL基于OpenGL ES 2.0，着色器支持顶点着色器和片元着色器。<br>再战！<br>最常发生的错误就是忘记float类型和int类型不会自动转换</p>
 ]]></content>
     
@@ -140,7 +233,7 @@
     <link href="https://wangyx233.github.io/2017/05/24/%E4%BC%98%E5%8C%96/"/>
     <id>https://wangyx233.github.io/2017/05/24/优化/</id>
     <published>2017-05-24T07:09:55.000Z</published>
-    <updated>2017-06-06T03:41:58.000Z</updated>
+    <updated>2017-06-26T07:04:26.000Z</updated>
     
     <content type="html"><![CDATA[<ol>
 <li>angular 页码跳转</li>
@@ -157,13 +250,23 @@
 <li>实际应用事件委托，委托给父元素，冒泡与阻止冒泡</li>
 <li>split会报错，可以用+’’处理</li>
 <li>对于样式处理，可以通过addclass removeclass。所以jq也要熟悉。</li>
-<li>跨域问题解决，tophost是怎样实现的。</li>
+<li>跨域问题解决.</li>
 <li>angular路由，template模板可以进行选择</li>
 <li>浏览器兼容- vertical居中 safari失效</li>
 <li>git操作</li>
 <li>js时间计算精度问题</li>
 <li>hexo now()小括号编译错误</li>
 <li>hexo多个tag用[tag1,tag2]</li>
+<li>sessionStorage localStorage</li>
+<li>$scope.$watch(‘watchname’)</li>
+<li>flot 图表 多个labels 可以对应多个tooltips 没有数据提醒</li>
+<li>notify.js消息提醒</li>
+<li>echarts的tooltips可以通过html设置</li>
+<li>复制功能</li>
+<li>js &amp; 位操作，对应的位都是1则结果为1，有一个为0则为0</li>
+<li>angular ng-bind自带转义效果 可以防止xss攻击</li>
+<li>你最讨厌以下哪个 CSS 声明，并简述理由？<br>a. float      b. position      c. z-index      d. overflow<br>jQuery 中 .show/.hide 方法与 .css(‘display’: ‘block/none’) 有哪些区别？<br>CDN</li>
+<li>http是无状态的协议，无状态: 每次的请求和响应都是新的。<br>Content-Type 文本text/plain 网页text/html application/json img/gif<br>WEB使用HTTP协议作应用层协议，以封装HTTP文本信息，然后使用TCP/IP做传输层协议将它发到网络上。<br>缓存 cache-control Expires etag</li>
 </ol>
 ]]></content>
     

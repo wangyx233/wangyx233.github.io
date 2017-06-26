@@ -4,15 +4,28 @@
 
     
   <url>
-    <loc>https://wangyx233.github.io/2017/06/05/three.js%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/</loc>
-    <lastmod>2017-06-09T08:03:50.000Z</lastmod>
+    <loc>https://wangyx233.github.io/2017/06/12/Canvas%E5%AD%A6%E4%B9%A0/</loc>
+    <lastmod>2017-06-26T10:57:40.000Z</lastmod>
     <data>
         <display>
-        <title>Three.js学习笔记</title>
-        <pubTime>2017-06-05T05:59:18.000Z</pubTime>
+        <title>Canvas学习</title>
+        <pubTime>2017-06-12T05:55:20.000Z</pubTime>
         
-        <tag>Three.js</tag>
          
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://wangyx233.github.io/2017/06/21/%E5%86%99%E7%BB%99%E5%A4%A7%E5%AE%B6%E7%9C%8B%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B9%A6/</loc>
+    <lastmod>2017-06-26T10:56:51.000Z</lastmod>
+    <data>
+        <display>
+        <title>一些设计知识~</title>
+        <pubTime>2017-06-21T03:37:56.000Z</pubTime>
+        
          
            
         </display>
@@ -22,12 +35,44 @@
     
   <url>
     <loc>https://wangyx233.github.io/2017/05/24/%E4%BC%98%E5%8C%96/</loc>
-    <lastmod>2017-06-06T03:41:58.000Z</lastmod>
+    <lastmod>2017-06-26T07:04:26.000Z</lastmod>
     <data>
         <display>
         <title>优化</title>
         <pubTime>2017-05-24T07:09:55.000Z</pubTime>
         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://wangyx233.github.io/2017/06/21/D3.js%E5%AD%A6%E4%B9%A0/</loc>
+    <lastmod>2017-06-21T03:37:59.000Z</lastmod>
+    <data>
+        <display>
+        <title>D3.js学习</title>
+        <pubTime>2017-06-21T02:47:53.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://wangyx233.github.io/2017/06/05/three.js%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/</loc>
+    <lastmod>2017-06-20T07:17:19.000Z</lastmod>
+    <data>
+        <display>
+        <title>Three.js学习笔记</title>
+        <pubTime>2017-06-05T05:59:18.000Z</pubTime>
+        
+        <tag>Three.js</tag>
+         
          
            
         </display>
