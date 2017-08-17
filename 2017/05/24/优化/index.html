@@ -15,7 +15,7 @@
 <meta property="og:url" content="https://wangyx233.github.io/2017/05/24/优化/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="angular 页码跳转 页面高度，加载 包括scroll，scrollintoview 过滤器进行筛选 ng-repeat 配合ng-class ng-if的使用影响dom节点设置 angular 标签页 用ng-init 修改index dom操作，mouseover，keydown，keyup，keycode flot插件，highcharts插件使用echarts的数据会每次merge，">
-<meta property="og:updated_time" content="2017-06-26T07:04:26.000Z">
+<meta property="og:updated_time" content="2017-08-17T11:37:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="优化">
 <meta name="twitter:description" content="angular 页码跳转 页面高度，加载 包括scroll，scrollintoview 过滤器进行筛选 ng-repeat 配合ng-class ng-if的使用影响dom节点设置 angular 标签页 用ng-init 修改index dom操作，mouseover，keydown，keyup，keycode flot插件，highcharts插件使用echarts的数据会每次merge，">
@@ -192,6 +192,25 @@
 <li>angular ng-bind自带转义效果 可以防止xss攻击</li>
 <li>你最讨厌以下哪个 CSS 声明，并简述理由？<br>a. float      b. position      c. z-index      d. overflow<br>jQuery 中 .show/.hide 方法与 .css(‘display’: ‘block/none’) 有哪些区别？<br>CDN</li>
 <li>http是无状态的协议，无状态: 每次的请求和响应都是新的。<br>Content-Type 文本text/plain 网页text/html application/json img/gif<br>WEB使用HTTP协议作应用层协议，以封装HTTP文本信息，然后使用TCP/IP做传输层协议将它发到网络上。<br>缓存 cache-control Expires etag</li>
+<li>外边距合并的情况：当两个垂直外边距相遇时，它们将形成一个外边距。合并后的外边距的高度等于两个发生合并的外边距的高度中的较大者。<br>当一个元素在另一个元素内时，内部元素没有内边距或者边框与外部元素隔开，那么其外边距会合外部元素的外边距合并，两者之间的外边距为两者之间值大的。<br>只有普通文档流中块框的垂直外边距才会发生外边距合并。行内框、浮动框或绝对定位之间的外边距不会合并。<br>//<a href="https://bl.ocks.org/mbostock/3231298" target="_blank" rel="external">https://bl.ocks.org/mbostock/3231298</a></li>
+<li>jade语法后面属性写到一起</li>
+<li>注意，设为Flex布局以后，子元素的float、clear和vertical-align属性将失效。</li>
+<li>好用的时间处理插件moment.js ，moment(time).format(“MM-DD hh:mm:ss”)</li>
+<li>tooltip导致行高改变，append to body</li>
+<li>echarts datazoom的 阴影数据显示问题</li>
+<li>echarts 横轴的type与 刻度的关系</li>
+<li>页面加载与图表渲染的顺序问题。</li>
+<li>gulp生产环境报错，UglifyJS 函数参数以及rtl插件问题</li>
+<li>url的最大长度–导出？</li>
+<li>大量使用！important</li>
+<li>对象的key 遍历</li>
+<li>copy 与 赋值</li>
+<li>渐变色进度条，bootstrap 设置颜色，用css3的属性</li>
+<li>计算两个日期之间的时间差Math.ceil((vm.deep_endtime - moment(moment(vm.deep_starttime*1000).format(‘YYYY-MM-DD’)).format(‘X’)) / 86400);</li>
+<li>ng-if 延迟</li>
+<li>json 字符串的转换 处理</li>
+<li>JS判断空对象</li>
+<li>判断是不是小数</li>
 </ol>
 
       
@@ -376,15 +395,15 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Three.js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">github</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Three.js</a>
               </li>
             
             <div class="clearfix"></div>
