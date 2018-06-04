@@ -421,7 +421,7 @@
     <link href="https://wangyx233.github.io/2017/05/24/%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/"/>
     <id>https://wangyx233.github.io/2017/05/24/问题记录/</id>
     <published>2017-05-24T07:06:44.000Z</published>
-    <updated>2018-05-30T08:10:24.711Z</updated>
+    <updated>2018-06-04T03:05:58.520Z</updated>
     
     <content type="html"><![CDATA[<p>性能优化</p>
 <ol>
@@ -432,7 +432,7 @@
 </ol>
 <p>chrome调试工具</p>
 <ol>
-<li>linux命令学习<br>cd<br>cd .xxx<br>vim 没有文件会创建<br>cat 命令<br>cat filename 一次性查看文件<br>cat &gt;filename 创建一个文件，但不能编辑已有的<br>cat file1 file2 &gt;file3 合并多个文件<br>cd .ssh<br>vim config vim 里 n是下一个<br>ssh config<h1 id="172-18-11-235"><a href="#172-18-11-235" class="headerlink" title="172.18.11.235"></a>172.18.11.235</h1>Host        235<br>HostName    172.18.11.235<br>Port        22<br>User        root<br>PasswordAuthentication yes<br>ssh 235 快捷<br>mv 重命名或是移动<br>mv old new 改名<br>mv old/ new<br>当前目录.<br>cp 复制 -r 递归处理<br>ctrl+D 退出服务器<br>文件内查找字符串 命令模式下输入“/字符串”， grep</li>
+<li>linux命令学习<br>cd<br>cd .xxx<br>vim 没有文件会创建<br>cat 命令<br>cat filename 一次性查看文件<br>cat &gt;filename 创建一个文件，但不能编辑已有的<br>cat file1 file2 &gt;file3 合并多个文件<br>cd .ssh<br>vim config vim 里 n是下一个<br>ssh config<br>mv 重命名或是移动<br>mv old new 改名<br>mv old/ new<br>当前目录.<br>cp 复制 -r 递归处理<br>ctrl+D 退出服务器<br>文件内查找字符串 命令模式下输入“/字符串”， grep</li>
 <li>table的高度一定后，即使给每个tr固定高度，还是会平分，若是所有tr的高度撑不开table时；<br>所以，给table外的div设置高度，再给table每个tr设置高度即可</li>
 <li>提出有效的解决问题方法，多学习，思考！！</li>
 <li>找问题要快，准，定位准确哦</li>
