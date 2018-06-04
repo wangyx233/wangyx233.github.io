@@ -15,7 +15,7 @@
 <meta property="og:url" content="https://wangyx233.github.io/2017/05/24/优化/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="angular 页码跳转 页面高度，加载 包括scroll，scrollintoview 过滤器进行筛选 ng-repeat 配合ng-class ng-if的使用影响dom节点设置 angular 标签页 用ng-init 修改index dom操作，mouseover，keydown，keyup，keycode flot插件，highcharts插件使用echarts的数据会每次merge，">
-<meta property="og:updated_time" content="2017-08-17T11:37:20.000Z">
+<meta property="og:updated_time" content="2018-04-24T05:36:35.566Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="优化">
 <meta name="twitter:description" content="angular 页码跳转 页面高度，加载 包括scroll，scrollintoview 过滤器进行筛选 ng-repeat 配合ng-class ng-if的使用影响dom节点设置 angular 标签页 用ng-init 修改index dom操作，mouseover，keydown，keyup，keycode flot插件，highcharts插件使用echarts的数据会每次merge，">
@@ -211,6 +211,28 @@
 <li>json 字符串的转换 处理</li>
 <li>JS判断空对象</li>
 <li>判断是不是小数</li>
+<li>css z-index fixed</li>
+<li>inline-block 空隙留白</li>
+<li>ng-src</li>
+<li>li自适应问题</li>
+<li>localStorage读取函数</li>
+<li>关于HTTP请求中的form data和request payload $.ajax({ url: “test.html”, contentType:’text/plain;charset=UTF-8’});//request payload</li>
+<li>ajax post data 类型转换 string json</li>
+<li>angular injector注入压缩样式</li>
+<li>stateChangeStart 前端路由拦截 angular vs react</li>
+<li>height100vh，在Safari浏览器下缩放显示</li>
+<li>数组删除 索引问题</li>
+<li>append appendchild 兼容性问题</li>
+<li>字符串去所有空格”abc 123 def”.replace(/\s/g, “”) 去首尾.replace(/^\s+|\s+$/g, ‘’)</li>
+<li>ng-bind-html compile</li>
+<li>页面里有多少个DOM元素 document.all,document.querySelectorAll(‘<em>‘).length。$$(‘</em>‘).length</li>
+<li>dom 绑定的事件有哪些,如何读取dom的所有属性和属性值</li>
+<li>在页面上实现一个小球围绕一个中心点做长轴为a，短轴为b的椭圆运动</li>
+<li>fetch 上传文件 Content-Type 不传，formData格式，组件复用</li>
+<li>git查看删除文件 git log – path</li>
+<li>svg 作为img引入，修改颜色，fill</li>
+<li>子元素有内容，父元素的高度为0</li>
+<li>table-layout fixed，固定宽度布局。</li>
 </ol>
 
       
@@ -321,7 +343,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 Usaki
+    		&copy; 2018 Usaki
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -395,15 +417,15 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Three.js</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Three.js</a>
               </li>
             
             <div class="clearfix"></div>

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wangyx233.github.io/"/>
-  <updated>2017-08-03T08:45:02.000Z</updated>
+  <updated>2018-05-18T09:37:14.579Z</updated>
   <id>https://wangyx233.github.io/</id>
   
   <author>
@@ -14,6 +14,52 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>问题记录</title>
+    <link href="https://wangyx233.github.io/2018/05/18/%E8%AE%B0%E5%BD%95/"/>
+    <id>https://wangyx233.github.io/2018/05/18/记录/</id>
+    <published>2018-05-18T06:46:57.698Z</published>
+    <updated>2018-05-18T09:37:14.579Z</updated>
+    
+    <content type="html"><![CDATA[<ol>
+<li>css 哪些样式子元素可以继承<br>字体相关的都可以,font-size, color, weight, cursor…<br>lineheight 是可以继承的，是和字体大小有关，normal，自动合理的空间；具体高度；数字和百分比都是基于字体大小<br>和布局，位置相关的那些不会被继承，什么pading，margin，position，display, border, height…</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;ol&gt;
+&lt;li&gt;css 哪些样式子元素可以继承&lt;br&gt;字体相关的都可以,font-size, color, weight, cursor…&lt;br&gt;lineheight 是可以继承的，是和字体大小有关，normal，自动合理的空间；具体高度；数字和百分比都是基于字体大小&lt;br&gt;和
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Chrome DevTools</title>
+    <link href="https://wangyx233.github.io/2018/02/05/Chrome%20DevTools/"/>
+    <id>https://wangyx233.github.io/2018/02/05/Chrome DevTools/</id>
+    <published>2018-02-05T09:35:01.000Z</published>
+    <updated>2018-04-04T03:35:14.976Z</updated>
+    
+    <content type="html"><![CDATA[<p>简介<br>    Chrome DevTools(Chrome 开发者工具)，是Chrome浏览器内嵌的一个用于网页开发和调试的工具。若想体验最新版的DevTools，官网还提供了一款 Chrome Canary(Chrome 金丝雀)浏览器。</p>
+<p>如何打开</p>
+<ol>
+<li>Elements</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;简介&lt;br&gt;    Chrome DevTools(Chrome 开发者工具)，是Chrome浏览器内嵌的一个用于网页开发和调试的工具。若想体验最新版的DevTools，官网还提供了一款 Chrome Canary(Chrome 金丝雀)浏览器。&lt;/p&gt;
+&lt;p&gt;如何打开&lt;/
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Gulp介绍</title>
@@ -113,7 +159,7 @@
     <link href="https://wangyx233.github.io/2017/06/12/Canvas%E5%AD%A6%E4%B9%A0/"/>
     <id>https://wangyx233.github.io/2017/06/12/Canvas学习/</id>
     <published>2017-06-12T05:55:20.000Z</published>
-    <updated>2017-06-26T10:57:40.000Z</updated>
+    <updated>2018-05-21T12:26:01.639Z</updated>
     
     <content type="html"><![CDATA[<p>&lt;canvas&gt;标签定义一个矩形框画布，默认没有边框和内容,默认大小为300像素×150像素(wxh)。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;canvas id=&quot;myCanvas&quot; width=&quot;200&quot; height=&quot;100&quot;</div><div class="line">style=&quot;border:1px solid #000000;&quot;&gt;</div><div class="line">若浏览器不支持canvas标签，将显示这些文字</div><div class="line">&lt;/canvas&gt;</div></pre></td></tr></table></figure>
@@ -128,6 +174,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">arc(x, y, radius, startAngle, endAngle, anticlockwise)</div><div class="line">画一个以（x,y）为圆心的以radius为半径的圆弧（圆），从startAngle开始到endAngle结束，按照anticlockwise给定的方向（默认为顺时针）来生成。</div><div class="line">注意：arc()函数中的角度单位是弧度，不是度数。角度与弧度的js表达式:radians=(Math.PI/180)*degrees</div></pre></td></tr></table></figure>
 <h6 id="画贝塞尔曲线"><a href="#画贝塞尔曲线" class="headerlink" title="画贝塞尔曲线"></a>画贝塞尔曲线</h6><p>quadraticCurveTo(cp1x, cp1y, x, y)<br>绘制二次贝塞尔曲线，cp1x,cp1y为一个控制点，x,y为结束点。<br>bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y)<br>绘制三次贝塞尔曲线，cp1x,cp1y为控制点一，cp2x,cp2y为控制点二，x,y为结束点。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">// 一颗心</div><div class="line">var heart = document.getElementById(&apos;heart&apos;);</div><div class="line">var heartx = heart.getContext(&apos;2d&apos;);</div><div class="line">heartx.beginPath();</div><div class="line">heartx.moveTo(75,40);</div><div class="line">heartx.bezierCurveTo(75,37,70,25,50,25);</div><div class="line">heartx.bezierCurveTo(20,25,20,62.5,20,62.5);</div><div class="line">heartx.bezierCurveTo(20,80,40,102,75,120);</div><div class="line">heartx.bezierCurveTo(110,102,130,80,130,62.5);</div><div class="line">heartx.bezierCurveTo(130,62.5,130,25,100,25);</div><div class="line">heartx.bezierCurveTo(85,25,75,37,75,40);</div><div class="line">heartx.fill();</div></pre></td></tr></table></figure>
+<p>save()<br>restore()<br>rotate() 中心在圆点，<br>translate重新映射画布上(0,0)的位置</p>
 ]]></content>
     
     <summary type="html">
@@ -273,7 +320,7 @@
     <link href="https://wangyx233.github.io/2017/05/24/%E4%BC%98%E5%8C%96/"/>
     <id>https://wangyx233.github.io/2017/05/24/优化/</id>
     <published>2017-05-24T07:09:55.000Z</published>
-    <updated>2017-08-17T11:37:20.000Z</updated>
+    <updated>2018-04-24T05:36:35.566Z</updated>
     
     <content type="html"><![CDATA[<ol>
 <li>angular 页码跳转</li>
@@ -326,6 +373,28 @@
 <li>json 字符串的转换 处理</li>
 <li>JS判断空对象</li>
 <li>判断是不是小数</li>
+<li>css z-index fixed</li>
+<li>inline-block 空隙留白</li>
+<li>ng-src</li>
+<li>li自适应问题</li>
+<li>localStorage读取函数</li>
+<li>关于HTTP请求中的form data和request payload $.ajax({ url: “test.html”, contentType:’text/plain;charset=UTF-8’});//request payload</li>
+<li>ajax post data 类型转换 string json</li>
+<li>angular injector注入压缩样式</li>
+<li>stateChangeStart 前端路由拦截 angular vs react</li>
+<li>height100vh，在Safari浏览器下缩放显示</li>
+<li>数组删除 索引问题</li>
+<li>append appendchild 兼容性问题</li>
+<li>字符串去所有空格”abc 123 def”.replace(/\s/g, “”) 去首尾.replace(/^\s+|\s+$/g, ‘’)</li>
+<li>ng-bind-html compile</li>
+<li>页面里有多少个DOM元素 document.all,document.querySelectorAll(‘<em>‘).length。$$(‘</em>‘).length</li>
+<li>dom 绑定的事件有哪些,如何读取dom的所有属性和属性值</li>
+<li>在页面上实现一个小球围绕一个中心点做长轴为a，短轴为b的椭圆运动</li>
+<li>fetch 上传文件 Content-Type 不传，formData格式，组件复用</li>
+<li>git查看删除文件 git log – path</li>
+<li>svg 作为img引入，修改颜色，fill</li>
+<li>子元素有内容，父元素的高度为0</li>
+<li>table-layout fixed，固定宽度布局。</li>
 </ol>
 ]]></content>
     
@@ -352,7 +421,7 @@
     <link href="https://wangyx233.github.io/2017/05/24/%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/"/>
     <id>https://wangyx233.github.io/2017/05/24/问题记录/</id>
     <published>2017-05-24T07:06:44.000Z</published>
-    <updated>2017-06-05T06:46:06.000Z</updated>
+    <updated>2018-05-30T08:10:24.711Z</updated>
     
     <content type="html"><![CDATA[<p>性能优化</p>
 <ol>
@@ -362,6 +431,48 @@
 <li>减少请求数</li>
 </ol>
 <p>chrome调试工具</p>
+<ol>
+<li>linux命令学习<br>cd<br>cd .xxx<br>vim 没有文件会创建<br>cat 命令<br>cat filename 一次性查看文件<br>cat &gt;filename 创建一个文件，但不能编辑已有的<br>cat file1 file2 &gt;file3 合并多个文件<br>cd .ssh<br>vim config vim 里 n是下一个<br>ssh config<h1 id="172-18-11-235"><a href="#172-18-11-235" class="headerlink" title="172.18.11.235"></a>172.18.11.235</h1>Host        235<br>HostName    172.18.11.235<br>Port        22<br>User        root<br>PasswordAuthentication yes<br>ssh 235 快捷<br>mv 重命名或是移动<br>mv old new 改名<br>mv old/ new<br>当前目录.<br>cp 复制 -r 递归处理<br>ctrl+D 退出服务器<br>文件内查找字符串 命令模式下输入“/字符串”， grep</li>
+<li>table的高度一定后，即使给每个tr固定高度，还是会平分，若是所有tr的高度撑不开table时；<br>所以，给table外的div设置高度，再给table每个tr设置高度即可</li>
+<li>提出有效的解决问题方法，多学习，思考！！</li>
+<li>找问题要快，准，定位准确哦</li>
+<li>angular,router,resolve 只有resolve里所有的promise都resolved获取成功才会触发$stateChangeSuccess,进而实例化controller和模板。</li>
+<li>对于发现的问题，疑问，不正常的地方要探究一下，比如时间显示，比如数据不正常，比如报错。。。可能都是bug或者问题需要修正，不能视而不见</li>
+<li>reduce 的使用</li>
+<li>sass mixin 与 less的mixin</li>
+<li>angular filter 应用 如：ng-repeat | filter</li>
+<li>echart 的各种点击事件</li>
+<li>node 不支持es6的语法，import什么的，配置一下.babelrc <a href="https://babeljs.cn/docs/usage/babelrc/" target="_blank" rel="external">https://babeljs.cn/docs/usage/babelrc/</a><br>还有一个env字段，可以对BABEL_ENV或者NODE_ENV指定的不同的环境变量，进行不同的编译操作<br>presets，启动怎样的预设转码，es2015  ,stage-0 , stage-1 ,stage-2 , stage-3 ,react<br>plugins，转码规则一些插件</li>
+<li>calc 计算，嵌套</li>
+<li>位置100%；生效？？父元素高度确定。flex布局下的高度100%，flex-direction: column.和父元素的高度一致</li>
+<li>text-ellipsis 生效</li>
+<li>字符串替换等操作可以考虑用正则替换。</li>
+<li>$compile 更新dom变化，html-&gt;template.$link</li>
+<li>pre标签，保持空格、换行等格式化，转义字符也会进行相应的转换，sup标签，上标标签</li>
+<li>注意if判断true false，可能直接就不执行了。0的值-》false，有的时候不能直接通过if判断是不是有这个字段</li>
+<li>base64图片，直接引入css或者html中，可能会比普通图片大，影响首屏加载配合gzip压缩大小差不多等。对小的背景图可能会有用一些。减少了http请求。雪碧图的区别</li>
+<li>伪元素，::before,::after，content: ‘’;</li>
+<li>box-shadow 外阴影outset 内阴影inset box-shadow: h-shadow v-shadow blur spread color inset; hv-正是右面，上面，负值是左边下面。blur模糊程度， spread延伸程度，正值扩大，负值-缩小。都是px单位。<br>filter: drop-shadow(5px 5px 10px black) 阴影不能叠加，可以给图片添加阴影 x,y,blue,color<br>background-img: linear-gradient(90deg, color width,)</li>
+<li>js worker, web worker 进程</li>
+<li>angular module，包含controller，directive，filter，service等等的一个模块，先执行常量定义，然后按照注册顺序，注册顺序执行配置。<br>angular.module(‘name’,[])创建一个module，相同的会被重写。angular.module(‘name’),读取</li>
+<li>在想要添加commit的分支上，用git cherry-pick newcommitId</li>
+<li>在地址栏输入地址后，到看到页面操作。<br>输入物理过程，键盘什么的。输入的是关键字的话，会传给浏览器默认的搜索引擎，并带上浏览器的标识。url的话然后，浏览器检测输入是否合法。<br>检查HSTS列表HTTP Strict Transport Security。记录了那些只能通过htts协议访问的网站，并把http-&gt;https<br>DNS查询，1.首先浏览器检测域名是否在缓存中，2.是否在本地的hosts里面。3.调用函数查询。4.没有的话，向dns服务器查询请求。</li>
+<li>css的重排与重绘，reflow，repaint<br>reflow 重排，页面布局，页面布局改变，改变字体，style，js的dom操作，激活伪类，css3的animation和transition。<br>repaint 重绘，不一定需要重排，只影响元素的外观风格，不会影响布局。元素颜色<br>其中消耗最低的是transform和opacity两个属性（当然还有会触发Composite的其他CSS属性），其次是Paint相关属性。所以在制作动画时，建议使用transform的translate替代margin或position中的top、right、bottom和left，同时使用transform中的scaleX或者scaleY来替代width和height</li>
+<li>页面有滚动条，table也有滚动条，双滚动条。hover的时候显示滚动条。表头和body分开，固定表头，滚动body</li>
+<li>getAttribute()获取属性，dom操作基础夯实</li>
+<li>angular中动态增加或删除，借助ng-repeat来修改。[],删除splice</li>
+<li>循环使用几个颜色时，可以用%来获得每个的索引</li>
+<li>angular ui-sref 传参数为空是””,默认过滤这个参数，从而导致取不到，值为undefined的情况。</li>
+<li>document.designMode = “on” ,页面是可编辑的状态</li>
+<li>锚点点击滚动效果 scroll-behavior: smooth;</li>
+<li>background-clip，裁剪效果，border-box，padding-box，content-box；background-origin,定位开始。</li>
+<li>svg图片大小缩放 preserveAspectRatio</li>
+<li>sort x<y -1="" x="">y 1 升序大小比较；降序的话则相反。比较函数接收两个参数，如果第一个参数应该位于第二个之前则返回一个负数，如果两个参数相等则返回0，如果第一个参数应该位于第二个之后则返回一个正数。</y></li>
+<li>retina屏，canvas，transform3d</li>
+<li>object-fit</li>
+<li>yarn, npm 区别。yarn解决了不确定性依赖yarn.lock,网络问题，并行下载等。npm install-&gt; yarn; npm install –save -&gt; yarn add; npm install –global -&gt; yarn global add; npm install pkg@version -&gt; yarn add pkg@version; npm uninstall -&gt; yarn remove; npm rebuild -&gt; yarn install –force; 升级包 yarn upgrade</li>
+<li>post方法，put方法区别。post方法不是幂等的，创建资源；put==replace是幂等的，更新资源；patch是对put的补充。</li>
+</ol>
 ]]></content>
     
     <summary type="html">
@@ -374,7 +485,8 @@
 &lt;li&gt;减少请求数&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;chrome调试工具&lt;/p&gt;
-
+&lt;ol&gt;
+&lt;li&gt;linux命令学习&lt;br&gt;cd&lt;br&gt;cd .xxx&lt;br
     
     </summary>
     
