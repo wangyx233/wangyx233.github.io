@@ -137,20 +137,20 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-记录" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-webpack学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/18/记录/">问题记录</a>
+      <a class="article-title" href="/2018/06/15/webpack学习/">webpack学习</a>
     </h1>
   
 
         
-        <a href="/2018/05/18/记录/" class="archive-article-date">
-  	<time datetime="2018-05-18T06:46:57.698Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-18</time>
+        <a href="/2018/06/15/webpack学习/" class="archive-article-date">
+  	<time datetime="2018-06-15T08:34:01.695Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-15</time>
 </a>
         
       </header>
@@ -158,7 +158,17 @@
     <div class="article-entry" itemprop="articleBody">
       
         <ol>
-<li>css 哪些样式子元素可以继承<br>字体相关的都可以,font-size, color, weight, cursor…<br>lineheight 是可以继承的，是和字体大小有关，normal，自动合理的空间；具体高度；数字和百分比都是基于字体大小<br>和布局，位置相关的那些不会被继承，什么pading，margin，position，display, border, height…</li>
+<li>postcss 配置，post.config.js，同时webpack.config.js</li>
+<li>mini-css-extract-plugin 与style-loader不共存</li>
+<li>注意路径和文件名，仔细，认真</li>
+<li>ico图片引入，没什么区别？</li>
+<li>可自动设置dist文件夹下的文件，生成文件的目录你来掌握。</li>
+<li>注意图片引入的路径,使用file-loader，url-loader引入的图片需要配合require使用，才能打包。url可以指定图片大小转换成base64等。<br>若不用require，直接src，需要把图片copy到打包后的文件。</li>
+<li>react-hot-loader 与webpack 自带的hot不相互兼容。只能用一个。</li>
+<li>webpack 的publicpath 定义的是服务在哪个文件下启动的，content可以定义文件的目录。</li>
+<li>静态文件可生成hash模式，避免缓存。</li>
+<li>babel也需要相应的配置。配合babel-import-plugin可以进行ui库的部分引入。还要注意选择babel的stage</li>
+<li>react route4 webpack 服务器，用BrowserRouter,historyApiFallback: true</li>
 </ol>
 
       
@@ -172,107 +182,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/18/记录/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-Chrome DevTools" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/05/Chrome DevTools/">Chrome DevTools</a>
-    </h1>
-  
-
-        
-        <a href="/2018/02/05/Chrome DevTools/" class="archive-article-date">
-  	<time datetime="2018-02-05T09:35:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>简介<br>    Chrome DevTools(Chrome 开发者工具)，是Chrome浏览器内嵌的一个用于网页开发和调试的工具。若想体验最新版的DevTools，官网还提供了一款 Chrome Canary(Chrome 金丝雀)浏览器。</p>
-<p>如何打开</p>
-<ol>
-<li>Elements</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/02/05/Chrome DevTools/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-自动化构建工具(一)--Gulp" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/03/自动化构建工具(一)--Gulp/">Gulp介绍</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/03/自动化构建工具(一)--Gulp/" class="archive-article-date">
-  	<time datetime="2017-08-03T07:29:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Gulp是一个前端自动化工具，主要用来做一些预处理语言的编译，如：Less,Jade，</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/03/自动化构建工具(一)--Gulp/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/06/15/webpack学习/">展开全文 >></a>
         </p>
       
 
@@ -562,38 +472,32 @@
 
 
   
-    <article id="post-优化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-hexo部署github的问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/24/优化/">优化</a>
+      <a class="article-title" href="/2017/04/11/hexo部署github的问题/">hexo部署github的问题</a>
     </h1>
   
 
         
-        <a href="/2017/05/24/优化/" class="archive-article-date">
-  	<time datetime="2017-05-24T07:09:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-24</time>
+        <a href="/2017/04/11/hexo部署github的问题/" class="archive-article-date">
+  	<time datetime="2017-04-11T12:03:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-11</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ol>
-<li>angular 页码跳转</li>
-<li>页面高度，加载<br> 包括scroll，scrollintoview</li>
-<li>过滤器进行筛选</li>
-<li>ng-repeat 配合ng-class</li>
-<li>ng-if的使用影响dom节点设置</li>
-<li>angular 标签页 用ng-init 修改index</li>
-<li>dom操作，mouseover，keydown，keyup，keycode</li>
-<li>flot插件，highcharts插件使用<br>echarts的数据会每次merge，解决方法：<br> (1) setoptions的选项<br> (2) 每次对数组置空</li>
-</ol>
+        <h5 id="用hexo搭建博客，配置直接部署到github的方法："><a href="#用hexo搭建博客，配置直接部署到github的方法：" class="headerlink" title="用hexo搭建博客，配置直接部署到github的方法："></a>用hexo搭建博客，配置直接部署到github的方法：</h5><p>1.安装 hexo-deployer-git插件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo-deployer-git --save</div></pre></td></tr></table></figure></p>
+<p>2.在hexo根目录的_config.yml中进行deploy的配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">    type: git</div><div class="line">    repo: [github repository url] //eg:git@github.com:xxx.git or https://github.com/xxx.git</div><div class="line">    branch: master //branch name</div><div class="line">    message: &quot;Blog updated: &#123;&#123; now（&apos;YYYY-MM-DD&apos;）&#125;&#125;&quot; //commit message</div><div class="line">Ps:注意缩进和空格</div></pre></td></tr></table></figure></p>
+<p>3.通过hexo deploy（即hexo d）命令进行部署，在此之前需要进行hexo generate（即hexo g）编译。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hexo-deployer-git插件的作用是生成.deploy_git文件，</div><div class="line">并且把hexo g编译后的public中的文件复制到.deploy_git文件夹下，</div><div class="line">然后进行git操作，推到远端github仓库。</div></pre></td></tr></table></figure></p>
+<h3 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h3>
         
-          <a class="article-more-a" href="/2017/05/24/优化/#more">more >></a>
+          <a class="article-more-a" href="/2017/04/11/hexo部署github的问题/#more">more >></a>
         
       
 
@@ -602,11 +506,26 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">github</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/24/优化/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/04/11/hexo部署github的问题/">展开全文 >></a>
         </p>
       
 
@@ -621,77 +540,34 @@
 
 
   
-    <article id="post-问题记录" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/24/问题记录/">问题记录</a>
+      <a class="article-title" href="/2017/04/11/hello-world/">Hello World</a>
     </h1>
   
 
         
-        <a href="/2017/05/24/问题记录/" class="archive-article-date">
-  	<time datetime="2017-05-24T07:06:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-24</time>
+        <a href="/2017/04/11/hello-world/" class="archive-article-date">
+  	<time datetime="2017-04-11T06:06:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-11</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>性能优化</p>
-<ol>
-<li>js压缩</li>
-<li>js加载顺序</li>
-<li>http缓存</li>
-<li>减少请求数</li>
-</ol>
-<p>chrome调试工具</p>
-<ol>
-<li>linux命令学习<br>cd<br>cd .xxx<br>vim 没有文件会创建<br>cat 命令<br>cat filename 一次性查看文件<br>cat &gt;filename 创建一个文件，但不能编辑已有的<br>cat file1 file2 &gt;file3 合并多个文件<br>cd .ssh<br>vim config vim 里 n是下一个<br>ssh config<br>mv 重命名或是移动<br>mv old new 改名<br>mv old/ new<br>当前目录.<br>cp 复制 -r 递归处理<br>ctrl+D 退出服务器<br>文件内查找字符串 命令模式下输入“/字符串”， grep</li>
-<li>table的高度一定后，即使给每个tr固定高度，还是会平分，若是所有tr的高度撑不开table时；<br>所以，给table外的div设置高度，再给table每个tr设置高度即可</li>
-<li>提出有效的解决问题方法，多学习，思考！！</li>
-<li>找问题要快，准，定位准确哦</li>
-<li>angular,router,resolve 只有resolve里所有的promise都resolved获取成功才会触发$stateChangeSuccess,进而实例化controller和模板。</li>
-<li>对于发现的问题，疑问，不正常的地方要探究一下，比如时间显示，比如数据不正常，比如报错。。。可能都是bug或者问题需要修正，不能视而不见</li>
-<li>reduce 的使用</li>
-<li>sass mixin 与 less的mixin</li>
-<li>angular filter 应用 如：ng-repeat | filter</li>
-<li>echart 的各种点击事件</li>
-<li>node 不支持es6的语法，import什么的，配置一下.babelrc <a href="https://babeljs.cn/docs/usage/babelrc/" target="_blank" rel="external">https://babeljs.cn/docs/usage/babelrc/</a><br>还有一个env字段，可以对BABEL_ENV或者NODE_ENV指定的不同的环境变量，进行不同的编译操作<br>presets，启动怎样的预设转码，es2015  ,stage-0 , stage-1 ,stage-2 , stage-3 ,react<br>plugins，转码规则一些插件</li>
-<li>calc 计算，嵌套</li>
-<li>位置100%；生效？？父元素高度确定。flex布局下的高度100%，flex-direction: column.和父元素的高度一致</li>
-<li>text-ellipsis 生效</li>
-<li>字符串替换等操作可以考虑用正则替换。</li>
-<li>$compile 更新dom变化，html-&gt;template.$link</li>
-<li>pre标签，保持空格、换行等格式化，转义字符也会进行相应的转换，sup标签，上标标签</li>
-<li>注意if判断true false，可能直接就不执行了。0的值-》false，有的时候不能直接通过if判断是不是有这个字段</li>
-<li>base64图片，直接引入css或者html中，可能会比普通图片大，影响首屏加载配合gzip压缩大小差不多等。对小的背景图可能会有用一些。减少了http请求。雪碧图的区别</li>
-<li>伪元素，::before,::after，content: ‘’;</li>
-<li>box-shadow 外阴影outset 内阴影inset box-shadow: h-shadow v-shadow blur spread color inset; hv-正是右面，上面，负值是左边下面。blur模糊程度， spread延伸程度，正值扩大，负值-缩小。都是px单位。<br>filter: drop-shadow(5px 5px 10px black) 阴影不能叠加，可以给图片添加阴影 x,y,blue,color<br>background-img: linear-gradient(90deg, color width,)</li>
-<li>js worker, web worker 进程</li>
-<li>angular module，包含controller，directive，filter，service等等的一个模块，先执行常量定义，然后按照注册顺序，注册顺序执行配置。<br>angular.module(‘name’,[])创建一个module，相同的会被重写。angular.module(‘name’),读取</li>
-<li>在想要添加commit的分支上，用git cherry-pick newcommitId</li>
-<li>在地址栏输入地址后，到看到页面操作。<br>输入物理过程，键盘什么的。输入的是关键字的话，会传给浏览器默认的搜索引擎，并带上浏览器的标识。url的话然后，浏览器检测输入是否合法。<br>检查HSTS列表HTTP Strict Transport Security。记录了那些只能通过htts协议访问的网站，并把http-&gt;https<br>DNS查询，1.首先浏览器检测域名是否在缓存中，2.是否在本地的hosts里面。3.调用函数查询。4.没有的话，向dns服务器查询请求。</li>
-<li>css的重排与重绘，reflow，repaint<br>reflow 重排，页面布局，页面布局改变，改变字体，style，js的dom操作，激活伪类，css3的animation和transition。<br>repaint 重绘，不一定需要重排，只影响元素的外观风格，不会影响布局。元素颜色<br>其中消耗最低的是transform和opacity两个属性（当然还有会触发Composite的其他CSS属性），其次是Paint相关属性。所以在制作动画时，建议使用transform的translate替代margin或position中的top、right、bottom和left，同时使用transform中的scaleX或者scaleY来替代width和height</li>
-<li>页面有滚动条，table也有滚动条，双滚动条。hover的时候显示滚动条。表头和body分开，固定表头，滚动body</li>
-<li>getAttribute()获取属性，dom操作基础夯实</li>
-<li>angular中动态增加或删除，借助ng-repeat来修改。[],删除splice</li>
-<li>循环使用几个颜色时，可以用%来获得每个的索引</li>
-<li>angular ui-sref 传参数为空是””,默认过滤这个参数，从而导致取不到，值为undefined的情况。</li>
-<li>document.designMode = “on” ,页面是可编辑的状态</li>
-<li>锚点点击滚动效果 scroll-behavior: smooth;</li>
-<li>background-clip，裁剪效果，border-box，padding-box，content-box；background-origin,定位开始。</li>
-<li>svg图片大小缩放 preserveAspectRatio</li>
-<li>sort x<y -1="" x="">y 1 升序大小比较；降序的话则相反。比较函数接收两个参数，如果第一个参数应该位于第二个之前则返回一个负数，如果两个参数相等则返回0，如果第一个参数应该位于第二个之后则返回一个正数。</y></li>
-<li>retina屏，canvas，transform3d</li>
-<li>object-fit</li>
-<li>yarn, npm 区别。yarn解决了不确定性依赖yarn.lock,网络问题，并行下载等。npm install-&gt; yarn; npm install –save -&gt; yarn add; npm install –global -&gt; yarn global add; npm install pkg@version -&gt; yarn add pkg@version; npm uninstall -&gt; yarn remove; npm rebuild -&gt; yarn install –force; 升级包 yarn upgrade</li>
-<li>post方法，put方法区别。post方法不是幂等的，创建资源；put==replace是幂等的，更新资源；patch是对put的补充。</li>
-</ol>
-
+        <p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+        
+          <a class="article-more-a" href="/2017/04/11/hello-world/#more">more >></a>
+        
       
 
       
@@ -703,7 +579,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/05/24/问题记录/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/04/11/hello-world/">展开全文 >></a>
         </p>
       
 
@@ -718,10 +594,6 @@
 
 
   
-  
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-    </nav>
   
 
 
