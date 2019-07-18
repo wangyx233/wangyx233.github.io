@@ -42,7 +42,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="http://i1.piimg.com/1949/e5d72538c4ecf16e.jpg" class="js-avatar">
+			<img src="/avatar.jepg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">Usaki</a></h1>
@@ -92,7 +92,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="http://i1.piimg.com/1949/e5d72538c4ecf16e.jpg" class="js-avatar">
+				<img src="/avatar.jepg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">Usaki</h1>
@@ -137,6 +137,56 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-理解promise" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/16/理解promise/">理解promise</a>
+    </h1>
+  
+
+        
+        <a href="/2019/01/16/理解promise/" class="archive-article-date">
+  	<time datetime="2019-01-15T16:41:34.498Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="为什么"><a href="#为什么" class="headerlink" title="为什么?"></a>为什么?</h4><p>避免回调地狱<br>有什么问题呢？<br>代码臃肿，可读性差，耦合性差，容易产生bug，不容易维护。不容易复用。在回调里面处理问题。<br>js特点-&gt;异步，主要是靠回调函数实现的。<br>比如，nodejs的特点是高并发和非阻塞，主要靠异步来实现。<br>js是事件注册机制的。<br>函数的执行是进栈和出栈这样的，所以普通的回调函数，try catch是没有作用的。</p>
+<h4 id="是什么？"><a href="#是什么？" class="headerlink" title="是什么？"></a>是什么？</h4><p>用于异步计算，用于即将发生的事情，或者不会发生的事情。<br>一个Promise的状态有resolved/rejected/pending/settled<br>new Promise 返回一个promise对象，参数是一个执行函数。执行函数有两个参数，resolve，reject<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">new Promise((resolve, reject) =&gt; &#123;</div><div class="line">  // 异步处理</div><div class="line">  处理结束后执行resolve , reject</div><div class="line">&#125;)</div><div class="line">.then() //成功失败的回调，注意：then方法是异步执行的</div><div class="line">.catch() //在最外层捕获异常。</div><div class="line"></div><div class="line">promise.catch(onRejected)</div><div class="line">相当于</div><div class="line">promise.then(null, onRrejected);</div></pre></td></tr></table></figure></p>
+<p>promise的三种状态:<br>pending 初始化<br>fulfilled 执行成功，调用resolve<br>rejected 失败，调用reject<br>注意promsie状态 只能由 pending =&gt; fulfilled/rejected, 一旦修改就不能再变</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/01/16/理解promise/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-webpack学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -150,7 +200,7 @@
 
         
         <a href="/2018/06/15/webpack学习/" class="archive-article-date">
-  	<time datetime="2018-06-15T08:34:01.695Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-15</time>
+  	<time datetime="2018-06-15T08:34:01.696Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-15</time>
 </a>
         
       </header>
@@ -170,6 +220,7 @@
 <li>babel也需要相应的配置。配合babel-import-plugin可以进行ui库的部分引入。还要注意选择babel的stage</li>
 <li>react route4 webpack 服务器，用BrowserRouter,historyApiFallback: true</li>
 </ol>
+<p>gulp 与 webpack的区别<br>gulp 是任务流的，和task有关。<br>webpack 的核心是根据模块构建项目。<br>Webpack 的核心就是模块化地组织，模块化地依赖，然后模块化地打包。相对来上，场景局限在前端模块化打包上；虽然用 gulp + 插件的方式也能实现，但目前看 Webpack 在依赖的模块化构建上是无人能够替代的。<br>gulp 版本号。<br>可以在打包的时候，打入不同的文件。</p>
 
       
 
@@ -604,7 +655,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 Usaki
+    		&copy; 2019 Usaki
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
