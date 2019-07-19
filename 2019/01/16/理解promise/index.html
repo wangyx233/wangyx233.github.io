@@ -6,14 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://wangyx233.github.io">
-  <title>Tag: github | Hexo</title>
+  <title>理解promise | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://wangyx233.github.io/tags/github/index.html">
+  <meta name="description" content="为什么?避免回调地狱有什么问题呢？代码臃肿，可读性差，耦合性差，容易产生bug，不容易维护。不容易复用。在回调里面处理问题。js特点-&amp;gt;异步，主要是靠回调函数实现的。比如，nodejs的特点是高并发和非阻塞，主要靠异步来实现。js是事件注册机制的。函数的执行是进栈和出栈这样的，所以普通的回调函数，try catch是没有作用的。 是什么？用于异步计算，用于即将发生的事情，或者不会发生的事情。">
+<meta name="keywords">
+<meta property="og:type" content="article">
+<meta property="og:title" content="理解promise">
+<meta property="og:url" content="https://wangyx233.github.io/2019/01/16/理解promise/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="为什么?避免回调地狱有什么问题呢？代码臃肿，可读性差，耦合性差，容易产生bug，不容易维护。不容易复用。在回调里面处理问题。js特点-&amp;gt;异步，主要是靠回调函数实现的。比如，nodejs的特点是高并发和非阻塞，主要靠异步来实现。js是事件注册机制的。函数的执行是进栈和出栈这样的，所以普通的回调函数，try catch是没有作用的。 是什么？用于异步计算，用于即将发生的事情，或者不会发生的事情。">
+<meta property="og:updated_time" content="2019-07-18T11:44:56.858Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="理解promise">
+<meta name="twitter:description" content="为什么?避免回调地狱有什么问题呢？代码臃肿，可读性差，耦合性差，容易产生bug，不容易维护。不容易复用。在回调里面处理问题。js特点-&amp;gt;异步，主要是靠回调函数实现的。比如，nodejs的特点是高并发和非阻塞，主要靠异步来实现。js是事件注册机制的。函数的执行是进栈和出栈这样的，所以普通的回调函数，try catch是没有作用的。 是什么？用于异步计算，用于即将发生的事情，或者不会发生的事情。">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -149,64 +154,162 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-理解promise" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/11/hexo部署github的问题/" class="archive-article-date">
-  	<time datetime="2017-04-11T12:03:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-11</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/11/hexo部署github的问题/">hexo部署github的问题</a>
+    <h1 class="article-title" itemprop="name">
+      理解promise
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">github</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+        <a href="/2019/01/16/理解promise/" class="archive-article-date">
+  	<time datetime="2019-01-15T16:41:34.498Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="为什么"><a href="#为什么" class="headerlink" title="为什么?"></a>为什么?</h4><p>避免回调地狱<br>有什么问题呢？<br>代码臃肿，可读性差，耦合性差，容易产生bug，不容易维护。不容易复用。在回调里面处理问题。<br>js特点-&gt;异步，主要是靠回调函数实现的。<br>比如，nodejs的特点是高并发和非阻塞，主要靠异步来实现。<br>js是事件注册机制的。<br>函数的执行是进栈和出栈这样的，所以普通的回调函数，try catch是没有作用的。</p>
+<h4 id="是什么？"><a href="#是什么？" class="headerlink" title="是什么？"></a>是什么？</h4><p>用于异步计算，用于即将发生的事情，或者不会发生的事情。<br>一个Promise的状态有resolved/rejected/pending/settled<br>new Promise 返回一个promise对象，参数是一个执行函数。执行函数有两个参数，resolve，reject<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">new Promise((resolve, reject) =&gt; &#123;</div><div class="line">  // 异步处理</div><div class="line">  处理结束后执行resolve , reject</div><div class="line">&#125;)</div><div class="line">.then() //成功失败的回调，注意：then方法是异步执行的</div><div class="line">.catch() //在最外层捕获异常。</div><div class="line"></div><div class="line">promise.catch(onRejected)</div><div class="line">相当于</div><div class="line">promise.then(null, onRrejected);</div></pre></td></tr></table></figure></p>
+<p>promise的三种状态:<br>pending 初始化<br>fulfilled 执行成功，调用resolve<br>rejected 失败，调用reject<br>注意promsie状态 只能由 pending =&gt; fulfilled/rejected, 一旦修改就不能再变</p>
 
-          
+      
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKElEQVR42u3aS27DMAwFwNz/0um2QCHlkbKLWBqvAtewNF6w/Oj1iq/34Pr719Gd6iqvOy4MDIzHMt7Tq/fM7zvJG1bWxcDAOIcximCjZ+Z3CstP10qex8DAwKi+Ok8Ze58PAwMDoxpwk21Vi1UMDAyMlSI2+Z2/Z/6GG2txDAyMBzLyEPn/v2+Zb2BgYDyK0WvW9wac60264SoYGBhbM/IAV031kvsraR8GBgZGfngiX6a5uTxZxMDA2JrRKx0vCJHBe5LWHgYGxjmMahm5Mp7slbi3NOAwMDC+npEc5MqfzINjL3GMjllgYGBsx1iZAOZjgF7SmQdxDAyMcxh5YreSDq4gPySOGBgYmzJWQm11o72gHH0CDAyMAxjVkeQdR76WgjsGBsbxjF5JWR1w9vaAgYFxAqMadqshOB8YJBv9kFBiYGBsyqimaNWCttrCa44QMDAwDmD0Dk9c1WirwqL/GBgYGBsxeoEyT+9WAm7zGBkGBsamjDy9qyZt5Xq62LAb/vfAwMDYlFFte/WC47XHzjAwME5j9Jpf+RGx+TP5WsMdYmBgbMpYOcCaP598gmqrLvoqGBgYWzCuKkrzdn9vaFpNMTEwMPZj5EG2WvT2QmQeuDEwME5j9FK3eSmbD0dz8BCJgYGBUTxgsdKwKwwD8hdhYGAczMgr494h18JHxMDAOICRDwPy9lm1GZfzMDAwTmPkpWOv4Ew2Wm32Ndt5GBgYz2P8AIMTS6mV+5QnAAAAAElFTkSuQmCC" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2018/06/15/webpack学习/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          webpack学习
+        
+      </div>
+    </a>
   
   
-    </div></section>
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -229,9 +332,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
