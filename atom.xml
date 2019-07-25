@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wangyx233.github.io/"/>
-  <updated>2019-07-18T11:44:56.858Z</updated>
+  <updated>2019-07-23T03:55:30.425Z</updated>
   <id>https://wangyx233.github.io/</id>
   
   <author>
@@ -14,6 +14,50 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>链表</title>
+    <link href="https://wangyx233.github.io/2019/07/22/%E9%93%BE%E8%A1%A8%E9%98%9F%E5%88%97/"/>
+    <id>https://wangyx233.github.io/2019/07/22/链表队列/</id>
+    <published>2019-07-22T08:05:17.090Z</published>
+    <updated>2019-07-23T03:55:30.425Z</updated>
+    
+    <content type="html"><![CDATA[<p>what?<br>链表是一种递归的数据结构，它或者为空，或者为一个指向结点的引用。该结点含有一个泛型元素和一个指向另一个链表的引用(next)。<br>其中，结点是一种含有任何类型数据的抽象实体。<br>链表表示的是一列元素。<br>在追踪链表或其他链式结构代码的时候，可用可视化的方式表示：</p>
+<ol>
+<li>用长方形表示对象</li>
+<li>将实例变量的值写在长方形中</li>
+<li>用指向被引用对象的箭头表示引用关系，链接<br>实现任意插入和删除操作的标准解决方案是双向链表，其中每个结点都含有两个链接(pervious, next)，分别指向不同的方向。</li>
+</ol>
+<p>特点：</p>
+<ol>
+<li>可以处理任意类型的数据</li>
+<li>所需的空间和集合的大小成正比</li>
+<li>操作的所需要的时间总是和集合的大小无关</li>
+</ol>
+<p>补充：</p>
+<ol>
+<li><p>背包(Bag)是一种不支持从中删除元素的集合数据类型，目的就是收集元素并且迭代遍历收集到的元素，迭代的顺序不确定且元素的处理顺序不重要，可以用栈也可以用队列。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">class Bag() &#123;&#125;</div><div class="line">  add(item)</div><div class="line">  isEmpty()</div><div class="line">  size()</div></pre></td></tr></table></figure>
+</li>
+<li><p>先进先出队列FIFO</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">class Queue() &#123;&#125;</div><div class="line">  enqueue(item) // 添加一个元素</div><div class="line">  dequeue() // 删除最近添加的元素</div><div class="line">  isEmpty()</div><div class="line">  size()</div></pre></td></tr></table></figure>
+</li>
+<li><p>下压栈LIFO</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">class Stack() &#123;&#125;</div><div class="line">  push(item)</div><div class="line">  pop()</div><div class="line">  isEmpty()</div><div class="line">  size()</div><div class="line">例如表达式的求值：遇到左括号忽略，操作数押入操作数的栈里，运算符押入运算符的栈里，遇到右括号运算符栈和操作数栈pop计算得到值，再押入栈中。</div><div class="line">如：(1 + ((2 + 3) * (4 * 5)))</div></pre></td></tr></table></figure>
+</li>
+<li><p>在一些语言中，数组的长度一经定义就不可改变，并且数组的删除和添加操作需要对元素进行平移会很繁琐。JS中数组和其他的不同，它是通过对象实现的，操作方便，但是效率可能较其他语言有所不足。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">function Node(elem) &#123;</div><div class="line">  this.elem = elem;</div><div class="line">  this.next = null;</div><div class="line">  // this.prvious = null;</div><div class="line">&#125;</div><div class="line">// 查找，插入，删除结点</div></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;what?&lt;br&gt;链表是一种递归的数据结构，它或者为空，或者为一个指向结点的引用。该结点含有一个泛型元素和一个指向另一个链表的引用(next)。&lt;br&gt;其中，结点是一种含有任何类型数据的抽象实体。&lt;br&gt;链表表示的是一列元素。&lt;br&gt;在追踪链表或其他链式结构代码的时候，可用
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>理解promise</title>
