@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wangyx233.github.io/"/>
-  <updated>2019-07-23T03:55:30.425Z</updated>
+  <updated>2019-08-13T07:25:06.684Z</updated>
   <id>https://wangyx233.github.io/</id>
   
   <author>
@@ -14,6 +14,41 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JS基础回顾</title>
+    <link href="https://wangyx233.github.io/2019/08/13/%E5%9F%BA%E7%A1%80%E5%9B%9E%E9%A1%BE/"/>
+    <id>https://wangyx233.github.io/2019/08/13/基础回顾/</id>
+    <published>2019-08-13T02:10:39.589Z</published>
+    <updated>2019-08-13T07:25:06.684Z</updated>
+    
+    <content type="html"><![CDATA[<h5 id="内置类型"><a href="#内置类型" class="headerlink" title="内置类型"></a>内置类型</h5><p>加上ES6新加的Symbol，共7种，分别为 String， Number， Boolean， Object， Undefined， Null。<br>分为基本数据类型(6)和Object。<br>对于基本数据类型，通过字面量的方式声明，类型依旧是字面量，只有在使用的时候才会转换为对应的类型。<br>、、、<br>typeof()<br>  特别：<br>  函数-&gt;function,<br>  null-&gt;object。历史原因对象以000开头，而null恰好为全零<br>通过Object.prototype.toString.call()可判断准确的类型[object Type]<br>、、、<br>PS: Symbol类型(唯一的值)<br>通过 Symbol()定义，定义后的值不相等，System.prototype.description 为定义时Symbol(‘xxx’)的标识。<br>使用场景：作为对象的属性<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">let sym = Symbol();</div><div class="line">let a = &#123;&#125;;</div><div class="line">a[sym] = &apos;symbol&apos;;</div><div class="line">a = &#123;</div><div class="line">  [sym]: &apos;symbol&apos;</div><div class="line">&#125;</div><div class="line">Object.defineProperty(a, sym, &#123;value: &apos;symbol&apos;&#125;)</div></pre></td></tr></table></figure></p>
+<p>注：</p>
+<ol>
+<li>不能用.运算符，.运算符会直接作为字符串取值。</li>
+<li>Symbol作为属性名，不会出现在for…in, for…of中，也不会出现在Object.keys(), Object.getOwnPropertyNames()、JSON.stringify()里。</li>
+<li>但也不是私有属性，Object.getOwnPropertySymbols，可以获取指定对象的所有 Symbol 属性名。</li>
+<li>新的API:Reflect.ownKeys可以返回所有类型的键名，包括常规键名和 Symbol 键名。</li>
+<li>Symbol.for(description)若没有则会创建一个，若存在则共用一个symbol值。 Symbol.keyFor(sym)返回一个已登记即Symbol.for的 Symbol类型值的key</li>
+<li>其他方法可在需要是再查找。</li>
+</ol>
+<h5 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h5><p>转Boolean类型。在条件判断时，除了 undefined， null， false， NaN， ‘’， 0， -0，其他所有值都转为 true，包括所有对象<br>对象在转换基本类型时，首先会调用 valueOf 然后调用 toString。<br>注：<br>‘a’ + + ‘b’ – ‘aNaN’<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">x==y 比较</div><div class="line">undefined == null  // true</div><div class="line">[] == true // false</div><div class="line">[] == ![] // true [].toString() -&gt; &apos;&apos;，!取反运算符的优先级会高于==， ![] -》 false</div></pre></td></tr></table></figure></p>
+<ol>
+<li>undefined == null，结果是true。且它俩与所有其他值比较的结果都是false。</li>
+<li>String == Boolean，需要两个操作数同时转为Number。</li>
+<li>String/Boolean == Number，需要String/Boolean转为Number。</li>
+<li>Object == Primitive，需要Object转为Primitive(具体通过valueOf和toString方法)。</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h5 id=&quot;内置类型&quot;&gt;&lt;a href=&quot;#内置类型&quot; class=&quot;headerlink&quot; title=&quot;内置类型&quot;&gt;&lt;/a&gt;内置类型&lt;/h5&gt;&lt;p&gt;加上ES6新加的Symbol，共7种，分别为 String， Number， Boolean， Object， Undefi
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>链表</title>
