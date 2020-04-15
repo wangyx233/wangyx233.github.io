@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://wangyx233.github.io">
   <title>Canvas学习 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="&amp;lt;canvas&amp;gt;标签定义一个矩形框画布，默认没有边框和内容,默认大小为300像素×150像素(wxh)。 1234&amp;lt;canvas id=&amp;quot;myCanvas&amp;quot; width=&amp;quot;200&amp;quot; height=&amp;quot;100&amp;quot;style=&amp;quot;border:1px solid #000000;&amp;quot;&amp;gt;若浏览器不支持canv">
-<meta name="keywords">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Canvas学习">
 <meta property="og:url" content="https://wangyx233.github.io/2017/06/12/Canvas学习/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="&amp;lt;canvas&amp;gt;标签定义一个矩形框画布，默认没有边框和内容,默认大小为300像素×150像素(wxh)。 1234&amp;lt;canvas id=&amp;quot;myCanvas&amp;quot; width=&amp;quot;200&amp;quot; height=&amp;quot;100&amp;quot;style=&amp;quot;border:1px solid #000000;&amp;quot;&amp;gt;若浏览器不支持canv">
+<meta property="og:locale" content="default">
 <meta property="og:updated_time" content="2018-05-21T12:26:01.640Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Canvas学习">
@@ -37,7 +37,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -153,18 +153,25 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>&lt;canvas&gt;标签定义一个矩形框画布，默认没有边框和内容,默认大小为300像素×150像素(wxh)。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;canvas id=&quot;myCanvas&quot; width=&quot;200&quot; height=&quot;100&quot;</div><div class="line">style=&quot;border:1px solid #000000;&quot;&gt;</div><div class="line">若浏览器不支持canvas标签，将显示这些文字</div><div class="line">&lt;/canvas&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;canvas id=&quot;myCanvas&quot; width=&quot;200&quot; height=&quot;100&quot;</span><br><span class="line">style=&quot;border:1px solid #000000;&quot;&gt;</span><br><span class="line">若浏览器不支持canvas标签，将显示这些文字</span><br><span class="line">&lt;/canvas&gt;</span><br></pre></td></tr></table></figure>
+
 <p>在Js文件中绘制Canvas元素。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var c=document.getElementById(&quot;myCanvas&quot;);</div><div class="line">if(c.getContext(&apos;2d&apos;))&#123; //支持性检查</div><div class="line">  var ctx=c.getContext(&quot;2d&quot;);//获取渲染上下文，参数为上下文的格式</div><div class="line">  ctx.fillStyle=&quot;#FF0000&quot;; //填充样式，可为颜色、图案、渐变等。</div><div class="line">  ctx.fillRect(0,0,150,75);//矩形的填充方法fillRect(x,y,width,height)，矩形左上角坐标为(0,0)</div><div class="line">&#125;else &#123;</div><div class="line">  // canvas-unsupported code here</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var c=document.getElementById(&quot;myCanvas&quot;);</span><br><span class="line">if(c.getContext(&apos;2d&apos;))&#123; //支持性检查</span><br><span class="line">  var ctx=c.getContext(&quot;2d&quot;);//获取渲染上下文，参数为上下文的格式</span><br><span class="line">  ctx.fillStyle=&quot;#FF0000&quot;; //填充样式，可为颜色、图案、渐变等。</span><br><span class="line">  ctx.fillRect(0,0,150,75);//矩形的填充方法fillRect(x,y,width,height)，矩形左上角坐标为(0,0)</span><br><span class="line">&#125;else &#123;</span><br><span class="line">  // canvas-unsupported code here</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h6 id="画矩形"><a href="#画矩形" class="headerlink" title="画矩形"></a>画矩形</h6><p>canvas支持一种原生的图形绘制-矩形</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">fillRect(x, y, width, height) //绘制一个填充的矩形</div><div class="line">strokeRect(x, y, width, height) //绘制一个矩形的边框</div><div class="line">clearRect(x, y, width, height) //清除指定矩形区域，让清除部分完全透明</div><div class="line">rect(x, y, width, height) //绘制一个左上角坐标为（x,y），宽高为width以及height的矩形。</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fillRect(x, y, width, height) //绘制一个填充的矩形</span><br><span class="line">strokeRect(x, y, width, height) //绘制一个矩形的边框</span><br><span class="line">clearRect(x, y, width, height) //清除指定矩形区域，让清除部分完全透明</span><br><span class="line">rect(x, y, width, height) //绘制一个左上角坐标为（x,y），宽高为width以及height的矩形。</span><br></pre></td></tr></table></figure>
+
 <a id="more"></a>
+
 <h6 id="画路径"><a href="#画路径" class="headerlink" title="画路径"></a>画路径</h6><p>定义开始坐标 moveTo(x,y)<br>定义结束坐标 lineTo(x,y)<br>绘制路径轮廓 stroke()<br>beginPath() 新建一条路径，生成之后，图形绘制命令被指向到路径上生成路径。<br>closePath() 闭合路径之后图形绘制命令又重新指向到上下文中。<br>.fill() 进行图形的填充，会进行路径的自动闭合<br>.stroke() 绘制轮廓，需要配合closePath进行路径的闭合</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ctx.beginPath();</div><div class="line">ctx.moveTo(75,50);</div><div class="line">ctx.lineTo(100,75);</div><div class="line">ctx.lineTo(100,25);</div><div class="line">ctx.fill();</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ctx.beginPath();</span><br><span class="line">ctx.moveTo(75,50);</span><br><span class="line">ctx.lineTo(100,75);</span><br><span class="line">ctx.lineTo(100,25);</span><br><span class="line">ctx.fill();</span><br></pre></td></tr></table></figure>
+
 <h6 id="画圆弧"><a href="#画圆弧" class="headerlink" title="画圆弧"></a>画圆弧</h6><p>用arc()方法，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">arc(x, y, radius, startAngle, endAngle, anticlockwise)</div><div class="line">画一个以（x,y）为圆心的以radius为半径的圆弧（圆），从startAngle开始到endAngle结束，按照anticlockwise给定的方向（默认为顺时针）来生成。</div><div class="line">注意：arc()函数中的角度单位是弧度，不是度数。角度与弧度的js表达式:radians=(Math.PI/180)*degrees</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">arc(x, y, radius, startAngle, endAngle, anticlockwise)</span><br><span class="line">画一个以（x,y）为圆心的以radius为半径的圆弧（圆），从startAngle开始到endAngle结束，按照anticlockwise给定的方向（默认为顺时针）来生成。</span><br><span class="line">注意：arc()函数中的角度单位是弧度，不是度数。角度与弧度的js表达式:radians=(Math.PI/180)*degrees</span><br></pre></td></tr></table></figure>
+
 <h6 id="画贝塞尔曲线"><a href="#画贝塞尔曲线" class="headerlink" title="画贝塞尔曲线"></a>画贝塞尔曲线</h6><p>quadraticCurveTo(cp1x, cp1y, x, y)<br>绘制二次贝塞尔曲线，cp1x,cp1y为一个控制点，x,y为结束点。<br>bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y)<br>绘制三次贝塞尔曲线，cp1x,cp1y为控制点一，cp2x,cp2y为控制点二，x,y为结束点。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">// 一颗心</div><div class="line">var heart = document.getElementById(&apos;heart&apos;);</div><div class="line">var heartx = heart.getContext(&apos;2d&apos;);</div><div class="line">heartx.beginPath();</div><div class="line">heartx.moveTo(75,40);</div><div class="line">heartx.bezierCurveTo(75,37,70,25,50,25);</div><div class="line">heartx.bezierCurveTo(20,25,20,62.5,20,62.5);</div><div class="line">heartx.bezierCurveTo(20,80,40,102,75,120);</div><div class="line">heartx.bezierCurveTo(110,102,130,80,130,62.5);</div><div class="line">heartx.bezierCurveTo(130,62.5,130,25,100,25);</div><div class="line">heartx.bezierCurveTo(85,25,75,37,75,40);</div><div class="line">heartx.fill();</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// 一颗心</span><br><span class="line">var heart = document.getElementById(&apos;heart&apos;);</span><br><span class="line">var heartx = heart.getContext(&apos;2d&apos;);</span><br><span class="line">heartx.beginPath();</span><br><span class="line">heartx.moveTo(75,40);</span><br><span class="line">heartx.bezierCurveTo(75,37,70,25,50,25);</span><br><span class="line">heartx.bezierCurveTo(20,25,20,62.5,20,62.5);</span><br><span class="line">heartx.bezierCurveTo(20,80,40,102,75,120);</span><br><span class="line">heartx.bezierCurveTo(110,102,130,80,130,62.5);</span><br><span class="line">heartx.bezierCurveTo(130,62.5,130,25,100,25);</span><br><span class="line">heartx.bezierCurveTo(85,25,75,37,75,40);</span><br><span class="line">heartx.fill();</span><br></pre></td></tr></table></figure>
+
 <p>save()<br>restore()<br>rotate() 中心在圆点，<br>translate重新映射画布上(0,0)的位置</p>
 
       
@@ -259,18 +266,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/06/05/three.js学习指南/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/06/21/D3.js学习/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Three.js学习笔记
+          D3.js学习
         
       </div>
     </a>
   
   
-    <a href="/2017/06/21/D3.js学习/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">D3.js学习</div>
+    <a href="/2017/06/05/three.js学习指南/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Three.js学习笔记</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -313,7 +320,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 Xuan
+    		&copy; 2020 Xuan
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten

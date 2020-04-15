@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://wangyx233.github.io">
-  <title>Archives: 2019/8 | Hexo</title>
+  <title>CSS Secrets | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://wangyx233.github.io/archives/2019/08/index.html">
+  <meta name="description" content="回顾元素获取 12345function $$(selector, context) &amp;#123;  context = context || document;  var elements = context.querySelectorAll(selector);  return Array.prototype.slice.call(elements);&amp;#125;  11.20 总结： 浏览器">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS Secrets">
+<meta property="og:url" content="https://wangyx233.github.io/2019/08/29/css_secret/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="回顾元素获取 12345function $$(selector, context) &amp;#123;  context = context || document;  var elements = context.querySelectorAll(selector);  return Array.prototype.slice.call(elements);&amp;#125;  11.20 总结： 浏览器">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2020-04-15T11:12:07.616Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="CSS Secrets">
+<meta name="twitter:description" content="回顾元素获取 12345function $$(selector, context) &amp;#123;  context = context || document;  var elements = context.querySelectorAll(selector);  return Array.prototype.slice.call(elements);&amp;#125;  11.20 总结： 浏览器">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -128,103 +132,182 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-css_secret" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      CSS Secrets
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/29/css_secret/" class="archive-article-date">
+
+        
+        <a href="/2019/08/29/css_secret/" class="archive-article-date">
   	<time datetime="2019-08-29T03:23:05.438Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-29</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/29/css_secret/">CSS Secrets</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>回顾元素获取</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function $$(selector, context) &#123;</span><br><span class="line">  context = context || document;</span><br><span class="line">  var elements = context.querySelectorAll(selector);</span><br><span class="line">  return Array.prototype.slice.call(elements);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-        <div class="article-info info-on-right">
-          
-          
+<p>11.20 总结：</p>
+<p>浏览器新特性总么办，加前缀是个失败的尝试。<br>可以通过工具加前缀。不过新特性的使用任重而道远。<br>web 标准是浏览器相关厂商，以及委员会的人共同探讨维护的。</p>
+<p>一、CSS 编写注意技巧：</p>
+<ol>
+<li>减少重复的代码，<br>注意 style 之间的依赖关系，如 em，rem，字体和行高等。具体如何计算相互依赖关系，需要根据实际情况。<br>代码量少，和代码容易维护不是一个概念。<br>currentcolor<br>inherit</li>
+<li>相信眼睛而不紧紧关注数字。<br>比如 垂直居中看着并不居中，圆形看着小，padding 上下左右不一致。</li>
+<li>响应式布局 rwd。一直说响应式布局，但是 media query 不能是最好的解决方法，只能是最后的解决方法。<br>每个媒体查询都会增加成本。每次修改 css 的时候都可能改一遍，复杂性高，经不起折腾。表现的是断点式的表现<br>可以先从减少代码重复来入手。<br>写相对大小 依赖关系。宽度不写具体的 px，用百分比的形式，或者和视口相关的表示如 vh。善用 max-width，min-width。替换元素 img，iframe，vedio 等也要设置 max-width： 100%；<br>推荐弹性布局，或者 inine-block。<br>背景图片要完整地平铺，background-size:cover</li>
+<li>合理使用简写。对于可展开的属性。如，border，background，要贯彻减少代码重复的原则，合理使用简写或者展开。</li>
+</ol>
+<p>例子： background: url(tr.png) no-repeat top right / 2em 2em, url(br.png) no-repeat bottom right / 2em 2em,<br>url(bl.png) no-repeat bottom left / 2em 2em;<br>其中， / 是为了避免歧义。</p>
+<ol start="5">
+<li><p>是否使用预处理器，如 less，sass 等。<br>建议在项目开始用 css，无法维护时用预处理器。因为要编译就需要时间，文件体积也会变大，还会有自身的 bug，学习成本。<br>如： 原生高级的例子。<br>ul { –accent-color: purple; }<br>ol { –accent-color: rebeccapurple; } li { background: var(–accent-color); }</p>
+<p>11.21 总结：<br>背景与边框<br>rgba，hsla 0 红 120 绿 240 蓝 h 色调 s 饱和度 l 亮度 a 透明度</p>
+</li>
+</ol>
 
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢啦<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACGElEQVR42u3aQW7DMAwEwP7/0+61hzrYpZwAkUanIIktjw8ESfHnJ17Xn3X3a/7/2S4PLAwMjK9lXC/X3QbJZnd3eM1+fdUtFQMD4wBG8hCzuLeyVx7iMTAwMJIHen2fPGRjYGBgrDNW0senElAMDIwzGckGeWBtA/dHa3EMDIwvZOSl6ec/v+V8AwMD46sYV7nagPts+nj7VBgYGFsz2sPIWfKXkNq0DwMD4xzGrE2fF7oPvOPkRWNgYGzNeGoAYhaOE2pyLQYGxjmMWVPs2eA7DLUYGBiHMYoAV/bnZ425PAPEwMDYlTErXFtkXsrmbAwMjNMYbeqWF5zrw17RjhgYGFsz2qZ8+1h5OE5K1uieGBgYxzBWEri8hde23oZpIgYGxpczZuNcSXqXD1i0RfU/32BgYBzGaMvXlZGv9p63/8HAwDie8WzoXClib6/FwMA4hjELjm1Qnh0tFEUsBgbGdoy2TM2ps2/yF4SBgXEmY3bc2DbX2oPPNzbdMDAwNmK0Q2PrBXCeqhYBFwMDYwvGrDVfBMQ21WuvwsDA2JRxlastO/N2f360WfgwMDC2YMySs3abdjjj7p6zIQ8MDIw9GO0jzga82vGLFoyBgXECo03vZmll0T5rkRgYGBhl6+2psjZv4WFgYGCsF6ttO69txmFgYJzAyA8D2gmHPNSuFNIYGBh7M/LSsT3CzAPuLK3EwMA4gPEL/sBqmPf2z/4AAAAASUVORK5CYII=" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/21/原型回顾/" class="archive-article-date">
-  	<time datetime="2019-08-21T11:43:55.178Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-21</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2020/03/12/重温学习/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          重温
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/08/21/原型回顾/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">原型回顾</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/21/原型回顾/">原型回顾</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/13/基础回顾/" class="archive-article-date">
-  	<time datetime="2019-08-13T02:10:39.589Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/13/基础回顾/">JS基础回顾</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -247,8 +330,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

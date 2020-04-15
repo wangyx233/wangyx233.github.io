@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://wangyx233.github.io">
   <title>链表 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="what?链表是一种递归的数据结构，它或者为空，或者为一个指向结点的引用。该结点含有一个泛型元素和一个指向另一个链表的引用(next)。其中，结点是一种含有任何类型数据的抽象实体。链表表示的是一列元素。在追踪链表或其他链式结构代码的时候，可用可视化的方式表示：  用长方形表示对象 将实例变量的值写在长方形中 用指向被引用对象的箭头表示引用关系，链接实现任意插入和删除操作的标准解决方案是双向链表，其">
-<meta name="keywords">
 <meta property="og:type" content="article">
 <meta property="og:title" content="链表">
 <meta property="og:url" content="https://wangyx233.github.io/2019/07/22/链表队列/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="what?链表是一种递归的数据结构，它或者为空，或者为一个指向结点的引用。该结点含有一个泛型元素和一个指向另一个链表的引用(next)。其中，结点是一种含有任何类型数据的抽象实体。链表表示的是一列元素。在追踪链表或其他链式结构代码的时候，可用可视化的方式表示：  用长方形表示对象 将实例变量的值写在长方形中 用指向被引用对象的箭头表示引用关系，链接实现任意插入和删除操作的标准解决方案是双向链表，其">
+<meta property="og:locale" content="default">
 <meta property="og:updated_time" content="2019-07-23T03:55:30.425Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="链表">
@@ -37,7 +37,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -167,16 +167,16 @@
 <p>补充：</p>
 <ol>
 <li><p>背包(Bag)是一种不支持从中删除元素的集合数据类型，目的就是收集元素并且迭代遍历收集到的元素，迭代的顺序不确定且元素的处理顺序不重要，可以用栈也可以用队列。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">class Bag() &#123;&#125;</div><div class="line">  add(item)</div><div class="line">  isEmpty()</div><div class="line">  size()</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">class Bag() &#123;&#125;</span><br><span class="line">  add(item)</span><br><span class="line">  isEmpty()</span><br><span class="line">  size()</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>先进先出队列FIFO</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">class Queue() &#123;&#125;</div><div class="line">  enqueue(item) // 添加一个元素</div><div class="line">  dequeue() // 删除最近添加的元素</div><div class="line">  isEmpty()</div><div class="line">  size()</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class Queue() &#123;&#125;</span><br><span class="line">  enqueue(item) // 添加一个元素</span><br><span class="line">  dequeue() // 删除最近添加的元素</span><br><span class="line">  isEmpty()</span><br><span class="line">  size()</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>下压栈LIFO</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">class Stack() &#123;&#125;</div><div class="line">  push(item)</div><div class="line">  pop()</div><div class="line">  isEmpty()</div><div class="line">  size()</div><div class="line">例如表达式的求值：遇到左括号忽略，操作数押入操作数的栈里，运算符押入运算符的栈里，遇到右括号运算符栈和操作数栈pop计算得到值，再押入栈中。</div><div class="line">如：(1 + ((2 + 3) * (4 * 5)))</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class Stack() &#123;&#125;</span><br><span class="line">  push(item)</span><br><span class="line">  pop()</span><br><span class="line">  isEmpty()</span><br><span class="line">  size()</span><br><span class="line">例如表达式的求值：遇到左括号忽略，操作数押入操作数的栈里，运算符押入运算符的栈里，遇到右括号运算符栈和操作数栈pop计算得到值，再押入栈中。</span><br><span class="line">如：(1 + ((2 + 3) * (4 * 5)))</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>在一些语言中，数组的长度一经定义就不可改变，并且数组的删除和添加操作需要对元素进行平移会很繁琐。JS中数组和其他的不同，它是通过对象实现的，操作方便，但是效率可能较其他语言有所不足。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">function Node(elem) &#123;</div><div class="line">  this.elem = elem;</div><div class="line">  this.next = null;</div><div class="line">  // this.prvious = null;</div><div class="line">&#125;</div><div class="line">// 查找，插入，删除结点</div></pre></td></tr></table></figure></li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function Node(elem) &#123;</span><br><span class="line">  this.elem = elem;</span><br><span class="line">  this.next = null;</span><br><span class="line">  // this.prvious = null;</span><br><span class="line">&#125;</span><br><span class="line">// 查找，插入，删除结点</span><br></pre></td></tr></table></figure></li>
 </ol>
 
       
@@ -271,18 +271,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/01/16/理解promise/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/08/13/基础回顾/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          理解promise
+          JS基础回顾
         
       </div>
     </a>
   
   
-    <a href="/2019/08/13/基础回顾/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">JS基础回顾</div>
+    <a href="/2019/01/16/理解promise/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">理解promise</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -325,7 +325,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 Xuan
+    		&copy; 2020 Xuan
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten

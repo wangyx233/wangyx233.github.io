@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://wangyx233.github.io">
   <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -12,6 +12,7 @@
 <meta property="og:title" content="Hexo">
 <meta property="og:url" content="https://wangyx233.github.io/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="default">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo">
   
@@ -32,7 +33,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -129,6 +130,219 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-重温学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/12/重温学习/">重温</a>
+    </h1>
+  
+
+        
+        <a href="/2020/03/12/重温学习/" class="archive-article-date">
+  	<time datetime="2020-03-12T07:52:56.250Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><p>7 种语言类型<br>undefined 是一个变量，而并非是一个关键字。老的浏览器中会是，ES5 以后就不是了。函数内部，对象的属性现在也是可以赋值的。<br>if(typeof str === ‘undefined’){<br>// 如果直接用 str === undefined, str 未声明的话可能会报错 not defined<br>}<br>String 用于表示文本数据。String 有最大长度是 2^53 - 1，字符串的 UTF16 编码，charAt、charCodeAt、length 等方法针对的都是 UTF16 编码<br>Number 2^64-2^53+3<br>NaN，占用了 9007199254740990，这原本是符合 IEEE 规则的数字；Infinity，无穷大；-Infinity，负无穷大。<br>还有 +0 -0，1/x 是 Infinity 还是 -Infinity<br>Math.abs(0.1 + 0.2 - 0.3) &lt;= Number.EPSILON</p>
+<p>Symbol 可以用于迭代器，Symbol.iterator 需要有 next 和 done，next 返回一个对象包括 value 和 done</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var o = new Object</span><br><span class="line"></span><br><span class="line">o[Symbol.iterator] = function() &#123;</span><br><span class="line">    var v = 0</span><br><span class="line">    return &#123;</span><br><span class="line">        next: function() &#123;</span><br><span class="line">            return &#123; value: v++, done: v &gt; 10 &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">for(var v of o)</span><br><span class="line">    console.log(v); // 0 1 2 3 ... 9</span><br></pre></td></tr></table></figure>
+
+<p>Object.prototype.toString.call() 是可以准确识别对象对应的基本类型的方法，它比 instanceof 更加准确。<br>装箱，是指讲基本数据类型转化为对象。拆箱是把对象转换成基本数据类型。valueOf()，toString(),或者用 Symbol.toPrimitive 自定义转换覆盖以前的。<br>众所周知的 Symbol</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/03/12/重温学习/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-css_secret" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/29/css_secret/">CSS Secrets</a>
+    </h1>
+  
+
+        
+        <a href="/2019/08/29/css_secret/" class="archive-article-date">
+  	<time datetime="2019-08-29T03:23:05.438Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>回顾元素获取</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function $$(selector, context) &#123;</span><br><span class="line">  context = context || document;</span><br><span class="line">  var elements = context.querySelectorAll(selector);</span><br><span class="line">  return Array.prototype.slice.call(elements);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>11.20 总结：</p>
+<p>浏览器新特性总么办，加前缀是个失败的尝试。<br>可以通过工具加前缀。不过新特性的使用任重而道远。<br>web 标准是浏览器相关厂商，以及委员会的人共同探讨维护的。</p>
+<p>一、CSS 编写注意技巧：</p>
+<ol>
+<li>减少重复的代码，<br>注意 style 之间的依赖关系，如 em，rem，字体和行高等。具体如何计算相互依赖关系，需要根据实际情况。<br>代码量少，和代码容易维护不是一个概念。<br>currentcolor<br>inherit</li>
+<li>相信眼睛而不紧紧关注数字。<br>比如 垂直居中看着并不居中，圆形看着小，padding 上下左右不一致。</li>
+<li>响应式布局 rwd。一直说响应式布局，但是 media query 不能是最好的解决方法，只能是最后的解决方法。<br>每个媒体查询都会增加成本。每次修改 css 的时候都可能改一遍，复杂性高，经不起折腾。表现的是断点式的表现<br>可以先从减少代码重复来入手。<br>写相对大小 依赖关系。宽度不写具体的 px，用百分比的形式，或者和视口相关的表示如 vh。善用 max-width，min-width。替换元素 img，iframe，vedio 等也要设置 max-width： 100%；<br>推荐弹性布局，或者 inine-block。<br>背景图片要完整地平铺，background-size:cover</li>
+<li>合理使用简写。对于可展开的属性。如，border，background，要贯彻减少代码重复的原则，合理使用简写或者展开。</li>
+</ol>
+<p>例子： background: url(tr.png) no-repeat top right / 2em 2em, url(br.png) no-repeat bottom right / 2em 2em,<br>url(bl.png) no-repeat bottom left / 2em 2em;<br>其中， / 是为了避免歧义。</p>
+<ol start="5">
+<li><p>是否使用预处理器，如 less，sass 等。<br>建议在项目开始用 css，无法维护时用预处理器。因为要编译就需要时间，文件体积也会变大，还会有自身的 bug，学习成本。<br>如： 原生高级的例子。<br>ul { –accent-color: purple; }<br>ol { –accent-color: rebeccapurple; } li { background: var(–accent-color); }</p>
+<p>11.21 总结：<br>背景与边框<br>rgba，hsla 0 红 120 绿 240 蓝 h 色调 s 饱和度 l 亮度 a 透明度</p>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/08/29/css_secret/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-原型回顾" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/21/原型回顾/">原型回顾</a>
+    </h1>
+  
+
+        
+        <a href="/2019/08/21/原型回顾/" class="archive-article-date">
+  	<time datetime="2019-08-21T11:43:55.178Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>快来快来看一看</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">function Foo() &#123;</span><br><span class="line">    Foo.a = function() &#123;</span><br><span class="line">        console.log(1)</span><br><span class="line">    &#125;</span><br><span class="line">    this.a = function() &#123;</span><br><span class="line">        console.log(2)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">Foo.prototype.a = function() &#123;</span><br><span class="line">    console.log(3)</span><br><span class="line">&#125;</span><br><span class="line">Foo.a = function() &#123;</span><br><span class="line">    console.log(4)</span><br><span class="line">&#125;</span><br><span class="line">Foo.a();</span><br><span class="line">let obj = new Foo();</span><br><span class="line">obj.a();</span><br><span class="line">Foo.a();</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/08/21/原型回顾/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-基础回顾" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -149,8 +363,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h5 id="内置类型"><a href="#内置类型" class="headerlink" title="内置类型"></a>内置类型</h5><p>加上ES6新加的Symbol，共7种，分别为 String， Number， Boolean， Object， Undefined， Null。<br>分为基本数据类型(6)和Object。<br>对于基本数据类型，通过字面量的方式声明，类型依旧是字面量，只有在使用的时候才会转换为对应的类型。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">typeof()</div><div class="line">  特别：</div><div class="line">  函数-&gt;function,</div><div class="line">  null-&gt;object。历史原因对象以000开头，而null恰好为全零</div><div class="line">通过Object.prototype.toString.call()可判断准确的类型[object Type]</div></pre></td></tr></table></figure></p>
-<p>PS: Symbol类型(唯一的值)<br>通过 Symbol()定义，定义后的值不相等，System.prototype.description 为定义时Symbol(‘xxx’)的标识。<br>使用场景：作为对象的属性<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">let sym = Symbol();</div><div class="line">let a = &#123;&#125;;</div><div class="line">a[sym] = &apos;symbol&apos;;</div><div class="line">a = &#123;</div><div class="line">  [sym]: &apos;symbol&apos;</div><div class="line">&#125;</div><div class="line">Object.defineProperty(a, sym, &#123;value: &apos;symbol&apos;&#125;)</div></pre></td></tr></table></figure></p>
+        <h5 id="内置类型"><a href="#内置类型" class="headerlink" title="内置类型"></a>内置类型</h5><p>加上ES6新加的Symbol，共7种，分别为 String， Number， Boolean， Object， Undefined， Null。<br>分为基本数据类型(6)和Object。<br>对于基本数据类型，通过字面量的方式声明，类型依旧是字面量，只有在使用的时候才会转换为对应的类型。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">typeof()</span><br><span class="line">  特别：</span><br><span class="line">  函数-&gt;function,</span><br><span class="line">  null-&gt;object。历史原因对象以000开头，而null恰好为全零</span><br><span class="line">通过Object.prototype.toString.call()可判断准确的类型[object Type]</span><br></pre></td></tr></table></figure>
+
+<p>PS: Symbol类型(唯一的值)<br>通过 Symbol()定义，定义后的值不相等，System.prototype.description 为定义时Symbol(‘xxx’)的标识。<br>使用场景：作为对象的属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">let sym = Symbol();</span><br><span class="line">let a = &#123;&#125;;</span><br><span class="line">a[sym] = &apos;symbol&apos;;</span><br><span class="line">a = &#123;</span><br><span class="line">  [sym]: &apos;symbol&apos;</span><br><span class="line">&#125;</span><br><span class="line">Object.defineProperty(a, sym, &#123;value: &apos;symbol&apos;&#125;)</span><br></pre></td></tr></table></figure>
+
 <p>注：</p>
 <ol>
 <li>不能用.运算符，.运算符会直接作为字符串取值。</li>
@@ -160,14 +378,16 @@
 <li>Symbol.for(description)若没有则会创建一个，若存在则共用一个symbol值。 Symbol.keyFor(sym)返回一个已登记即Symbol.for的 Symbol类型值的key</li>
 <li>其他方法可在需要是再查找。</li>
 </ol>
-<h5 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h5><p>转Boolean类型。在条件判断时，除了 undefined， null， false， NaN， ‘’， 0， -0，其他所有值都转为 true，包括所有对象<br>对象在转换基本类型时，首先会调用 valueOf 然后调用 toString。<br>注：<br>‘a’ + + ‘b’ – ‘aNaN’<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">x==y 比较</div><div class="line">undefined == null  // true</div><div class="line">[] == true // false</div><div class="line">[] == ![] // true [].toString() -&gt; &apos;&apos;，!取反运算符的优先级会高于==， ![] -》 false</div></pre></td></tr></table></figure></p>
+<h5 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h5><p>转Boolean类型。在条件判断时，除了 undefined， null， false， NaN， ‘’， 0， -0，其他所有值都转为 true，包括所有对象<br>对象在转换基本类型时，首先会调用 valueOf 然后调用 toString。<br>注：<br>‘a’ + + ‘b’ – ‘aNaN’</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x==y 比较</span><br><span class="line">undefined == null  // true</span><br><span class="line">[] == true // false</span><br><span class="line">[] == ![] // true [].toString() -&gt; &apos;&apos;，!取反运算符的优先级会高于==， ![] -》 false</span><br></pre></td></tr></table></figure>
+
 <ol>
 <li>undefined == null，结果是true。且它俩与所有其他值比较的结果都是false。</li>
 <li>String == Boolean，需要两个操作数同时转为Number。</li>
 <li>String/Boolean == Number，需要String/Boolean转为Number。</li>
 <li>Object == Primitive，需要Object转为Primitive(具体通过valueOf和toString方法)。</li>
 </ol>
-
+<h5 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h5>
       
 
       
@@ -244,16 +464,16 @@
 <p>补充：</p>
 <ol>
 <li><p>背包(Bag)是一种不支持从中删除元素的集合数据类型，目的就是收集元素并且迭代遍历收集到的元素，迭代的顺序不确定且元素的处理顺序不重要，可以用栈也可以用队列。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">class Bag() &#123;&#125;</div><div class="line">  add(item)</div><div class="line">  isEmpty()</div><div class="line">  size()</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">class Bag() &#123;&#125;</span><br><span class="line">  add(item)</span><br><span class="line">  isEmpty()</span><br><span class="line">  size()</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>先进先出队列FIFO</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">class Queue() &#123;&#125;</div><div class="line">  enqueue(item) // 添加一个元素</div><div class="line">  dequeue() // 删除最近添加的元素</div><div class="line">  isEmpty()</div><div class="line">  size()</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class Queue() &#123;&#125;</span><br><span class="line">  enqueue(item) // 添加一个元素</span><br><span class="line">  dequeue() // 删除最近添加的元素</span><br><span class="line">  isEmpty()</span><br><span class="line">  size()</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>下压栈LIFO</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">class Stack() &#123;&#125;</div><div class="line">  push(item)</div><div class="line">  pop()</div><div class="line">  isEmpty()</div><div class="line">  size()</div><div class="line">例如表达式的求值：遇到左括号忽略，操作数押入操作数的栈里，运算符押入运算符的栈里，遇到右括号运算符栈和操作数栈pop计算得到值，再押入栈中。</div><div class="line">如：(1 + ((2 + 3) * (4 * 5)))</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class Stack() &#123;&#125;</span><br><span class="line">  push(item)</span><br><span class="line">  pop()</span><br><span class="line">  isEmpty()</span><br><span class="line">  size()</span><br><span class="line">例如表达式的求值：遇到左括号忽略，操作数押入操作数的栈里，运算符押入运算符的栈里，遇到右括号运算符栈和操作数栈pop计算得到值，再押入栈中。</span><br><span class="line">如：(1 + ((2 + 3) * (4 * 5)))</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>在一些语言中，数组的长度一经定义就不可改变，并且数组的删除和添加操作需要对元素进行平移会很繁琐。JS中数组和其他的不同，它是通过对象实现的，操作方便，但是效率可能较其他语言有所不足。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">function Node(elem) &#123;</div><div class="line">  this.elem = elem;</div><div class="line">  this.next = null;</div><div class="line">  // this.prvious = null;</div><div class="line">&#125;</div><div class="line">// 查找，插入，删除结点</div></pre></td></tr></table></figure></li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function Node(elem) &#123;</span><br><span class="line">  this.elem = elem;</span><br><span class="line">  this.next = null;</span><br><span class="line">  // this.prvious = null;</span><br><span class="line">&#125;</span><br><span class="line">// 查找，插入，删除结点</span><br></pre></td></tr></table></figure></li>
 </ol>
 
       
@@ -318,7 +538,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h4 id="为什么"><a href="#为什么" class="headerlink" title="为什么?"></a>为什么?</h4><p>避免回调地狱<br>有什么问题呢？<br>代码臃肿，可读性差，耦合性差，容易产生bug，不容易维护。不容易复用。在回调里面处理问题。<br>js特点-&gt;异步，主要是靠回调函数实现的。<br>比如，nodejs的特点是高并发和非阻塞，主要靠异步来实现。<br>js是事件注册机制的。<br>函数的执行是进栈和出栈这样的，所以普通的回调函数，try catch是没有作用的。</p>
-<h4 id="是什么？"><a href="#是什么？" class="headerlink" title="是什么？"></a>是什么？</h4><p>用于异步计算，用于即将发生的事情，或者不会发生的事情。<br>一个Promise的状态有resolved/rejected/pending/settled<br>new Promise 返回一个promise对象，参数是一个执行函数。执行函数有两个参数，resolve，reject<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">new Promise((resolve, reject) =&gt; &#123;</div><div class="line">  // 异步处理</div><div class="line">  处理结束后执行resolve , reject</div><div class="line">&#125;)</div><div class="line">.then() //成功失败的回调，注意：then方法是异步执行的</div><div class="line">.catch() //在最外层捕获异常。</div><div class="line"></div><div class="line">promise.catch(onRejected)</div><div class="line">相当于</div><div class="line">promise.then(null, onRrejected);</div></pre></td></tr></table></figure></p>
+<h4 id="是什么？"><a href="#是什么？" class="headerlink" title="是什么？"></a>是什么？</h4><p>用于异步计算，用于即将发生的事情，或者不会发生的事情。<br>一个Promise的状态有resolved/rejected/pending/settled<br>new Promise 返回一个promise对象，参数是一个执行函数。执行函数有两个参数，resolve，reject</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">new Promise((resolve, reject) =&gt; &#123;</span><br><span class="line">  // 异步处理</span><br><span class="line">  处理结束后执行resolve , reject</span><br><span class="line">&#125;)</span><br><span class="line">.then() //成功失败的回调，注意：then方法是异步执行的</span><br><span class="line">.catch() //在最外层捕获异常。</span><br><span class="line"></span><br><span class="line">promise.catch(onRejected)</span><br><span class="line">相当于</span><br><span class="line">promise.then(null, onRrejected);</span><br></pre></td></tr></table></figure>
+
 <p>promise的三种状态:<br>pending 初始化<br>fulfilled 执行成功，调用resolve<br>rejected 失败，调用reject<br>注意promsie状态 只能由 pending =&gt; fulfilled/rejected, 一旦修改就不能再变</p>
 
       
@@ -459,7 +681,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>今天发现使用Echarts，nameMap渲染的世界地图，没有显示美国的数据，美国的区域显示的为United States。经过查找发现，Echarts应该是在3.5.0版本的时候，对world.js的一些国家名称进行了变更，从而导致用官网实例提供的nameMap,无法匹配到国家，进而无法显示。<br>大致看了一下地图，修改后对应的国家信息为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">var nameMap =&#123;</div><div class="line">  &apos;Central African Rep.&apos;:&apos;中非共和国&apos;,</div><div class="line">  &apos;Dem. Rep. Congo&apos;:&apos;刚果民主共和国&apos;,</div><div class="line">  &apos;Lao PDR&apos;:&apos;老挝&apos;,</div><div class="line">  &apos;W. Sahara&apos;:&apos;西撒哈拉&apos;,</div><div class="line">  &apos;Tanzania&apos;:&apos;坦桑尼亚联合共和国&apos;,</div><div class="line">  &apos;United States&apos;:&apos;美国&apos;,</div><div class="line">  &apos;Korea&apos;: &apos;韩国&apos;,</div><div class="line">  &apos;Dem. Rep. Korea&apos;: &apos;朝鲜&apos;,</div><div class="line">  &apos;Congo&apos;: &apos;刚果共和国&apos;,</div><div class="line">  &apos;Solomon Is.&apos;: &apos;所罗门群岛&apos;,</div><div class="line">  &apos;Dominican Rep.&apos;:&apos;多明尼加共和国&apos;,</div><div class="line">  &apos;S. Sudan&apos;: &apos;南苏丹&apos; ,</div><div class="line">  &quot;Côte d&apos;Ivoire&quot;: &apos;科特迪瓦&apos;,</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var nameMap =&#123;</span><br><span class="line">  &apos;Central African Rep.&apos;:&apos;中非共和国&apos;,</span><br><span class="line">  &apos;Dem. Rep. Congo&apos;:&apos;刚果民主共和国&apos;,</span><br><span class="line">  &apos;Lao PDR&apos;:&apos;老挝&apos;,</span><br><span class="line">  &apos;W. Sahara&apos;:&apos;西撒哈拉&apos;,</span><br><span class="line">  &apos;Tanzania&apos;:&apos;坦桑尼亚联合共和国&apos;,</span><br><span class="line">  &apos;United States&apos;:&apos;美国&apos;,</span><br><span class="line">  &apos;Korea&apos;: &apos;韩国&apos;,</span><br><span class="line">  &apos;Dem. Rep. Korea&apos;: &apos;朝鲜&apos;,</span><br><span class="line">  &apos;Congo&apos;: &apos;刚果共和国&apos;,</span><br><span class="line">  &apos;Solomon Is.&apos;: &apos;所罗门群岛&apos;,</span><br><span class="line">  &apos;Dominican Rep.&apos;:&apos;多明尼加共和国&apos;,</span><br><span class="line">  &apos;S. Sudan&apos;: &apos;南苏丹&apos; ,</span><br><span class="line">  &quot;Côte d&apos;Ivoire&quot;: &apos;科特迪瓦&apos;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
       
 
@@ -592,7 +815,8 @@
         <ol>
 <li>D3.js实现数据和元素的绑定<br>对于DOM结点的选择，d3.select(‘tag’)选择第一个元素,d3.selectAll(‘tag’)选择所有的元素。<br>对于数据的绑定，tag.datum()将一个数据绑定到元素上，tag.data()将数组内元素分别绑定各元素。</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var body = d3.select(&apos;body&apos;);</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var body = d3.select(&apos;body&apos;);</span><br></pre></td></tr></table></figure>
+
 
       
 
@@ -606,242 +830,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/06/21/D3.js学习/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Canvas学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/12/Canvas学习/">Canvas学习</a>
-    </h1>
-  
-
-        
-        <a href="/2017/06/12/Canvas学习/" class="archive-article-date">
-  	<time datetime="2017-06-12T05:55:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>&lt;canvas&gt;标签定义一个矩形框画布，默认没有边框和内容,默认大小为300像素×150像素(wxh)。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;canvas id=&quot;myCanvas&quot; width=&quot;200&quot; height=&quot;100&quot;</div><div class="line">style=&quot;border:1px solid #000000;&quot;&gt;</div><div class="line">若浏览器不支持canvas标签，将显示这些文字</div><div class="line">&lt;/canvas&gt;</div></pre></td></tr></table></figure>
-<p>在Js文件中绘制Canvas元素。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var c=document.getElementById(&quot;myCanvas&quot;);</div><div class="line">if(c.getContext(&apos;2d&apos;))&#123; //支持性检查</div><div class="line">  var ctx=c.getContext(&quot;2d&quot;);//获取渲染上下文，参数为上下文的格式</div><div class="line">  ctx.fillStyle=&quot;#FF0000&quot;; //填充样式，可为颜色、图案、渐变等。</div><div class="line">  ctx.fillRect(0,0,150,75);//矩形的填充方法fillRect(x,y,width,height)，矩形左上角坐标为(0,0)</div><div class="line">&#125;else &#123;</div><div class="line">  // canvas-unsupported code here</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h6 id="画矩形"><a href="#画矩形" class="headerlink" title="画矩形"></a>画矩形</h6><p>canvas支持一种原生的图形绘制-矩形</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">fillRect(x, y, width, height) //绘制一个填充的矩形</div><div class="line">strokeRect(x, y, width, height) //绘制一个矩形的边框</div><div class="line">clearRect(x, y, width, height) //清除指定矩形区域，让清除部分完全透明</div><div class="line">rect(x, y, width, height) //绘制一个左上角坐标为（x,y），宽高为width以及height的矩形。</div></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2017/06/12/Canvas学习/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/12/Canvas学习/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-three.js学习指南" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/05/three.js学习指南/">Three.js学习笔记</a>
-    </h1>
-  
-
-        
-        <a href="/2017/06/05/three.js学习指南/" class="archive-article-date">
-  	<time datetime="2017-06-05T05:59:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>一切都建立在引入Three.js后，得到的全局变量THREE。<br>对于页面中，存放渲染效果的元素，可以是普通的div，也可以是canvas。<br>对于div，渲染时添加节点：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var renderer = new THREE.WebGLRenderer();</div><div class="line">renderer.setSize(400, 300);</div><div class="line">document.getElementById(&apos;test&apos;).appendChild(renderer.domElement);</div><div class="line">renderer.setClearColor(0x000000);//清除原本所在页面颜色，并设置</div></pre></td></tr></table></figure></p>
-<p>而对于定义的canvas标签，其定义及渲染：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;canvas id=&quot;mainCanvas&quot; width=&quot;400px&quot; height=&quot;300px&quot; &gt;&lt;/canvas&gt;</div><div class="line">var renderer = new THREE.WebGLRenderer(&#123;</div><div class="line">                    canvas: document.getElementById(&apos;mainCanvas&apos;)&#125;);</div></pre></td></tr></table></figure></p>
-<p>基本概念</p>
-<ol>
-<li>主要分为三大部分，场景（scene）、照相机（camera）、渲染器（renderer）</li>
-<li>首先定义容器渲染所在的DOM包括宽高、颜色等，利用照相机(投影方式)把作为容器的场景渲染到页面上。</li>
-<li>声明渲染器对象renderer，canvas对象的获取方法为renderer.domElement，相机也需要加到场景中去</li>
-</ol>
-        
-          <a class="article-more-a" href="/2017/06/05/three.js学习指南/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Three.js</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/05/three.js学习指南/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hexo部署github的问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/11/hexo部署github的问题/">hexo部署github的问题</a>
-    </h1>
-  
-
-        
-        <a href="/2017/04/11/hexo部署github的问题/" class="archive-article-date">
-  	<time datetime="2017-04-11T12:03:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="用hexo搭建博客，配置直接部署到github的方法："><a href="#用hexo搭建博客，配置直接部署到github的方法：" class="headerlink" title="用hexo搭建博客，配置直接部署到github的方法："></a>用hexo搭建博客，配置直接部署到github的方法：</h5><p>1.安装 hexo-deployer-git插件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo-deployer-git --save</div></pre></td></tr></table></figure></p>
-<p>2.在hexo根目录的_config.yml中进行deploy的配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">    type: git</div><div class="line">    repo: [github repository url] //eg:git@github.com:xxx.git or https://github.com/xxx.git</div><div class="line">    branch: master //branch name</div><div class="line">    message: &quot;Blog updated: &#123;&#123; now（&apos;YYYY-MM-DD&apos;）&#125;&#125;&quot; //commit message</div><div class="line">Ps:注意缩进和空格</div></pre></td></tr></table></figure></p>
-<p>3.通过hexo deploy（即hexo d）命令进行部署，在此之前需要进行hexo generate（即hexo g）编译。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hexo-deployer-git插件的作用是生成.deploy_git文件，</div><div class="line">并且把hexo g编译后的public中的文件复制到.deploy_git文件夹下，</div><div class="line">然后进行git操作，推到远端github仓库。</div></pre></td></tr></table></figure></p>
-<h3 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h3>
-        
-          <a class="article-more-a" href="/2017/04/11/hexo部署github的问题/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">github</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/04/11/hexo部署github的问题/">展开全文 >></a>
         </p>
       
 
@@ -885,7 +873,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 Xuan
+    		&copy; 2020 Xuan
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten

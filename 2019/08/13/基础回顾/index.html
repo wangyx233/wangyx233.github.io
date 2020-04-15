@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://wangyx233.github.io">
   <title>JS基础回顾 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="内置类型加上ES6新加的Symbol，共7种，分别为 String， Number， Boolean， Object， Undefined， Null。分为基本数据类型(6)和Object。对于基本数据类型，通过字面量的方式声明，类型依旧是字面量，只有在使用的时候才会转换为对应的类型。12345typeof()  特别：  函数-&amp;gt;function,  null-&amp;gt;object。历史原">
-<meta name="keywords">
+  <meta name="description" content="内置类型加上ES6新加的Symbol，共7种，分别为 String， Number， Boolean， Object， Undefined， Null。分为基本数据类型(6)和Object。对于基本数据类型，通过字面量的方式声明，类型依旧是字面量，只有在使用的时候才会转换为对应的类型。 12345typeof()  特别：  函数-&amp;gt;function,  null-&amp;gt;object。历史">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS基础回顾">
 <meta property="og:url" content="https://wangyx233.github.io/2019/08/13/基础回顾/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="内置类型加上ES6新加的Symbol，共7种，分别为 String， Number， Boolean， Object， Undefined， Null。分为基本数据类型(6)和Object。对于基本数据类型，通过字面量的方式声明，类型依旧是字面量，只有在使用的时候才会转换为对应的类型。12345typeof()  特别：  函数-&amp;gt;function,  null-&amp;gt;object。历史原">
-<meta property="og:updated_time" content="2019-08-13T07:28:51.443Z">
+<meta property="og:description" content="内置类型加上ES6新加的Symbol，共7种，分别为 String， Number， Boolean， Object， Undefined， Null。分为基本数据类型(6)和Object。对于基本数据类型，通过字面量的方式声明，类型依旧是字面量，只有在使用的时候才会转换为对应的类型。 12345typeof()  特别：  函数-&amp;gt;function,  null-&amp;gt;object。历史">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-08-15T06:26:50.474Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS基础回顾">
-<meta name="twitter:description" content="内置类型加上ES6新加的Symbol，共7种，分别为 String， Number， Boolean， Object， Undefined， Null。分为基本数据类型(6)和Object。对于基本数据类型，通过字面量的方式声明，类型依旧是字面量，只有在使用的时候才会转换为对应的类型。12345typeof()  特别：  函数-&amp;gt;function,  null-&amp;gt;object。历史原">
+<meta name="twitter:description" content="内置类型加上ES6新加的Symbol，共7种，分别为 String， Number， Boolean， Object， Undefined， Null。分为基本数据类型(6)和Object。对于基本数据类型，通过字面量的方式声明，类型依旧是字面量，只有在使用的时候才会转换为对应的类型。 12345typeof()  特别：  函数-&amp;gt;function,  null-&amp;gt;object。历史">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -37,7 +37,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -152,8 +152,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h5 id="内置类型"><a href="#内置类型" class="headerlink" title="内置类型"></a>内置类型</h5><p>加上ES6新加的Symbol，共7种，分别为 String， Number， Boolean， Object， Undefined， Null。<br>分为基本数据类型(6)和Object。<br>对于基本数据类型，通过字面量的方式声明，类型依旧是字面量，只有在使用的时候才会转换为对应的类型。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">typeof()</div><div class="line">  特别：</div><div class="line">  函数-&gt;function,</div><div class="line">  null-&gt;object。历史原因对象以000开头，而null恰好为全零</div><div class="line">通过Object.prototype.toString.call()可判断准确的类型[object Type]</div></pre></td></tr></table></figure></p>
-<p>PS: Symbol类型(唯一的值)<br>通过 Symbol()定义，定义后的值不相等，System.prototype.description 为定义时Symbol(‘xxx’)的标识。<br>使用场景：作为对象的属性<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">let sym = Symbol();</div><div class="line">let a = &#123;&#125;;</div><div class="line">a[sym] = &apos;symbol&apos;;</div><div class="line">a = &#123;</div><div class="line">  [sym]: &apos;symbol&apos;</div><div class="line">&#125;</div><div class="line">Object.defineProperty(a, sym, &#123;value: &apos;symbol&apos;&#125;)</div></pre></td></tr></table></figure></p>
+        <h5 id="内置类型"><a href="#内置类型" class="headerlink" title="内置类型"></a>内置类型</h5><p>加上ES6新加的Symbol，共7种，分别为 String， Number， Boolean， Object， Undefined， Null。<br>分为基本数据类型(6)和Object。<br>对于基本数据类型，通过字面量的方式声明，类型依旧是字面量，只有在使用的时候才会转换为对应的类型。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">typeof()</span><br><span class="line">  特别：</span><br><span class="line">  函数-&gt;function,</span><br><span class="line">  null-&gt;object。历史原因对象以000开头，而null恰好为全零</span><br><span class="line">通过Object.prototype.toString.call()可判断准确的类型[object Type]</span><br></pre></td></tr></table></figure>
+
+<p>PS: Symbol类型(唯一的值)<br>通过 Symbol()定义，定义后的值不相等，System.prototype.description 为定义时Symbol(‘xxx’)的标识。<br>使用场景：作为对象的属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">let sym = Symbol();</span><br><span class="line">let a = &#123;&#125;;</span><br><span class="line">a[sym] = &apos;symbol&apos;;</span><br><span class="line">a = &#123;</span><br><span class="line">  [sym]: &apos;symbol&apos;</span><br><span class="line">&#125;</span><br><span class="line">Object.defineProperty(a, sym, &#123;value: &apos;symbol&apos;&#125;)</span><br></pre></td></tr></table></figure>
+
 <p>注：</p>
 <ol>
 <li>不能用.运算符，.运算符会直接作为字符串取值。</li>
@@ -163,14 +167,16 @@
 <li>Symbol.for(description)若没有则会创建一个，若存在则共用一个symbol值。 Symbol.keyFor(sym)返回一个已登记即Symbol.for的 Symbol类型值的key</li>
 <li>其他方法可在需要是再查找。</li>
 </ol>
-<h5 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h5><p>转Boolean类型。在条件判断时，除了 undefined， null， false， NaN， ‘’， 0， -0，其他所有值都转为 true，包括所有对象<br>对象在转换基本类型时，首先会调用 valueOf 然后调用 toString。<br>注：<br>‘a’ + + ‘b’ – ‘aNaN’<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">x==y 比较</div><div class="line">undefined == null  // true</div><div class="line">[] == true // false</div><div class="line">[] == ![] // true [].toString() -&gt; &apos;&apos;，!取反运算符的优先级会高于==， ![] -》 false</div></pre></td></tr></table></figure></p>
+<h5 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h5><p>转Boolean类型。在条件判断时，除了 undefined， null， false， NaN， ‘’， 0， -0，其他所有值都转为 true，包括所有对象<br>对象在转换基本类型时，首先会调用 valueOf 然后调用 toString。<br>注：<br>‘a’ + + ‘b’ – ‘aNaN’</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x==y 比较</span><br><span class="line">undefined == null  // true</span><br><span class="line">[] == true // false</span><br><span class="line">[] == ![] // true [].toString() -&gt; &apos;&apos;，!取反运算符的优先级会高于==， ![] -》 false</span><br></pre></td></tr></table></figure>
+
 <ol>
 <li>undefined == null，结果是true。且它俩与所有其他值比较的结果都是false。</li>
 <li>String == Boolean，需要两个操作数同时转为Number。</li>
 <li>String/Boolean == Number，需要String/Boolean转为Number。</li>
 <li>Object == Primitive，需要Object转为Primitive(具体通过valueOf和toString方法)。</li>
 </ol>
-
+<h5 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h5>
       
 
       
@@ -263,15 +269,20 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/07/22/链表队列/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/08/21/原型回顾/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          链表
+          原型回顾
         
       </div>
     </a>
   
+  
+    <a href="/2019/07/22/链表队列/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">链表</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
@@ -312,7 +323,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 Xuan
+    		&copy; 2020 Xuan
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten

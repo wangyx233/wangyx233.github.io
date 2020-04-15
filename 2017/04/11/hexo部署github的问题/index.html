@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://wangyx233.github.io">
   <title>hexo部署github的问题 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="用hexo搭建博客，配置直接部署到github的方法：1.安装 hexo-deployer-git插件1npm install hexo-deployer-git --save 2.在hexo根目录的_config.yml中进行deploy的配置123456deploy:    type: git    repo: [github repository url] //eg:git@github.c">
+  <meta name="description" content="用hexo搭建博客，配置直接部署到github的方法：1.安装 hexo-deployer-git插件 1npm install hexo-deployer-git --save  2.在hexo根目录的_config.yml中进行deploy的配置 123456deploy:    type: git    repo: [github repository url] //eg:git@githu">
 <meta name="keywords" content="hexo,github">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hexo部署github的问题">
 <meta property="og:url" content="https://wangyx233.github.io/2017/04/11/hexo部署github的问题/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="用hexo搭建博客，配置直接部署到github的方法：1.安装 hexo-deployer-git插件1npm install hexo-deployer-git --save 2.在hexo根目录的_config.yml中进行deploy的配置123456deploy:    type: git    repo: [github repository url] //eg:git@github.c">
+<meta property="og:description" content="用hexo搭建博客，配置直接部署到github的方法：1.安装 hexo-deployer-git插件 1npm install hexo-deployer-git --save  2.在hexo根目录的_config.yml中进行deploy的配置 123456deploy:    type: git    repo: [github repository url] //eg:git@githu">
+<meta property="og:locale" content="default">
 <meta property="og:updated_time" content="2017-06-05T12:21:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo部署github的问题">
-<meta name="twitter:description" content="用hexo搭建博客，配置直接部署到github的方法：1.安装 hexo-deployer-git插件1npm install hexo-deployer-git --save 2.在hexo根目录的_config.yml中进行deploy的配置123456deploy:    type: git    repo: [github repository url] //eg:git@github.c">
+<meta name="twitter:description" content="用hexo搭建博客，配置直接部署到github的方法：1.安装 hexo-deployer-git插件 1npm install hexo-deployer-git --save  2.在hexo根目录的_config.yml中进行deploy的配置 123456deploy:    type: git    repo: [github repository url] //eg:git@githu">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -37,7 +38,7 @@
   
 
 </head>
-
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -152,11 +153,20 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h5 id="用hexo搭建博客，配置直接部署到github的方法："><a href="#用hexo搭建博客，配置直接部署到github的方法：" class="headerlink" title="用hexo搭建博客，配置直接部署到github的方法："></a>用hexo搭建博客，配置直接部署到github的方法：</h5><p>1.安装 hexo-deployer-git插件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo-deployer-git --save</div></pre></td></tr></table></figure></p>
-<p>2.在hexo根目录的_config.yml中进行deploy的配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">    type: git</div><div class="line">    repo: [github repository url] //eg:git@github.com:xxx.git or https://github.com/xxx.git</div><div class="line">    branch: master //branch name</div><div class="line">    message: &quot;Blog updated: &#123;&#123; now（&apos;YYYY-MM-DD&apos;）&#125;&#125;&quot; //commit message</div><div class="line">Ps:注意缩进和空格</div></pre></td></tr></table></figure></p>
-<p>3.通过hexo deploy（即hexo d）命令进行部署，在此之前需要进行hexo generate（即hexo g）编译。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hexo-deployer-git插件的作用是生成.deploy_git文件，</div><div class="line">并且把hexo g编译后的public中的文件复制到.deploy_git文件夹下，</div><div class="line">然后进行git操作，推到远端github仓库。</div></pre></td></tr></table></figure></p>
+        <h5 id="用hexo搭建博客，配置直接部署到github的方法："><a href="#用hexo搭建博客，配置直接部署到github的方法：" class="headerlink" title="用hexo搭建博客，配置直接部署到github的方法："></a>用hexo搭建博客，配置直接部署到github的方法：</h5><p>1.安装 hexo-deployer-git插件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+
+<p>2.在hexo根目录的_config.yml中进行deploy的配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">    type: git</span><br><span class="line">    repo: [github repository url] //eg:git@github.com:xxx.git or https://github.com/xxx.git</span><br><span class="line">    branch: master //branch name</span><br><span class="line">    message: &quot;Blog updated: &#123;&#123; now（&apos;YYYY-MM-DD&apos;）&#125;&#125;&quot; //commit message</span><br><span class="line">Ps:注意缩进和空格</span><br></pre></td></tr></table></figure>
+
+<p>3.通过hexo deploy（即hexo d）命令进行部署，在此之前需要进行hexo generate（即hexo g）编译。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo-deployer-git插件的作用是生成.deploy_git文件，</span><br><span class="line">并且把hexo g编译后的public中的文件复制到.deploy_git文件夹下，</span><br><span class="line">然后进行git操作，推到远端github仓库。</span><br></pre></td></tr></table></figure>
+
 <h3 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h3><a id="more"></a>
-<p>1.在用hexo d进行第一次部署时，需要将从public拷贝到.deploy_git文件夹下的所有文件进行commit操作（hexo d部署只会更新静态的html文件）。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cd .deploy_git</div><div class="line">git add --all -f</div><div class="line">git commit -m &quot;message&quot;</div><div class="line">git push origin branch</div></pre></td></tr></table></figure></p>
+
+<p>1.在用hexo d进行第一次部署时，需要将从public拷贝到.deploy_git文件夹下的所有文件进行commit操作（hexo d部署只会更新静态的html文件）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd .deploy_git</span><br><span class="line">git add --all -f</span><br><span class="line">git commit -m &quot;message&quot;</span><br><span class="line">git push origin branch</span><br></pre></td></tr></table></figure>
+
 <p>2.说道部署至github，那前提是配置好github的username和password啦。</p>
 
       
@@ -266,18 +276,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/04/11/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/06/05/three.js学习指南/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Hello World
+          Three.js学习笔记
         
       </div>
     </a>
   
   
-    <a href="/2017/06/05/three.js学习指南/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Three.js学习笔记</div>
+    <a href="/2017/04/11/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hello World</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -320,7 +330,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 Xuan
+    		&copy; 2020 Xuan
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
