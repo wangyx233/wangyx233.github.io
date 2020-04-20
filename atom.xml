@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wangyx233.github.io/"/>
-  <updated>2020-04-16T10:56:19.519Z</updated>
+  <updated>2020-04-20T10:58:02.534Z</updated>
   <id>https://wangyx233.github.io/</id>
   
   <author>
@@ -15,6 +15,84 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>&lt;Algorithm&gt;树</title>
+    <link href="https://wangyx233.github.io/2020/04/20/%5B%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%5D%E6%A0%91/"/>
+    <id>https://wangyx233.github.io/2020/04/20/[算法基础]树/</id>
+    <published>2020-04-20T06:05:28.236Z</published>
+    <updated>2020-04-20T10:58:02.534Z</updated>
+    
+    <content type="html"><![CDATA[<h5 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h5><p>何为树？ 想象一下自然界的 🌲 形态，用术语表达即为：没有闭环的无向图。几个特征可以描述为：每个节点之间有且只有一条路径相连通；如果增加一条路径，图就会连通起来；所以边的数量为节点数-1。节点和路径可以理解为 🌲 的叉。<br>所以二叉树，就是每个节点最多有两条边，即最多有左右两个节点的树。<br>满二叉树即为每个节点如果有子节点那左右节点都具备。如果有这个树有 n 层，那总节点数为 2 の n 次方 - 1，第 n 层的节点数为 2(n -1)。<br>完全二叉树，则是除了最后一层其他层的节点都填满，并且如果最后一层叶子节点如果是右节点，那这个叶子节点的左边必有节点。<br>二叉树的遍历方式：遍历的顺序为根节点在遍历中的顺序。</p><ul><li>前序遍历：根-左-右</li><li>中序遍历：左-根-右</li><li>后序遍历：左-右-根</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h5 id=&quot;基础概念&quot;&gt;&lt;a href=&quot;#基础概念&quot; class=&quot;headerlink&quot; title=&quot;基础概念&quot;&gt;&lt;/a&gt;基础概念&lt;/h5&gt;&lt;p&gt;何为树？ 想象一下自然界的 🌲 形态，用术语表达即为：没有闭环的无向图。几个特征可以描述为：每个节点之间有且只有一条路径相
+      
+    
+    </summary>
+    
+    
+      <category term="Algorithm" scheme="https://wangyx233.github.io/tags/Algorithm/"/>
+    
+      <category term="tree" scheme="https://wangyx233.github.io/tags/tree/"/>
+    
+      <category term="Binary tree" scheme="https://wangyx233.github.io/tags/Binary-tree/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>&lt;JS Review&gt;对象</title>
+    <link href="https://wangyx233.github.io/2020/04/20/%5B%E9%87%8D%E6%B8%A9JS%5D%E5%AF%B9%E8%B1%A1/"/>
+    <id>https://wangyx233.github.io/2020/04/20/[重温JS]对象/</id>
+    <published>2020-04-20T06:04:50.253Z</published>
+    <updated>2020-04-20T11:17:03.549Z</updated>
+    
+    <content type="html"><![CDATA[<h5 id="对象是什么？"><a href="#对象是什么？" class="headerlink" title="对象是什么？"></a>对象是什么？</h5><ul><li>具有唯一标识，内存地址。</li><li>具有状态，属性。</li><li>具有行为，方法。</li></ul><p>JS 的对象具有高度的动态性，可以在运行时对对象添加状态，修改行为。</p><h5 id="对象的属性类型"><a href="#对象的属性类型" class="headerlink" title="对象的属性类型"></a>对象的属性类型</h5><p>JS 中，属性和方法其实都可以成为对象的属性。属性并不是简单的名称和值，可以用一组特征来描述属性，可分为数据属性和访问器(getter/setter)属性两类。</p><ul><li>数据属性。这个就是常见的对象属性，具有以下特征：</li></ul><ul><li>value</li><li>writable：能否被赋值</li><li>enumerable：被 for in 枚举</li><li>configurable：被删除，或者改变特征值。false 时，writable 可从 true-&gt;false，但无法反向修改。enumerable 则不能修改，会报 TypeError: cannot redefine property。一旦设置为 false，cannot set true</li></ul><ul><li>访问器(getter/setter)属性。属性在读写的时候执行。</li></ul><ul><li>getter：get: () =&gt; {} || undifined</li><li>setter: set: () =&gt; {} || undifined，两者成对出现，若不设置则为 undefined</li><li>enumerable：被 for in 枚举</li><li>configurable：被删除，或者改变特征值<br>ES5 以后：<br>查看属性可用，Object.getOwnPropertyDescripter(object, ‘key’)<br>设置属性的特性可用，Object.defineProperty(object, ‘key’, {})<br>如果通过赋值的方式为属性赋值，则该属性的特征都默认为 true。但如果通过 defineProperty 赋值而不指定特性，则特征都默认为 false</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var o = &#123;a:1&#125;;</span><br><span class="line">o.b = 2;</span><br><span class="line">Object.getOwnPropertyDescripter(o, &apos;b&apos;);</span><br><span class="line"></span><br><span class="line">Object.defineProperty(o, &apos;c&apos;, &#123;value: 3&#125;);</span><br><span class="line">Object.getOwnPropertyDescripter(o, &apos;c&apos;);</span><br><span class="line"></span><br><span class="line">var o = &#123; get a() &#123; return &apos;a&apos; &#125; &#125;;</span><br><span class="line">Object.defineProperty(o, &apos;b&apos;, &#123;get: () =&gt; 2, set: (b) =&gt; console.log(b), configurable:true&#125;)</span><br></pre></td></tr></table></figure><h5 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h5><a id="more"></a><p>基于类的面向对象 vs 基于原型的面向对象<br>JS 的原型系统可以描述为：</p><ul><li>每个对象都有一个私有的[[prototype]]，为该对象的原型。</li><li>从对象中获取一个属性，如果自身没有，则会去它的原型上访问，直到原型为空或者找到了该属性为止。</li></ul><p>ES6 以前版本的，原型使用方式</p><p>ES6 以后，提供了三个直接操作对象原型的内置方法，因此我们可以通过这些方法直接操作对象的原型，而不需要借助以前基于类的方式来进行。</p><ul><li>Object.create(proto, {…new object}) 根据指定的原型创建新的对象，原型可以为 null</li><li>Object.getPrototypeOf 获取对象的原型</li><li>Object.setPrototypeOf 设置对象的原型</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h5 id=&quot;对象是什么？&quot;&gt;&lt;a href=&quot;#对象是什么？&quot; class=&quot;headerlink&quot; title=&quot;对象是什么？&quot;&gt;&lt;/a&gt;对象是什么？&lt;/h5&gt;&lt;ul&gt;
+&lt;li&gt;具有唯一标识，内存地址。&lt;/li&gt;
+&lt;li&gt;具有状态，属性。&lt;/li&gt;
+&lt;li&gt;具有行为，方法。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;JS 的对象具有高度的动态性，可以在运行时对对象添加状态，修改行为。&lt;/p&gt;
+&lt;h5 id=&quot;对象的属性类型&quot;&gt;&lt;a href=&quot;#对象的属性类型&quot; class=&quot;headerlink&quot; title=&quot;对象的属性类型&quot;&gt;&lt;/a&gt;对象的属性类型&lt;/h5&gt;&lt;p&gt;JS 中，属性和方法其实都可以成为对象的属性。属性并不是简单的名称和值，可以用一组特征来描述属性，可分为数据属性和访问器(getter/setter)属性两类。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;数据属性。这个就是常见的对象属性，具有以下特征：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;value&lt;/li&gt;
+&lt;li&gt;writable：能否被赋值&lt;/li&gt;
+&lt;li&gt;enumerable：被 for in 枚举&lt;/li&gt;
+&lt;li&gt;configurable：被删除，或者改变特征值。false 时，writable 可从 true-&amp;gt;false，但无法反向修改。enumerable 则不能修改，会报 TypeError: cannot redefine property。一旦设置为 false，cannot set true&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;访问器(getter/setter)属性。属性在读写的时候执行。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;getter：get: () =&amp;gt; {} || undifined&lt;/li&gt;
+&lt;li&gt;setter: set: () =&amp;gt; {} || undifined，两者成对出现，若不设置则为 undefined&lt;/li&gt;
+&lt;li&gt;enumerable：被 for in 枚举&lt;/li&gt;
+&lt;li&gt;configurable：被删除，或者改变特征值&lt;br&gt;ES5 以后：&lt;br&gt;查看属性可用，Object.getOwnPropertyDescripter(object, ‘key’)&lt;br&gt;设置属性的特性可用，Object.defineProperty(object, ‘key’, {})&lt;br&gt;如果通过赋值的方式为属性赋值，则该属性的特征都默认为 true。但如果通过 defineProperty 赋值而不指定特性，则特征都默认为 false&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;var o = &amp;#123;a:1&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;o.b = 2;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Object.getOwnPropertyDescripter(o, &amp;apos;b&amp;apos;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Object.defineProperty(o, &amp;apos;c&amp;apos;, &amp;#123;value: 3&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Object.getOwnPropertyDescripter(o, &amp;apos;c&amp;apos;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var o = &amp;#123; get a() &amp;#123; return &amp;apos;a&amp;apos; &amp;#125; &amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Object.defineProperty(o, &amp;apos;b&amp;apos;, &amp;#123;get: () =&amp;gt; 2, set: (b) =&amp;gt; console.log(b), configurable:true&amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h5 id=&quot;原型&quot;&gt;&lt;a href=&quot;#原型&quot; class=&quot;headerlink&quot; title=&quot;原型&quot;&gt;&lt;/a&gt;原型&lt;/h5&gt;
+    
+    </summary>
+    
+    
+      <category term="JavaScript" scheme="https://wangyx233.github.io/tags/JavaScript/"/>
+    
+      <category term="Object" scheme="https://wangyx233.github.io/tags/Object/"/>
+    
+      <category term="prototype" scheme="https://wangyx233.github.io/tags/prototype/"/>
+    
+  </entry>
   
   <entry>
     <title>Hover&amp;Focus Effects 简单动画示例</title>
