@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="7 种语言类型undefined 是一个变量，而并非是一个关键字。老的浏览器中会是，ES5 以后就不是了。函数内部，对象的属性现在也是可以赋值的。if(typeof str === ‘undefined’){// 如果直接用 str === undefined, str 未声明的话可能会报错 not defined}String 用于表示文本数据。String 有最大长度是 2^53 - 1，字">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-04-15T11:11:57.723Z">
+<meta property="og:updated_time" content="2020-05-08T11:46:24.299Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="重温">
 <meta name="twitter:description" content="7 种语言类型undefined 是一个变量，而并非是一个关键字。老的浏览器中会是，ES5 以后就不是了。函数内部，对象的属性现在也是可以赋值的。if(typeof str === ‘undefined’){// 如果直接用 str === undefined, str 未声明的话可能会报错 not defined}String 用于表示文本数据。String 有最大长度是 2^53 - 1，字">
@@ -160,6 +160,10 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var o = new Object</span><br><span class="line"></span><br><span class="line">o[Symbol.iterator] = function() &#123;</span><br><span class="line">    var v = 0</span><br><span class="line">    return &#123;</span><br><span class="line">        next: function() &#123;</span><br><span class="line">            return &#123; value: v++, done: v &gt; 10 &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">for(var v of o)</span><br><span class="line">    console.log(v); // 0 1 2 3 ... 9</span><br></pre></td></tr></table></figure>
 
 <p>Object.prototype.toString.call() 是可以准确识别对象对应的基本类型的方法，它比 instanceof 更加准确。<br>装箱，是指讲基本数据类型转化为对象。拆箱是把对象转换成基本数据类型。valueOf()，toString(),或者用 Symbol.toPrimitive 自定义转换覆盖以前的。<br>众所周知的 Symbol</p>
+<p>数组的 toString(),会返回一个字符串的拼接；valueOf 还是返回数组。</p>
+<p>通过 new Number()声明的类型和直接用 Number()声明的类型不同，object 与 number 的区别。<br>toString()还可以传入进制进行计算。valueOf 返回数字</p>
+<p>toFixed(), toPrecision(num)向上取整, toExponential()科学计数法</p>
+<p>String,chartAt(index),chartCodeAt(index)</p>
 
       
 
@@ -253,7 +257,7 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/04/16/Input Bottom Animation/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/04/16/[CSS]Input Bottom Animation/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
@@ -382,6 +386,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">HTTPS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">对称加密，非对称加密，数字签名</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">css</a>
               </li>
              
@@ -398,7 +414,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">search</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">moment.js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Date</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -407,6 +439,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">prototype</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">github</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -422,15 +462,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">github</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Three.js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">对称加密</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">非对称加密</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">数字签名</a>
               </li>
             
             <div class="clearfix"></div>

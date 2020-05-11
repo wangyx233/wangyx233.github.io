@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="https://wangyx233.github.io">
   <title>&lt;JS Review&gt;对象 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="对象是什么？ 具有唯一标识，内存地址。 具有状态，属性。 具有行为，方法。  JS 的对象具有高度的动态性，可以在运行时对对象添加状态，修改行为。 对象的属性类型JS 中，属性和方法其实都可以成为对象的属性。属性并不是简单的名称和值，可以用一组特征来描述属性，可分为数据属性和访问器(getter/setter)属性两类。  数据属性。这个就是常见的对象属性，具有以下特征：   value writ">
+  <meta name="description" content="对象是什么？ 具有唯一标识，内存地址。 具有状态，属性。 具有行为，方法。  JS 的对象具有高度的动态性，可以在运行时对对象添加状态，修改行为。JS 中 Object 的定义，用 new 构造函数()、对象字面量 对象的属性类型JS 中，属性和方法其实都可以成为对象的属性。属性并不是简单的名称和值，可以用一组特征来描述属性，可分为数据属性和访问器(getter/setter)属性两类。  数据属">
 <meta name="keywords" content="JavaScript,Object,prototype">
 <meta property="og:type" content="article">
 <meta property="og:title" content="&lt;JS Review&gt;对象">
 <meta property="og:url" content="https://wangyx233.github.io/2020/04/20/[重温JS]对象/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="对象是什么？ 具有唯一标识，内存地址。 具有状态，属性。 具有行为，方法。  JS 的对象具有高度的动态性，可以在运行时对对象添加状态，修改行为。 对象的属性类型JS 中，属性和方法其实都可以成为对象的属性。属性并不是简单的名称和值，可以用一组特征来描述属性，可分为数据属性和访问器(getter/setter)属性两类。  数据属性。这个就是常见的对象属性，具有以下特征：   value writ">
+<meta property="og:description" content="对象是什么？ 具有唯一标识，内存地址。 具有状态，属性。 具有行为，方法。  JS 的对象具有高度的动态性，可以在运行时对对象添加状态，修改行为。JS 中 Object 的定义，用 new 构造函数()、对象字面量 对象的属性类型JS 中，属性和方法其实都可以成为对象的属性。属性并不是简单的名称和值，可以用一组特征来描述属性，可分为数据属性和访问器(getter/setter)属性两类。  数据属">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-04-23T11:09:13.503Z">
+<meta property="og:updated_time" content="2020-05-08T11:43:25.126Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="&lt;JS Review&gt;对象">
-<meta name="twitter:description" content="对象是什么？ 具有唯一标识，内存地址。 具有状态，属性。 具有行为，方法。  JS 的对象具有高度的动态性，可以在运行时对对象添加状态，修改行为。 对象的属性类型JS 中，属性和方法其实都可以成为对象的属性。属性并不是简单的名称和值，可以用一组特征来描述属性，可分为数据属性和访问器(getter/setter)属性两类。  数据属性。这个就是常见的对象属性，具有以下特征：   value writ">
+<meta name="twitter:description" content="对象是什么？ 具有唯一标识，内存地址。 具有状态，属性。 具有行为，方法。  JS 的对象具有高度的动态性，可以在运行时对对象添加状态，修改行为。JS 中 Object 的定义，用 new 构造函数()、对象字面量 对象的属性类型JS 中，属性和方法其实都可以成为对象的属性。属性并不是简单的名称和值，可以用一组特征来描述属性，可分为数据属性和访问器(getter/setter)属性两类。  数据属">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -158,7 +158,7 @@
 <li>具有状态，属性。</li>
 <li>具有行为，方法。</li>
 </ul>
-<p>JS 的对象具有高度的动态性，可以在运行时对对象添加状态，修改行为。</p>
+<p>JS 的对象具有高度的动态性，可以在运行时对对象添加状态，修改行为。<br>JS 中 Object 的定义，用 new 构造函数()、对象字面量</p>
 <h5 id="对象的属性类型"><a href="#对象的属性类型" class="headerlink" title="对象的属性类型"></a>对象的属性类型</h5><p>JS 中，属性和方法其实都可以成为对象的属性。属性并不是简单的名称和值，可以用一组特征来描述属性，可分为数据属性和访问器(getter/setter)属性两类。</p>
 <ul>
 <li>数据属性。这个就是常见的对象属性，具有以下特征：</li>
@@ -206,8 +206,16 @@
 <p>ES6 提供了 class extends，类中定义的方法和属性则会被写在原型对象之上。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">class animals &#123;</span><br><span class="line">  constructor(name) &#123; // 数据属性</span><br><span class="line">    this.name = name;</span><br><span class="line">  &#125;</span><br><span class="line">  get value() &#123; return this.name; &#125;</span><br><span class="line">  eat() &#123;</span><br><span class="line">    console.log(this.name + &apos;is eating!&apos;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class dogs extends animals &#123;</span><br><span class="line">  constructor(name) &#123;</span><br><span class="line">    super(name); // 执行父类的constructor</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var dog = new dogs(&apos;shishi&apos;);</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">arguments，类数组，可以取值，也可以得到length</span><br><span class="line">arguments[0] 和 传入的第一个参数的值保持一致，js都是通过值传参的，改变arguments[0],第一个参数的值也会变。但如果没有传入参数，则对应的值也不会改变。</span><br><span class="line">在严格模式里，不允许这样的操作。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">arguments，类数组，可以取值，也可以得到length</span><br><span class="line">arguments[0] 和 传入的第一个参数的值保持一致，js都是通过值传参的，改变arguments[0],第一个参数的值也会变。但如果没有传入参数，则对应的值也不会改变。</span><br><span class="line">在严格模式里，不允许这样的操作。</span><br><span class="line">函数的参数传递都是按值传递的，并不是按引用传递的。值的复制，分基本类型和引用类型。值和内存地址。所以函数的参数可以当做局部变量。</span><br><span class="line">function setName(obj) &#123;</span><br><span class="line">  obj.name = &apos;hoho&apos;;</span><br><span class="line">  obj = new Object();</span><br><span class="line">  obj.name = &apos;hehe&apos;;</span><br><span class="line">&#125;</span><br><span class="line">var person = new Object();</span><br><span class="line">setName(person);</span><br><span class="line">console.log(person.name)</span><br></pre></td></tr></table></figure>
 
+<h6 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h6><p>提供的内置 API，pop(),push(),shift(),unshift(),向数组插入元素的返回数组的 length，从数组中取元素的返回取的元素。<br>sort(),按字符串排序会调用 toString(),所以会借用 sort((a,b) =&gt; {return a - b;}) 返回负数，a 在 b 前面，正数 a 在 b 后面</p>
+<p>concat(),slice()原数组都不会变，都是复制原来的数组生成新的返回。slice()负数，加上数组长度即可。<br>splice 修改原数组，返回操作的数组，只有一项。</p>
+<p>indexOf,lastIndexOf 比较是通过===比较的,所以对象数组的 indexOf 会比较引用在不在，然后返回。</p>
+<p>every [] -&gt; true<br>some [] -&gt; false<br>filter -&gt; []<br>forEach 返回 undefined，一般不需要返回值，或者说如果要用 return，则推荐用 map。若要修改原来数组，需要 return 配合原数组的索引修改。直接同 map 一样 return 值并不会改变。主要功能是对数据进行遍历，进行操作。<br>map 需要 return 返回值，若没有则返回 undefined，结果为修改后生成的新的数组，不会修改原来的数组。速度能更快一些<br>比如食材，cook 的实例。<br>共同点：没有 break 和 continue<br>通过 return 结束本次循环。<br>for…of(break,continue 正常) return 会报错。<br>why？<br>for…in 都不太行<br>reduce,reduceRight 处理 obj 便利</p>
+<h6 id="Function"><a href="#Function" class="headerlink" title="Function"></a>Function</h6><p>函数是对象，函数名是指针<br>函数声明 vs 函数表达式<br>函数声明的函数，解析器会率先读取函数声明，并且在函数执行前可用；函数表达式必须等到函数解析器执行到它所在的代码行，才会被真正的解析执行。<br>函数声明提升。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 函数声明</span><br><span class="line">function wa() &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">// 函数表达式</span><br><span class="line">var wa = function() &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>函数内部有两个特殊的对象，arguments，this。arguments 是一个类数组，它有一个特殊的属性 callee，是一个指向拥有 arguments 函数的指针。<br>比如递归中，如果外部函数被重写了用 arguments.callee()调用自身，递归还会正常执行。<br>this 是函数执行的环境对象。调用者的环境。<br>caller，保存这调用当前函数的函数的引用，即调用当前函数的函数是什么。可以用 arguments.callee.caller 表示。解除耦合。<br>严格模式下，callee，caller 都 🙅‍♂️<br>函数都有两个非继承而来的方法，apply()和 call()，用于改变函数内 this 的指向，即在特定的作用域内调用函数。<br>sum.apply(object, arguments)<br>sum.call(object, arg1, arg2)<br>只是传参的方式不一样而已。能方便的更改函数调用的作用域，减少耦合程度。<br>bind(),更改 this 指向。如：sum.bind(object)<br>fun.toString() / fun.valueOf() 返回函数代码</p>
 
       
 
@@ -330,7 +338,7 @@
     </a>
   
   
-    <a href="/2020/04/16/Input Bottom Animation/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2020/04/16/[CSS]Input Bottom Animation/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">Hover&amp;Focus Effects 简单动画示例</div>
       <i class="icon-circle-right"></i>
     </a>
@@ -449,6 +457,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">HTTPS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">对称加密，非对称加密，数字签名</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">css</a>
               </li>
              
@@ -465,7 +485,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">search</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">moment.js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Date</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -474,6 +510,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">prototype</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">github</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -489,15 +533,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">github</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Three.js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">对称加密</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">非对称加密</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">数字签名</a>
               </li>
             
             <div class="clearfix"></div>

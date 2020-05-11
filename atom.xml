@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wangyx233.github.io/"/>
-  <updated>2020-04-22T08:06:52.849Z</updated>
+  <updated>2020-05-11T15:06:43.936Z</updated>
   <id>https://wangyx233.github.io/</id>
   
   <author>
@@ -17,13 +17,194 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>&lt;JS Review&gt;类型判断</title>
+    <title>&lt;CSS&gt;回顾伪类与伪元素</title>
+    <link href="https://wangyx233.github.io/2020/05/11/%5BCSS%5D%E5%9B%9E%E9%A1%BE%E4%BC%AA%E7%B1%BB%E4%B8%8E%E4%BC%AA%E5%85%83%E7%B4%A0/"/>
+    <id>https://wangyx233.github.io/2020/05/11/[CSS]回顾伪类与伪元素/</id>
+    <published>2020-05-11T06:35:48.173Z</published>
+    <updated>2020-05-11T15:06:43.936Z</updated>
+    
+    <content type="html"><![CDATA[<p>在重温 CSS 选择的时候，看到伪类与伪元素有一瞬间迷惑之情，所以这次重新加深一番印象。</p><h5 id="伪类-pseudo-classes-？伪元素-pseudo-elements-？"><a href="#伪类-pseudo-classes-？伪元素-pseudo-elements-？" class="headerlink" title="伪类(pseudo-classes)？伪元素(pseudo-elements)？"></a>伪类(pseudo-classes)？伪元素(pseudo-elements)？</h5><p>为什么要引入伪类，伪元素？为了格式化文档树以外的信息。</p><ul><li>伪类：用于描述已经存在的元素的某个状态，添加对应的样式。用:,如：hover,:first-child…</li><li>伪元素：用于创建一些不在文档树中的元素。多用::,如：::before,::after…，虽然用户可以看到这些内容，但事实上并不存在在文档树中。</li></ul><p>补充：CSS 的选择器</p><ol><li>元素选择器</li></ol><ul><li>* 通配符选择器</li><li>div,p,span… 元素选择器</li><li>#id</li><li>.class</li></ul><ol start="2"><li>属性选择器</li></ol><ul><li>[attr]</li><li>[attr=val]</li><li>[attr^=val] 以 val 开头属性值的元素</li><li>[attr$=val] 以 val 结尾</li><li>[attr*=val] 属性值包含这个 val 属性值的元素</li><li>[attr~=val] 属性值为 val，或其中一个值为 val 的元素</li><li>[attr|=val] 属性值为 val，或者 val-xxx 的元素</li><li>i 不区分大小写，s 区分大小写<br>eg. <a href="https://codepen.io/yx233/pen/abvGgad" target="_blank" rel="noopener">https://codepen.io/yx233/pen/abvGgad</a></li></ul><ol start="3"><li>关系选择器</li></ol><ul><li>后代选择器： 空格，所有后代</li><li>子选择器：&gt; 直接后代，不包括隔代元素</li><li>兄弟选择器：~ 所有兄弟结点</li><li>相邻选择气：+ 相邻兄弟结点</li></ul><p>选择指向越准确，优先级越高。尽量减少 CSS 选择器的层数</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;在重温 CSS 选择的时候，看到伪类与伪元素有一瞬间迷惑之情，所以这次重新加深一番印象。&lt;/p&gt;
+&lt;h5 id=&quot;伪类-pseudo-classes-？伪元素-pseudo-elements-？&quot;&gt;&lt;a href=&quot;#伪类-pseudo-classes-？伪元素-pseud
+      
+    
+    </summary>
+    
+    
+      <category term="CSS" scheme="https://wangyx233.github.io/tags/CSS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>&lt;重温JS&gt;正则从开始到结束</title>
+    <link href="https://wangyx233.github.io/2020/05/08/%5B%E9%87%8D%E6%B8%A9JS%5D%E6%AD%A3%E5%88%99%E4%BB%8E%E5%BC%80%E5%A7%8B%E5%88%B0%E7%BB%93%E6%9D%9F/"/>
+    <id>https://wangyx233.github.io/2020/05/08/[重温JS]正则从开始到结束/</id>
+    <published>2020-05-08T09:06:15.947Z</published>
+    <updated>2020-05-08T09:21:49.692Z</updated>
+    
+    <content type="html"><![CDATA[<p>正则表达式用的元字符：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">() [] &#123;&#125; | \ ^ $ . * + ?</span><br></pre></td></tr></table></figure><p>通过 new RegExp() 前一个要转换成字符串，不能直接用正则字面量。如元字符要进行双重转义。<br>正则表达式的 valueOf(),返回正则表达式本身。</p><p>regexp.test(text)<br>regexp.exec(text)</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;正则表达式用的元字符：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;c
+      
+    
+    </summary>
+    
+    
+      <category term="RegExp" scheme="https://wangyx233.github.io/tags/RegExp/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>&lt;重温JS&gt;时间处理二三事</title>
+    <link href="https://wangyx233.github.io/2020/05/08/%5B%E9%87%8D%E6%B8%A9JS%5D%E6%97%B6%E9%97%B4%E5%A4%84%E7%90%86%E4%BA%8C%E4%B8%89%E4%BA%8B/"/>
+    <id>https://wangyx233.github.io/2020/05/08/[重温JS]时间处理二三事/</id>
+    <published>2020-05-08T08:48:01.658Z</published>
+    <updated>2020-05-08T09:00:04.521Z</updated>
+    
+    <content type="html"><![CDATA[<p>const current = new Date();<br>Date.parse(current); //turn to UTC,ms<br>Date.UTC(year, month - 1 )<br>Date.now() // s<br>+new Date();</p><p>.toString(),字符串；.valueOf(),数值 ms</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;const current = new Date();&lt;br&gt;Date.parse(current); //turn to UTC,ms&lt;br&gt;Date.UTC(year, month - 1 )&lt;br&gt;Date.now() // s&lt;br&gt;+new Date();&lt;/p&gt;
+      
+    
+    </summary>
+    
+    
+      <category term="moment.js" scheme="https://wangyx233.github.io/tags/moment-js/"/>
+    
+      <category term="Date" scheme="https://wangyx233.github.io/tags/Date/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>&lt;安全&gt;从基本安全概念到HTTPS发生了什么</title>
+    <link href="https://wangyx233.github.io/2020/05/08/%5B%E5%AE%89%E5%85%A8%5D%E4%BB%8E%E5%9F%BA%E6%9C%AC%E5%AE%89%E5%85%A8%E6%A6%82%E5%BF%B5%E5%88%B0Https/"/>
+    <id>https://wangyx233.github.io/2020/05/08/[安全]从基本安全概念到Https/</id>
+    <published>2020-05-08T08:23:25.292Z</published>
+    <updated>2020-05-11T15:11:55.481Z</updated>
+    
+    <content type="html"><![CDATA[<p>A 要给 B 发送信息</p><h5 id="对称加密"><a href="#对称加密" class="headerlink" title="对称加密"></a>对称加密</h5><p>加密和解密用的密钥是相同的。</p><h5 id="非对称加密"><a href="#非对称加密" class="headerlink" title="非对称加密"></a>非对称加密</h5><p>公钥加密，私钥解密。传递公钥</p><h5 id="中间人攻击"><a href="#中间人攻击" class="headerlink" title="中间人攻击"></a>中间人攻击</h5><h5 id="数字签名，数字证书"><a href="#数字签名，数字证书" class="headerlink" title="数字签名，数字证书"></a>数字签名，数字证书</h5><p>私钥加密，公钥解密。传递公钥<br>数字中心</p><h5 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h5><p>先认证服务端，然后服务端再传递加密内容。<br>再进行秘文交换。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;A 要给 B 发送信息&lt;/p&gt;
+&lt;h5 id=&quot;对称加密&quot;&gt;&lt;a href=&quot;#对称加密&quot; class=&quot;headerlink&quot; title=&quot;对称加密&quot;&gt;&lt;/a&gt;对称加密&lt;/h5&gt;&lt;p&gt;加密和解密用的密钥是相同的。&lt;/p&gt;
+&lt;h5 id=&quot;非对称加密&quot;&gt;&lt;a href=&quot;
+      
+    
+    </summary>
+    
+    
+      <category term="HTTPS" scheme="https://wangyx233.github.io/tags/HTTPS/"/>
+    
+      <category term="对称加密" scheme="https://wangyx233.github.io/tags/%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86/"/>
+    
+      <category term="非对称加密" scheme="https://wangyx233.github.io/tags/%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86/"/>
+    
+      <category term="数字签名" scheme="https://wangyx233.github.io/tags/%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>&lt;Algorithm&gt;查找</title>
+    <link href="https://wangyx233.github.io/2020/04/27/%5B%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%5D%E6%9F%A5%E6%89%BE/"/>
+    <id>https://wangyx233.github.io/2020/04/27/[算法基础]查找/</id>
+    <published>2020-04-27T08:56:53.445Z</published>
+    <updated>2020-04-27T09:07:08.708Z</updated>
+    
+    <content type="html"><![CDATA[<h5 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h5><p>特点：有序列表的查找，时间复杂度 O(logN)</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const binary_search = (list, x) =&gt; &#123;</span><br><span class="line">  const mid = Math.ceil(list.length / 2);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>回忆一下指数，对数是什么，对数是指数的逆运算，求幂的次数</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h5 id=&quot;二分查找&quot;&gt;&lt;a href=&quot;#二分查找&quot; class=&quot;headerlink&quot; title=&quot;二分查找&quot;&gt;&lt;/a&gt;二分查找&lt;/h5&gt;&lt;p&gt;特点：有序列表的查找，时间复杂度 O(logN)&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="Algorithm" scheme="https://wangyx233.github.io/tags/Algorithm/"/>
+    
+      <category term="search" scheme="https://wangyx233.github.io/tags/search/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>&lt;了解&gt;浏览器是如何工作的？</title>
+    <link href="https://wangyx233.github.io/2020/04/27/%5B%E6%B5%8F%E8%A7%88%E5%99%A8%5D%E6%B5%8F%E8%A7%88%E5%99%A8%E6%98%AF%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C%E7%9A%84%EF%BC%9F/"/>
+    <id>https://wangyx233.github.io/2020/04/27/[浏览器]浏览器是如何工作的？/</id>
+    <published>2020-04-27T08:07:25.056Z</published>
+    <updated>2020-04-27T08:56:01.130Z</updated>
+    
+    <content type="html"><![CDATA[<p>在浏览器地址栏输入 URL 发生了什么？</p><ol><li>如果是域名，先进行 DNS 解析，根据 IP 地址去服务端请求页面；</li><li>拿到服务端返回的 HTML，解析构建成 DOM 树；</li><li>计算 DOM🌲 上的 CSS 属性；</li><li>根据 CSS 渲染每个元素，在内存中保存为位图；</li><li>进行渲染合成绘制。</li></ol><p>整个过程是流式过程，网页是逐渐加载出来的。</p><h5 id="HTTP-协议"><a href="#HTTP-协议" class="headerlink" title="HTTP 协议"></a>HTTP 协议</h5><p>HTTP 协议是基于 TCP 协议的，TCP 协议是一个双向协议，而 HTTP 协议是在此基础上规定了 Requst-Response 模式，并且用来传输文本。可以理解为用 TCP 规定了一种用来传输文本的应用层协议。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;在浏览器地址栏输入 URL 发生了什么？&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;如果是域名，先进行 DNS 解析，根据 IP 地址去服务端请求页面；&lt;/li&gt;
+&lt;li&gt;拿到服务端返回的 HTML，解析构建成 DOM 树；&lt;/li&gt;
+&lt;li&gt;计算 DOM🌲 上的 CSS 属性；&lt;/li
+      
+    
+    </summary>
+    
+    
+      <category term="JavaScript" scheme="https://wangyx233.github.io/tags/JavaScript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>&lt;JS Review&gt;垃圾收集</title>
+    <link href="https://wangyx233.github.io/2020/04/24/%5B%E9%87%8D%E6%B8%A9JS%5D%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86/"/>
+    <id>https://wangyx233.github.io/2020/04/24/[重温JS]垃圾收集/</id>
+    <published>2020-04-24T08:21:39.625Z</published>
+    <updated>2020-05-07T11:31:28.988Z</updated>
+    
+    <content type="html"><![CDATA[<p>JS 中实现了自动垃圾回收机制，自动分配内存和释放内存。原理是：找到那些不再使用的变量，然后释放它所占的内存。然后按照固定的时间间隔执行。<br>垃圾收集器需要跟踪变量有没有用，对没有用的变量打上标记，以便后续的回收。标识变量的策略常用的有，标记清除，引用计数。</p><ul><li>标记清除 Mark and Sweep<br>进入环境标记。或者维护一个进入环境的列表，一个离开环境的列表。把环境中用到的或者被其他环境内引用的变量标记去掉，剩下还有标记的都是需要删除的变量。</li><li>引用计数 Reference Count。可能会导致内存一直得不到释放，比如在函数内，两个对象相互调用</li></ul><p>解除引用 Dereferencing,一旦不再使用，最好将他们的值置位 null。主要是全局变量，全局对象等。因为局部变量都会在离开执行环境后，直接解除引用。解除引用，是让这个值脱离执行环境，而不是立即内存回收。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;JS 中实现了自动垃圾回收机制，自动分配内存和释放内存。原理是：找到那些不再使用的变量，然后释放它所占的内存。然后按照固定的时间间隔执行。&lt;br&gt;垃圾收集器需要跟踪变量有没有用，对没有用的变量打上标记，以便后续的回收。标识变量的策略常用的有，标记清除，引用计数。&lt;/p&gt;
+&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="JavaScript" scheme="https://wangyx233.github.io/tags/JavaScript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>&lt;JS Review&gt;类型检测</title>
     <link href="https://wangyx233.github.io/2020/04/22/%5B%E9%87%8D%E6%B8%A9JS%5D%E7%B1%BB%E5%9E%8B%E5%88%A4%E6%96%AD/"/>
     <id>https://wangyx233.github.io/2020/04/22/[重温JS]类型判断/</id>
     <published>2020-04-22T07:27:30.603Z</published>
-    <updated>2020-04-22T08:06:52.849Z</updated>
+    <updated>2020-05-07T11:36:08.324Z</updated>
     
-    <content type="html"><![CDATA[<ul><li><strong>来自 null 的拷问？我是谁，我在哪儿</strong></li><li><strong>[Symbol.toStringTag]</strong></li></ul>]]></content>
+    <content type="html"><![CDATA[<ul><li><strong>来自 null 的拷问？我是谁，我在哪儿</strong></li><li><strong>[Symbol.toStringTag]</strong></li></ul><p>基本数据类型在内存中占用固定大小的内存空间，因此被保存在栈内存中。引用类型，保存在堆内存中。</p><h5 id="typeof"><a href="#typeof" class="headerlink" title="typeof"></a>typeof</h5><p>typeof 是检测基本数据类型的利器，number，string，boolean，undefined。<br>null，object 都只会返回 object；function 返回 function</p><h5 id="instanceof"><a href="#instanceof" class="headerlink" title="instanceof"></a>instanceof</h5><p>variable instanceof constructor 判断是什么类型的对象，结果返回 true or false。<br>基础类型判断返回 false</p>]]></content>
     
     <summary type="html">
     
@@ -33,7 +214,7 @@
 &lt;li&gt;&lt;strong&gt;来自 null 的拷问？我是谁，我在哪儿&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;[Symbol.toStringTag]&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-
+&lt;p&gt;基本数据类型在内存中占用固定大小的内存空间，因此被保存在栈内存中
       
     
     </summary>
@@ -54,9 +235,9 @@
     <link href="https://wangyx233.github.io/2020/04/20/%5B%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%5D%E6%A0%91/"/>
     <id>https://wangyx233.github.io/2020/04/20/[算法基础]树/</id>
     <published>2020-04-20T06:05:28.236Z</published>
-    <updated>2020-04-20T10:58:02.534Z</updated>
+    <updated>2020-04-27T07:38:22.356Z</updated>
     
-    <content type="html"><![CDATA[<h5 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h5><p>何为树？ 想象一下自然界的 🌲 形态，用术语表达即为：没有闭环的无向图。几个特征可以描述为：每个节点之间有且只有一条路径相连通；如果增加一条路径，图就会连通起来；所以边的数量为节点数-1。节点和路径可以理解为 🌲 的叉。<br>所以二叉树，就是每个节点最多有两条边，即最多有左右两个节点的树。<br>满二叉树即为每个节点如果有子节点那左右节点都具备。如果有这个树有 n 层，那总节点数为 2 の n 次方 - 1，第 n 层的节点数为 2(n -1)。<br>完全二叉树，则是除了最后一层其他层的节点都填满，并且如果最后一层叶子节点如果是右节点，那这个叶子节点的左边必有节点。<br>二叉树的遍历方式：遍历的顺序为根节点在遍历中的顺序。</p><ul><li>前序遍历：根-左-右</li><li>中序遍历：左-根-右</li><li>后序遍历：左-右-根</li></ul>]]></content>
+    <content type="html"><![CDATA[<h5 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h5><p>何为树？ 想象一下自然界的 🌲 形态，用术语表达即为：没有闭环的无向图。几个特征可以描述为：每个节点之间有且只有一条路径相连通；如果增加一条路径，图就会连通起来；所以边的数量为节点数-1。节点和路径可以理解为 🌲 的叉。<br>所以二叉树，就是每个节点最多有两条边，即最多有左右两个节点的树。<br>满二叉树即为每个节点如果有子节点那左右节点都具备。如果有这个树有 n 层，那总节点数为 2 の n 次方 - 1，第 n 层的节点数为 2(n -1)。<br>完全二叉树，则是除了最后一层其他层的节点都填满，并且如果最后一层叶子节点如果是右节点，那这个叶子节点的左边必有节点。<br>二叉树的遍历方式：遍历的顺序为根节点在遍历中的顺序。</p><ul><li>前序遍历：根-左-右</li><li>中序遍历：左-根-右</li><li>后序遍历：左-右-根</li></ul><h5 id="优先队列-堆"><a href="#优先队列-堆" class="headerlink" title="优先队列-堆"></a>优先队列-堆</h5><p>理论说明：根节点和子节点之间的关系，以及结点数量。</p><ol><li>如何建堆，最大堆，最小堆。</li><li>数据插入</li><li>应用场景，堆排序，第 K 大的数</li></ol><p>时间复杂度</p>]]></content>
     
     <summary type="html">
     
@@ -81,9 +262,9 @@
     <link href="https://wangyx233.github.io/2020/04/20/%5B%E9%87%8D%E6%B8%A9JS%5D%E5%AF%B9%E8%B1%A1/"/>
     <id>https://wangyx233.github.io/2020/04/20/[重温JS]对象/</id>
     <published>2020-04-20T06:04:50.253Z</published>
-    <updated>2020-04-23T11:09:13.503Z</updated>
+    <updated>2020-05-08T11:43:25.126Z</updated>
     
-    <content type="html"><![CDATA[<h5 id="对象是什么？"><a href="#对象是什么？" class="headerlink" title="对象是什么？"></a>对象是什么？</h5><ul><li>具有唯一标识，内存地址。</li><li>具有状态，属性。</li><li>具有行为，方法。</li></ul><p>JS 的对象具有高度的动态性，可以在运行时对对象添加状态，修改行为。</p><h5 id="对象的属性类型"><a href="#对象的属性类型" class="headerlink" title="对象的属性类型"></a>对象的属性类型</h5><p>JS 中，属性和方法其实都可以成为对象的属性。属性并不是简单的名称和值，可以用一组特征来描述属性，可分为数据属性和访问器(getter/setter)属性两类。</p><ul><li>数据属性。这个就是常见的对象属性，具有以下特征：</li></ul><ol><li>value</li><li>writable：能否被赋值</li><li>enumerable：被 for in 枚举</li><li>configurable：被删除，或者改变特征值。false 时，writable 可从 true-&gt;false，但无法反向修改。enumerable 则不能修改，会报 TypeError: cannot redefine property。一旦设置为 false，cannot set true</li></ol><ul><li>访问器(getter/setter)属性。属性在读写的时候执行。</li></ul><ol><li>getter：get: () =&gt; {} || undifined</li><li>setter: set: () =&gt; {} || undifined，两者成对出现，若不设置则为 undefined</li><li>enumerable：被 for in 枚举</li><li>configurable：被删除，或者改变特征值<br>ES5 以后：<br>查看属性可用，Object.getOwnPropertyDescripter(object, ‘key’)<br>设置属性的特性可用，Object.defineProperty(object, ‘key’, {})<br>如果通过赋值的方式为属性赋值，则该属性的特征都默认为 true。但如果通过 defineProperty 赋值而不指定特性，则特征都默认为 false</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var o = &#123;a:1&#125;;</span><br><span class="line">o.b = 2;</span><br><span class="line">Object.getOwnPropertyDescripter(o, &apos;b&apos;);</span><br><span class="line"></span><br><span class="line">Object.defineProperty(o, &apos;c&apos;, &#123;value: 3&#125;);</span><br><span class="line">Object.getOwnPropertyDescripter(o, &apos;c&apos;);</span><br><span class="line"></span><br><span class="line">var o = &#123; get a() &#123; return &apos;a&apos; &#125; &#125;;</span><br><span class="line">Object.defineProperty(o, &apos;b&apos;, &#123;get: () =&gt; 2, set: (b) =&gt; console.log(b), configurable:true&#125;)</span><br></pre></td></tr></table></figure><h5 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h5><a id="more"></a><p>基于类的面向对象 vs 基于原型的面向对象<br>JS 的原型系统可以描述为：</p><ul><li>每个对象都有一个私有的[[prototype]]，为该对象的原型。</li><li>从对象中获取一个属性，如果自身没有，则会去它的原型上访问，直到原型为空或者找到了该属性为止。</li></ul><p>ES6 以前版本的，面向对象的使用方式，new</p><p><em>new 操作发生了什么</em><br>new fun(x,y,z)</p><ol><li>以构造器的 prototype 属性为原型，创建一个新对象；</li><li>将 this，参数传入构造器进行执行；</li><li>如果构造器返回的是对象，则返回该对象，否则返回(1)创建的对象。</li></ol><p>所以，用 new 的方式进行类的实现，可以在构造函数里面添加属性返回对象，也可以在构造函数的 prototype 里面增加属性。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function test() &#123;</span><br><span class="line">  this.a = 1;</span><br><span class="line">&#125;</span><br><span class="line">var t = new test;</span><br><span class="line"></span><br><span class="line">function test1() &#123;&#125;;</span><br><span class="line">test1.prototype.a = 1;</span><br><span class="line">var t1 = new test1;</span><br></pre></td></tr></table></figure><p>ES6 以后，提供了三个直接操作对象原型的内置方法，因此我们可以通过这些方法直接操作对象的原型，而不需要借助以前基于类的方式来进行。</p><ul><li>Object.create(proto, {…new object}) 根据指定的原型创建新的对象，原型可以为 null</li><li>Object.getPrototypeOf 获取对象的原型</li><li>Object.setPrototypeOf 设置对象的原型</li></ul><p>ES6 提供了 class extends，类中定义的方法和属性则会被写在原型对象之上。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">class animals &#123;</span><br><span class="line">  constructor(name) &#123; // 数据属性</span><br><span class="line">    this.name = name;</span><br><span class="line">  &#125;</span><br><span class="line">  get value() &#123; return this.name; &#125;</span><br><span class="line">  eat() &#123;</span><br><span class="line">    console.log(this.name + &apos;is eating!&apos;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class dogs extends animals &#123;</span><br><span class="line">  constructor(name) &#123;</span><br><span class="line">    super(name); // 执行父类的constructor</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var dog = new dogs(&apos;shishi&apos;);</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">arguments，类数组，可以取值，也可以得到length</span><br><span class="line">arguments[0] 和 传入的第一个参数的值保持一致，js都是通过值传参的，改变arguments[0],第一个参数的值也会变。但如果没有传入参数，则对应的值也不会改变。</span><br><span class="line">在严格模式里，不允许这样的操作。</span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<h5 id="对象是什么？"><a href="#对象是什么？" class="headerlink" title="对象是什么？"></a>对象是什么？</h5><ul><li>具有唯一标识，内存地址。</li><li>具有状态，属性。</li><li>具有行为，方法。</li></ul><p>JS 的对象具有高度的动态性，可以在运行时对对象添加状态，修改行为。<br>JS 中 Object 的定义，用 new 构造函数()、对象字面量</p><h5 id="对象的属性类型"><a href="#对象的属性类型" class="headerlink" title="对象的属性类型"></a>对象的属性类型</h5><p>JS 中，属性和方法其实都可以成为对象的属性。属性并不是简单的名称和值，可以用一组特征来描述属性，可分为数据属性和访问器(getter/setter)属性两类。</p><ul><li>数据属性。这个就是常见的对象属性，具有以下特征：</li></ul><ol><li>value</li><li>writable：能否被赋值</li><li>enumerable：被 for in 枚举</li><li>configurable：被删除，或者改变特征值。false 时，writable 可从 true-&gt;false，但无法反向修改。enumerable 则不能修改，会报 TypeError: cannot redefine property。一旦设置为 false，cannot set true</li></ol><ul><li>访问器(getter/setter)属性。属性在读写的时候执行。</li></ul><ol><li>getter：get: () =&gt; {} || undifined</li><li>setter: set: () =&gt; {} || undifined，两者成对出现，若不设置则为 undefined</li><li>enumerable：被 for in 枚举</li><li>configurable：被删除，或者改变特征值<br>ES5 以后：<br>查看属性可用，Object.getOwnPropertyDescripter(object, ‘key’)<br>设置属性的特性可用，Object.defineProperty(object, ‘key’, {})<br>如果通过赋值的方式为属性赋值，则该属性的特征都默认为 true。但如果通过 defineProperty 赋值而不指定特性，则特征都默认为 false</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var o = &#123;a:1&#125;;</span><br><span class="line">o.b = 2;</span><br><span class="line">Object.getOwnPropertyDescripter(o, &apos;b&apos;);</span><br><span class="line"></span><br><span class="line">Object.defineProperty(o, &apos;c&apos;, &#123;value: 3&#125;);</span><br><span class="line">Object.getOwnPropertyDescripter(o, &apos;c&apos;);</span><br><span class="line"></span><br><span class="line">var o = &#123; get a() &#123; return &apos;a&apos; &#125; &#125;;</span><br><span class="line">Object.defineProperty(o, &apos;b&apos;, &#123;get: () =&gt; 2, set: (b) =&gt; console.log(b), configurable:true&#125;)</span><br></pre></td></tr></table></figure><h5 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h5><a id="more"></a><p>基于类的面向对象 vs 基于原型的面向对象<br>JS 的原型系统可以描述为：</p><ul><li>每个对象都有一个私有的[[prototype]]，为该对象的原型。</li><li>从对象中获取一个属性，如果自身没有，则会去它的原型上访问，直到原型为空或者找到了该属性为止。</li></ul><p>ES6 以前版本的，面向对象的使用方式，new</p><p><em>new 操作发生了什么</em><br>new fun(x,y,z)</p><ol><li>以构造器的 prototype 属性为原型，创建一个新对象；</li><li>将 this，参数传入构造器进行执行；</li><li>如果构造器返回的是对象，则返回该对象，否则返回(1)创建的对象。</li></ol><p>所以，用 new 的方式进行类的实现，可以在构造函数里面添加属性返回对象，也可以在构造函数的 prototype 里面增加属性。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function test() &#123;</span><br><span class="line">  this.a = 1;</span><br><span class="line">&#125;</span><br><span class="line">var t = new test;</span><br><span class="line"></span><br><span class="line">function test1() &#123;&#125;;</span><br><span class="line">test1.prototype.a = 1;</span><br><span class="line">var t1 = new test1;</span><br></pre></td></tr></table></figure><p>ES6 以后，提供了三个直接操作对象原型的内置方法，因此我们可以通过这些方法直接操作对象的原型，而不需要借助以前基于类的方式来进行。</p><ul><li>Object.create(proto, {…new object}) 根据指定的原型创建新的对象，原型可以为 null</li><li>Object.getPrototypeOf 获取对象的原型</li><li>Object.setPrototypeOf 设置对象的原型</li></ul><p>ES6 提供了 class extends，类中定义的方法和属性则会被写在原型对象之上。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">class animals &#123;</span><br><span class="line">  constructor(name) &#123; // 数据属性</span><br><span class="line">    this.name = name;</span><br><span class="line">  &#125;</span><br><span class="line">  get value() &#123; return this.name; &#125;</span><br><span class="line">  eat() &#123;</span><br><span class="line">    console.log(this.name + &apos;is eating!&apos;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class dogs extends animals &#123;</span><br><span class="line">  constructor(name) &#123;</span><br><span class="line">    super(name); // 执行父类的constructor</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var dog = new dogs(&apos;shishi&apos;);</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">arguments，类数组，可以取值，也可以得到length</span><br><span class="line">arguments[0] 和 传入的第一个参数的值保持一致，js都是通过值传参的，改变arguments[0],第一个参数的值也会变。但如果没有传入参数，则对应的值也不会改变。</span><br><span class="line">在严格模式里，不允许这样的操作。</span><br><span class="line">函数的参数传递都是按值传递的，并不是按引用传递的。值的复制，分基本类型和引用类型。值和内存地址。所以函数的参数可以当做局部变量。</span><br><span class="line">function setName(obj) &#123;</span><br><span class="line">  obj.name = &apos;hoho&apos;;</span><br><span class="line">  obj = new Object();</span><br><span class="line">  obj.name = &apos;hehe&apos;;</span><br><span class="line">&#125;</span><br><span class="line">var person = new Object();</span><br><span class="line">setName(person);</span><br><span class="line">console.log(person.name)</span><br></pre></td></tr></table></figure><h6 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h6><p>提供的内置 API，pop(),push(),shift(),unshift(),向数组插入元素的返回数组的 length，从数组中取元素的返回取的元素。<br>sort(),按字符串排序会调用 toString(),所以会借用 sort((a,b) =&gt; {return a - b;}) 返回负数，a 在 b 前面，正数 a 在 b 后面</p><p>concat(),slice()原数组都不会变，都是复制原来的数组生成新的返回。slice()负数，加上数组长度即可。<br>splice 修改原数组，返回操作的数组，只有一项。</p><p>indexOf,lastIndexOf 比较是通过===比较的,所以对象数组的 indexOf 会比较引用在不在，然后返回。</p><p>every [] -&gt; true<br>some [] -&gt; false<br>filter -&gt; []<br>forEach 返回 undefined，一般不需要返回值，或者说如果要用 return，则推荐用 map。若要修改原来数组，需要 return 配合原数组的索引修改。直接同 map 一样 return 值并不会改变。主要功能是对数据进行遍历，进行操作。<br>map 需要 return 返回值，若没有则返回 undefined，结果为修改后生成的新的数组，不会修改原来的数组。速度能更快一些<br>比如食材，cook 的实例。<br>共同点：没有 break 和 continue<br>通过 return 结束本次循环。<br>for…of(break,continue 正常) return 会报错。<br>why？<br>for…in 都不太行<br>reduce,reduceRight 处理 obj 便利</p><h6 id="Function"><a href="#Function" class="headerlink" title="Function"></a>Function</h6><p>函数是对象，函数名是指针<br>函数声明 vs 函数表达式<br>函数声明的函数，解析器会率先读取函数声明，并且在函数执行前可用；函数表达式必须等到函数解析器执行到它所在的代码行，才会被真正的解析执行。<br>函数声明提升。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 函数声明</span><br><span class="line">function wa() &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">// 函数表达式</span><br><span class="line">var wa = function() &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>函数内部有两个特殊的对象，arguments，this。arguments 是一个类数组，它有一个特殊的属性 callee，是一个指向拥有 arguments 函数的指针。<br>比如递归中，如果外部函数被重写了用 arguments.callee()调用自身，递归还会正常执行。<br>this 是函数执行的环境对象。调用者的环境。<br>caller，保存这调用当前函数的函数的引用，即调用当前函数的函数是什么。可以用 arguments.callee.caller 表示。解除耦合。<br>严格模式下，callee，caller 都 🙅‍♂️<br>函数都有两个非继承而来的方法，apply()和 call()，用于改变函数内 this 的指向，即在特定的作用域内调用函数。<br>sum.apply(object, arguments)<br>sum.call(object, arg1, arg2)<br>只是传参的方式不一样而已。能方便的更改函数调用的作用域，减少耦合程度。<br>bind(),更改 this 指向。如：sum.bind(object)<br>fun.toString() / fun.valueOf() 返回函数代码</p>]]></content>
     
     <summary type="html">
     
@@ -92,7 +273,7 @@
 &lt;li&gt;具有状态，属性。&lt;/li&gt;
 &lt;li&gt;具有行为，方法。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;JS 的对象具有高度的动态性，可以在运行时对对象添加状态，修改行为。&lt;/p&gt;
+&lt;p&gt;JS 的对象具有高度的动态性，可以在运行时对对象添加状态，修改行为。&lt;br&gt;JS 中 Object 的定义，用 new 构造函数()、对象字面量&lt;/p&gt;
 &lt;h5 id=&quot;对象的属性类型&quot;&gt;&lt;a href=&quot;#对象的属性类型&quot; class=&quot;headerlink&quot; title=&quot;对象的属性类型&quot;&gt;&lt;/a&gt;对象的属性类型&lt;/h5&gt;&lt;p&gt;JS 中，属性和方法其实都可以成为对象的属性。属性并不是简单的名称和值，可以用一组特征来描述属性，可分为数据属性和访问器(getter/setter)属性两类。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;数据属性。这个就是常见的对象属性，具有以下特征：&lt;/li&gt;
@@ -129,12 +310,12 @@
   
   <entry>
     <title>Hover&amp;Focus Effects 简单动画示例</title>
-    <link href="https://wangyx233.github.io/2020/04/16/Input%20Bottom%20Animation/"/>
-    <id>https://wangyx233.github.io/2020/04/16/Input Bottom Animation/</id>
+    <link href="https://wangyx233.github.io/2020/04/16/%5BCSS%5DInput%20Bottom%20Animation/"/>
+    <id>https://wangyx233.github.io/2020/04/16/[CSS]Input Bottom Animation/</id>
     <published>2020-04-16T03:36:09.777Z</published>
-    <updated>2020-04-16T10:56:19.519Z</updated>
+    <updated>2020-05-11T06:31:00.723Z</updated>
     
-    <content type="html"><![CDATA[<p>登录页进行账号输入时，为了让焦点聚集在当前输入框上可能会需要配合一些动画效果，或者是某个内容的重点提醒也会在 hover 时增加醒目动画。这些设计虽然很古老，也有用到的场合。<br>主要是借助 CSS3 的 transition 来做效果变换，示例如下：<a href="https://codepen.io/yx233/pen/YzywdJQ" target="_blank" rel="noopener">https://codepen.io/yx233/pen/YzywdJQ</a></p><h5 id="普通元素-hover-effects"><a href="#普通元素-hover-effects" class="headerlink" title="普通元素 hover effects"></a>普通元素 hover effects</h5><ul><li>简单的 border-color 变换。</li><li>借助伪类(Pseudo-classes)实现从左-&gt;右，或从中间向两边延伸的效果。</li></ul><h5 id="input-的-focus"><a href="#input-的-focus" class="headerlink" title="input 的 focus"></a>input 的 focus</h5><p>::after ::before 是指元素文档树内渲染前、后的内容，input 不支持。所以需要借助额外的兄弟元素进行效果实现。</p><p>注：[:focus-within]是当一个元素或者元素的后代有[:focus]伪类时生效的一个选择器。对输入框获得焦点时，其前后左右的小图标，下滑动画等变换都有非常实用的效果。</p><p>注意：登录框前有时会配合放一些小图标，如果用把 icon 当做 input 的 background-image，同时通过定位的方式定位，需要格外注意 Chrome 记住密码情况下的展示。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">input[name=&apos;user&apos;] &#123;</span><br><span class="line">  background-image: url(/login/user.svg);</span><br><span class="line">  background-position: 12px;</span><br><span class="line">  background-repeat: no-repeat;</span><br><span class="line">&#125;</span><br><span class="line">// 注意</span><br><span class="line">input:-webkit-autofill,</span><br><span class="line">input:-webkit-autofill:hover,</span><br><span class="line">input:-webkit-autofill:focus,</span><br><span class="line">input:-webkit-autofill:active &#123;</span><br><span class="line">  -webkit-transition: color 9999s linear, background-color 9999s linear;</span><br><span class="line">  -webkit-transition-delay: 9999s;</span><br><span class="line">  background-color: XXX;</span><br><span class="line">  color: XXX;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<p>登录页进行账号输入时，为了让焦点聚集在当前输入框上可能会需要配合一些动画效果，或者是某个内容的重点提醒也会在 hover 时增加醒目动画。这些设计虽然很古老，也有用到的场合。<br>主要是借助 CSS3 的 transition 来做效果变换，示例如下：<a href="https://codepen.io/yx233/pen/YzywdJQ" target="_blank" rel="noopener">https://codepen.io/yx233/pen/YzywdJQ</a></p><h5 id="普通元素-hover-effects"><a href="#普通元素-hover-effects" class="headerlink" title="普通元素 hover effects"></a>普通元素 hover effects</h5><ul><li>简单的 border-color 变换。</li><li>借助伪元素实现从左-&gt;右，或从中间向两边延伸的效果。</li></ul><h5 id="input-的-focus"><a href="#input-的-focus" class="headerlink" title="input 的 focus"></a>input 的 focus</h5><p>::after ::before 是指元素文档树内渲染前、后的内容，input 不支持。所以需要借助额外的兄弟元素进行效果实现。</p><p>注：[:focus-within]是当一个元素或者元素的后代有[:focus]伪类时生效的一个选择器。对输入框获得焦点时，其前后左右的小图标，下滑动画等变换都有非常实用的效果。</p><p>注意：登录框前有时会配合放一些小图标，如果用把 icon 当做 input 的 background-image，同时通过定位的方式定位，需要格外注意 Chrome 记住密码情况下的展示。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">input[name=&apos;user&apos;] &#123;</span><br><span class="line">  background-image: url(/login/user.svg);</span><br><span class="line">  background-position: 12px;</span><br><span class="line">  background-repeat: no-repeat;</span><br><span class="line">&#125;</span><br><span class="line">// 注意</span><br><span class="line">input:-webkit-autofill,</span><br><span class="line">input:-webkit-autofill:hover,</span><br><span class="line">input:-webkit-autofill:focus,</span><br><span class="line">input:-webkit-autofill:active &#123;</span><br><span class="line">  -webkit-transition: color 9999s linear, background-color 9999s linear;</span><br><span class="line">  -webkit-transition-delay: 9999s;</span><br><span class="line">  background-color: XXX;</span><br><span class="line">  color: XXX;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
@@ -155,9 +336,9 @@
     <link href="https://wangyx233.github.io/2020/03/12/%E9%87%8D%E6%B8%A9%E5%AD%A6%E4%B9%A0/"/>
     <id>https://wangyx233.github.io/2020/03/12/重温学习/</id>
     <published>2020-03-12T07:52:56.250Z</published>
-    <updated>2020-04-15T11:11:57.723Z</updated>
+    <updated>2020-05-08T11:46:24.299Z</updated>
     
-    <content type="html"><![CDATA[<ul><li><p>7 种语言类型<br>undefined 是一个变量，而并非是一个关键字。老的浏览器中会是，ES5 以后就不是了。函数内部，对象的属性现在也是可以赋值的。<br>if(typeof str === ‘undefined’){<br>// 如果直接用 str === undefined, str 未声明的话可能会报错 not defined<br>}<br>String 用于表示文本数据。String 有最大长度是 2^53 - 1，字符串的 UTF16 编码，charAt、charCodeAt、length 等方法针对的都是 UTF16 编码<br>Number 2^64-2^53+3<br>NaN，占用了 9007199254740990，这原本是符合 IEEE 规则的数字；Infinity，无穷大；-Infinity，负无穷大。<br>还有 +0 -0，1/x 是 Infinity 还是 -Infinity<br>Math.abs(0.1 + 0.2 - 0.3) &lt;= Number.EPSILON</p><p>Symbol 可以用于迭代器，Symbol.iterator 需要有 next 和 done，next 返回一个对象包括 value 和 done</p></li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var o = new Object</span><br><span class="line"></span><br><span class="line">o[Symbol.iterator] = function() &#123;</span><br><span class="line">    var v = 0</span><br><span class="line">    return &#123;</span><br><span class="line">        next: function() &#123;</span><br><span class="line">            return &#123; value: v++, done: v &gt; 10 &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">for(var v of o)</span><br><span class="line">    console.log(v); // 0 1 2 3 ... 9</span><br></pre></td></tr></table></figure><p>Object.prototype.toString.call() 是可以准确识别对象对应的基本类型的方法，它比 instanceof 更加准确。<br>装箱，是指讲基本数据类型转化为对象。拆箱是把对象转换成基本数据类型。valueOf()，toString(),或者用 Symbol.toPrimitive 自定义转换覆盖以前的。<br>众所周知的 Symbol</p>]]></content>
+    <content type="html"><![CDATA[<ul><li><p>7 种语言类型<br>undefined 是一个变量，而并非是一个关键字。老的浏览器中会是，ES5 以后就不是了。函数内部，对象的属性现在也是可以赋值的。<br>if(typeof str === ‘undefined’){<br>// 如果直接用 str === undefined, str 未声明的话可能会报错 not defined<br>}<br>String 用于表示文本数据。String 有最大长度是 2^53 - 1，字符串的 UTF16 编码，charAt、charCodeAt、length 等方法针对的都是 UTF16 编码<br>Number 2^64-2^53+3<br>NaN，占用了 9007199254740990，这原本是符合 IEEE 规则的数字；Infinity，无穷大；-Infinity，负无穷大。<br>还有 +0 -0，1/x 是 Infinity 还是 -Infinity<br>Math.abs(0.1 + 0.2 - 0.3) &lt;= Number.EPSILON</p><p>Symbol 可以用于迭代器，Symbol.iterator 需要有 next 和 done，next 返回一个对象包括 value 和 done</p></li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var o = new Object</span><br><span class="line"></span><br><span class="line">o[Symbol.iterator] = function() &#123;</span><br><span class="line">    var v = 0</span><br><span class="line">    return &#123;</span><br><span class="line">        next: function() &#123;</span><br><span class="line">            return &#123; value: v++, done: v &gt; 10 &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">for(var v of o)</span><br><span class="line">    console.log(v); // 0 1 2 3 ... 9</span><br></pre></td></tr></table></figure><p>Object.prototype.toString.call() 是可以准确识别对象对应的基本类型的方法，它比 instanceof 更加准确。<br>装箱，是指讲基本数据类型转化为对象。拆箱是把对象转换成基本数据类型。valueOf()，toString(),或者用 Symbol.toPrimitive 自定义转换覆盖以前的。<br>众所周知的 Symbol</p><p>数组的 toString(),会返回一个字符串的拼接；valueOf 还是返回数组。</p><p>通过 new Number()声明的类型和直接用 Number()声明的类型不同，object 与 number 的区别。<br>toString()还可以传入进制进行计算。valueOf 返回数字</p><p>toFixed(), toPrecision(num)向上取整, toExponential()科学计数法</p><p>String,chartAt(index),chartCodeAt(index)</p>]]></content>
     
     <summary type="html">
     
