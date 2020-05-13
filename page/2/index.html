@@ -130,6 +130,117 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-[重温JS]对象" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/20/[重温JS]对象/">&lt;JS Review&gt;对象</a>
+    </h1>
+  
+
+        
+        <a href="/2020/04/20/[重温JS]对象/" class="archive-article-date">
+  	<time datetime="2020-04-20T06:04:50.253Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="对象是什么？"><a href="#对象是什么？" class="headerlink" title="对象是什么？"></a>对象是什么？</h5><ul>
+<li>具有唯一标识，内存地址。</li>
+<li>具有状态，属性。</li>
+<li>具有行为，方法。</li>
+</ul>
+<p>JS 的对象具有高度的动态性，可以在运行时对对象添加状态，修改行为。<br>JS 中 Object 的定义，用 new 构造函数()、对象字面量</p>
+<h5 id="对象的属性类型"><a href="#对象的属性类型" class="headerlink" title="对象的属性类型"></a>对象的属性类型</h5><p>JS 中，属性和方法其实都可以成为对象的属性。属性并不是简单的名称和值，可以用一组特征来描述属性，可分为数据属性和访问器(getter/setter)属性两类。</p>
+<ul>
+<li>数据属性。这个就是常见的对象属性，具有以下特征：</li>
+</ul>
+<ol>
+<li>value</li>
+<li>writable：能否被赋值</li>
+<li>enumerable：被 for in 枚举</li>
+<li>configurable：被删除，或者改变特征值。false 时，writable 可从 true-&gt;false，但无法反向修改。enumerable 则不能修改，会报 TypeError: cannot redefine property。一旦设置为 false，cannot set true</li>
+</ol>
+<ul>
+<li>访问器(getter/setter)属性。属性在读写的时候执行。</li>
+</ul>
+<ol>
+<li>getter：get: () =&gt; {} || undifined</li>
+<li>setter: set: () =&gt; {} || undifined，两者成对出现，若不设置则为 undefined</li>
+<li>enumerable：被 for in 枚举</li>
+<li>configurable：被删除，或者改变特征值<br>ES5 以后：<br>查看属性可用，Object.getOwnPropertyDescripter(object, ‘key’)<br>设置属性的特性可用，Object.defineProperty(object, ‘key’, {})<br>如果通过赋值的方式为属性赋值，则该属性的特征都默认为 true。但如果通过 defineProperty 赋值而不指定特性，则特征都默认为 false</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var o = &#123;a:1&#125;;</span><br><span class="line">o.b = 2;</span><br><span class="line">Object.getOwnPropertyDescripter(o, &apos;b&apos;);</span><br><span class="line"></span><br><span class="line">Object.defineProperty(o, &apos;c&apos;, &#123;value: 3&#125;);</span><br><span class="line">Object.getOwnPropertyDescripter(o, &apos;c&apos;);</span><br><span class="line"></span><br><span class="line">var o = &#123; get a() &#123; return &apos;a&apos; &#125; &#125;;</span><br><span class="line">Object.defineProperty(o, &apos;b&apos;, &#123;get: () =&gt; 2, set: (b) =&gt; console.log(b), configurable:true&#125;)</span><br></pre></td></tr></table></figure>
+
+<h5 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h5>
+        
+          <a class="article-more-a" href="/2020/04/20/[重温JS]对象/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Object</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">prototype</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/20/[重温JS]对象/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-[CSS]Input Bottom Animation" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -812,73 +923,6 @@
 
 
   
-    <article id="post-写给大家看的设计书" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/21/写给大家看的设计书/">一些设计知识~</a>
-    </h1>
-  
-
-        
-        <a href="/2017/06/21/写给大家看的设计书/" class="archive-article-date">
-  	<time datetime="2017-06-21T03:37:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>最近要看的书好多，全都在排排坐，先挑了一本设计类的书籍《写给大家看的设计书》</p>
-<h3 id="设计的四大原则"><a href="#设计的四大原则" class="headerlink" title="设计的四大原则"></a>设计的四大原则</h3><h6 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h6><p>对比是为页面增加视觉效果的最有效的途径,也是在不同元素之间建立一种有组织的层次结构最有效方法。要记住一个重要规则:要想实现有效的对比,对比就必须 强烈。千万不要畏畏缩缩。<br>字体的对比，颜色的对比，一定要保持强烈，差别不大的对比没有效果。<br>对比的根本目的有两个,这两个目的相辅相成,无法分开。一个目的是增强页面的效果,如果一个页面看起来很有意思,往往更有可读性。另一个目的是有助于信息的组织。读者应当能立即了解信息以何种方式组织,以及从一项到另一项的逻辑流程。对比元素不能让读者混淆,也不能错误地强调重点(即本不该是重点的元素)。</p>
-<h6 id="重复-一致性"><a href="#重复-一致性" class="headerlink" title="重复-一致性"></a>重复-一致性</h6><p>设计的某些方面需要在整个作品中重复。控制读者视线，设计中视觉元素的重复可以将作品中的各部分连在一起,从而统一并增强整个作品。<br>重复的目的就是统一,并增强视觉效果。不要低估页面视觉效果的威力,如果一个作品看起来很有趣,它往往也更易于阅读。<br>要避免太多地重复一个元素,重复太多会让人讨厌。要注意对比的价值<br>可以通过字体选择、线宽、颜色、形状、大小、空间等来增加对比。 增加对比很容易,途径有很多,这可能是增加视觉效果最有意思也最让人满意的方 法了。重要的是:对比一定要强烈!</p>
-        
-          <a class="article-more-a" href="/2017/06/21/写给大家看的设计书/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/21/写给大家看的设计书/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -968,7 +1012,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -976,15 +1020,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">对称加密，非对称加密，数字签名</a>
+                <a href="javascript:void(0)" class="js-tag color5">对称加密</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css</a>
+                <a href="javascript:void(0)" class="js-tag color1">非对称加密</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">数字签名</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">search</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -996,7 +1056,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">search</a>
+                <a href="javascript:void(0)" class="js-tag color2">Object</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">prototype</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1008,27 +1072,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Object</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">prototype</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">github</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1044,19 +1088,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Three.js</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">对称加密</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">非对称加密</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数字签名</a>
               </li>
             
             <div class="clearfix"></div>
