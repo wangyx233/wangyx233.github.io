@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="what?链表是一种递归的数据结构，它或者为空，或者为一个指向结点的引用。该结点含有一个泛型元素和一个指向另一个链表的引用(next)。其中，结点是一种含有任何类型数据的抽象实体。链表表示的是一列元素。在追踪链表或其他链式结构代码的时候，可用可视化的方式表示：  用长方形表示对象 将实例变量的值写在长方形中 用指向被引用对象的箭头表示引用关系，链接实现任意插入和删除操作的标准解决方案是双向链表，其">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-23T03:55:30.425Z">
+<meta property="og:updated_time" content="2020-05-15T07:09:51.492Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="链表">
 <meta name="twitter:description" content="what?链表是一种递归的数据结构，它或者为空，或者为一个指向结点的引用。该结点含有一个泛型元素和一个指向另一个链表的引用(next)。其中，结点是一种含有任何类型数据的抽象实体。链表表示的是一列元素。在追踪链表或其他链式结构代码的时候，可用可视化的方式表示：  用长方形表示对象 将实例变量的值写在长方形中 用指向被引用对象的箭头表示引用关系，链接实现任意插入和删除操作的标准解决方案是双向链表，其">
@@ -166,18 +166,27 @@
 </ol>
 <p>补充：</p>
 <ol>
-<li><p>背包(Bag)是一种不支持从中删除元素的集合数据类型，目的就是收集元素并且迭代遍历收集到的元素，迭代的顺序不确定且元素的处理顺序不重要，可以用栈也可以用队列。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">class Bag() &#123;&#125;</span><br><span class="line">  add(item)</span><br><span class="line">  isEmpty()</span><br><span class="line">  size()</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>先进先出队列FIFO</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class Queue() &#123;&#125;</span><br><span class="line">  enqueue(item) // 添加一个元素</span><br><span class="line">  dequeue() // 删除最近添加的元素</span><br><span class="line">  isEmpty()</span><br><span class="line">  size()</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>下压栈LIFO</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class Stack() &#123;&#125;</span><br><span class="line">  push(item)</span><br><span class="line">  pop()</span><br><span class="line">  isEmpty()</span><br><span class="line">  size()</span><br><span class="line">例如表达式的求值：遇到左括号忽略，操作数押入操作数的栈里，运算符押入运算符的栈里，遇到右括号运算符栈和操作数栈pop计算得到值，再押入栈中。</span><br><span class="line">如：(1 + ((2 + 3) * (4 * 5)))</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在一些语言中，数组的长度一经定义就不可改变，并且数组的删除和添加操作需要对元素进行平移会很繁琐。JS中数组和其他的不同，它是通过对象实现的，操作方便，但是效率可能较其他语言有所不足。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function Node(elem) &#123;</span><br><span class="line">  this.elem = elem;</span><br><span class="line">  this.next = null;</span><br><span class="line">  // this.prvious = null;</span><br><span class="line">&#125;</span><br><span class="line">// 查找，插入，删除结点</span><br></pre></td></tr></table></figure></li>
+<li>背包(Bag)是一种不支持从中删除元素的集合数据类型，目的就是收集元素并且迭代遍历收集到的元素，迭代的顺序不确定且元素的处理顺序不重要，可以用栈也可以用队列。</li>
 </ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">class Bag() &#123;&#125;</span><br><span class="line">  add(item)</span><br><span class="line">  isEmpty()</span><br><span class="line">  size()</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>先进先出队列 FIFO</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class Queue() &#123;&#125;</span><br><span class="line">  enqueue(item) // 添加一个元素</span><br><span class="line">  dequeue() // 删除最近添加的元素</span><br><span class="line">  isEmpty()</span><br><span class="line">  size()</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>下压栈 LIFO</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class Stack() &#123;&#125;</span><br><span class="line">  push(item)</span><br><span class="line">  pop()</span><br><span class="line">  isEmpty()</span><br><span class="line">  size()</span><br><span class="line">例如表达式的求值：遇到左括号忽略，操作数押入操作数的栈里，运算符押入运算符的栈里，遇到右括号运算符栈和操作数栈pop计算得到值，再押入栈中。</span><br><span class="line">如：(1 + ((2 + 3) * (4 * 5)))</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>在一些语言中，数组的长度一经定义就不可改变，并且数组的删除和添加操作需要对元素进行平移会很繁琐。JS 中数组和其他的不同，它是通过对象实现的，操作方便，但是效率可能较其他语言有所不足。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function Node(elem) &#123;</span><br><span class="line">  this.elem = elem;</span><br><span class="line">  this.next = null;</span><br><span class="line">  // this.prvious = null;</span><br><span class="line">&#125;</span><br><span class="line">// 查找，插入，删除结点</span><br></pre></td></tr></table></figure>
+
+<h6 id="跳表-Skip-List"><a href="#跳表-Skip-List" class="headerlink" title="跳表 Skip List"></a>跳表 Skip List</h6><p>1989 前后出现的，适用于有序元素的情况。对标的是二分查找和平衡树(二叉搜索树中的平衡树 AVL Tree)。跳表是一种插入，删除，搜索复杂度都是 logn 的数据结构。如：redis，levelDB<br>一维的数据结构要加速，一般可以升维变成二维的数据结构。空间换时间<br>LRU 缓存</p>
+<p>自己想个 5-10min 看有没有思路，有思路就写了，没思路就直接看题解，学会了。再自己写呦</p>
 
       
 
@@ -420,6 +429,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CSS</a>
               </li>
              
@@ -432,7 +445,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color2">Object</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">prototype</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -441,14 +458,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Binary tree</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Object</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">prototype</a>
               </li>
              
               <li class="article-tag-list-item">

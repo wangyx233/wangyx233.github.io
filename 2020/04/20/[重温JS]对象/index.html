@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="https://wangyx233.github.io">
   <title>&lt;JS Review&gt;对象 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="对象是什么？ 具有唯一标识，内存地址。 具有状态，属性。 具有行为，方法。  JS 的对象具有高度的动态性，可以在运行时对对象添加状态，修改行为。JS 中 Object 的定义，用 new 构造函数()、对象字面量 对象的属性类型JS 中，属性和方法其实都可以成为对象的属性。属性并不是简单的名称和值，可以用一组特征来描述属性，可分为数据属性和访问器(getter/setter)属性两类。  数据属">
+  <meta name="description" content="对象是什么？ 具有唯一标识，内存地址。 具有状态，属性。 具有行为，方法。  JS 的对象具有高度的动态性，可以在运行时对对象添加状态，修改行为。JS 中 Object 的定义，用 new 构造函数()、对象字面量 构造类的函数-&amp;gt;类的构造函数，一个构建函数通常是大写字母开头，这样便于区分构建函数和普通函数。用 this 创建对象，无需重新创建一个对象再返回。创建对象的方法，字面量，构造函数">
 <meta name="keywords" content="JavaScript,Object,prototype">
 <meta property="og:type" content="article">
 <meta property="og:title" content="&lt;JS Review&gt;对象">
 <meta property="og:url" content="https://wangyx233.github.io/2020/04/20/[重温JS]对象/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="对象是什么？ 具有唯一标识，内存地址。 具有状态，属性。 具有行为，方法。  JS 的对象具有高度的动态性，可以在运行时对对象添加状态，修改行为。JS 中 Object 的定义，用 new 构造函数()、对象字面量 对象的属性类型JS 中，属性和方法其实都可以成为对象的属性。属性并不是简单的名称和值，可以用一组特征来描述属性，可分为数据属性和访问器(getter/setter)属性两类。  数据属">
+<meta property="og:description" content="对象是什么？ 具有唯一标识，内存地址。 具有状态，属性。 具有行为，方法。  JS 的对象具有高度的动态性，可以在运行时对对象添加状态，修改行为。JS 中 Object 的定义，用 new 构造函数()、对象字面量 构造类的函数-&amp;gt;类的构造函数，一个构建函数通常是大写字母开头，这样便于区分构建函数和普通函数。用 this 创建对象，无需重新创建一个对象再返回。创建对象的方法，字面量，构造函数">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-05-08T11:43:25.126Z">
+<meta property="og:updated_time" content="2020-05-14T09:26:36.975Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="&lt;JS Review&gt;对象">
-<meta name="twitter:description" content="对象是什么？ 具有唯一标识，内存地址。 具有状态，属性。 具有行为，方法。  JS 的对象具有高度的动态性，可以在运行时对对象添加状态，修改行为。JS 中 Object 的定义，用 new 构造函数()、对象字面量 对象的属性类型JS 中，属性和方法其实都可以成为对象的属性。属性并不是简单的名称和值，可以用一组特征来描述属性，可分为数据属性和访问器(getter/setter)属性两类。  数据属">
+<meta name="twitter:description" content="对象是什么？ 具有唯一标识，内存地址。 具有状态，属性。 具有行为，方法。  JS 的对象具有高度的动态性，可以在运行时对对象添加状态，修改行为。JS 中 Object 的定义，用 new 构造函数()、对象字面量 构造类的函数-&amp;gt;类的构造函数，一个构建函数通常是大写字母开头，这样便于区分构建函数和普通函数。用 this 创建对象，无需重新创建一个对象再返回。创建对象的方法，字面量，构造函数">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -159,6 +159,7 @@
 <li>具有行为，方法。</li>
 </ul>
 <p>JS 的对象具有高度的动态性，可以在运行时对对象添加状态，修改行为。<br>JS 中 Object 的定义，用 new 构造函数()、对象字面量</p>
+<p>构造类的函数-&gt;类的构造函数，一个构建函数通常是大写字母开头，这样便于区分构建函数和普通函数。用 this 创建对象，无需重新创建一个对象再返回。<br>创建对象的方法，字面量，构造函数，new Object()，Object.create</p>
 <h5 id="对象的属性类型"><a href="#对象的属性类型" class="headerlink" title="对象的属性类型"></a>对象的属性类型</h5><p>JS 中，属性和方法其实都可以成为对象的属性。属性并不是简单的名称和值，可以用一组特征来描述属性，可分为数据属性和访问器(getter/setter)属性两类。</p>
 <ul>
 <li>数据属性。这个就是常见的对象属性，具有以下特征：</li>
@@ -477,6 +478,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CSS</a>
               </li>
              
@@ -489,7 +494,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color2">Object</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">prototype</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -498,14 +507,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Binary tree</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Object</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">prototype</a>
               </li>
              
               <li class="article-tag-list-item">

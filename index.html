@@ -130,6 +130,106 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-[算法基础]动态规划" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/01/[算法基础]动态规划/">&lt;算法基础&gt;动态规划</a>
+    </h1>
+  
+
+        
+        <a href="/2020/06/01/[算法基础]动态规划/" class="archive-article-date">
+  	<time datetime="2020-06-01T06:55:32.693Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="适用情况"><a href="#适用情况" class="headerlink" title="适用情况"></a>适用情况</h5><ol>
+<li>计数：how many xxx? 多少种方法可以 blabla</li>
+<li>求最大最小值：max，min…</li>
+<li>求存在性：博弈，是否能 blabla，先手能不能赢，存不存在策略。</li>
+</ol>
+<h5 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h5><ol>
+<li>确定状态。属于定海神针，相当于未知量，类似于 x,y,z。需要开一个数组</li>
+</ol>
+<ul>
+<li>最后一步，最后一个。比如：一共有 k 个硬币，不关心 k-1 前的状态。只要保证 k-1 是最少的达到目标的</li>
+<li>子问题。问题一样，规模变小</li>
+</ul>
+<p>递归的问题，会存在大量的重复计算，效率低下。所以如何优化呢？最容易想到的是加缓存，存一下中间计算值</p>
+<ol start="2">
+<li><p>转移方程。问题解决了一半</p>
+</li>
+<li><p>初始条件，边界情况：注意边界情况处理数组不要越界，初始条件是一开始就能定下来的比如 f[0]一般是最小的，关键是用转移方程算不出来的，手动定义值。</p>
+</li>
+<li><p>计算顺序。一般情况是从小到大。从上到下，从左到右。原则是，算等式左边的时候，等式右边已经能算出来，用到的状态已经算到了</p>
+</li>
+</ol>
+<p>消除冗余，加速计算。递归的另一种优化方式。</p>
+<p><strong>加法原理</strong></p>
+<ul>
+<li>无重复</li>
+<li>无遗漏</li>
+</ul>
+<h6 id="coin-change-最值"><a href="#coin-change-最值" class="headerlink" title="coin change 最值"></a>coin change 最值</h6><h6 id="unique-path-计数"><a href="#unique-path-计数" class="headerlink" title="unique path 计数"></a>unique path 计数</h6><h6 id="jump-game-存在性"><a href="#jump-game-存在性" class="headerlink" title="jump game 存在性"></a>jump game 存在性</h6><h5 id="常见的动态规划的类型"><a href="#常见的动态规划的类型" class="headerlink" title="常见的动态规划的类型"></a>常见的动态规划的类型</h5><ul>
+<li>坐标</li>
+<li>序列</li>
+<li>划分</li>
+<li>区间</li>
+<li>背包</li>
+<li>最长序列，最长上升子序列</li>
+<li>博弈</li>
+<li>综合</li>
+<li>打印路径</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/01/[算法基础]动态规划/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-[算法基础]时间&amp;空间复杂度" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -917,100 +1017,6 @@
 
 
   
-    <article id="post-[算法基础]树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/20/[算法基础]树/">&lt;Algorithm&gt;树</a>
-    </h1>
-  
-
-        
-        <a href="/2020/04/20/[算法基础]树/" class="archive-article-date">
-  	<time datetime="2020-04-20T06:05:28.236Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h5><p>何为树？ 想象一下自然界的 🌲 形态，用术语表达即为：没有闭环的无向图。几个特征可以描述为：每个节点之间有且只有一条路径相连通；如果增加一条路径，图就会连通起来；所以边的数量为节点数-1。节点和路径可以理解为 🌲 的叉。<br>所以二叉树，就是每个节点最多有两条边，即最多有左右两个节点的树。<br>满二叉树即为每个节点如果有子节点那左右节点都具备。如果有这个树有 n 层，那总节点数为 2 の n 次方 - 1，第 n 层的节点数为 2(n -1)。<br>完全二叉树，则是除了最后一层其他层的节点都填满，并且如果最后一层叶子节点如果是右节点，那这个叶子节点的左边必有节点。<br>二叉树的遍历方式：遍历的顺序为根节点在遍历中的顺序。</p>
-<ul>
-<li>前序遍历：根-左-右</li>
-<li>中序遍历：左-根-右</li>
-<li>后序遍历：左-右-根</li>
-</ul>
-<h5 id="优先队列-堆"><a href="#优先队列-堆" class="headerlink" title="优先队列-堆"></a>优先队列-堆</h5><p>理论说明：根节点和子节点之间的关系，以及结点数量。</p>
-<ol>
-<li>如何建堆，最大堆，最小堆。</li>
-<li>数据插入</li>
-<li>应用场景，堆排序，第 K 大的数</li>
-</ol>
-<p>时间复杂度</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Algorithm</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">tree</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Binary tree</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/20/[算法基础]树/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1120,6 +1126,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CSS</a>
               </li>
              
@@ -1132,7 +1142,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color2">Object</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">prototype</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1141,14 +1155,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Binary tree</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Object</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">prototype</a>
               </li>
              
               <li class="article-tag-list-item">
