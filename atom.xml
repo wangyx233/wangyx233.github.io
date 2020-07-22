@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wangyx233.github.io/"/>
-  <updated>2020-06-02T09:13:13.388Z</updated>
+  <updated>2020-07-22T11:32:21.396Z</updated>
   <id>https://wangyx233.github.io/</id>
   
   <author>
@@ -17,13 +17,131 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>&lt;CSS&gt;Flex</title>
+    <link href="https://wangyx233.github.io/2020/07/22/%5BCSS%5Dflex/"/>
+    <id>https://wangyx233.github.io/2020/07/22/[CSS]flex/</id>
+    <published>2020-07-22T07:22:47.016Z</published>
+    <updated>2020-07-22T11:32:21.396Z</updated>
+    
+    <content type="html"><![CDATA[<p>flex: 1<br>flex-shrink<br>flex-grow<br>flex-basis</p><p>标准盒模型：margin，border，padding，width(即 content area)<br>ie 的 margin，width(border,padding , content area width)</p><p>BFC(Block formatting context) 块级格式化上下文，W3C CSS2.1 规范中的一个概念。盒模型布局的 css 渲染模式，一个隔离的独立容器(独立渲染区域)<br>通俗理解，BFC 像一个封闭的箱子，内部元素随意变换不会影响外部的布局。<br>BFC 的形成条件：<br>html<br>浮动元素：float 除 none 以外的值<br>绝对定位元素：position (absolute、fixed)<br>display 为 inline-block、table-cells、flex<br>overflow 除了 visible 以外的值 (hidden、auto、scroll)<br>解决的问题：</p><ol><li>同一 BCF 下外边距 margin 重叠问题，不同 BFC 容器则不会重叠</li><li>用 BCF 容器清除浮动，包裹浮动的元素。(借助 overflow 触发)</li><li>阻止被浮动覆盖。(借助 overflow 触发)</li><li>用 bcf 实现两栏布局。(借助 overflow 触发)</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;flex: 1&lt;br&gt;flex-shrink&lt;br&gt;flex-grow&lt;br&gt;flex-basis&lt;/p&gt;
+&lt;p&gt;标准盒模型：margin，border，padding，width(即 content area)&lt;br&gt;ie 的 margin，width(border,pa
+      
+    
+    </summary>
+    
+    
+      <category term="flex" scheme="https://wangyx233.github.io/tags/flex/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>&lt;问题汇总&gt;</title>
+    <link href="https://wangyx233.github.io/2020/07/22/%5B%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB%5D/"/>
+    <id>https://wangyx233.github.io/2020/07/22/[问题汇总]/</id>
+    <published>2020-07-22T07:04:52.719Z</published>
+    <updated>2020-07-22T07:05:08.650Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="1-cdn-是什么，干什么，哪些地方实现了加速"><a href="#1-cdn-是什么，干什么，哪些地方实现了加速" class="headerlink" title="1. cdn 是什么，干什么，哪些地方实现了加速"></a>1. cdn 是什么，干什么，哪些地方实现了加速</h4><h4 id="2-前端缓存策略，强缓存、协商缓存的优先级"><a href="#2-前端缓存策略，强缓存、协商缓存的优先级" class="headerlink" title="2. 前端缓存策略，强缓存、协商缓存的优先级"></a>2. 前端缓存策略，强缓存、协商缓存的优先级</h4>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;1-cdn-是什么，干什么，哪些地方实现了加速&quot;&gt;&lt;a href=&quot;#1-cdn-是什么，干什么，哪些地方实现了加速&quot; class=&quot;headerlink&quot; title=&quot;1. cdn 是什么，干什么，哪些地方实现了加速&quot;&gt;&lt;/a&gt;1. cdn 是什么，干什么，哪
+      
+    
+    </summary>
+    
+    
+      <category term="JavaScript" scheme="https://wangyx233.github.io/tags/JavaScript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>&lt;知识点回顾&gt;JS基础</title>
+    <link href="https://wangyx233.github.io/2020/07/17/%5B%E7%9F%A5%E8%AF%86%E7%82%B9%E5%9B%9E%E9%A1%BE%5D/"/>
+    <id>https://wangyx233.github.io/2020/07/17/[知识点回顾]/</id>
+    <published>2020-07-17T02:59:42.854Z</published>
+    <updated>2020-07-22T11:55:58.859Z</updated>
+    
+    <content type="html"><![CDATA[<p>DOM 事件<br>DOM 0 级， element.onClick = () =&gt; {};<br>DOM 2 级，element.addEventListener(name, function(){}, capture = false) 冒泡事件<br>事件模型分为捕获和冒泡，捕获是从 window 自上而下到目标元素，冒泡阶段是从目标元素自下而上向 window 传播。<br>事件委托 delegation，事件冒泡到父元素，所以子元素的事件可以委托到父元素统一处理多个子元素的事件。<br>优点是，不需要为每个子元素绑定事件，减少不必要的开销，提高性能等。且可动态处理事件。<br>阻止默认事件，event.preventDefault()<br>阻止冒泡，event.stopPropagation<br>event.target 事件触发的<br>event.currentTarget 事件监听的元素<br>自定义事件</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var event = new Event(name) // 无法传达参数</span><br><span class="line">var event = new CustomEvent(name, params)</span><br><span class="line"></span><br><span class="line">elem.addEventListener(name, function()&#123;&#125;, false) // 监听事件</span><br><span class="line">elem.dispatchEvent(event) // 分发触发事件，而非浏览器触发的</span><br></pre></td></tr></table></figure><p>观察者模式：事件<br>手写发布-订阅模式 EventEmitter</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;DOM 事件&lt;br&gt;DOM 0 级， element.onClick = () =&amp;gt; {};&lt;br&gt;DOM 2 级，element.addEventListener(name, function(){}, capture = false) 冒泡事件&lt;br&gt;事件模型分为
+      
+    
+    </summary>
+    
+    
+      <category term="JavaScript" scheme="https://wangyx233.github.io/tags/JavaScript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>&lt;重温JS&gt;闭包，作用域</title>
+    <link href="https://wangyx233.github.io/2020/07/02/%5B%E9%87%8D%E6%B8%A9JS%5D%E9%97%AD%E5%8C%85/"/>
+    <id>https://wangyx233.github.io/2020/07/02/[重温JS]闭包/</id>
+    <published>2020-07-02T08:39:03.139Z</published>
+    <updated>2020-07-03T05:17:30.427Z</updated>
+    
+    <content type="html"><![CDATA[<h5 id="执行上下文"><a href="#执行上下文" class="headerlink" title="执行上下文"></a>执行上下文</h5><p>闭包是带执行环境的函数，本质是个函数<br>立即执行函数表达式 IIFE，括号前要加;分隔;(function(){})(); 不然会被解析成上一行的函数调用；或者用 void function() {}()</p><ul><li>var</li><li>let： for, if, switch, try/catch/finally…{}包裹的</li><li>Realm： 9.0 标准提出的，主要应用于通过 iframe 等方式创造 window 环境</li></ul><h5 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h5><ul><li>普通函数，用 function 定义的普通函数 function fun() {}</li><li>箭头函数，const fun = () =&gt; { }</li><li>在 class 中定义的函数，class a { fun() {} }</li><li>生成器函数，function * fun (){}</li><li>用 class 定义的类，实际也是函数 class Foo {constructor (){}}</li><li>异步函数，async function fun() {}，const fun = async ()=&gt; {}， async function fun*() {}</li></ul><h6 id="this"><a href="#this" class="headerlink" title="this"></a>this</h6><p>同一个函数调用方式不同，this 也不同，普通函数的 this 由调用函数时使用的引用决定。箭头函数不论什么引用调用都不会影响它原来的 this，即外层函数调用的 this。<br>生成器函数、异步生成器函数和异步普通函数跟普通函数行为是一致的，异步箭头函数与箭头函数行为是一致的。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">function showThis()&#123;</span><br><span class="line">    console.log(this);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var o = &#123;</span><br><span class="line">    showThis: showThis</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">showThis(); // global</span><br><span class="line">o.showThis(); // o</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">const showThis = () =&gt; &#123;</span><br><span class="line">    console.log(this);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var o = &#123;</span><br><span class="line">    showThis: showThis</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">showThis(); // global</span><br><span class="line">o.showThis(); // global</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class C &#123;</span><br><span class="line">    showThis() &#123;</span><br><span class="line">        console.log(this);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var o = new C();</span><br><span class="line">var showThis = o.showThis;</span><br><span class="line"></span><br><span class="line">showThis(); // undefined</span><br><span class="line">o.showThis(); // o</span><br></pre></td></tr></table></figure><p>切换上下文：函数保存定义时上下文的私有变量[[Environment]],当一个函数执行时，会创建一条新的执行环境记录，记录的外层词法环境（outer lexical environment）会被设置成函数的[[Environment]]</p><h5 id="apply，call，bind-操作-this"><a href="#apply，call，bind-操作-this" class="headerlink" title="apply，call，bind 操作 this"></a>apply，call，bind 操作 this</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">var number = 5;</span><br><span class="line">var obj = &#123;</span><br><span class="line">    number: 3,</span><br><span class="line">    fn: (function () &#123;</span><br><span class="line">        var number;</span><br><span class="line">        this.number *= 2;</span><br><span class="line">        number = number * 2;</span><br><span class="line">        number = 3;</span><br><span class="line">        return function () &#123;</span><br><span class="line">            var num = this.number;</span><br><span class="line">            this.number *= 2;</span><br><span class="line">            console.log(num);</span><br><span class="line">            number *= 3;</span><br><span class="line">            console.log(number);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)()</span><br><span class="line">&#125;</span><br><span class="line">var myFun = obj.fn;</span><br><span class="line">myFun.call(null);</span><br><span class="line">obj.fn();</span><br><span class="line">console.log(window.number);</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h5 id=&quot;执行上下文&quot;&gt;&lt;a href=&quot;#执行上下文&quot; class=&quot;headerlink&quot; title=&quot;执行上下文&quot;&gt;&lt;/a&gt;执行上下文&lt;/h5&gt;&lt;p&gt;闭包是带执行环境的函数，本质是个函数&lt;br&gt;立即执行函数表达式 IIFE，括号前要加;分隔;(function(){
+      
+    
+    </summary>
+    
+    
+      <category term="closure" scheme="https://wangyx233.github.io/tags/closure/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>&lt;重温JS&gt;JS中的异步</title>
+    <link href="https://wangyx233.github.io/2020/07/01/%5B%E9%87%8D%E6%B8%A9JS%5DJS%E4%B8%AD%E7%9A%84%E5%BC%82%E6%AD%A5/"/>
+    <id>https://wangyx233.github.io/2020/07/01/[重温JS]JS中的异步/</id>
+    <published>2020-07-01T09:38:25.955Z</published>
+    <updated>2020-07-02T03:57:33.436Z</updated>
+    
+    <content type="html"><![CDATA[<p>一个 JavaScript 引擎会常驻内存中，自己发起的任务是微观任务，宿主环境分配的是宏观任务。<br>宏观任务 vs 微观任务，setTimeout 是宏观任务，ES5 之后 加入了 Promise 是 JS 引擎生成的微观任务。w<br>事件循环-&gt;宏观任务的队列，在每个宏观任务里有微观事件的队列。因此一个宏观任务中的微观任务执行后，再进行下一个宏观任务</p><h5 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h5><p>是 JS 提供的一种标准化的异步处理方式，需要进行 io，等待或者其他操作的函数，不返回真实结果，而返回一个 Promise，在合适的时候再调用函数，等待这个 Promise 的实现</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">new Promise((resolve,reject) =&gt; &#123;</span><br><span class="line">  resolve();</span><br><span class="line">  reject();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><p>执行顺序是查看有多少个宏观任务，每个宏观任务中有多少个微观任务，根据调用次数确定宏观任务中的微观任务，然后根据宏观任务的触发规则和调用次序再依次执行</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function sleep(duration) &#123;</span><br><span class="line">  return new Promise(function(resolve, reject) &#123;</span><br><span class="line">      console.log(&quot;b&quot;);</span><br><span class="line">      setTimeout(resolve,duration);</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  console.log(&quot;a&quot;);</span><br><span class="line">  sleep(5000).then(()=&gt;console.log(&quot;c&quot;));</span><br></pre></td></tr></table></figure><h5 id="async-await"><a href="#async-await" class="headerlink" title="async/await"></a>async/await</h5><p>ES2016 新加入的特性。async 函数必定返回 Promise，异步函数，用 await 来等待一个 Promise</p><p>我们现在要实现一个红绿灯，把一个圆形 div 按照绿色 3 秒，黄色 1 秒，红色 2 秒循环改变背景色</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;一个 JavaScript 引擎会常驻内存中，自己发起的任务是微观任务，宿主环境分配的是宏观任务。&lt;br&gt;宏观任务 vs 微观任务，setTimeout 是宏观任务，ES5 之后 加入了 Promise 是 JS 引擎生成的微观任务。w&lt;br&gt;事件循环-&amp;gt;宏观任务的队
+      
+    
+    </summary>
+    
+    
+      <category term="Promise" scheme="https://wangyx233.github.io/tags/Promise/"/>
+    
+      <category term="setTimeout" scheme="https://wangyx233.github.io/tags/setTimeout/"/>
+    
+  </entry>
+  
+  <entry>
     <title>&lt;算法基础&gt;动态规划</title>
     <link href="https://wangyx233.github.io/2020/06/01/%5B%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%5D%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
     <id>https://wangyx233.github.io/2020/06/01/[算法基础]动态规划/</id>
     <published>2020-06-01T06:55:32.693Z</published>
-    <updated>2020-06-02T09:13:13.388Z</updated>
+    <updated>2020-07-01T09:31:09.945Z</updated>
     
-    <content type="html"><![CDATA[<h5 id="适用情况"><a href="#适用情况" class="headerlink" title="适用情况"></a>适用情况</h5><ol><li>计数：how many xxx? 多少种方法可以 blabla</li><li>求最大最小值：max，min…</li><li>求存在性：博弈，是否能 blabla，先手能不能赢，存不存在策略。</li></ol><h5 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h5><ol><li>确定状态。属于定海神针，相当于未知量，类似于 x,y,z。需要开一个数组</li></ol><ul><li>最后一步，最后一个。比如：一共有 k 个硬币，不关心 k-1 前的状态。只要保证 k-1 是最少的达到目标的</li><li>子问题。问题一样，规模变小</li></ul><p>递归的问题，会存在大量的重复计算，效率低下。所以如何优化呢？最容易想到的是加缓存，存一下中间计算值</p><ol start="2"><li><p>转移方程。问题解决了一半</p></li><li><p>初始条件，边界情况：注意边界情况处理数组不要越界，初始条件是一开始就能定下来的比如 f[0]一般是最小的，关键是用转移方程算不出来的，手动定义值。</p></li><li><p>计算顺序。一般情况是从小到大。从上到下，从左到右。原则是，算等式左边的时候，等式右边已经能算出来，用到的状态已经算到了</p></li></ol><p>消除冗余，加速计算。递归的另一种优化方式。</p><p><strong>加法原理</strong></p><ul><li>无重复</li><li>无遗漏</li></ul><h6 id="coin-change-最值"><a href="#coin-change-最值" class="headerlink" title="coin change 最值"></a>coin change 最值</h6><h6 id="unique-path-计数"><a href="#unique-path-计数" class="headerlink" title="unique path 计数"></a>unique path 计数</h6><h6 id="jump-game-存在性"><a href="#jump-game-存在性" class="headerlink" title="jump game 存在性"></a>jump game 存在性</h6><h5 id="常见的动态规划的类型"><a href="#常见的动态规划的类型" class="headerlink" title="常见的动态规划的类型"></a>常见的动态规划的类型</h5><ul><li>坐标</li><li>序列</li><li>划分</li><li>区间</li><li>背包</li><li>最长序列，最长上升子序列</li><li>博弈</li><li>综合</li><li>打印路径</li></ul>]]></content>
+    <content type="html"><![CDATA[<h5 id="适用情况"><a href="#适用情况" class="headerlink" title="适用情况"></a>适用情况</h5><ol><li>计数：how many xxx? 多少种方法可以 blabla</li><li>求最大最小值：max，min…</li><li>求存在性：博弈，是否能 blabla，先手能不能赢，存不存在策略。</li></ol><h5 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h5><ol><li>确定状态。属于定海神针，相当于未知量，类似于 x,y,z。需要开一个数组</li></ol><ul><li>最后一步，最后一个。比如：一共有 k 个硬币，不关心 k-1 前的状态。只要保证 k-1 是最少的达到目标的</li><li>子问题。问题一样，规模变小</li></ul><p>递归的问题，会存在大量的重复计算，效率低下。所以如何优化呢？最容易想到的是加缓存，存一下中间计算值</p><ol start="2"><li><p>转移方程。问题解决了一半</p></li><li><p>初始条件，边界情况：注意边界情况处理数组不要越界，初始条件是一开始就能定下来的比如 f[0]一般是最小的，关键是用转移方程算不出来的，手动定义值。</p></li><li><p>计算顺序。一般情况是从小到大。从上到下，从左到右。原则是，算等式左边的时候，等式右边已经能算出来，用到的状态已经算到了</p></li></ol><p>消除冗余，加速计算。递归的另一种优化方式。</p><p><strong>加法原理</strong></p><ul><li>无重复</li><li>无遗漏</li></ul><h6 id="coin-change-最值"><a href="#coin-change-最值" class="headerlink" title="coin change 最值"></a>coin change 最值</h6><h6 id="unique-path-计数"><a href="#unique-path-计数" class="headerlink" title="unique path 计数"></a>unique path 计数</h6><h6 id="jump-game-存在性"><a href="#jump-game-存在性" class="headerlink" title="jump game 存在性"></a>jump game 存在性</h6><h5 id="常见的动态规划的类型"><a href="#常见的动态规划的类型" class="headerlink" title="常见的动态规划的类型"></a>常见的动态规划的类型</h5><ul><li>坐标</li><li>序列</li><li>划分</li><li>区间</li><li>背包</li><li>最长序列，最长上升子序列</li><li>博弈</li><li>综合</li><li>打印路径</li></ul><h5 id="了解博弈"><a href="#了解博弈" class="headerlink" title="了解博弈"></a>了解博弈</h5><h6 id="巴什博奕-Bash-game"><a href="#巴什博奕-Bash-game" class="headerlink" title="巴什博奕 Bash game"></a>巴什博奕 Bash game</h6><p>A,B 玩报数的游戏，若先报到 30 的那个人会赢，每人每次最多报 2(max) 个数，最少报 1 个数，如何保持自己的不败之地。</p><p>从简单的来思考，若报到 max + 1 即 3，则后面报数的一定会赢。就先看有多少个这个循环 30 / max + 1，若能整除则后者赢，若有余数则前者先报余数个数则必赢。每次都保证两人报的数是 1+max 个就是一个完整的循环。这是基于两人都是特别聪明的前提。<br>1+max 的倍数</p>]]></content>
     
     <summary type="html">
     

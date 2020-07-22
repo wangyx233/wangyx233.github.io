@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="适用情况 计数：how many xxx? 多少种方法可以 blabla 求最大最小值：max，min… 求存在性：博弈，是否能 blabla，先手能不能赢，存不存在策略。  方法 确定状态。属于定海神针，相当于未知量，类似于 x,y,z。需要开一个数组   最后一步，最后一个。比如：一共有 k 个硬币，不关心 k-1 前的状态。只要保证 k-1 是最少的达到目标的 子问题。问题一样，规模变小">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-06-02T09:13:13.388Z">
+<meta property="og:updated_time" content="2020-07-01T09:31:09.945Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="&lt;算法基础&gt;动态规划">
 <meta name="twitter:description" content="适用情况 计数：how many xxx? 多少种方法可以 blabla 求最大最小值：max，min… 求存在性：博弈，是否能 blabla，先手能不能赢，存不存在策略。  方法 确定状态。属于定海神针，相当于未知量，类似于 x,y,z。需要开一个数组   最后一步，最后一个。比如：一共有 k 个硬币，不关心 k-1 前的状态。只要保证 k-1 是最少的达到目标的 子问题。问题一样，规模变小">
@@ -190,6 +190,8 @@
 <li>综合</li>
 <li>打印路径</li>
 </ul>
+<h5 id="了解博弈"><a href="#了解博弈" class="headerlink" title="了解博弈"></a>了解博弈</h5><h6 id="巴什博奕-Bash-game"><a href="#巴什博奕-Bash-game" class="headerlink" title="巴什博奕 Bash game"></a>巴什博奕 Bash game</h6><p>A,B 玩报数的游戏，若先报到 30 的那个人会赢，每人每次最多报 2(max) 个数，最少报 1 个数，如何保持自己的不败之地。</p>
+<p>从简单的来思考，若报到 max + 1 即 3，则后面报数的一定会赢。就先看有多少个这个循环 30 / max + 1，若能整除则后者赢，若有余数则前者先报余数个数则必赢。每次都保证两人报的数是 1+max 个就是一个完整的循环。这是基于两人都是特别聪明的前提。<br>1+max 的倍数</p>
 
       
 
@@ -282,6 +284,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2020/07/01/[重温JS]JS中的异步/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          &lt;重温JS&gt;JS中的异步
+        
+      </div>
+    </a>
   
   
     <a href="/2020/05/12/[算法基础]时间&空间复杂度/" id="article-nav-older" class="article-nav-link-wrap">
@@ -403,6 +414,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">flex</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CSS</a>
               </li>
              
@@ -427,23 +446,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">search</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">moment.js</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Date</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -455,11 +462,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Promise</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">setTimeout</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Object</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">prototype</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">moment.js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Date</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -475,7 +502,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
+                <a href="javascript:void(0)" class="js-tag color3">closure</a>
               </li>
              
               <li class="article-tag-list-item">
