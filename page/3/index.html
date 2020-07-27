@@ -130,6 +130,86 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-css_secret" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/29/css_secret/">CSS Secrets</a>
+    </h1>
+  
+
+        
+        <a href="/2019/08/29/css_secret/" class="archive-article-date">
+  	<time datetime="2019-08-29T03:23:05.438Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>回顾元素获取</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function $$(selector, context) &#123;</span><br><span class="line">  context = context || document;</span><br><span class="line">  var elements = context.querySelectorAll(selector);</span><br><span class="line">  return Array.prototype.slice.call(elements);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>11.20 总结：</p>
+<p>浏览器新特性总么办，加前缀是个失败的尝试。<br>可以通过工具加前缀。不过新特性的使用任重而道远。<br>web 标准是浏览器相关厂商，以及委员会的人共同探讨维护的。</p>
+<p>一、CSS 编写注意技巧：</p>
+<ol>
+<li>减少重复的代码，<br>注意 style 之间的依赖关系，如 em，rem，字体和行高等。具体如何计算相互依赖关系，需要根据实际情况。<br>代码量少，和代码容易维护不是一个概念。<br>currentcolor<br>inherit</li>
+<li>相信眼睛而不紧紧关注数字。<br>比如 垂直居中看着并不居中，圆形看着小，padding 上下左右不一致。</li>
+<li>响应式布局 rwd。一直说响应式布局，但是 media query 不能是最好的解决方法，只能是最后的解决方法。<br>每个媒体查询都会增加成本。每次修改 css 的时候都可能改一遍，复杂性高，经不起折腾。表现的是断点式的表现<br>可以先从减少代码重复来入手。<br>写相对大小 依赖关系。宽度不写具体的 px，用百分比的形式，或者和视口相关的表示如 vh。善用 max-width，min-width。替换元素 img，iframe，vedio 等也要设置 max-width： 100%；<br>推荐弹性布局，或者 inine-block。<br>背景图片要完整地平铺，background-size:cover</li>
+<li>合理使用简写。对于可展开的属性。如，border，background，要贯彻减少代码重复的原则，合理使用简写或者展开。</li>
+</ol>
+<p>例子： background: url(tr.png) no-repeat top right / 2em 2em, url(br.png) no-repeat bottom right / 2em 2em,<br>url(bl.png) no-repeat bottom left / 2em 2em;<br>其中， / 是为了避免歧义。</p>
+<ol start="5">
+<li><p>是否使用预处理器，如 less，sass 等。<br>建议在项目开始用 css，无法维护时用预处理器。因为要编译就需要时间，文件体积也会变大，还会有自身的 bug，学习成本。<br>如： 原生高级的例子。<br>ul { –accent-color: purple; }<br>ol { –accent-color: rebeccapurple; } li { background: var(–accent-color); }</p>
+<p>11.21 总结：<br>背景与边框<br>rgba，hsla 0 红 120 绿 240 蓝 h 色调 s 饱和度 l 亮度 a 透明度</p>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/08/29/css_secret/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-原型回顾" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -213,29 +293,29 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h5 id="内置类型"><a href="#内置类型" class="headerlink" title="内置类型"></a>内置类型</h5><p>加上ES6新加的Symbol，共7种，分别为 String， Number， Boolean， Object， Undefined， Null。<br>分为基本数据类型(6)和Object。<br>对于基本数据类型，通过字面量的方式声明，类型依旧是字面量，只有在使用的时候才会转换为对应的类型。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">typeof()</span><br><span class="line">  特别：</span><br><span class="line">  函数-&gt;function,</span><br><span class="line">  null-&gt;object。历史原因对象以000开头，而null恰好为全零</span><br><span class="line">通过Object.prototype.toString.call()可判断准确的类型[object Type]</span><br></pre></td></tr></table></figure>
+        <h5 id="内置类型"><a href="#内置类型" class="headerlink" title="内置类型"></a>内置类型</h5><p>加上 ES6 新加的 Symbol，共 7 种，分别为 String， Number， Boolean， Object， Undefined， Null。<br>分为基本数据类型(6)和 Object。<br>对于基本数据类型，通过字面量的方式声明，类型依旧是字面量，只有在使用的时候才会转换为对应的类型。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">typeof()</span><br><span class="line">  特别：</span><br><span class="line">  Symbol-&gt;symbol</span><br><span class="line">  函数-&gt;function,</span><br><span class="line">  null-&gt;object。历史原因对象以000开头，而null恰好为全零</span><br><span class="line">通过Object.prototype.toString.call()可判断准确的类型[object Type]</span><br></pre></td></tr></table></figure>
 
-<p>PS: Symbol类型(唯一的值)<br>通过 Symbol()定义，定义后的值不相等，System.prototype.description 为定义时Symbol(‘xxx’)的标识。<br>使用场景：作为对象的属性</p>
+<p>PS: Symbol 类型(唯一的值)<br>通过 Symbol()定义，定义后的值不相等，System.prototype.description 为定义时 Symbol(‘xxx’)的标识。<br>使用场景：作为对象的属性</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">let sym = Symbol();</span><br><span class="line">let a = &#123;&#125;;</span><br><span class="line">a[sym] = &apos;symbol&apos;;</span><br><span class="line">a = &#123;</span><br><span class="line">  [sym]: &apos;symbol&apos;</span><br><span class="line">&#125;</span><br><span class="line">Object.defineProperty(a, sym, &#123;value: &apos;symbol&apos;&#125;)</span><br></pre></td></tr></table></figure>
 
 <p>注：</p>
 <ol>
 <li>不能用.运算符，.运算符会直接作为字符串取值。</li>
-<li>Symbol作为属性名，不会出现在for…in, for…of中，也不会出现在Object.keys(), Object.getOwnPropertyNames()、JSON.stringify()里。</li>
+<li>Symbol 作为属性名，不会出现在 for…in, for…of 中，也不会出现在 Object.keys(), Object.getOwnPropertyNames()、JSON.stringify()里。</li>
 <li>但也不是私有属性，Object.getOwnPropertySymbols，可以获取指定对象的所有 Symbol 属性名。</li>
-<li>新的API:Reflect.ownKeys可以返回所有类型的键名，包括常规键名和 Symbol 键名。</li>
-<li>Symbol.for(description)若没有则会创建一个，若存在则共用一个symbol值。 Symbol.keyFor(sym)返回一个已登记即Symbol.for的 Symbol类型值的key</li>
+<li>新的 API:Reflect.ownKeys 可以返回所有类型的键名，包括常规键名和 Symbol 键名。</li>
+<li>Symbol.for(description)若没有则会创建一个，若存在则共用一个 symbol 值。 Symbol.keyFor(sym)返回一个已登记即 Symbol.for 的 Symbol 类型值的 key</li>
 <li>其他方法可在需要是再查找。</li>
 </ol>
-<h5 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h5><p>转Boolean类型。在条件判断时，除了 undefined， null， false， NaN， ‘’， 0， -0，其他所有值都转为 true，包括所有对象<br>对象在转换基本类型时，首先会调用 valueOf 然后调用 toString。<br>注：<br>‘a’ + + ‘b’ – ‘aNaN’</p>
+<h5 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h5><p>转 Boolean 类型。在条件判断时，除了 undefined， null， false， NaN， ‘’， 0， -0，其他所有值都转为 true，包括所有对象<br>对象在转换基本类型时，首先会调用 valueOf 然后调用 toString。<br>注：<br>‘a’ + + ‘b’ – ‘aNaN’</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x==y 比较</span><br><span class="line">undefined == null  // true</span><br><span class="line">[] == true // false</span><br><span class="line">[] == ![] // true [].toString() -&gt; &apos;&apos;，!取反运算符的优先级会高于==， ![] -》 false</span><br></pre></td></tr></table></figure>
 
 <ol>
-<li>undefined == null，结果是true。且它俩与所有其他值比较的结果都是false。</li>
-<li>String == Boolean，需要两个操作数同时转为Number。</li>
-<li>String/Boolean == Number，需要String/Boolean转为Number。</li>
-<li>Object == Primitive，需要Object转为Primitive(具体通过valueOf和toString方法)。</li>
+<li>undefined == null，结果是 true。且它俩与所有其他值比较的结果都是 false。</li>
+<li>String == Boolean，需要两个操作数同时转为 Number。</li>
+<li>String/Boolean == Number，需要 String/Boolean 转为 Number。</li>
+<li>Object == Primitive，需要 Object 转为 Primitive(具体通过 valueOf 和 toString 方法)。</li>
 </ol>
 <h5 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h5>
       
@@ -790,93 +870,6 @@
 
 
   
-    <article id="post-three.js学习指南" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/05/three.js学习指南/">Three.js学习笔记</a>
-    </h1>
-  
-
-        
-        <a href="/2017/06/05/three.js学习指南/" class="archive-article-date">
-  	<time datetime="2017-06-05T05:59:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>一切都建立在引入Three.js后，得到的全局变量THREE。<br>对于页面中，存放渲染效果的元素，可以是普通的div，也可以是canvas。<br>对于div，渲染时添加节点：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var renderer = new THREE.WebGLRenderer();</span><br><span class="line">renderer.setSize(400, 300);</span><br><span class="line">document.getElementById(&apos;test&apos;).appendChild(renderer.domElement);</span><br><span class="line">renderer.setClearColor(0x000000);//清除原本所在页面颜色，并设置</span><br></pre></td></tr></table></figure>
-
-<p>而对于定义的canvas标签，其定义及渲染：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;canvas id=&quot;mainCanvas&quot; width=&quot;400px&quot; height=&quot;300px&quot; &gt;&lt;/canvas&gt;</span><br><span class="line">var renderer = new THREE.WebGLRenderer(&#123;</span><br><span class="line">                    canvas: document.getElementById(&apos;mainCanvas&apos;)&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>基本概念</p>
-<ol>
-<li>主要分为三大部分，场景（scene）、照相机（camera）、渲染器（renderer）</li>
-<li>首先定义容器渲染所在的DOM包括宽高、颜色等，利用照相机(投影方式)把作为容器的场景渲染到页面上。</li>
-<li>声明渲染器对象renderer，canvas对象的获取方法为renderer.domElement，相机也需要加到场景中去</li>
-</ol>
-        
-          <a class="article-more-a" href="/2017/06/05/three.js学习指南/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Three.js</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/05/three.js学习指南/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
@@ -1014,14 +1007,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Object</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">prototype</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Promise</a>
               </li>
              
@@ -1038,11 +1023,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
+                <a href="javascript:void(0)" class="js-tag color2">Object</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">closure</a>
+                <a href="javascript:void(0)" class="js-tag color5">prototype</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1055,6 +1044,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Object.prototype.toString.call()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">closure</a>
               </li>
              
               <li class="article-tag-list-item">

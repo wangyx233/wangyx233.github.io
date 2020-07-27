@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="https://wangyx233.github.io">
   <title>JS基础回顾 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="内置类型加上ES6新加的Symbol，共7种，分别为 String， Number， Boolean， Object， Undefined， Null。分为基本数据类型(6)和Object。对于基本数据类型，通过字面量的方式声明，类型依旧是字面量，只有在使用的时候才会转换为对应的类型。 12345typeof()  特别：  函数-&amp;gt;function,  null-&amp;gt;object。历史">
+  <meta name="description" content="内置类型加上 ES6 新加的 Symbol，共 7 种，分别为 String， Number， Boolean， Object， Undefined， Null。分为基本数据类型(6)和 Object。对于基本数据类型，通过字面量的方式声明，类型依旧是字面量，只有在使用的时候才会转换为对应的类型。 123456typeof()  特别：  Symbol-&amp;gt;symbol  函数-&amp;gt;fun">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS基础回顾">
 <meta property="og:url" content="https://wangyx233.github.io/2019/08/13/基础回顾/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="内置类型加上ES6新加的Symbol，共7种，分别为 String， Number， Boolean， Object， Undefined， Null。分为基本数据类型(6)和Object。对于基本数据类型，通过字面量的方式声明，类型依旧是字面量，只有在使用的时候才会转换为对应的类型。 12345typeof()  特别：  函数-&amp;gt;function,  null-&amp;gt;object。历史">
+<meta property="og:description" content="内置类型加上 ES6 新加的 Symbol，共 7 种，分别为 String， Number， Boolean， Object， Undefined， Null。分为基本数据类型(6)和 Object。对于基本数据类型，通过字面量的方式声明，类型依旧是字面量，只有在使用的时候才会转换为对应的类型。 123456typeof()  特别：  Symbol-&amp;gt;symbol  函数-&amp;gt;fun">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-15T06:26:50.474Z">
+<meta property="og:updated_time" content="2020-07-27T09:30:28.570Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS基础回顾">
-<meta name="twitter:description" content="内置类型加上ES6新加的Symbol，共7种，分别为 String， Number， Boolean， Object， Undefined， Null。分为基本数据类型(6)和Object。对于基本数据类型，通过字面量的方式声明，类型依旧是字面量，只有在使用的时候才会转换为对应的类型。 12345typeof()  特别：  函数-&amp;gt;function,  null-&amp;gt;object。历史">
+<meta name="twitter:description" content="内置类型加上 ES6 新加的 Symbol，共 7 种，分别为 String， Number， Boolean， Object， Undefined， Null。分为基本数据类型(6)和 Object。对于基本数据类型，通过字面量的方式声明，类型依旧是字面量，只有在使用的时候才会转换为对应的类型。 123456typeof()  特别：  Symbol-&amp;gt;symbol  函数-&amp;gt;fun">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -152,29 +152,29 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h5 id="内置类型"><a href="#内置类型" class="headerlink" title="内置类型"></a>内置类型</h5><p>加上ES6新加的Symbol，共7种，分别为 String， Number， Boolean， Object， Undefined， Null。<br>分为基本数据类型(6)和Object。<br>对于基本数据类型，通过字面量的方式声明，类型依旧是字面量，只有在使用的时候才会转换为对应的类型。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">typeof()</span><br><span class="line">  特别：</span><br><span class="line">  函数-&gt;function,</span><br><span class="line">  null-&gt;object。历史原因对象以000开头，而null恰好为全零</span><br><span class="line">通过Object.prototype.toString.call()可判断准确的类型[object Type]</span><br></pre></td></tr></table></figure>
+        <h5 id="内置类型"><a href="#内置类型" class="headerlink" title="内置类型"></a>内置类型</h5><p>加上 ES6 新加的 Symbol，共 7 种，分别为 String， Number， Boolean， Object， Undefined， Null。<br>分为基本数据类型(6)和 Object。<br>对于基本数据类型，通过字面量的方式声明，类型依旧是字面量，只有在使用的时候才会转换为对应的类型。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">typeof()</span><br><span class="line">  特别：</span><br><span class="line">  Symbol-&gt;symbol</span><br><span class="line">  函数-&gt;function,</span><br><span class="line">  null-&gt;object。历史原因对象以000开头，而null恰好为全零</span><br><span class="line">通过Object.prototype.toString.call()可判断准确的类型[object Type]</span><br></pre></td></tr></table></figure>
 
-<p>PS: Symbol类型(唯一的值)<br>通过 Symbol()定义，定义后的值不相等，System.prototype.description 为定义时Symbol(‘xxx’)的标识。<br>使用场景：作为对象的属性</p>
+<p>PS: Symbol 类型(唯一的值)<br>通过 Symbol()定义，定义后的值不相等，System.prototype.description 为定义时 Symbol(‘xxx’)的标识。<br>使用场景：作为对象的属性</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">let sym = Symbol();</span><br><span class="line">let a = &#123;&#125;;</span><br><span class="line">a[sym] = &apos;symbol&apos;;</span><br><span class="line">a = &#123;</span><br><span class="line">  [sym]: &apos;symbol&apos;</span><br><span class="line">&#125;</span><br><span class="line">Object.defineProperty(a, sym, &#123;value: &apos;symbol&apos;&#125;)</span><br></pre></td></tr></table></figure>
 
 <p>注：</p>
 <ol>
 <li>不能用.运算符，.运算符会直接作为字符串取值。</li>
-<li>Symbol作为属性名，不会出现在for…in, for…of中，也不会出现在Object.keys(), Object.getOwnPropertyNames()、JSON.stringify()里。</li>
+<li>Symbol 作为属性名，不会出现在 for…in, for…of 中，也不会出现在 Object.keys(), Object.getOwnPropertyNames()、JSON.stringify()里。</li>
 <li>但也不是私有属性，Object.getOwnPropertySymbols，可以获取指定对象的所有 Symbol 属性名。</li>
-<li>新的API:Reflect.ownKeys可以返回所有类型的键名，包括常规键名和 Symbol 键名。</li>
-<li>Symbol.for(description)若没有则会创建一个，若存在则共用一个symbol值。 Symbol.keyFor(sym)返回一个已登记即Symbol.for的 Symbol类型值的key</li>
+<li>新的 API:Reflect.ownKeys 可以返回所有类型的键名，包括常规键名和 Symbol 键名。</li>
+<li>Symbol.for(description)若没有则会创建一个，若存在则共用一个 symbol 值。 Symbol.keyFor(sym)返回一个已登记即 Symbol.for 的 Symbol 类型值的 key</li>
 <li>其他方法可在需要是再查找。</li>
 </ol>
-<h5 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h5><p>转Boolean类型。在条件判断时，除了 undefined， null， false， NaN， ‘’， 0， -0，其他所有值都转为 true，包括所有对象<br>对象在转换基本类型时，首先会调用 valueOf 然后调用 toString。<br>注：<br>‘a’ + + ‘b’ – ‘aNaN’</p>
+<h5 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h5><p>转 Boolean 类型。在条件判断时，除了 undefined， null， false， NaN， ‘’， 0， -0，其他所有值都转为 true，包括所有对象<br>对象在转换基本类型时，首先会调用 valueOf 然后调用 toString。<br>注：<br>‘a’ + + ‘b’ – ‘aNaN’</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x==y 比较</span><br><span class="line">undefined == null  // true</span><br><span class="line">[] == true // false</span><br><span class="line">[] == ![] // true [].toString() -&gt; &apos;&apos;，!取反运算符的优先级会高于==， ![] -》 false</span><br></pre></td></tr></table></figure>
 
 <ol>
-<li>undefined == null，结果是true。且它俩与所有其他值比较的结果都是false。</li>
-<li>String == Boolean，需要两个操作数同时转为Number。</li>
-<li>String/Boolean == Number，需要String/Boolean转为Number。</li>
-<li>Object == Primitive，需要Object转为Primitive(具体通过valueOf和toString方法)。</li>
+<li>undefined == null，结果是 true。且它俩与所有其他值比较的结果都是 false。</li>
+<li>String == Boolean，需要两个操作数同时转为 Number。</li>
+<li>String/Boolean == Number，需要 String/Boolean 转为 Number。</li>
+<li>Object == Primitive，需要 Object 转为 Primitive(具体通过 valueOf 和 toString 方法)。</li>
 </ol>
 <h5 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h5>
       
@@ -446,14 +446,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Object</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">prototype</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Promise</a>
               </li>
              
@@ -470,11 +462,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
+                <a href="javascript:void(0)" class="js-tag color2">Object</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">closure</a>
+                <a href="javascript:void(0)" class="js-tag color5">prototype</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -487,6 +483,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Object.prototype.toString.call()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">closure</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://wangyx233.github.io">
-  <title>&lt;知识点回顾&gt;JS基础 | Hexo</title>
+  <title>&lt;Work&gt; 实践 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="DOM 事件DOM 0 级， element.onClick = () =&amp;gt; {};DOM 2 级，element.addEventListener(name, function(){}, capture = false) 冒泡事件事件模型分为捕获和冒泡，捕获是从 window 自上而下到目标元素，冒泡阶段是从目标元素自下而上向 window 传播。事件委托 delegation，事件冒泡到">
+  <meta name="description" content="Performance gzip 告警系统/埋点 图表优化，步骤，加载  其他的通用的方式：秒开率控制，toB 的没有这么多顾虑减少 http 请求 =&amp;gt; JS,CSS 打包，小图片用 data-uri，svg。避免大型背景图利用缓存了解整个前端加载的过程。DNS 解析 =&amp;gt; HTTP DNSTCP 链接三次握手。HTTP/TLS HTTP 2 / HTTPS 首先得评估下现状，要配合">
 <meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="&lt;知识点回顾&gt;JS基础">
-<meta property="og:url" content="https://wangyx233.github.io/2020/07/17/[知识点回顾]/index.html">
+<meta property="og:title" content="&lt;Work&gt; 实践">
+<meta property="og:url" content="https://wangyx233.github.io/2020/04/24/[实践]性能优化二三事/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="DOM 事件DOM 0 级， element.onClick = () =&amp;gt; {};DOM 2 级，element.addEventListener(name, function(){}, capture = false) 冒泡事件事件模型分为捕获和冒泡，捕获是从 window 自上而下到目标元素，冒泡阶段是从目标元素自下而上向 window 传播。事件委托 delegation，事件冒泡到">
+<meta property="og:description" content="Performance gzip 告警系统/埋点 图表优化，步骤，加载  其他的通用的方式：秒开率控制，toB 的没有这么多顾虑减少 http 请求 =&amp;gt; JS,CSS 打包，小图片用 data-uri，svg。避免大型背景图利用缓存了解整个前端加载的过程。DNS 解析 =&amp;gt; HTTP DNSTCP 链接三次握手。HTTP/TLS HTTP 2 / HTTPS 首先得评估下现状，要配合">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-07-24T06:39:34.508Z">
+<meta property="og:updated_time" content="2020-07-24T06:39:20.193Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="&lt;知识点回顾&gt;JS基础">
-<meta name="twitter:description" content="DOM 事件DOM 0 级， element.onClick = () =&amp;gt; {};DOM 2 级，element.addEventListener(name, function(){}, capture = false) 冒泡事件事件模型分为捕获和冒泡，捕获是从 window 自上而下到目标元素，冒泡阶段是从目标元素自下而上向 window 传播。事件委托 delegation，事件冒泡到">
+<meta name="twitter:title" content="&lt;Work&gt; 实践">
+<meta name="twitter:description" content="Performance gzip 告警系统/埋点 图表优化，步骤，加载  其他的通用的方式：秒开率控制，toB 的没有这么多顾虑减少 http 请求 =&amp;gt; JS,CSS 打包，小图片用 data-uri，svg。避免大型背景图利用缓存了解整个前端加载的过程。DNS 解析 =&amp;gt; HTTP DNSTCP 链接三次握手。HTTP/TLS HTTP 2 / HTTPS 首先得评估下现状，要配合">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -133,30 +133,41 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-[知识点回顾]" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-[实践]性能优化二三事" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      &lt;知识点回顾&gt;JS基础
+      &lt;Work&gt; 实践
     </h1>
   
 
         
-        <a href="/2020/07/17/[知识点回顾]/" class="archive-article-date">
-  	<time datetime="2020-07-17T02:59:42.854Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-17</time>
+        <a href="/2020/04/24/[实践]性能优化二三事/" class="archive-article-date">
+  	<time datetime="2020-04-24T08:46:40.688Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-24</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>DOM 事件<br>DOM 0 级， element.onClick = () =&gt; {};<br>DOM 2 级，element.addEventListener(name, function(){}, capture = false) 冒泡事件<br>事件模型分为捕获和冒泡，捕获是从 window 自上而下到目标元素，冒泡阶段是从目标元素自下而上向 window 传播。<br>事件委托 delegation，事件冒泡到父元素，所以子元素的事件可以委托到父元素统一处理多个子元素的事件。<br>优点是，不需要为每个子元素绑定事件，减少不必要的开销，提高性能等。且可动态处理事件。<br>阻止默认事件，event.preventDefault()<br>阻止冒泡，event.stopPropagation<br>event.target 事件触发的<br>event.currentTarget 事件监听的元素<br>自定义事件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var event = new Event(name) // 无法传达参数</span><br><span class="line">var event = new CustomEvent(name, params)</span><br><span class="line"></span><br><span class="line">elem.addEventListener(name, function()&#123;&#125;, false) // 监听事件</span><br><span class="line">elem.dispatchEvent(event) // 分发触发事件，而非浏览器触发的</span><br></pre></td></tr></table></figure>
-
-<p>观察者模式：事件<br>手写发布-订阅模式 EventEmitter</p>
+        <h5 id="Performance"><a href="#Performance" class="headerlink" title="Performance"></a>Performance</h5><ol>
+<li>gzip</li>
+<li>告警系统/埋点</li>
+<li>图表优化，步骤，加载</li>
+</ol>
+<p>其他的通用的方式：秒开率控制，toB 的没有这么多顾虑<br>减少 http 请求 =&gt; JS,CSS 打包，小图片用 data-uri，svg。避免大型背景图<br>利用缓存<br>了解整个前端加载的过程。<br>DNS 解析 =&gt; HTTP DNS<br>TCP 链接三次握手。HTTP/TLS HTTP 2 / HTTPS</p>
+<p>首先得评估下现状，要配合实际情况和业务情况进行性能优化，还得设计相关的指标和标准。最后对结果进行评估，有始有终哦</p>
+<h6 id="Tool"><a href="#Tool" class="headerlink" title="Tool"></a>Tool</h6><p>开发体验，提升效率<br>工具体系构建：版本统一，避免冲突。<br>用一套统一的过程比较方便，从 init 到 dev 再到 public。重要的是构建时间，效率</p>
+<h6 id="持续性构建"><a href="#持续性构建" class="headerlink" title="持续性构建"></a>持续性构建</h6><p>手动，自动。代码提交到仓库，自动发布到测试环境，自动发布系统。<br>结构扫描 phantomjs，代码扫描 jshint，数据采集通过 performance API 检测性能，window.onerror 检测问题。<br>组件化，兼容性，适配性：ppi，dpr。PWA<br>组件化： 三大框架，web component，css houdini，不需要任何额外的运行时支持，就能在现代浏览器环境运行，也可以跟 HTML 无缝结合。<br>适配：</p>
+<ul>
+<li>PPI:Pixel Per Inch 单位英寸像素，屏幕的显示质量。文字，media query</li>
+<li>DPR:Device Pixel Ratio 设备像素比例，物理像素与逻辑像素 px 之间的关系。viewport 控制缩放比</li>
+<li>Resolution: 分辨率，屏幕区域的宽高所占像素数。用 vw，vh 解决</li>
+</ul>
+<p>单页应用</p>
 
       
 
@@ -247,7 +258,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJklEQVR42u3aS27DMAwFwNz/0inQVRep8kjZaEONV0bj2BoHYMXP4xEfz+9jff7zL+vrk+Nxx4GBgfGxjOR26+VWP03WkK8NAwPjHEYeZKsBuvoikudiYGBgJFu6HvuOazAwMDBy0nqbmGxGMTAwMNaM5NbVBSUpa/WVXZCLY2BgfCDjqsbAHed/0N/AwMD4Z4xn66iW/qsBtLweDAyM0Yz1tq9a9K9uLtfpbnL9m/0mBgbGCEaecCaA6jV5qH2zNgwMjNGMqwpnefRLhsmSfwNvgi8GBsYgRnW7Vt3A5WX9ZNHRL4CBgTGOUR2AyMcjdjZ/vSQZAwPjTEYeXntDGHlJLn8uBgbGOYx1Otor7t9XmMPAwJjNyBddLdDnQXmnwRm9VwwMjBGMXnG/l7LuD3m8uCcGBsYxjF6q2RyJaJXeooCLgYExlJEX3XoPq94t37ZiYGCcxshJ0a03hr3yUI6BgXEyI/lyb/xin/3iHAMDYzQjGbqqNiDzQa487EbtCgwMjGMY1Xbmfkugd+UjXxwGBsYgRi9DvCMo99aGgYExm1Ed5Kp+ekHpP/8WBgbGOMYd6Wu1SFdtfL540RgYGKMZ+dFrISQp7s6zMDAwzmFUg2wvld3Hb/U3MDAwRjB6Q2O9cv/OEMav38LAwMAohsj9oYq8IYqBgYFRXWi+cay2JzEwMDCqiWh1y9h7fYUaIQYGxmhGrzHQa3Mmr2m/GIeBgTGI8QXOEzf1dGFXVAAAAABJRU5ErkJggg==" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACtklEQVR42u3aQY4cIQwF0Ln/pRMpq1mE6u8P1CTSY9Xqpqt4LLBl8/UVj19/xvfP3795/n71tOeZq+d/3Rh4eHh41dJXoyM9/3e10NWc5/Ws1oyHh4d3m3fqZcnhns/c2SA8PDy8f4H3fDQnmzJN3PNf8fDw8P5HXlJcyPHT+Xh4eHjv85JiRAJ7XuipX6/UWvDw8PBiXtcA+9nP1/t7eHh4eFVXPRk7VwTyckO5Njw8PLwLvORB0zJrQtpPrweNMTw8PLxXeN1S8rT4VABIitF4eHh4N3g77ahpMXc/mZ4GGzw8PLwbvGmi/HzQT6upXek2Dzx4eHh47/Py8mu3xCQ5PnAzAg8PD+8QLz+yu/Jrd/Tn4Scq4OLh4eFd4HWpc558TxtaSYiKLiXg4eHhXeDlD+qS4K5hNqg9J/Px8PDwjvKmD5029adljq5VtnwvHh4e3mVelwrnjag8qHSjLEbg4eHhHeV1DfuuwDHo18VbjIeHh3eDt98nylv7eZmjS9OjWgseHh7eUV7C6PLVnRAybaEtox8eHh7eNV6yuGmDKn/m9F9RCo6Hh4d3lDc9gndKD/nFqWnjbflMPDw8vFd4OwGjS3nzzUoCyTiZxsPDwzvEm36TLyLfmv0WGh4eHt493jSd7Y7+6TZ127fs7OHh4eEd4nWl1e5awM5x320lHh4e3g3eqdd0mGnpYZqI4+Hh4d3gDX4Yzpwm4gk1Wc+H+Xh4eHjbvK4QkCC7SwNdWWS5WXh4eHgXePnoLgp0R/w0ccfDw8N7nzctFnSp9rSh1QWGv7wdDw8P7xovDwb7pd6uhJH/68P9CDw8PLzXedM0ugsGSYCJtgYPDw/vR3nTLdi5cJCn2h+Sfjw8PLxrvGkxImmM5RcI8uR7uol4eHh4N3g7V6ymlwDOgvOwgYeHh3eI9xuMAJ3SNVIgtgAAAABJRU5ErkJggg==" alt="微信分享二维码">
     </div>
 </div>
 
@@ -261,18 +272,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/07/22/[问题汇总]/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/04/27/[浏览器]浏览器是如何工作的？/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          &lt;问题汇总&gt;
+          &lt;了解&gt;浏览器是如何工作的？
         
       </div>
     </a>
   
   
-    <a href="/2020/07/02/[重温JS]闭包/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">&lt;重温JS&gt;闭包，作用域</div>
+    <a href="/2020/04/24/[重温JS]垃圾收集/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">&lt;JS Review&gt;垃圾收集</div>
       <i class="icon-circle-right"></i>
     </a>
   

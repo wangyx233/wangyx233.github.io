@@ -384,6 +384,94 @@
 
 
   
+    <article id="post-[实践]性能优化二三事" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/24/[实践]性能优化二三事/">&lt;Work&gt; 实践</a>
+    </h1>
+  
+
+        
+        <a href="/2020/04/24/[实践]性能优化二三事/" class="archive-article-date">
+  	<time datetime="2020-04-24T08:46:40.688Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="Performance"><a href="#Performance" class="headerlink" title="Performance"></a>Performance</h5><ol>
+<li>gzip</li>
+<li>告警系统/埋点</li>
+<li>图表优化，步骤，加载</li>
+</ol>
+<p>其他的通用的方式：秒开率控制，toB 的没有这么多顾虑<br>减少 http 请求 =&gt; JS,CSS 打包，小图片用 data-uri，svg。避免大型背景图<br>利用缓存<br>了解整个前端加载的过程。<br>DNS 解析 =&gt; HTTP DNS<br>TCP 链接三次握手。HTTP/TLS HTTP 2 / HTTPS</p>
+<p>首先得评估下现状，要配合实际情况和业务情况进行性能优化，还得设计相关的指标和标准。最后对结果进行评估，有始有终哦</p>
+<h6 id="Tool"><a href="#Tool" class="headerlink" title="Tool"></a>Tool</h6><p>开发体验，提升效率<br>工具体系构建：版本统一，避免冲突。<br>用一套统一的过程比较方便，从 init 到 dev 再到 public。重要的是构建时间，效率</p>
+<h6 id="持续性构建"><a href="#持续性构建" class="headerlink" title="持续性构建"></a>持续性构建</h6><p>手动，自动。代码提交到仓库，自动发布到测试环境，自动发布系统。<br>结构扫描 phantomjs，代码扫描 jshint，数据采集通过 performance API 检测性能，window.onerror 检测问题。<br>组件化，兼容性，适配性：ppi，dpr。PWA<br>组件化： 三大框架，web component，css houdini，不需要任何额外的运行时支持，就能在现代浏览器环境运行，也可以跟 HTML 无缝结合。<br>适配：</p>
+<ul>
+<li>PPI:Pixel Per Inch 单位英寸像素，屏幕的显示质量。文字，media query</li>
+<li>DPR:Device Pixel Ratio 设备像素比例，物理像素与逻辑像素 px 之间的关系。viewport 控制缩放比</li>
+<li>Resolution: 分辨率，屏幕区域的宽高所占像素数。用 vw，vh 解决</li>
+</ul>
+<p>单页应用</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/24/[实践]性能优化二三事/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-[重温JS]垃圾收集" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -867,14 +955,18 @@
     <div class="article-entry" itemprop="articleBody">
       
         <ul>
-<li><p>7 种语言类型<br>undefined 是一个变量，而并非是一个关键字。老的浏览器中会是，ES5 以后就不是了。函数内部，对象的属性现在也是可以赋值的。<br>if(typeof str === ‘undefined’){<br>// 如果直接用 str === undefined, str 未声明的话可能会报错 not defined<br>}<br>String 用于表示文本数据。String 有最大长度是 2^53 - 1，字符串的 UTF16 编码，charAt、charCodeAt、length 等方法针对的都是 UTF16 编码<br>Number 2^64-2^53+3<br>NaN，占用了 9007199254740990，这原本是符合 IEEE 规则的数字；Infinity，无穷大；-Infinity，负无穷大。<br>还有 +0 -0，1/x 是 Infinity 还是 -Infinity<br>Math.abs(0.1 + 0.2 - 0.3) &lt;= Number.EPSILON</p>
-<p>Symbol 可以用于迭代器，Symbol.iterator 需要有 next 和 done，next 返回一个对象包括 value 和 done</p>
+<li><p>7 种语言类型<br>undefined 是一个变量，而并非是一个关键字。老的浏览器中会是，ES5 以后就不是了。函数内部，对象的属性现在也是可以赋值的。<br>if(typeof str === ‘undefined’){<br>// 如果直接用 str === undefined, str 未声明的话可能会报错 not defined<br>}<br>String 用于表示文本数据。String 有最大长度是 2^53 - 1，字符串的 UTF16 编码，charAt、charCodeAt、length 等方法针对的都是 UTF16 编码，其实一个 utf16 单元代表一个字符，这俩数量是对应的，0-65536（U+0000 - U+FFFF）的码点被称为基本字符区域（BMP）<br>Number 2^64-2^53+3<br>NaN，占用了 9007199254740990，这原本是符合 IEEE 规则的数字；Infinity，无穷大；-Infinity，负无穷大。<br>还有 +0 -0，1/x 是 Infinity 还是 -Infinity<br>双精度浮点数，有效的检测范围-0x1fffffffffffff 至 0x1fffffffffffff，浮点数运算精度的问题<br>比较浮点数的准确方法是：与 JS 提供的最小精度比较 Math.abs(0.1 + 0.2 - 0.3) &lt;= Number.EPSILON</p>
+<p>Symbol，非字符串 key 的集合， 可以用于迭代器，Symbol.iterator 需要有 next，next 返回一个对象包括 value 和 done</p>
 </li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var o = new Object</span><br><span class="line"></span><br><span class="line">o[Symbol.iterator] = function() &#123;</span><br><span class="line">    var v = 0</span><br><span class="line">    return &#123;</span><br><span class="line">        next: function() &#123;</span><br><span class="line">            return &#123; value: v++, done: v &gt; 10 &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">for(var v of o)</span><br><span class="line">    console.log(v); // 0 1 2 3 ... 9</span><br></pre></td></tr></table></figure>
 
-<p>Object.prototype.toString.call() 是可以准确识别对象对应的基本类型的方法，它比 instanceof 更加准确。<br>装箱，是指讲基本数据类型转化为对象。拆箱是把对象转换成基本数据类型。valueOf()，toString(),或者用 Symbol.toPrimitive 自定义转换覆盖以前的。<br>众所周知的 Symbol</p>
+<p>StringToNumber，字符串转换为数组支持进制转换，支持科学计数法，即用 Number()转换。不建议使用 parseInt，parseFloat，在不传入第二个参数的情况下，parseInt 只支持 16 进制前缀“0x”，而且会忽略非数字字符，也不支持科学计数法。而 parseFloat 则直接把原字符串作为十进制来解析，它不会引入任何的其他进制。</p>
 <p>数组的 toString(),会返回一个字符串的拼接；valueOf 还是返回数组。</p>
+<p>NumberToString，正常。</p>
+<h6 id="装箱"><a href="#装箱" class="headerlink" title="装箱"></a>装箱</h6><p>.运算符提供了装箱操作，所以基本类型通过.可以临时创建一个对象来调用对象的方法。<br>装箱，是指讲基本数据类型转化为对象，会频繁产生临时对象，在一些性能要求高的情况下，尽量避免。<br>Object.prototype.toString.call() 是可以准确识别对象对应的基本类型的方法，它比 instanceof(constructor) 更加准确，因为 JS 中没有方法可以更改私有的 class 属性。call 本身会产生装箱操作，所以需要配合 typeof 来区分基本类型还是对象类型。</p>
+<h6 id="拆箱"><a href="#拆箱" class="headerlink" title="拆箱"></a>拆箱</h6><p>拆箱是把对象转换成基本数据类型。toPrimitive<br>对象到 Number，String 的转换都遵循“先拆箱再转换”的原则。把对象-&gt;基本类型-&gt;对应的 String/Number</p>
+<p>通过调用 valueOf()，toString()，没有则报错 TypeError。ES6 以后可以用 Symbol.toPrimitive 自定义转换覆盖以前的 valueOf()，toString()。</p>
 <p>通过 new Number()声明的类型和直接用 Number()声明的类型不同，object 与 number 的区别。<br>toString()还可以传入进制进行计算。valueOf 返回数字</p>
 <p>toFixed(), toPrecision(num)向上取整, toExponential()科学计数法</p>
 <p>String,chartAt(index),chartCodeAt(index)</p>
@@ -891,86 +983,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/03/12/重温学习/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-css_secret" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/29/css_secret/">CSS Secrets</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/29/css_secret/" class="archive-article-date">
-  	<time datetime="2019-08-29T03:23:05.438Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>回顾元素获取</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function $$(selector, context) &#123;</span><br><span class="line">  context = context || document;</span><br><span class="line">  var elements = context.querySelectorAll(selector);</span><br><span class="line">  return Array.prototype.slice.call(elements);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>11.20 总结：</p>
-<p>浏览器新特性总么办，加前缀是个失败的尝试。<br>可以通过工具加前缀。不过新特性的使用任重而道远。<br>web 标准是浏览器相关厂商，以及委员会的人共同探讨维护的。</p>
-<p>一、CSS 编写注意技巧：</p>
-<ol>
-<li>减少重复的代码，<br>注意 style 之间的依赖关系，如 em，rem，字体和行高等。具体如何计算相互依赖关系，需要根据实际情况。<br>代码量少，和代码容易维护不是一个概念。<br>currentcolor<br>inherit</li>
-<li>相信眼睛而不紧紧关注数字。<br>比如 垂直居中看着并不居中，圆形看着小，padding 上下左右不一致。</li>
-<li>响应式布局 rwd。一直说响应式布局，但是 media query 不能是最好的解决方法，只能是最后的解决方法。<br>每个媒体查询都会增加成本。每次修改 css 的时候都可能改一遍，复杂性高，经不起折腾。表现的是断点式的表现<br>可以先从减少代码重复来入手。<br>写相对大小 依赖关系。宽度不写具体的 px，用百分比的形式，或者和视口相关的表示如 vh。善用 max-width，min-width。替换元素 img，iframe，vedio 等也要设置 max-width： 100%；<br>推荐弹性布局，或者 inine-block。<br>背景图片要完整地平铺，background-size:cover</li>
-<li>合理使用简写。对于可展开的属性。如，border，background，要贯彻减少代码重复的原则，合理使用简写或者展开。</li>
-</ol>
-<p>例子： background: url(tr.png) no-repeat top right / 2em 2em, url(br.png) no-repeat bottom right / 2em 2em,<br>url(bl.png) no-repeat bottom left / 2em 2em;<br>其中， / 是为了避免歧义。</p>
-<ol start="5">
-<li><p>是否使用预处理器，如 less，sass 等。<br>建议在项目开始用 css，无法维护时用预处理器。因为要编译就需要时间，文件体积也会变大，还会有自身的 bug，学习成本。<br>如： 原生高级的例子。<br>ul { –accent-color: purple; }<br>ol { –accent-color: rebeccapurple; } li { background: var(–accent-color); }</p>
-<p>11.21 总结：<br>背景与边框<br>rgba，hsla 0 红 120 绿 240 蓝 h 色调 s 饱和度 l 亮度 a 透明度</p>
-</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/29/css_secret/">展开全文 >></a>
         </p>
       
 
@@ -1137,14 +1149,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Object</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">prototype</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Promise</a>
               </li>
              
@@ -1161,11 +1165,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
+                <a href="javascript:void(0)" class="js-tag color2">Object</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">closure</a>
+                <a href="javascript:void(0)" class="js-tag color5">prototype</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1178,6 +1186,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Object.prototype.toString.call()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">closure</a>
               </li>
              
               <li class="article-tag-list-item">
