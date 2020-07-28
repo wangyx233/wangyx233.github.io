@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://wangyx233.github.io">
-  <title>webpack学习 | Hexo</title>
+  <title>JS基础回顾 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="postcss 配置，post.config.js，同时webpack.config.js mini-css-extract-plugin 与style-loader不共存 注意路径和文件名，仔细，认真 ico图片引入，没什么区别？ 可自动设置dist文件夹下的文件，生成文件的目录你来掌握。 注意图片引入的路径,使用file-loader，url-loader引入的图片需要配合require使用">
+  <meta name="description" content="内置类型加上 ES6 新加的 Symbol，共 7 种，分别为 String， Number， Boolean， Object， Undefined， Null。分为基本数据类型(6)和 Object。对于基本数据类型，通过字面量的方式声明，类型依旧是字面量，只有在使用的时候才会转换为对应的类型。 123456typeof()  特别：  Symbol-&amp;gt;symbol  函数-&amp;gt;fun">
 <meta property="og:type" content="article">
-<meta property="og:title" content="webpack学习">
-<meta property="og:url" content="https://wangyx233.github.io/2018/06/15/webpack学习/index.html">
+<meta property="og:title" content="JS基础回顾">
+<meta property="og:url" content="https://wangyx233.github.io/2020/07/28/基础回顾/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="postcss 配置，post.config.js，同时webpack.config.js mini-css-extract-plugin 与style-loader不共存 注意路径和文件名，仔细，认真 ico图片引入，没什么区别？ 可自动设置dist文件夹下的文件，生成文件的目录你来掌握。 注意图片引入的路径,使用file-loader，url-loader引入的图片需要配合require使用">
+<meta property="og:description" content="内置类型加上 ES6 新加的 Symbol，共 7 种，分别为 String， Number， Boolean， Object， Undefined， Null。分为基本数据类型(6)和 Object。对于基本数据类型，通过字面量的方式声明，类型依旧是字面量，只有在使用的时候才会转换为对应的类型。 123456typeof()  特别：  Symbol-&amp;gt;symbol  函数-&amp;gt;fun">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-14T02:49:53.691Z">
+<meta property="og:updated_time" content="2020-07-28T08:40:39.654Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="webpack学习">
-<meta name="twitter:description" content="postcss 配置，post.config.js，同时webpack.config.js mini-css-extract-plugin 与style-loader不共存 注意路径和文件名，仔细，认真 ico图片引入，没什么区别？ 可自动设置dist文件夹下的文件，生成文件的目录你来掌握。 注意图片引入的路径,使用file-loader，url-loader引入的图片需要配合require使用">
+<meta name="twitter:title" content="JS基础回顾">
+<meta name="twitter:description" content="内置类型加上 ES6 新加的 Symbol，共 7 种，分别为 String， Number， Boolean， Object， Undefined， Null。分为基本数据类型(6)和 Object。对于基本数据类型，通过字面量的方式声明，类型依旧是字面量，只有在使用的时候才会转换为对应的类型。 123456typeof()  特别：  Symbol-&amp;gt;symbol  函数-&amp;gt;fun">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -132,41 +132,51 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-webpack学习" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-基础回顾" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      webpack学习
+      JS基础回顾
     </h1>
   
 
         
-        <a href="/2018/06/15/webpack学习/" class="archive-article-date">
-  	<time datetime="2018-06-15T08:34:01.696Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-15</time>
+        <a href="/2020/07/28/基础回顾/" class="archive-article-date">
+  	<time datetime="2020-07-28T08:40:39.654Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-28</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ol>
-<li>postcss 配置，post.config.js，同时webpack.config.js</li>
-<li>mini-css-extract-plugin 与style-loader不共存</li>
-<li>注意路径和文件名，仔细，认真</li>
-<li>ico图片引入，没什么区别？</li>
-<li>可自动设置dist文件夹下的文件，生成文件的目录你来掌握。</li>
-<li>注意图片引入的路径,使用file-loader，url-loader引入的图片需要配合require使用，才能打包。url可以指定图片大小转换成base64等。<br>若不用require，直接src，需要把图片copy到打包后的文件。</li>
-<li>react-hot-loader 与webpack 自带的hot不相互兼容。只能用一个。</li>
-<li>webpack 的publicpath 定义的是服务在哪个文件下启动的，content可以定义文件的目录。</li>
-<li>静态文件可生成hash模式，避免缓存。</li>
-<li>babel也需要相应的配置。配合babel-import-plugin可以进行ui库的部分引入。还要注意选择babel的stage</li>
-<li>react route4 webpack 服务器，用BrowserRouter,historyApiFallback: true</li>
-</ol>
-<p>gulp 与 webpack的区别<br>gulp 是任务流的，和task有关。<br>webpack 的核心是根据模块构建项目。<br>Webpack 的核心就是模块化地组织，模块化地依赖，然后模块化地打包。相对来上，场景局限在前端模块化打包上；虽然用 gulp + 插件的方式也能实现，但目前看 Webpack 在依赖的模块化构建上是无人能够替代的。<br>gulp 版本号。<br>可以在打包的时候，打入不同的文件。</p>
+        <h5 id="内置类型"><a href="#内置类型" class="headerlink" title="内置类型"></a>内置类型</h5><p>加上 ES6 新加的 Symbol，共 7 种，分别为 String， Number， Boolean， Object， Undefined， Null。<br>分为基本数据类型(6)和 Object。<br>对于基本数据类型，通过字面量的方式声明，类型依旧是字面量，只有在使用的时候才会转换为对应的类型。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">typeof()</span><br><span class="line">  特别：</span><br><span class="line">  Symbol-&gt;symbol</span><br><span class="line">  函数-&gt;function,</span><br><span class="line">  null-&gt;object。历史原因对象以000开头，而null恰好为全零</span><br><span class="line">通过Object.prototype.toString.call()可判断准确的类型[object Type]</span><br></pre></td></tr></table></figure>
 
+<p>PS: Symbol 类型(唯一的值)<br>通过 Symbol()定义，定义后的值不相等，System.prototype.description 为定义时 Symbol(‘xxx’)的标识。<br>使用场景：作为对象的属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">let sym = Symbol();</span><br><span class="line">let a = &#123;&#125;;</span><br><span class="line">a[sym] = &apos;symbol&apos;;</span><br><span class="line">a = &#123;</span><br><span class="line">  [sym]: &apos;symbol&apos;</span><br><span class="line">&#125;</span><br><span class="line">Object.defineProperty(a, sym, &#123;value: &apos;symbol&apos;&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>注：</p>
+<ol>
+<li>不能用.运算符，.运算符会直接作为字符串取值。</li>
+<li>Symbol 作为属性名，不会出现在 for…in, for…of 中，也不会出现在 Object.keys(), Object.getOwnPropertyNames()、JSON.stringify()里。</li>
+<li>但也不是私有属性，Object.getOwnPropertySymbols，可以获取指定对象的所有 Symbol 属性名。</li>
+<li>新的 API:Reflect.ownKeys 可以返回所有类型的键名，包括常规键名和 Symbol 键名。</li>
+<li>Symbol.for(description)若没有则会创建一个，若存在则共用一个 symbol 值。 Symbol.keyFor(sym)返回一个已登记即 Symbol.for 的 Symbol 类型值的 key</li>
+<li>其他方法可在需要是再查找。</li>
+</ol>
+<h5 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h5><p>转 Boolean 类型。在条件判断时，除了 undefined， null， false， NaN， ‘’， 0， -0，其他所有值都转为 true，包括所有对象<br>对象在转换基本类型时，首先会调用 valueOf 然后调用 toString。<br>注：<br>‘a’ + + ‘b’ – ‘aNaN’</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x==y 比较</span><br><span class="line">undefined == null  // true</span><br><span class="line">[] == true // false</span><br><span class="line">[] == ![] // true [].toString() -&gt; &apos;&apos;，!取反运算符的优先级会高于==， ![] -》 false</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>undefined == null，结果是 true。且它俩与所有其他值比较的结果都是 false。</li>
+<li>String == Boolean，需要两个操作数同时转为 Number。</li>
+<li>String/Boolean == Number，需要 String/Boolean 转为 Number。</li>
+<li>Object == Primitive，需要 Object 转为 Primitive(具体通过 valueOf 和 toString 方法)。</li>
+</ol>
+<h5 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h5>
       
 
       
@@ -245,7 +255,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJUlEQVR42u3aMXLDMAwEQP//007rRsodKCcjalVlbI3JZYEAIF6v+Hl/PJ+fnH/7+clslYsfDAyM2zLep8/5AgkmWSVZ9+gdDAyM5zCOIliy3XbT7Vrn72NgYGCcv3O06SRlXFkXAwMDY4UxqzeT5BIDAwMjKSaTn26L4X+oxTEwMG7IyEPk3//9lfsNDAyMWzFmzfr1YD0LwYerYGBgbM3IA1yyxeTa4Kq0DwMDA2OlrZ83ztojKLJXDAyMTRltGbkeIpNQWwx8YGBgbMo4D3mz1K0tepMQXP/HwMDA2JoxG3q4qsXWjoBgYGA8gdECclhelLaHVV9qYmBgbMFYH7rK08G2DC5SSQwMjE0ZbQus3W4+ijFLPTEwMJ7DuDawtm399tpyOC2CgYFxW8asvZWXpm2iOTsgDAyMvRl5iGwbaiu/me/tl2ELDAyMLRh5O6wFtNcDbaqKgYHxNEYSFvNLx6S5tnJMRRGLgYGxESNpvrdjXisDHMPQjIGB8RjGVclcezGZB+7DcI+BgfEwxkq7Pw+v61enGBgYz2S0S7ZjqUkYzTEYGBhPYLzLpy198yPIi+dXnmliYGBswbgqOWtTxtlwxuywMDAw9mDUja24SZdvdx2MgYHxBMYs8OUDFufJ32wgDAMDA2PW3F9v2LXXqBgYGBhJO2xWmrZp6FcCLgYGxq0Y30jv1q8nv9Juw8DAuCEjLx3X08T2ImFldQwMjC0YP1G8k2HiSdZbAAAAAElFTkSuQmCC" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLElEQVR42u3aQW4CMQwF0Ln/palUdYOA8O1MkfC8rCooGT8WJrF9HPG6/a5Xrz++++r15CnVTx0YGBgXYNyW65HxKuj1buv/rO72hIqBgXEBxjrJJsGt0+U6jSbsN7thYGBgLNNifnysgjEwMDB6CXf9SjX0fE8MDAyMncPfPuCjd3EMDIwvZFQbA5/8+x/7GxgYGF/CuBVXNZT84NiL5++zGBgYoxk7hbNeQa1aYsuvtRgYGFMZO6MVvXJbbyzszWcxMDBGM5ItEkwPn4xfVOPEwMCYx6gGV02CeSMhP6piYGBck5EX5T8zYJG3KDAwMDCqjcbelTVvCbyMAQMDYzSjF0RexK82HvL9CzNuGBgYgxj7ZbJkhCIPOk/QGBgYsxm9lmEy4JVfUHcOphgYGFdgJEe6nQJcb5Ci2jbAwMCYzagmu/xomIN3eHe/GxgYGEMZST5OrqY9QP70QkEQAwNjKKM6+NVraualvV4kGBgYsxnJuEOegnsX194XdCS/DxgYGF/O6F0sq82A6thrucGJgYFxAcaxXGcFnYSeg+/excDAGM3Yf/DOtTZpkRbKdhgYGEMZt+LKg8svqL0Uj4GBcR1GvvYPf71SWuFoiIGBMZpRTbJnJeJq4+GE5iUGBsaXM3pJdqcNWV1vdsPAwMA49Qp61hgHBgYGRp5ezy3SJdfaJ18EBgbGBRhJEEmq7fVRo5S6jgQDA2M0o3qBrKbLvMTWS/QYGBijGT9EYZNh6m7VzwAAAABJRU5ErkJggg==" alt="微信分享二维码">
     </div>
 </div>
 
@@ -259,18 +269,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/01/16/理解promise/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/07/28/重温学习/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          理解promise
+          &lt;重温JS&gt;数据类型及基本转换
         
       </div>
     </a>
   
   
-    <a href="/2017/06/27/Echarts3.5.0以上世界地图nameMap修改/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Echarts3.5.0以上世界地图nameMap变更</div>
+    <a href="/2020/07/28/[实践]性能优化二三事/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">&lt;Work&gt; 实践</div>
       <i class="icon-circle-right"></i>
     </a>
   

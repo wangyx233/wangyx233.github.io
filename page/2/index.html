@@ -130,6 +130,368 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-[算法基础]时间&amp;空间复杂度" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/12/[算法基础]时间&空间复杂度/">时间&amp;空间复杂度</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/12/[算法基础]时间&空间复杂度/" class="archive-article-date">
+  	<time datetime="2020-05-12T14:14:17.326Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h5><p>用 Big O 表示，用来表示程度运行时间维度上的趋势。所以 O 表示忽略掉不重要的部分，留下的关键关系。<br>常见的时间复杂度有：</p>
+<ul>
+<li>常数 O(1)</li>
+<li>对数 O(logn)</li>
+<li>线性 O(n)</li>
+<li>n 的次方 O(n^2…)</li>
+<li>指数 O(k^n)</li>
+<li>阶乘 O(n!)<br>一般通过看随着 n 的改变，代码要运行多少次。n 比较小的话，其实时间复杂度都差不多，关注时间复杂度的情况一般对数据量较大时，程序的效率问题。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 比如：普通递归计算斐波那契，理解递归总共执行了多少次，善用缓存，避免重复计算。或者循环</span><br><span class="line">const fib = (n) =&gt; &#123;</span><br><span class="line">  if (n &lt; 2) return n;</span><br><span class="line">  return fib(n - 1) + fib(n - 2);</span><br><span class="line">&#125;</span><br><span class="line">// O(2^k)</span><br></pre></td></tr></table></figure>
+
+<h6 id="主定理"><a href="#主定理" class="headerlink" title="主定理"></a>主定理</h6><p>用于进行递归程序的时间复杂度计算，一般常见的算法有：</p>
+<ul>
+<li>二分查找 O(logn)</li>
+<li>二叉树遍历 O(n)</li>
+<li>有序二维数据查找 O(n)</li>
+<li>归并排序 O(nlogn)</li>
+</ul>
+<p>二叉树的前中后序遍历，图遍历，搜索算法 DFS,BFS，时间复杂度都是 O(n)，因为有且只经过了每个节点一次，所以是和节点数成线性相关的。</p>
+<h5 id="空间复杂度"><a href="#空间复杂度" class="headerlink" title="空间复杂度"></a>空间复杂度</h5><p>如果是数组，那就是数组的长度，O(n)。二维数组，O(n^2)。<br>如果是递归的，那就是递归的深度，如果递归里面又开了数组，则是两者的最大值。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Algorithm</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/12/[算法基础]时间&空间复杂度/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-[CSS]回顾伪类与伪元素" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/11/[CSS]回顾伪类与伪元素/">&lt;CSS&gt;回顾伪类与伪元素</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/11/[CSS]回顾伪类与伪元素/" class="archive-article-date">
+  	<time datetime="2020-05-11T06:35:48.173Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在重温 CSS 选择的时候，看到伪类与伪元素有一瞬间迷惑之情，所以这次重新加深一番印象。</p>
+<h5 id="伪类-pseudo-classes-？伪元素-pseudo-elements-？"><a href="#伪类-pseudo-classes-？伪元素-pseudo-elements-？" class="headerlink" title="伪类(pseudo-classes)？伪元素(pseudo-elements)？"></a>伪类(pseudo-classes)？伪元素(pseudo-elements)？</h5><p>为什么要引入伪类，伪元素？为了格式化文档树以外的信息。</p>
+<ul>
+<li>伪类：用于描述已经存在的元素的某个状态，添加对应的样式。用:,如：hover,:first-child…</li>
+<li>伪元素：用于创建一些不在文档树中的元素。多用::,如：::before,::after…，虽然用户可以看到这些内容，但事实上并不存在在文档树中。</li>
+</ul>
+<p>补充：CSS 的选择器</p>
+<ol>
+<li>元素选择器</li>
+</ol>
+<ul>
+<li>* 通配符选择器</li>
+<li>div,p,span… 元素选择器</li>
+<li>#id</li>
+<li>.class</li>
+</ul>
+<ol start="2">
+<li>属性选择器</li>
+</ol>
+<ul>
+<li>[attr]</li>
+<li>[attr=val]</li>
+<li>[attr^=val] 以 val 开头属性值的元素</li>
+<li>[attr$=val] 以 val 结尾</li>
+<li>[attr*=val] 属性值包含这个 val 属性值的元素</li>
+<li>[attr~=val] 属性值为 val，或其中一个值为 val 的元素</li>
+<li>[attr|=val] 属性值为 val，或者 val-xxx 的元素</li>
+<li>i 不区分大小写，s 区分大小写<br>eg. <a href="https://codepen.io/yx233/pen/abvGgad" target="_blank" rel="noopener">https://codepen.io/yx233/pen/abvGgad</a></li>
+</ul>
+<ol start="3">
+<li>关系选择器</li>
+</ol>
+<ul>
+<li>后代选择器： 空格，所有后代</li>
+<li>子选择器：&gt; 直接后代，不包括隔代元素</li>
+<li>兄弟选择器：~ 所有兄弟结点</li>
+<li>相邻选择气：+ 相邻兄弟结点</li>
+</ul>
+<p>选择指向越准确，优先级越高。尽量减少 CSS 选择器的层数</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CSS</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/11/[CSS]回顾伪类与伪元素/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-[重温JS]正则从开始到结束" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/08/[重温JS]正则从开始到结束/">&lt;重温JS&gt;正则从开始到结束</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/08/[重温JS]正则从开始到结束/" class="archive-article-date">
+  	<time datetime="2020-05-08T09:06:15.947Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>正则表达式用的元字符：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">() [] &#123;&#125; | \ ^ $ . * + ?</span><br></pre></td></tr></table></figure>
+
+<p>通过 new RegExp() 前一个要转换成字符串，不能直接用正则字面量。如元字符要进行双重转义。<br>正则表达式的 valueOf(),返回正则表达式本身。</p>
+<p>regexp.test(text)<br>regexp.exec(text)</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">RegExp</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/08/[重温JS]正则从开始到结束/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-[重温JS]时间处理二三事" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/08/[重温JS]时间处理二三事/">&lt;重温JS&gt;时间处理二三事</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/08/[重温JS]时间处理二三事/" class="archive-article-date">
+  	<time datetime="2020-05-08T08:48:01.658Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>const current = new Date();<br>Date.parse(current); //turn to UTC,ms<br>Date.UTC(year, month - 1 )<br>Date.now() // s<br>+new Date();</p>
+<p>.toString(),字符串；.valueOf(),数值 ms</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">moment.js</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Date</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/08/[重温JS]时间处理二三事/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-[安全]从基本安全概念到Https" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -355,94 +717,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/04/27/[浏览器]浏览器是如何工作的？/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-[实践]性能优化二三事" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/24/[实践]性能优化二三事/">&lt;Work&gt; 实践</a>
-    </h1>
-  
-
-        
-        <a href="/2020/04/24/[实践]性能优化二三事/" class="archive-article-date">
-  	<time datetime="2020-04-24T08:46:40.688Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="Performance"><a href="#Performance" class="headerlink" title="Performance"></a>Performance</h5><ol>
-<li>gzip</li>
-<li>告警系统/埋点</li>
-<li>图表优化，步骤，加载</li>
-</ol>
-<p>其他的通用的方式：秒开率控制，toB 的没有这么多顾虑<br>减少 http 请求 =&gt; JS,CSS 打包，小图片用 data-uri，svg。避免大型背景图<br>利用缓存<br>了解整个前端加载的过程。<br>DNS 解析 =&gt; HTTP DNS<br>TCP 链接三次握手。HTTP/TLS HTTP 2 / HTTPS</p>
-<p>首先得评估下现状，要配合实际情况和业务情况进行性能优化，还得设计相关的指标和标准。最后对结果进行评估，有始有终哦</p>
-<h6 id="Tool"><a href="#Tool" class="headerlink" title="Tool"></a>Tool</h6><p>开发体验，提升效率<br>工具体系构建：版本统一，避免冲突。<br>用一套统一的过程比较方便，从 init 到 dev 再到 public。重要的是构建时间，效率</p>
-<h6 id="持续性构建"><a href="#持续性构建" class="headerlink" title="持续性构建"></a>持续性构建</h6><p>手动，自动。代码提交到仓库，自动发布到测试环境，自动发布系统。<br>结构扫描 phantomjs，代码扫描 jshint，数据采集通过 performance API 检测性能，window.onerror 检测问题。<br>组件化，兼容性，适配性：ppi，dpr。PWA<br>组件化： 三大框架，web component，css houdini，不需要任何额外的运行时支持，就能在现代浏览器环境运行，也可以跟 HTML 无缝结合。<br>适配：</p>
-<ul>
-<li>PPI:Pixel Per Inch 单位英寸像素，屏幕的显示质量。文字，media query</li>
-<li>DPR:Device Pixel Ratio 设备像素比例，物理像素与逻辑像素 px 之间的关系。viewport 控制缩放比</li>
-<li>Resolution: 分辨率，屏幕区域的宽高所占像素数。用 vw，vh 解决</li>
-</ul>
-<p>单页应用</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/24/[实践]性能优化二三事/">展开全文 >></a>
         </p>
       
 
@@ -737,281 +1011,6 @@
 
 
   
-    <article id="post-[重温JS]对象" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/20/[重温JS]对象/">&lt;JS Review&gt;对象</a>
-    </h1>
-  
-
-        
-        <a href="/2020/04/20/[重温JS]对象/" class="archive-article-date">
-  	<time datetime="2020-04-20T06:04:50.253Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="对象是什么？"><a href="#对象是什么？" class="headerlink" title="对象是什么？"></a>对象是什么？</h5><ul>
-<li>具有唯一标识，内存地址。</li>
-<li>具有状态，属性。</li>
-<li>具有行为，方法。</li>
-</ul>
-<p>JS 的对象具有高度的动态性，可以在运行时对对象添加状态，修改行为。<br>JS 中 Object 的定义，用 new 构造函数()、对象字面量</p>
-<p>构造类的函数-&gt;类的构造函数，一个构建函数通常是大写字母开头，这样便于区分构建函数和普通函数。用 this 创建对象，无需重新创建一个对象再返回。<br>创建对象的方法，字面量，构造函数 new Object()，Object.create(proto, [propertiesObject])</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">let a = &#123;name: &apos;xxx&apos;&#125;</span><br><span class="line"></span><br><span class="line">function Person(name) &#123;</span><br><span class="line">  this.name = name;</span><br><span class="line">&#125;</span><br><span class="line">let b = new Person(&apos;xxx&apos;)</span><br><span class="line"></span><br><span class="line">Object.creat(&#123;name: &apos;xxx&apos;&#125;)</span><br></pre></td></tr></table></figure>
-
-<h5 id="对象的属性类型"><a href="#对象的属性类型" class="headerlink" title="对象的属性类型"></a>对象的属性类型</h5><p>JS 中，属性和方法其实都可以成为对象的属性。属性并不是简单的名称和值，可以用一组特征来描述属性，可分为数据属性和访问器(getter/setter)属性两类。</p>
-<ul>
-<li>数据属性。这个就是常见的对象属性，具有以下特征：</li>
-</ul>
-<ol>
-<li>value</li>
-<li>writable：能否被赋值</li>
-<li>enumerable：被 for in 枚举</li>
-<li>configurable：被删除，或者改变特征值。false 时，writable 可从 true-&gt;false，但无法反向修改。enumerable 则不能修改，会报 TypeError: cannot redefine property。一旦设置为 false，cannot set true</li>
-</ol>
-<ul>
-<li>访问器(getter/setter)属性。属性在读写的时候执行。</li>
-</ul>
-<ol>
-<li>getter：get: () =&gt; {} || undifined</li>
-<li>setter: set: () =&gt; {} || undifined，两者成对出现，若不设置则为 undefined</li>
-<li>enumerable：被 for in 枚举</li>
-<li>configurable：被删除，或者改变特征值<br>ES5 以后：<br>查看属性可用，Object.getOwnPropertyDescripter(object, ‘key’)<br>设置属性的特性可用，Object.defineProperty(object, ‘key’, {})<br>如果通过赋值的方式为属性赋值，则该属性的特征都默认为 true。但如果通过 defineProperty 赋值而不指定特性，则特征都默认为 false</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var o = &#123;a:1&#125;;</span><br><span class="line">o.b = 2;</span><br><span class="line">Object.getOwnPropertyDescripter(o, &apos;b&apos;);</span><br><span class="line"></span><br><span class="line">Object.defineProperty(o, &apos;c&apos;, &#123;value: 3&#125;);</span><br><span class="line">Object.getOwnPropertyDescripter(o, &apos;c&apos;);</span><br><span class="line"></span><br><span class="line">var o = &#123; get a() &#123; return &apos;a&apos; &#125; &#125;;</span><br><span class="line">Object.defineProperty(o, &apos;b&apos;, &#123;get: () =&gt; 2, set: (b) =&gt; console.log(b), configurable:true&#125;)</span><br></pre></td></tr></table></figure>
-
-<h5 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h5>
-        
-          <a class="article-more-a" href="/2020/04/20/[重温JS]对象/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Object</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">prototype</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/20/[重温JS]对象/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-[CSS]Input Bottom Animation" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/16/[CSS]Input Bottom Animation/">Hover&amp;Focus Effects 简单动画示例</a>
-    </h1>
-  
-
-        
-        <a href="/2020/04/16/[CSS]Input Bottom Animation/" class="archive-article-date">
-  	<time datetime="2020-04-16T03:36:09.777Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>登录页进行账号输入时，为了让焦点聚集在当前输入框上可能会需要配合一些动画效果，或者是某个内容的重点提醒也会在 hover 时增加醒目动画。这些设计虽然很古老，也有用到的场合。<br>主要是借助 CSS3 的 transition 来做效果变换，示例如下：<a href="https://codepen.io/yx233/pen/YzywdJQ" target="_blank" rel="noopener">https://codepen.io/yx233/pen/YzywdJQ</a></p>
-<h5 id="普通元素-hover-effects"><a href="#普通元素-hover-effects" class="headerlink" title="普通元素 hover effects"></a>普通元素 hover effects</h5><ul>
-<li>简单的 border-color 变换。</li>
-<li>借助伪元素实现从左-&gt;右，或从中间向两边延伸的效果。</li>
-</ul>
-<h5 id="input-的-focus"><a href="#input-的-focus" class="headerlink" title="input 的 focus"></a>input 的 focus</h5><p>::after ::before 是指元素文档树内渲染前、后的内容，input 不支持。所以需要借助额外的兄弟元素进行效果实现。</p>
-<p>注：[:focus-within]是当一个元素或者元素的后代有[:focus]伪类时生效的一个选择器。对输入框获得焦点时，其前后左右的小图标，下滑动画等变换都有非常实用的效果。</p>
-<p>注意：登录框前有时会配合放一些小图标，如果用把 icon 当做 input 的 background-image，同时通过定位的方式定位，需要格外注意 Chrome 记住密码情况下的展示。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">input[name=&apos;user&apos;] &#123;</span><br><span class="line">  background-image: url(/login/user.svg);</span><br><span class="line">  background-position: 12px;</span><br><span class="line">  background-repeat: no-repeat;</span><br><span class="line">&#125;</span><br><span class="line">// 注意</span><br><span class="line">input:-webkit-autofill,</span><br><span class="line">input:-webkit-autofill:hover,</span><br><span class="line">input:-webkit-autofill:focus,</span><br><span class="line">input:-webkit-autofill:active &#123;</span><br><span class="line">  -webkit-transition: color 9999s linear, background-color 9999s linear;</span><br><span class="line">  -webkit-transition-delay: 9999s;</span><br><span class="line">  background-color: XXX;</span><br><span class="line">  color: XXX;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">css</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/16/[CSS]Input Bottom Animation/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-重温学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/12/重温学习/">重温</a>
-    </h1>
-  
-
-        
-        <a href="/2020/03/12/重温学习/" class="archive-article-date">
-  	<time datetime="2020-03-12T07:52:56.250Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li><p>7 种语言类型<br>undefined 是一个变量，而并非是一个关键字。老的浏览器中会是，ES5 以后就不是了。函数内部，对象的属性现在也是可以赋值的。<br>if(typeof str === ‘undefined’){<br>// 如果直接用 str === undefined, str 未声明的话可能会报错 not defined<br>}<br>String 用于表示文本数据。String 有最大长度是 2^53 - 1，字符串的 UTF16 编码，charAt、charCodeAt、length 等方法针对的都是 UTF16 编码，其实一个 utf16 单元代表一个字符，这俩数量是对应的，0-65536（U+0000 - U+FFFF）的码点被称为基本字符区域（BMP）<br>Number 2^64-2^53+3<br>NaN，占用了 9007199254740990，这原本是符合 IEEE 规则的数字；Infinity，无穷大；-Infinity，负无穷大。<br>还有 +0 -0，1/x 是 Infinity 还是 -Infinity<br>双精度浮点数，有效的检测范围-0x1fffffffffffff 至 0x1fffffffffffff，浮点数运算精度的问题<br>比较浮点数的准确方法是：与 JS 提供的最小精度比较 Math.abs(0.1 + 0.2 - 0.3) &lt;= Number.EPSILON</p>
-<p>Symbol，非字符串 key 的集合， 可以用于迭代器，Symbol.iterator 需要有 next，next 返回一个对象包括 value 和 done</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var o = new Object</span><br><span class="line"></span><br><span class="line">o[Symbol.iterator] = function() &#123;</span><br><span class="line">    var v = 0</span><br><span class="line">    return &#123;</span><br><span class="line">        next: function() &#123;</span><br><span class="line">            return &#123; value: v++, done: v &gt; 10 &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">for(var v of o)</span><br><span class="line">    console.log(v); // 0 1 2 3 ... 9</span><br></pre></td></tr></table></figure>
-
-<p>StringToNumber，字符串转换为数组支持进制转换，支持科学计数法，即用 Number()转换。不建议使用 parseInt，parseFloat，在不传入第二个参数的情况下，parseInt 只支持 16 进制前缀“0x”，而且会忽略非数字字符，也不支持科学计数法。而 parseFloat 则直接把原字符串作为十进制来解析，它不会引入任何的其他进制。</p>
-<p>数组的 toString(),会返回一个字符串的拼接；valueOf 还是返回数组。</p>
-<p>NumberToString，正常。</p>
-<h6 id="装箱"><a href="#装箱" class="headerlink" title="装箱"></a>装箱</h6><p>.运算符提供了装箱操作，所以基本类型通过.可以临时创建一个对象来调用对象的方法。<br>装箱，是指讲基本数据类型转化为对象，会频繁产生临时对象，在一些性能要求高的情况下，尽量避免。<br>Object.prototype.toString.call() 是可以准确识别对象对应的基本类型的方法，它比 instanceof(constructor) 更加准确，因为 JS 中没有方法可以更改私有的 class 属性。call 本身会产生装箱操作，所以需要配合 typeof 来区分基本类型还是对象类型。</p>
-<h6 id="拆箱"><a href="#拆箱" class="headerlink" title="拆箱"></a>拆箱</h6><p>拆箱是把对象转换成基本数据类型。toPrimitive<br>对象到 Number，String 的转换都遵循“先拆箱再转换”的原则。把对象-&gt;基本类型-&gt;对应的 String/Number</p>
-<p>通过调用 valueOf()，toString()，没有则报错 TypeError。ES6 以后可以用 Symbol.toPrimitive 自定义转换覆盖以前的 valueOf()，toString()。</p>
-<p>通过 new Number()声明的类型和直接用 Number()声明的类型不同，object 与 number 的区别。<br>toString()还可以传入进制进行计算。valueOf 返回数字</p>
-<p>toFixed(), toPrecision(num)向上取整, toExponential()科学计数法</p>
-<p>String,chartAt(index),chartCodeAt(index)</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/12/重温学习/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -1109,11 +1108,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1137,15 +1136,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">search</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tree</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Binary tree</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">search</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Object</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">prototype</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1165,15 +1172,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Object</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">prototype</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">closure</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1186,10 +1189,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Object.prototype.toString.call()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">closure</a>
               </li>
              
               <li class="article-tag-list-item">

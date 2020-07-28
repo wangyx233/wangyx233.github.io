@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://wangyx233.github.io">
-  <title>webpack学习 | Hexo</title>
+  <title>&lt;Work&gt; 实践 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="postcss 配置，post.config.js，同时webpack.config.js mini-css-extract-plugin 与style-loader不共存 注意路径和文件名，仔细，认真 ico图片引入，没什么区别？ 可自动设置dist文件夹下的文件，生成文件的目录你来掌握。 注意图片引入的路径,使用file-loader，url-loader引入的图片需要配合require使用">
+  <meta name="description" content="Performance gzip 告警系统/埋点 图表优化，步骤，加载  其他的通用的方式：秒开率控制，toB 的没有这么多顾虑减少 http 请求 =&amp;gt; JS,CSS 打包，小图片用 data-uri，svg。避免大型背景图利用缓存了解整个前端加载的过程。DNS 解析 =&amp;gt; HTTP DNSTCP 链接三次握手。HTTP/TLS HTTP 2 / HTTPS 首先得评估下现状，要配合">
+<meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="webpack学习">
-<meta property="og:url" content="https://wangyx233.github.io/2018/06/15/webpack学习/index.html">
+<meta property="og:title" content="&lt;Work&gt; 实践">
+<meta property="og:url" content="https://wangyx233.github.io/2020/07/28/[实践]性能优化二三事/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="postcss 配置，post.config.js，同时webpack.config.js mini-css-extract-plugin 与style-loader不共存 注意路径和文件名，仔细，认真 ico图片引入，没什么区别？ 可自动设置dist文件夹下的文件，生成文件的目录你来掌握。 注意图片引入的路径,使用file-loader，url-loader引入的图片需要配合require使用">
+<meta property="og:description" content="Performance gzip 告警系统/埋点 图表优化，步骤，加载  其他的通用的方式：秒开率控制，toB 的没有这么多顾虑减少 http 请求 =&amp;gt; JS,CSS 打包，小图片用 data-uri，svg。避免大型背景图利用缓存了解整个前端加载的过程。DNS 解析 =&amp;gt; HTTP DNSTCP 链接三次握手。HTTP/TLS HTTP 2 / HTTPS 首先得评估下现状，要配合">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-14T02:49:53.691Z">
+<meta property="og:updated_time" content="2020-07-28T08:40:39.654Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="webpack学习">
-<meta name="twitter:description" content="postcss 配置，post.config.js，同时webpack.config.js mini-css-extract-plugin 与style-loader不共存 注意路径和文件名，仔细，认真 ico图片引入，没什么区别？ 可自动设置dist文件夹下的文件，生成文件的目录你来掌握。 注意图片引入的路径,使用file-loader，url-loader引入的图片需要配合require使用">
+<meta name="twitter:title" content="&lt;Work&gt; 实践">
+<meta name="twitter:description" content="Performance gzip 告警系统/埋点 图表优化，步骤，加载  其他的通用的方式：秒开率控制，toB 的没有这么多顾虑减少 http 请求 =&amp;gt; JS,CSS 打包，小图片用 data-uri，svg。避免大型背景图利用缓存了解整个前端加载的过程。DNS 解析 =&amp;gt; HTTP DNSTCP 链接三次握手。HTTP/TLS HTTP 2 / HTTPS 首先得评估下现状，要配合">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -132,40 +133,41 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-webpack学习" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-[实践]性能优化二三事" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      webpack学习
+      &lt;Work&gt; 实践
     </h1>
   
 
         
-        <a href="/2018/06/15/webpack学习/" class="archive-article-date">
-  	<time datetime="2018-06-15T08:34:01.696Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-15</time>
+        <a href="/2020/07/28/[实践]性能优化二三事/" class="archive-article-date">
+  	<time datetime="2020-07-28T08:40:39.653Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-28</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ol>
-<li>postcss 配置，post.config.js，同时webpack.config.js</li>
-<li>mini-css-extract-plugin 与style-loader不共存</li>
-<li>注意路径和文件名，仔细，认真</li>
-<li>ico图片引入，没什么区别？</li>
-<li>可自动设置dist文件夹下的文件，生成文件的目录你来掌握。</li>
-<li>注意图片引入的路径,使用file-loader，url-loader引入的图片需要配合require使用，才能打包。url可以指定图片大小转换成base64等。<br>若不用require，直接src，需要把图片copy到打包后的文件。</li>
-<li>react-hot-loader 与webpack 自带的hot不相互兼容。只能用一个。</li>
-<li>webpack 的publicpath 定义的是服务在哪个文件下启动的，content可以定义文件的目录。</li>
-<li>静态文件可生成hash模式，避免缓存。</li>
-<li>babel也需要相应的配置。配合babel-import-plugin可以进行ui库的部分引入。还要注意选择babel的stage</li>
-<li>react route4 webpack 服务器，用BrowserRouter,historyApiFallback: true</li>
+        <h5 id="Performance"><a href="#Performance" class="headerlink" title="Performance"></a>Performance</h5><ol>
+<li>gzip</li>
+<li>告警系统/埋点</li>
+<li>图表优化，步骤，加载</li>
 </ol>
-<p>gulp 与 webpack的区别<br>gulp 是任务流的，和task有关。<br>webpack 的核心是根据模块构建项目。<br>Webpack 的核心就是模块化地组织，模块化地依赖，然后模块化地打包。相对来上，场景局限在前端模块化打包上；虽然用 gulp + 插件的方式也能实现，但目前看 Webpack 在依赖的模块化构建上是无人能够替代的。<br>gulp 版本号。<br>可以在打包的时候，打入不同的文件。</p>
+<p>其他的通用的方式：秒开率控制，toB 的没有这么多顾虑<br>减少 http 请求 =&gt; JS,CSS 打包，小图片用 data-uri，svg。避免大型背景图<br>利用缓存<br>了解整个前端加载的过程。<br>DNS 解析 =&gt; HTTP DNS<br>TCP 链接三次握手。HTTP/TLS HTTP 2 / HTTPS</p>
+<p>首先得评估下现状，要配合实际情况和业务情况进行性能优化，还得设计相关的指标和标准。最后对结果进行评估，有始有终哦</p>
+<h6 id="Tool"><a href="#Tool" class="headerlink" title="Tool"></a>Tool</h6><p>开发体验，提升效率<br>工具体系构建：版本统一，避免冲突。<br>用一套统一的过程比较方便，从 init 到 dev 再到 public。重要的是构建时间，效率</p>
+<h6 id="持续性构建"><a href="#持续性构建" class="headerlink" title="持续性构建"></a>持续性构建</h6><p>手动，自动。代码提交到仓库，自动发布到测试环境，自动发布系统。<br>结构扫描 phantomjs，代码扫描 jshint，数据采集通过 performance API 检测性能，window.onerror 检测问题。<br>组件化，兼容性，适配性：ppi，dpr。PWA<br>组件化： 三大框架，web component，css houdini，不需要任何额外的运行时支持，就能在现代浏览器环境运行，也可以跟 HTML 无缝结合。<br>适配：</p>
+<ul>
+<li>PPI:Pixel Per Inch 单位英寸像素，屏幕的显示质量。文字，media query</li>
+<li>DPR:Device Pixel Ratio 设备像素比例，物理像素与逻辑像素 px 之间的关系。viewport 控制缩放比</li>
+<li>Resolution: 分辨率，屏幕区域的宽高所占像素数。用 vw，vh 解决</li>
+</ul>
+<p>单页应用</p>
 
       
 
@@ -195,6 +197,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -245,7 +258,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJUlEQVR42u3aMXLDMAwEQP//007rRsodKCcjalVlbI3JZYEAIF6v+Hl/PJ+fnH/7+clslYsfDAyM2zLep8/5AgkmWSVZ9+gdDAyM5zCOIliy3XbT7Vrn72NgYGCcv3O06SRlXFkXAwMDY4UxqzeT5BIDAwMjKSaTn26L4X+oxTEwMG7IyEPk3//9lfsNDAyMWzFmzfr1YD0LwYerYGBgbM3IA1yyxeTa4Kq0DwMDA2OlrZ83ztojKLJXDAyMTRltGbkeIpNQWwx8YGBgbMo4D3mz1K0tepMQXP/HwMDA2JoxG3q4qsXWjoBgYGA8gdECclhelLaHVV9qYmBgbMFYH7rK08G2DC5SSQwMjE0ZbQus3W4+ijFLPTEwMJ7DuDawtm399tpyOC2CgYFxW8asvZWXpm2iOTsgDAyMvRl5iGwbaiu/me/tl2ELDAyMLRh5O6wFtNcDbaqKgYHxNEYSFvNLx6S5tnJMRRGLgYGxESNpvrdjXisDHMPQjIGB8RjGVclcezGZB+7DcI+BgfEwxkq7Pw+v61enGBgYz2S0S7ZjqUkYzTEYGBhPYLzLpy198yPIi+dXnmliYGBswbgqOWtTxtlwxuywMDAw9mDUja24SZdvdx2MgYHxBMYs8OUDFufJ32wgDAMDA2PW3F9v2LXXqBgYGBhJO2xWmrZp6FcCLgYGxq0Y30jv1q8nv9Juw8DAuCEjLx3X08T2ImFldQwMjC0YP1G8k2HiSdZbAAAAAElFTkSuQmCC" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACy0lEQVR42u3aMXLjMBAEQP3/03dVjhyI5MwCkBw0I5XJI9EIsLjBvl7x9e/n+v3791/u/371tvsnr97/OnHh4eHhjYZ+deWk/N9eDfTqmft3Xn0XDw8P7zRv18eSxT1/cmWC8PDw8P4C7/4zyd12457fxcPDw/vLvPz/+/clIcG0k4WHh4f3SV4SKCSY/Mn7kpMUpM1ZCx4eHl7Mmx2Afff38fM9PDw8vNGpenLNYoU2bhiODQ8PD+8AL49r2/ggjy1md4uDMTw8PLytvDZKaIcyOySblaWHlAUPDw9vEy853Mrj1JXqNJvi6Bk8PDy8rbx229reXWneatsa3owfDw8P7wAvalqKg9rZEJPN8bbWATw8PLxlXv6i9mMrDQHJpjyaRDw8PLyP89YPwGYHWkmJSuIJPDw8vBO82YvyTXCCX2lEGIa5eHh4eAu8/KVtmNsu9G35ib6Lh4eHd5jX5r55+1Qb2s6uhzACDw8PbxNv1nrVLtDt3ZVGq4emATw8PLxlXrJ8z37nQ2wj4GKK8fDw8A7wVja77WHVrIS0R2hRecDDw8PbxEu2rUm4kMQEydS0Ae7lePDw8PC28mZh6yx6yOOPvO3goVTg4eHhHeatBBPJsNYnKy9jw8qGh4eHN+K1w0omIo8nVrb1Dyk1Hh4e3lZeu51tj/CTiWhj3CjCwMPDwzvAaxfr/JAs2XzPNtOzUBgPDw9vF29lUW430Cuk2UYcDw8P7wSvuBE0ByTDzQPivDWhaGXAw8PDW+bNCkMOW5npNvh4M1l4eHh4B3jt0t+WgdkS3zYu4OHh4X2eNwsg2k15e6A1Kwxvvo6Hh4d3jJcXgzxcaGvRegxxGUng4eHhfZU3C3DbYpDHHw9Tg4eHh/dVXn7M3wLyJoCWjYeHh3eO1zZFtc+04cJKvLsU4+Lh4eGle+PhAVjeXtCGGnvLBh4eHt4m3n9cRlYaWNUAAQAAAABJRU5ErkJggg==" alt="微信分享二维码">
     </div>
 </div>
 
@@ -259,18 +272,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/01/16/理解promise/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/07/28/基础回顾/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          理解promise
+          JS基础回顾
         
       </div>
     </a>
   
   
-    <a href="/2017/06/27/Echarts3.5.0以上世界地图nameMap修改/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Echarts3.5.0以上世界地图nameMap变更</div>
+    <a href="/2020/07/28/[重温JS]对象/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">&lt;JS Review&gt;对象</div>
       <i class="icon-circle-right"></i>
     </a>
   

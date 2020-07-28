@@ -130,6 +130,89 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-[CSS]Input Bottom Animation" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/16/[CSS]Input Bottom Animation/">Hover&amp;Focus Effects 简单动画示例</a>
+    </h1>
+  
+
+        
+        <a href="/2020/04/16/[CSS]Input Bottom Animation/" class="archive-article-date">
+  	<time datetime="2020-04-16T03:36:09.777Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>登录页进行账号输入时，为了让焦点聚集在当前输入框上可能会需要配合一些动画效果，或者是某个内容的重点提醒也会在 hover 时增加醒目动画。这些设计虽然很古老，也有用到的场合。<br>主要是借助 CSS3 的 transition 来做效果变换，示例如下：<a href="https://codepen.io/yx233/pen/YzywdJQ" target="_blank" rel="noopener">https://codepen.io/yx233/pen/YzywdJQ</a></p>
+<h5 id="普通元素-hover-effects"><a href="#普通元素-hover-effects" class="headerlink" title="普通元素 hover effects"></a>普通元素 hover effects</h5><ul>
+<li>简单的 border-color 变换。</li>
+<li>借助伪元素实现从左-&gt;右，或从中间向两边延伸的效果。</li>
+</ul>
+<h5 id="input-的-focus"><a href="#input-的-focus" class="headerlink" title="input 的 focus"></a>input 的 focus</h5><p>::after ::before 是指元素文档树内渲染前、后的内容，input 不支持。所以需要借助额外的兄弟元素进行效果实现。</p>
+<p>注：[:focus-within]是当一个元素或者元素的后代有[:focus]伪类时生效的一个选择器。对输入框获得焦点时，其前后左右的小图标，下滑动画等变换都有非常实用的效果。</p>
+<p>注意：登录框前有时会配合放一些小图标，如果用把 icon 当做 input 的 background-image，同时通过定位的方式定位，需要格外注意 Chrome 记住密码情况下的展示。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">input[name=&apos;user&apos;] &#123;</span><br><span class="line">  background-image: url(/login/user.svg);</span><br><span class="line">  background-position: 12px;</span><br><span class="line">  background-repeat: no-repeat;</span><br><span class="line">&#125;</span><br><span class="line">// 注意</span><br><span class="line">input:-webkit-autofill,</span><br><span class="line">input:-webkit-autofill:hover,</span><br><span class="line">input:-webkit-autofill:focus,</span><br><span class="line">input:-webkit-autofill:active &#123;</span><br><span class="line">  -webkit-transition: color 9999s linear, background-color 9999s linear;</span><br><span class="line">  -webkit-transition-delay: 9999s;</span><br><span class="line">  background-color: XXX;</span><br><span class="line">  color: XXX;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">css</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/16/[CSS]Input Bottom Animation/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-css_secret" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -244,92 +327,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/08/21/原型回顾/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-基础回顾" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/13/基础回顾/">JS基础回顾</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/13/基础回顾/" class="archive-article-date">
-  	<time datetime="2019-08-13T02:10:39.589Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="内置类型"><a href="#内置类型" class="headerlink" title="内置类型"></a>内置类型</h5><p>加上 ES6 新加的 Symbol，共 7 种，分别为 String， Number， Boolean， Object， Undefined， Null。<br>分为基本数据类型(6)和 Object。<br>对于基本数据类型，通过字面量的方式声明，类型依旧是字面量，只有在使用的时候才会转换为对应的类型。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">typeof()</span><br><span class="line">  特别：</span><br><span class="line">  Symbol-&gt;symbol</span><br><span class="line">  函数-&gt;function,</span><br><span class="line">  null-&gt;object。历史原因对象以000开头，而null恰好为全零</span><br><span class="line">通过Object.prototype.toString.call()可判断准确的类型[object Type]</span><br></pre></td></tr></table></figure>
-
-<p>PS: Symbol 类型(唯一的值)<br>通过 Symbol()定义，定义后的值不相等，System.prototype.description 为定义时 Symbol(‘xxx’)的标识。<br>使用场景：作为对象的属性</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">let sym = Symbol();</span><br><span class="line">let a = &#123;&#125;;</span><br><span class="line">a[sym] = &apos;symbol&apos;;</span><br><span class="line">a = &#123;</span><br><span class="line">  [sym]: &apos;symbol&apos;</span><br><span class="line">&#125;</span><br><span class="line">Object.defineProperty(a, sym, &#123;value: &apos;symbol&apos;&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>注：</p>
-<ol>
-<li>不能用.运算符，.运算符会直接作为字符串取值。</li>
-<li>Symbol 作为属性名，不会出现在 for…in, for…of 中，也不会出现在 Object.keys(), Object.getOwnPropertyNames()、JSON.stringify()里。</li>
-<li>但也不是私有属性，Object.getOwnPropertySymbols，可以获取指定对象的所有 Symbol 属性名。</li>
-<li>新的 API:Reflect.ownKeys 可以返回所有类型的键名，包括常规键名和 Symbol 键名。</li>
-<li>Symbol.for(description)若没有则会创建一个，若存在则共用一个 symbol 值。 Symbol.keyFor(sym)返回一个已登记即 Symbol.for 的 Symbol 类型值的 key</li>
-<li>其他方法可在需要是再查找。</li>
-</ol>
-<h5 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h5><p>转 Boolean 类型。在条件判断时，除了 undefined， null， false， NaN， ‘’， 0， -0，其他所有值都转为 true，包括所有对象<br>对象在转换基本类型时，首先会调用 valueOf 然后调用 toString。<br>注：<br>‘a’ + + ‘b’ – ‘aNaN’</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x==y 比较</span><br><span class="line">undefined == null  // true</span><br><span class="line">[] == true // false</span><br><span class="line">[] == ![] // true [].toString() -&gt; &apos;&apos;，!取反运算符的优先级会高于==， ![] -》 false</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>undefined == null，结果是 true。且它俩与所有其他值比较的结果都是 false。</li>
-<li>String == Boolean，需要两个操作数同时转为 Number。</li>
-<li>String/Boolean == Number，需要 String/Boolean 转为 Number。</li>
-<li>Object == Primitive，需要 Object 转为 Primitive(具体通过 valueOf 和 toString 方法)。</li>
-</ol>
-<h5 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h5>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/13/基础回顾/">展开全文 >></a>
         </p>
       
 
@@ -967,11 +964,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -995,15 +992,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">search</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tree</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Binary tree</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">search</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Object</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">prototype</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1023,15 +1028,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Object</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">prototype</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">closure</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1044,10 +1045,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Object.prototype.toString.call()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">closure</a>
               </li>
              
               <li class="article-tag-list-item">

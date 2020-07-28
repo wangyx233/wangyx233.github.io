@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://wangyx233.github.io">
-  <title>webpack学习 | Hexo</title>
+  <title>&lt;JS Review&gt;对象 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="postcss 配置，post.config.js，同时webpack.config.js mini-css-extract-plugin 与style-loader不共存 注意路径和文件名，仔细，认真 ico图片引入，没什么区别？ 可自动设置dist文件夹下的文件，生成文件的目录你来掌握。 注意图片引入的路径,使用file-loader，url-loader引入的图片需要配合require使用">
+  <meta name="description" content="对象是什么？ 具有唯一标识，内存地址。 具有状态，属性。 具有行为，方法。  JS 的对象具有高度的动态性，可以在运行时对对象添加状态，修改行为。JS 中 Object 的定义，用 new 构造函数()、对象字面量 构造类的函数-&amp;gt;类的构造函数，一个构建函数通常是大写字母开头，这样便于区分构建函数和普通函数。用 this 创建对象，无需重新创建一个对象再返回。创建对象的方法，字面量，构造函数">
+<meta name="keywords" content="JavaScript,Object,prototype">
 <meta property="og:type" content="article">
-<meta property="og:title" content="webpack学习">
-<meta property="og:url" content="https://wangyx233.github.io/2018/06/15/webpack学习/index.html">
+<meta property="og:title" content="&lt;JS Review&gt;对象">
+<meta property="og:url" content="https://wangyx233.github.io/2020/07/28/[重温JS]对象/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="postcss 配置，post.config.js，同时webpack.config.js mini-css-extract-plugin 与style-loader不共存 注意路径和文件名，仔细，认真 ico图片引入，没什么区别？ 可自动设置dist文件夹下的文件，生成文件的目录你来掌握。 注意图片引入的路径,使用file-loader，url-loader引入的图片需要配合require使用">
+<meta property="og:description" content="对象是什么？ 具有唯一标识，内存地址。 具有状态，属性。 具有行为，方法。  JS 的对象具有高度的动态性，可以在运行时对对象添加状态，修改行为。JS 中 Object 的定义，用 new 构造函数()、对象字面量 构造类的函数-&amp;gt;类的构造函数，一个构建函数通常是大写字母开头，这样便于区分构建函数和普通函数。用 this 创建对象，无需重新创建一个对象再返回。创建对象的方法，字面量，构造函数">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-14T02:49:53.691Z">
+<meta property="og:updated_time" content="2020-07-28T08:40:39.560Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="webpack学习">
-<meta name="twitter:description" content="postcss 配置，post.config.js，同时webpack.config.js mini-css-extract-plugin 与style-loader不共存 注意路径和文件名，仔细，认真 ico图片引入，没什么区别？ 可自动设置dist文件夹下的文件，生成文件的目录你来掌握。 注意图片引入的路径,使用file-loader，url-loader引入的图片需要配合require使用">
+<meta name="twitter:title" content="&lt;JS Review&gt;对象">
+<meta name="twitter:description" content="对象是什么？ 具有唯一标识，内存地址。 具有状态，属性。 具有行为，方法。  JS 的对象具有高度的动态性，可以在运行时对对象添加状态，修改行为。JS 中 Object 的定义，用 new 构造函数()、对象字面量 构造类的函数-&amp;gt;类的构造函数，一个构建函数通常是大写字母开头，这样便于区分构建函数和普通函数。用 this 创建对象，无需重新创建一个对象再返回。创建对象的方法，字面量，构造函数">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -132,40 +133,98 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-webpack学习" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-[重温JS]对象" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      webpack学习
+      &lt;JS Review&gt;对象
     </h1>
   
 
         
-        <a href="/2018/06/15/webpack学习/" class="archive-article-date">
-  	<time datetime="2018-06-15T08:34:01.696Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-15</time>
+        <a href="/2020/07/28/[重温JS]对象/" class="archive-article-date">
+  	<time datetime="2020-07-28T08:40:39.560Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-28</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ol>
-<li>postcss 配置，post.config.js，同时webpack.config.js</li>
-<li>mini-css-extract-plugin 与style-loader不共存</li>
-<li>注意路径和文件名，仔细，认真</li>
-<li>ico图片引入，没什么区别？</li>
-<li>可自动设置dist文件夹下的文件，生成文件的目录你来掌握。</li>
-<li>注意图片引入的路径,使用file-loader，url-loader引入的图片需要配合require使用，才能打包。url可以指定图片大小转换成base64等。<br>若不用require，直接src，需要把图片copy到打包后的文件。</li>
-<li>react-hot-loader 与webpack 自带的hot不相互兼容。只能用一个。</li>
-<li>webpack 的publicpath 定义的是服务在哪个文件下启动的，content可以定义文件的目录。</li>
-<li>静态文件可生成hash模式，避免缓存。</li>
-<li>babel也需要相应的配置。配合babel-import-plugin可以进行ui库的部分引入。还要注意选择babel的stage</li>
-<li>react route4 webpack 服务器，用BrowserRouter,historyApiFallback: true</li>
+        <h5 id="对象是什么？"><a href="#对象是什么？" class="headerlink" title="对象是什么？"></a>对象是什么？</h5><ul>
+<li>具有唯一标识，内存地址。</li>
+<li>具有状态，属性。</li>
+<li>具有行为，方法。</li>
+</ul>
+<p>JS 的对象具有高度的动态性，可以在运行时对对象添加状态，修改行为。<br>JS 中 Object 的定义，用 new 构造函数()、对象字面量</p>
+<p>构造类的函数-&gt;类的构造函数，一个构建函数通常是大写字母开头，这样便于区分构建函数和普通函数。用 this 创建对象，无需重新创建一个对象再返回。<br>创建对象的方法，字面量，构造函数 new Object()，Object.create(proto, [propertiesObject])</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">let a = &#123;name: &apos;xxx&apos;&#125;</span><br><span class="line"></span><br><span class="line">function Person(name) &#123;</span><br><span class="line">  this.name = name;</span><br><span class="line">&#125;</span><br><span class="line">let b = new Person(&apos;xxx&apos;)</span><br><span class="line"></span><br><span class="line">Object.creat(&#123;name: &apos;xxx&apos;&#125;)</span><br></pre></td></tr></table></figure>
+
+<h5 id="对象的属性类型"><a href="#对象的属性类型" class="headerlink" title="对象的属性类型"></a>对象的属性类型</h5><p>JS 中，属性和方法其实都可以成为对象的属性。属性并不是简单的名称和值，可以用一组特征来描述属性，可分为数据属性和访问器(getter/setter)属性两类。</p>
+<ul>
+<li>数据属性。这个就是常见的对象属性，具有以下特征：</li>
+</ul>
+<ol>
+<li>value</li>
+<li>writable：能否被赋值</li>
+<li>enumerable：被 for in 枚举</li>
+<li>configurable：被删除，或者改变特征值。false 时，writable 可从 true-&gt;false，但无法反向修改。enumerable 则不能修改，会报 TypeError: cannot redefine property。一旦设置为 false，cannot set true</li>
 </ol>
-<p>gulp 与 webpack的区别<br>gulp 是任务流的，和task有关。<br>webpack 的核心是根据模块构建项目。<br>Webpack 的核心就是模块化地组织，模块化地依赖，然后模块化地打包。相对来上，场景局限在前端模块化打包上；虽然用 gulp + 插件的方式也能实现，但目前看 Webpack 在依赖的模块化构建上是无人能够替代的。<br>gulp 版本号。<br>可以在打包的时候，打入不同的文件。</p>
+<ul>
+<li>访问器(getter/setter)属性。属性在读写的时候执行。</li>
+</ul>
+<ol>
+<li>getter：get: () =&gt; {} || undifined</li>
+<li>setter: set: () =&gt; {} || undifined，两者成对出现，若不设置则为 undefined</li>
+<li>enumerable：被 for in 枚举</li>
+<li>configurable：被删除，或者改变特征值<br>ES5 以后：<br>查看属性可用，Object.getOwnPropertyDescripter(object, ‘key’)<br>设置属性的特性可用，Object.defineProperty(object, ‘key’, {})<br>如果通过赋值的方式为属性赋值，则该属性的特征都默认为 true。但如果通过 defineProperty 赋值而不指定特性，则特征都默认为 false</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var o = &#123;a:1&#125;;</span><br><span class="line">o.b = 2;</span><br><span class="line">Object.getOwnPropertyDescripter(o, &apos;b&apos;);</span><br><span class="line"></span><br><span class="line">Object.defineProperty(o, &apos;c&apos;, &#123;value: 3&#125;);</span><br><span class="line">Object.getOwnPropertyDescripter(o, &apos;c&apos;);</span><br><span class="line"></span><br><span class="line">var o = &#123; get a() &#123; return &apos;a&apos; &#125; &#125;;</span><br><span class="line">Object.defineProperty(o, &apos;b&apos;, &#123;get: () =&gt; 2, set: (b) =&gt; console.log(b), configurable:true&#125;)</span><br></pre></td></tr></table></figure>
+
+<h5 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h5><a id="more"></a>
+
+<p>基于类的面向对象 vs 基于原型的面向对象<br>JS 的原型系统可以描述为：</p>
+<ul>
+<li>每个对象都有一个私有的[[prototype]]，为该对象的原型。</li>
+<li>从对象中获取一个属性，如果自身没有，则会去它的原型上访问，直到原型为空或者找到了该属性为止。</li>
+</ul>
+<p>ES6 以前版本的，面向对象的使用方式，new</p>
+<p><em>new 操作发生了什么</em><br>new fun(x,y,z)</p>
+<ol>
+<li>以构造器的 prototype 属性为原型，创建一个新对象；</li>
+<li>将 this，参数传入构造器进行执行；</li>
+<li>如果构造器返回的是对象，则返回该对象，否则返回(1)创建的对象。</li>
+</ol>
+<p>所以，用 new 的方式进行类的实现，可以在构造函数里面添加属性返回对象，也可以在构造函数的 prototype 里面增加属性。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function test() &#123;</span><br><span class="line">  this.a = 1;</span><br><span class="line">&#125;</span><br><span class="line">var t = new test;</span><br><span class="line"></span><br><span class="line">function test1() &#123;&#125;;</span><br><span class="line">test1.prototype.a = 1;</span><br><span class="line">var t1 = new test1;</span><br></pre></td></tr></table></figure>
+
+<p>ES6 以后，提供了三个直接操作对象原型的内置方法，因此我们可以通过这些方法直接操作对象的原型，而不需要借助以前基于类的方式来进行。</p>
+<ul>
+<li>Object.create(proto, {…new object}) 根据指定的原型创建新的对象，原型可以为 null</li>
+<li>Object.getPrototypeOf 获取对象的原型</li>
+<li>Object.setPrototypeOf 设置对象的原型</li>
+</ul>
+<p>ES6 提供了 class extends，类中定义的方法和属性则会被写在原型对象之上。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">class animals &#123;</span><br><span class="line">  constructor(name) &#123; // 数据属性</span><br><span class="line">    this.name = name;</span><br><span class="line">  &#125;</span><br><span class="line">  get value() &#123; return this.name; &#125;</span><br><span class="line">  eat() &#123;</span><br><span class="line">    console.log(this.name + &apos;is eating!&apos;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class dogs extends animals &#123;</span><br><span class="line">  constructor(name) &#123;</span><br><span class="line">    super(name); // 执行父类的constructor</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var dog = new dogs(&apos;shishi&apos;);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">arguments，类数组，可以取值，也可以得到length</span><br><span class="line">arguments[0] 和 传入的第一个参数的值保持一致，js都是通过值传参的，改变arguments[0],第一个参数的值也会变。但如果没有传入参数，则对应的值也不会改变。</span><br><span class="line">在严格模式里，不允许这样的操作。</span><br><span class="line">函数的参数传递都是按值传递的，并不是按引用传递的。值的复制，分基本类型和引用类型。值和内存地址。所以函数的参数可以当做局部变量。</span><br><span class="line">function setName(obj) &#123;</span><br><span class="line">  obj.name = &apos;hoho&apos;;</span><br><span class="line">  obj = new Object();</span><br><span class="line">  obj.name = &apos;hehe&apos;;</span><br><span class="line">&#125;</span><br><span class="line">var person = new Object();</span><br><span class="line">setName(person);</span><br><span class="line">console.log(person.name)</span><br><span class="line"></span><br><span class="line">function test(person) &#123;</span><br><span class="line">  person.age = 26</span><br><span class="line">  person = &#123;</span><br><span class="line">    name: &apos;yyy&apos;,</span><br><span class="line">    age: 30</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return person</span><br><span class="line">&#125;</span><br><span class="line">const p1 = &#123;</span><br><span class="line">  name: &apos;yck&apos;,</span><br><span class="line">  age: 25</span><br><span class="line">&#125;</span><br><span class="line">const p2 = test(p1)</span><br><span class="line">console.log(p1) // -&gt; ?</span><br><span class="line">console.log(p2) // -&gt; ?</span><br></pre></td></tr></table></figure>
+
+<h6 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h6><p>提供的内置 API，pop(),push(),shift(),unshift(),向数组插入元素的返回数组的 length，从数组中取元素的返回取的元素。<br>sort(),按字符串排序会调用 toString(),所以会借用 sort((a,b) =&gt; {return a - b;}) 返回负数，a 在 b 前面，正数 a 在 b 后面</p>
+<p>concat(),slice()原数组都不会变，都是复制原来的数组生成新的返回。slice()负数，加上数组长度即可。<br>splice 修改原数组，返回操作的数组，只有一项。</p>
+<p>indexOf,lastIndexOf 比较是通过===比较的,所以对象数组的 indexOf 会比较引用在不在，然后返回。</p>
+<p>every [] -&gt; true<br>some [] -&gt; false<br>filter -&gt; []<br>forEach 返回 undefined，一般不需要返回值，或者说如果要用 return，则推荐用 map。若要修改原来数组，需要 return 配合原数组的索引修改。直接同 map 一样 return 值并不会改变。主要功能是对数据进行遍历，进行操作。<br>map 需要 return 返回值，若没有则返回 undefined，结果为修改后生成的新的数组，不会修改原来的数组。速度能更快一些<br>比如食材，cook 的实例。<br>共同点：没有 break 和 continue<br>通过 return 结束本次循环。<br>for…of(break,continue 正常) return 会报错。<br>why？<br>for…in 都不太行<br>reduce,reduceRight 处理 obj 便利</p>
+<ul>
+<li><p>二维数组<br>const arr = new Array(7).fill([])，[]会是同一个引用 new Array(num).fill(0).map(elem =&gt; new Array())</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const len = arr.length</span><br><span class="line">for(i=0;i&lt;len;i++)&#123;</span><br><span class="line">  a[i] = [];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h6 id="Function"><a href="#Function" class="headerlink" title="Function"></a>Function</h6><p>函数是对象，函数名是指针<br>函数声明 vs 函数表达式<br>函数声明的函数，解析器会率先读取函数声明，并且在函数执行前可用；函数表达式必须等到函数解析器执行到它所在的代码行，才会被真正的解析执行。<br>函数声明提升。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 函数声明</span><br><span class="line">function wa() &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">// 函数表达式</span><br><span class="line">var wa = function() &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>函数内部有两个特殊的对象，arguments，this。arguments 是一个类数组，它有一个特殊的属性 callee，是一个指向拥有 arguments 函数的指针。<br>比如递归中，如果外部函数被重写了用 arguments.callee()调用自身，递归还会正常执行。<br>this 是函数执行的环境对象。调用者的环境。<br>caller，保存这调用当前函数的函数的引用，即调用当前函数的函数是什么。可以用 arguments.callee.caller 表示。解除耦合。<br>严格模式下，callee，caller 都 🙅‍♂️<br>函数都有两个非继承而来的方法，apply()和 call()，用于改变函数内 this 的指向，即在特定的作用域内调用函数。<br>sum.apply(object, arguments)<br>sum.call(object, arg1, arg2)<br>只是传参的方式不一样而已。能方便的更改函数调用的作用域，减少耦合程度。<br>bind(),更改 this 指向。如：sum.bind(object)<br>fun.toString() / fun.valueOf() 返回函数代码</p>
 
       
 
@@ -195,6 +254,25 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Object</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">prototype</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -245,7 +323,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJUlEQVR42u3aMXLDMAwEQP//007rRsodKCcjalVlbI3JZYEAIF6v+Hl/PJ+fnH/7+clslYsfDAyM2zLep8/5AgkmWSVZ9+gdDAyM5zCOIliy3XbT7Vrn72NgYGCcv3O06SRlXFkXAwMDY4UxqzeT5BIDAwMjKSaTn26L4X+oxTEwMG7IyEPk3//9lfsNDAyMWzFmzfr1YD0LwYerYGBgbM3IA1yyxeTa4Kq0DwMDA2OlrZ83ztojKLJXDAyMTRltGbkeIpNQWwx8YGBgbMo4D3mz1K0tepMQXP/HwMDA2JoxG3q4qsXWjoBgYGA8gdECclhelLaHVV9qYmBgbMFYH7rK08G2DC5SSQwMjE0ZbQus3W4+ijFLPTEwMJ7DuDawtm399tpyOC2CgYFxW8asvZWXpm2iOTsgDAyMvRl5iGwbaiu/me/tl2ELDAyMLRh5O6wFtNcDbaqKgYHxNEYSFvNLx6S5tnJMRRGLgYGxESNpvrdjXisDHMPQjIGB8RjGVclcezGZB+7DcI+BgfEwxkq7Pw+v61enGBgYz2S0S7ZjqUkYzTEYGBhPYLzLpy198yPIi+dXnmliYGBswbgqOWtTxtlwxuywMDAw9mDUja24SZdvdx2MgYHxBMYs8OUDFufJ32wgDAMDA2PW3F9v2LXXqBgYGBhJO2xWmrZp6FcCLgYGxq0Y30jv1q8nv9Juw8DAuCEjLx3X08T2ImFldQwMjC0YP1G8k2HiSdZbAAAAAElFTkSuQmCC" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACOElEQVR42u3aQU4EMQwF0bn/pZsNCxCjUN8OSHEqKwTTnbxZGDv264XX82N9/f368+t3pk+1lgwZMo5lPMtFGBxD3kz++mZHGTJkXMBYB0QeBNeb8a+Gn02GDBkyyKt5SsfDqwwZMmT0A24/dPKgLEOGDBm8iE0DKEkr0y9oQy0uQ4aMAxm8NP3/n/+kvyFDhoyjGE+4+FNpY6B2ns9nZciQMZrBAxxpVaZlZyftkyFDxm2M9OJ+HSg7xW2tDJYhQ8ZsRufQBJO2B/izKMOVIUPGCAZJufhFWOe4pElQ/L8hQ4aMwxlp0la7k08bD60xCxkyZIxjpJdicYqGxylaiaAMGTJGM2qJWnpxvw7r6fDZmxPKkCFjNGNdXvLtyeF4csmLZBkyZNzDqB0uHZtYNzh5sbohTZQhQ8aBjHQkgofXXW0A9EkZMmQMZdRSsbQ7moZdPib7rRaXIUPGBYx+0EyL4TWSX+fJkCHjHkY6fsEbkLXWAmlOyJAh4wYGH4bgzUjeWuBhN6jFZciQMZrBUzRyxRand2HI/mXYQoYMGUMZPNSmA6npF1Qc4JAhQ8ZljF0jrSSJ7AzFsr6BDBkyzmY84UqHMDptziBYy5AhYzQj3aazwa5Es9ZgkCFDxukMsgEvbvdew/GkU4YMGTcwOoMUtZZnLZUMhi1kyJBxMWPXgdIGJ6rIZciQIaN0VcffUAvoMmTIuIfBy9FaKdtPQ7ddt8mQIeNARq3F2MfU8K2mpgwZMs5jfAArRHRyY7KeQQAAAABJRU5ErkJggg==" alt="微信分享二维码">
     </div>
 </div>
 
@@ -259,18 +337,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/01/16/理解promise/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/07/28/[实践]性能优化二三事/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          理解promise
+          &lt;Work&gt; 实践
         
       </div>
     </a>
   
   
-    <a href="/2017/06/27/Echarts3.5.0以上世界地图nameMap修改/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Echarts3.5.0以上世界地图nameMap变更</div>
+    <a href="/2020/07/22/[CSS]flex/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">&lt;CSS&gt;Flex</div>
       <i class="icon-circle-right"></i>
     </a>
   

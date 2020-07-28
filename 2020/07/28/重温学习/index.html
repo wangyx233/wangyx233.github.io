@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://wangyx233.github.io">
-  <title>webpack学习 | Hexo</title>
+  <title>&lt;重温JS&gt;数据类型及基本转换 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="postcss 配置，post.config.js，同时webpack.config.js mini-css-extract-plugin 与style-loader不共存 注意路径和文件名，仔细，认真 ico图片引入，没什么区别？ 可自动设置dist文件夹下的文件，生成文件的目录你来掌握。 注意图片引入的路径,使用file-loader，url-loader引入的图片需要配合require使用">
+  <meta name="description" content="7 种语言类型undefined 是一个变量，而并非是一个关键字。老的浏览器中会是，ES5 以后就不是了。函数内部，对象的属性现在也是可以赋值的。if(typeof str === ‘undefined’){// 如果直接用 str === undefined, str 未声明的话可能会报错 not defined}String 用于表示文本数据。String 有最大长度是 2^53 - 1，字">
 <meta property="og:type" content="article">
-<meta property="og:title" content="webpack学习">
-<meta property="og:url" content="https://wangyx233.github.io/2018/06/15/webpack学习/index.html">
+<meta property="og:title" content="&lt;重温JS&gt;数据类型及基本转换">
+<meta property="og:url" content="https://wangyx233.github.io/2020/07/28/重温学习/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="postcss 配置，post.config.js，同时webpack.config.js mini-css-extract-plugin 与style-loader不共存 注意路径和文件名，仔细，认真 ico图片引入，没什么区别？ 可自动设置dist文件夹下的文件，生成文件的目录你来掌握。 注意图片引入的路径,使用file-loader，url-loader引入的图片需要配合require使用">
+<meta property="og:description" content="7 种语言类型undefined 是一个变量，而并非是一个关键字。老的浏览器中会是，ES5 以后就不是了。函数内部，对象的属性现在也是可以赋值的。if(typeof str === ‘undefined’){// 如果直接用 str === undefined, str 未声明的话可能会报错 not defined}String 用于表示文本数据。String 有最大长度是 2^53 - 1，字">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-14T02:49:53.691Z">
+<meta property="og:updated_time" content="2020-07-28T08:40:39.655Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="webpack学习">
-<meta name="twitter:description" content="postcss 配置，post.config.js，同时webpack.config.js mini-css-extract-plugin 与style-loader不共存 注意路径和文件名，仔细，认真 ico图片引入，没什么区别？ 可自动设置dist文件夹下的文件，生成文件的目录你来掌握。 注意图片引入的路径,使用file-loader，url-loader引入的图片需要配合require使用">
+<meta name="twitter:title" content="&lt;重温JS&gt;数据类型及基本转换">
+<meta name="twitter:description" content="7 种语言类型undefined 是一个变量，而并非是一个关键字。老的浏览器中会是，ES5 以后就不是了。函数内部，对象的属性现在也是可以赋值的。if(typeof str === ‘undefined’){// 如果直接用 str === undefined, str 未声明的话可能会报错 not defined}String 用于表示文本数据。String 有最大长度是 2^53 - 1，字">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -132,40 +132,53 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-webpack学习" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-重温学习" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      webpack学习
+      &lt;重温JS&gt;数据类型及基本转换
     </h1>
   
 
         
-        <a href="/2018/06/15/webpack学习/" class="archive-article-date">
-  	<time datetime="2018-06-15T08:34:01.696Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-15</time>
+        <a href="/2020/07/28/重温学习/" class="archive-article-date">
+  	<time datetime="2020-07-28T08:40:39.655Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-28</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ol>
-<li>postcss 配置，post.config.js，同时webpack.config.js</li>
-<li>mini-css-extract-plugin 与style-loader不共存</li>
-<li>注意路径和文件名，仔细，认真</li>
-<li>ico图片引入，没什么区别？</li>
-<li>可自动设置dist文件夹下的文件，生成文件的目录你来掌握。</li>
-<li>注意图片引入的路径,使用file-loader，url-loader引入的图片需要配合require使用，才能打包。url可以指定图片大小转换成base64等。<br>若不用require，直接src，需要把图片copy到打包后的文件。</li>
-<li>react-hot-loader 与webpack 自带的hot不相互兼容。只能用一个。</li>
-<li>webpack 的publicpath 定义的是服务在哪个文件下启动的，content可以定义文件的目录。</li>
-<li>静态文件可生成hash模式，避免缓存。</li>
-<li>babel也需要相应的配置。配合babel-import-plugin可以进行ui库的部分引入。还要注意选择babel的stage</li>
-<li>react route4 webpack 服务器，用BrowserRouter,historyApiFallback: true</li>
-</ol>
-<p>gulp 与 webpack的区别<br>gulp 是任务流的，和task有关。<br>webpack 的核心是根据模块构建项目。<br>Webpack 的核心就是模块化地组织，模块化地依赖，然后模块化地打包。相对来上，场景局限在前端模块化打包上；虽然用 gulp + 插件的方式也能实现，但目前看 Webpack 在依赖的模块化构建上是无人能够替代的。<br>gulp 版本号。<br>可以在打包的时候，打入不同的文件。</p>
+        <ul>
+<li><p>7 种语言类型<br>undefined 是一个变量，而并非是一个关键字。老的浏览器中会是，ES5 以后就不是了。函数内部，对象的属性现在也是可以赋值的。<br>if(typeof str === ‘undefined’){<br>// 如果直接用 str === undefined, str 未声明的话可能会报错 not defined<br>}<br>String 用于表示文本数据。String 有最大长度是 2^53 - 1，字符串的 UTF16 编码，charAt、charCodeAt、length 等方法针对的都是 UTF16 编码，其实一个 utf16 单元代表一个字符，这俩数量是对应的，0-65536（U+0000 - U+FFFF）的码点被称为基本字符区域（BMP）<br>Number 2^64-2^53+3<br>NaN，占用了 9007199254740990，这原本是符合 IEEE 规则的数字；Infinity，无穷大；-Infinity，负无穷大。<br>还有 +0 -0，1/x 是 Infinity 还是 -Infinity<br>双精度浮点数，有效的检测范围-0x1fffffffffffff 至 0x1fffffffffffff，浮点数运算精度的问题<br>比较浮点数的准确方法是：与 JS 提供的最小精度比较 Math.abs(0.1 + 0.2 - 0.3) &lt;= Number.EPSILON</p>
+<p>Symbol，非字符串 key 的集合， 可以用于迭代器，Symbol.iterator 需要有 next，next 返回一个对象包括 value 和 done</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var o = new Object</span><br><span class="line"></span><br><span class="line">o[Symbol.iterator] = function() &#123;</span><br><span class="line">    var v = 0</span><br><span class="line">    return &#123;</span><br><span class="line">        next: function() &#123;</span><br><span class="line">            return &#123; value: v++, done: v &gt; 10 &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">for(var v of o)</span><br><span class="line">    console.log(v); // 0 1 2 3 ... 9</span><br></pre></td></tr></table></figure>
+
+<p>StringToNumber，字符串转换为数组支持进制转换，支持科学计数法，即用 Number()转换。不建议使用 parseInt，用的时候最好传入第二个参数。parseFloat 则直接把原字符串作为十进制来解析，它不会引入任何的其他进制。都会忽略字符串前后的空格</p>
+<ul>
+<li>Number<br>进行十进制的转换，若字符串中带有非数字，都会变成 NaN，数字会正常转换若 0 开头则会被忽略。如果是对象，则先调用对象的 valueOf()方法，如果为 NaN，则再调用 toString()</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Number(true) 1</span><br><span class="line">Number(null) 0</span><br><span class="line">Number(undefined) NaN</span><br><span class="line">Number(&apos;123aaa&apos;) NaN</span><br><span class="line">Number([]) 0 -&gt; Number(&apos;&apos;)</span><br><span class="line">+string</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>parseInt(string, radix)<br>如果字符串以数字开头，则会忽略掉后续的非数字进行类型转换，否则返回 NaN，即找到字符串中的数字进行转换，若没有则为 NaN。以’0x’开头的十六进制也会转换，浮点数是向下取整，科学计数法也是不会正常转换的<br>radix 不填或填 0 的时候默认为 10,取值范围为 2 ～ 36,radix 超出指定范围返回 NaN，若转换的数字大于 radio，也返回 NaN。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">parseInt(&apos;123aaa&apos;) // 123</span><br><span class="line">parseInt([]) // NaN</span><br><span class="line">[&apos;1&apos;, &apos;2&apos;, &apos;3&apos;].map(parseInt) -&gt; [&apos;1&apos;, &apos;2&apos;, &apos;3&apos;].map((elem, index) =&gt; parseInt(elem, index)) // [1, NaN, NaN]</span><br><span class="line">[&apos;10&apos;,&apos;10&apos;,&apos;10&apos;,&apos;10&apos;,&apos;10&apos;].map(parseInt) // [10, NaN, 2, 3, 4]</span><br><span class="line">[&apos;1.1&apos;, &apos;2&apos;, &apos;0.3&apos;].map(parseInt) // [1, NaN, 0]</span><br></pre></td></tr></table></figure>
+
+<p>数组的 toString(),会返回一个字符串的拼接；valueOf 还是返回数组。</p>
+<p>NumberToString，正常。</p>
+<h6 id="装箱"><a href="#装箱" class="headerlink" title="装箱"></a>装箱</h6><p>装箱，是指讲基本数据类型转化为对象，会频繁产生临时对象，在一些性能要求高的情况下，尽量避免。<br>.运算符提供了装箱操作，所以基本类型通过.可以临时创建一个对象来调用对象的方法。<br>Object.prototype.toString.call() 是可以准确识别对象对应的基本类型的方法，它比 instanceof(constructor) 更加准确，因为 JS 中没有方法可以更改私有的 class 属性。call 本身会产生装箱操作，所以需要配合 typeof 来区分基本类型还是对象类型。</p>
+<h6 id="拆箱"><a href="#拆箱" class="headerlink" title="拆箱"></a>拆箱</h6><p>拆箱是把对象转换成基本数据类型。toPrimitive<br>对象到 Number，String 的转换都遵循“先拆箱再转换”的原则。把对象-&gt;基本类型-&gt;对应的 String/Number</p>
+<p>通过调用 valueOf()，toString()，没有则报错 TypeError。ES6 以后可以用 Symbol.toPrimitive 自定义转换覆盖以前的 valueOf()，toString()。</p>
+<p>通过 new Number()声明的类型和直接用 Number()声明的类型不同，object 与 number 的区别。<br>toString()还可以传入进制进行计算。valueOf 返回数字</p>
+<p>toFixed(), toPrecision(num)向上取整, toExponential()科学计数法</p>
+<p>String,chartAt(index),chartCodeAt(index)</p>
+<p>PS: 实现一个 parseInt()，Number()</p>
 
       
 
@@ -245,7 +258,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJUlEQVR42u3aMXLDMAwEQP//007rRsodKCcjalVlbI3JZYEAIF6v+Hl/PJ+fnH/7+clslYsfDAyM2zLep8/5AgkmWSVZ9+gdDAyM5zCOIliy3XbT7Vrn72NgYGCcv3O06SRlXFkXAwMDY4UxqzeT5BIDAwMjKSaTn26L4X+oxTEwMG7IyEPk3//9lfsNDAyMWzFmzfr1YD0LwYerYGBgbM3IA1yyxeTa4Kq0DwMDA2OlrZ83ztojKLJXDAyMTRltGbkeIpNQWwx8YGBgbMo4D3mz1K0tepMQXP/HwMDA2JoxG3q4qsXWjoBgYGA8gdECclhelLaHVV9qYmBgbMFYH7rK08G2DC5SSQwMjE0ZbQus3W4+ijFLPTEwMJ7DuDawtm399tpyOC2CgYFxW8asvZWXpm2iOTsgDAyMvRl5iGwbaiu/me/tl2ELDAyMLRh5O6wFtNcDbaqKgYHxNEYSFvNLx6S5tnJMRRGLgYGxESNpvrdjXisDHMPQjIGB8RjGVclcezGZB+7DcI+BgfEwxkq7Pw+v61enGBgYz2S0S7ZjqUkYzTEYGBhPYLzLpy198yPIi+dXnmliYGBswbgqOWtTxtlwxuywMDAw9mDUja24SZdvdx2MgYHxBMYs8OUDFufJ32wgDAMDA2PW3F9v2LXXqBgYGBhJO2xWmrZp6FcCLgYGxq0Y30jv1q8nv9Juw8DAuCEjLx3X08T2ImFldQwMjC0YP1G8k2HiSdZbAAAAAElFTkSuQmCC" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACOUlEQVR42u3a0W7CMAxGYd7/pbvbTSPh/DZMq3N6hUoo/jbJxHYeD3xd367O/d9r0k+1LhkyZNyWcW2v1ZpVKKtA+ZPJu0++V4YMGQcwSBAkLe6/bP/M/esXMcuQIUPGlpHCyHoZMmTI6DNIobsvU9OkLEOGDBmkmCRBp2GR9W+uxWXIkHFDBu+6//3rj8w3ZMiQcSvGFV78OekgkyfZJ98lQ4aM0Qye4Pjwkt+vsZcrZciQMZSRtuk5rFZ2kjI4yPcyZMgYxOCFKw+61uhPD2f8SLgyZMgYyuCPrhWiaXM/TrXpL4MMGTJuy+DpLw1xH25n+yhDhowzGTztksZZmo7TxpwMGTLOYXSOW6XsfpJdgmXIkDGakYabHowg+ZAfCKsNO2XIkDGDQVr8vHGfYtJkuvw/yJAhYygjTaakNE3HCTz05R0ZMmSMZvDdYie42rChuDWUIUPGOEZnuEg+mzbs0oJWhgwZ5zDS1jxplr2rfEV/LBkyZIxm8BY8abql99NmXzy8lCFDxiBG7WAW38bxIxS1UlaGDBky0i0dHzakzbjgsIUMGTKGMvpbwDRppifUXmwZZciQMZRxhVc6sOQbx1opi6YZMmTIuDmjU3DyNfyoWW3YIEOGjBMYJMmmDTgSNLkfJHoZMmQcwKht794VSq2UfdE1lCFDhowwlE5LDp0WkSFDhgzc4udHXWuHwD7+uyFDhox/zCCPToOrJW5SJMuQIeM0Bi8da8k3HZf2t5UyZMgYxPgCoDdLqcN2iyoAAAAASUVORK5CYII=" alt="微信分享二维码">
     </div>
 </div>
 
@@ -259,18 +272,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/01/16/理解promise/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          理解promise
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/06/27/Echarts3.5.0以上世界地图nameMap修改/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Echarts3.5.0以上世界地图nameMap变更</div>
+    <a href="/2020/07/28/基础回顾/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JS基础回顾</div>
       <i class="icon-circle-right"></i>
     </a>
   
