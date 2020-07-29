@@ -161,7 +161,7 @@
 <ul>
 <li>Number<br>进行十进制的转换，若字符串中带有非数字，都会变成 NaN，数字会正常转换若 0 开头则会被忽略。如果是对象，则先调用对象的 valueOf()方法，如果为 NaN，则再调用 toString()</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Number(true) 1</span><br><span class="line">Number(null) 0</span><br><span class="line">Number(undefined) NaN</span><br><span class="line">Number(&apos;123aaa&apos;) NaN</span><br><span class="line">Number([]) 0 -&gt; Number(&apos;&apos;)</span><br><span class="line">+string</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Number(&apos;&apos;) 0</span><br><span class="line">Number(true) 1</span><br><span class="line">Number(null) 0</span><br><span class="line">Number(undefined) NaN</span><br><span class="line">Number(&apos;123aaa&apos;) NaN</span><br><span class="line">Number([]) 0 -&gt; Number(&apos;&apos;)</span><br><span class="line">+string</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>parseInt(string, radix)<br>如果字符串以数字开头，则会忽略掉后续的非数字进行类型转换，否则返回 NaN，即找到字符串中的数字进行转换，若没有则为 NaN。以’0x’开头的十六进制也会转换，浮点数是向下取整，科学计数法也是不会正常转换的<br>radix 不填或填 0 的时候默认为 10,取值范围为 2 ～ 36,radix 超出指定范围返回 NaN，若转换的数字大于 radio，也返回 NaN。</li>
@@ -1119,11 +1119,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1147,6 +1147,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">search</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tree</a>
               </li>
              
@@ -1155,7 +1159,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">search</a>
+                <a href="javascript:void(0)" class="js-tag color3">Promise</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">setTimeout</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1164,14 +1172,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">prototype</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Promise</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">setTimeout</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1187,10 +1187,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">closure</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">typeof</a>
               </li>
              
@@ -1200,6 +1196,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Object.prototype.toString.call()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">closure</a>
               </li>
              
               <li class="article-tag-list-item">
