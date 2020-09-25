@@ -130,6 +130,100 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-[算法基础]树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/20/[算法基础]树/">&lt;Algorithm&gt;树</a>
+    </h1>
+  
+
+        
+        <a href="/2020/04/20/[算法基础]树/" class="archive-article-date">
+  	<time datetime="2020-04-20T06:05:28.236Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h5><p>何为树？ 想象一下自然界的 🌲 形态，用术语表达即为：没有闭环的无向图。几个特征可以描述为：每个节点之间有且只有一条路径相连通；如果增加一条路径，图就会连通起来；所以边的数量为节点数-1。节点和路径可以理解为 🌲 的叉。<br>“高度”树的层数，“度”子节点的数量<br>所以二叉树，就是每个节点最多有两条边，即最多有左右两个节点的树。<br>满二叉树即为每个节点如果有子节点那左右节点都具备。如果有这个树有 n 层，那总节点数为 2 の n 次方 - 1，第 n 层的节点数为 2(n -1)。<br>完全二叉树，则是除了最后一层其他层的节点都填满，并且如果最后一层叶子节点如果是右节点，那这个叶子节点的左边必有节点。<br>二叉树的遍历方式：遍历的顺序为根节点在遍历中的顺序。</p>
+<ul>
+<li>前序遍历：根-左-右</li>
+<li>中序遍历：左-根-右</li>
+<li>后序遍历：左-右-根</li>
+</ul>
+<h5 id="优先队列-堆"><a href="#优先队列-堆" class="headerlink" title="优先队列-堆"></a>优先队列-堆</h5><p>理论说明：根节点和子节点之间的关系，以及结点数量。</p>
+<ol>
+<li>如何建堆，最大堆，最小堆。</li>
+<li>数据插入</li>
+<li>应用场景，堆排序，第 K 大的数</li>
+</ol>
+<p>时间复杂度</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Algorithm</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">tree</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Binary tree</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/20/[算法基础]树/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-[CSS]Input Bottom Animation" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -795,78 +889,6 @@
 
 
   
-    <article id="post-Canvas学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/12/Canvas学习/">Canvas学习</a>
-    </h1>
-  
-
-        
-        <a href="/2017/06/12/Canvas学习/" class="archive-article-date">
-  	<time datetime="2017-06-12T05:55:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>&lt;canvas&gt;标签定义一个矩形框画布，默认没有边框和内容,默认大小为300像素×150像素(wxh)。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;canvas id=&quot;myCanvas&quot; width=&quot;200&quot; height=&quot;100&quot;</span><br><span class="line">style=&quot;border:1px solid #000000;&quot;&gt;</span><br><span class="line">若浏览器不支持canvas标签，将显示这些文字</span><br><span class="line">&lt;/canvas&gt;</span><br></pre></td></tr></table></figure>
-
-<p>在Js文件中绘制Canvas元素。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var c=document.getElementById(&quot;myCanvas&quot;);</span><br><span class="line">if(c.getContext(&apos;2d&apos;))&#123; //支持性检查</span><br><span class="line">  var ctx=c.getContext(&quot;2d&quot;);//获取渲染上下文，参数为上下文的格式</span><br><span class="line">  ctx.fillStyle=&quot;#FF0000&quot;; //填充样式，可为颜色、图案、渐变等。</span><br><span class="line">  ctx.fillRect(0,0,150,75);//矩形的填充方法fillRect(x,y,width,height)，矩形左上角坐标为(0,0)</span><br><span class="line">&#125;else &#123;</span><br><span class="line">  // canvas-unsupported code here</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h6 id="画矩形"><a href="#画矩形" class="headerlink" title="画矩形"></a>画矩形</h6><p>canvas支持一种原生的图形绘制-矩形</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fillRect(x, y, width, height) //绘制一个填充的矩形</span><br><span class="line">strokeRect(x, y, width, height) //绘制一个矩形的边框</span><br><span class="line">clearRect(x, y, width, height) //清除指定矩形区域，让清除部分完全透明</span><br><span class="line">rect(x, y, width, height) //绘制一个左上角坐标为（x,y），宽高为width以及height的矩形。</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2017/06/12/Canvas学习/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/12/Canvas学习/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
@@ -960,11 +982,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color5">flex</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -981,6 +999,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数字签名</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1008,7 +1034,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">flex</a>
+                <a href="javascript:void(0)" class="js-tag color5">moment.js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Date</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1025,18 +1059,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">closure</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">moment.js</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Date</a>
               </li>
              
               <li class="article-tag-list-item">
