@@ -130,37 +130,34 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-[浏览器]浏览器是如何工作的？" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-[React]JSX" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/27/[浏览器]浏览器是如何工作的？/">&lt;了解&gt;浏览器是如何工作的？</a>
+      <a class="article-title" href="/2021/06/30/[React]JSX/">【React】Why JSX?</a>
     </h1>
   
 
         
-        <a href="/2020/04/27/[浏览器]浏览器是如何工作的？/" class="archive-article-date">
-  	<time datetime="2020-04-27T08:07:25.056Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-27</time>
+        <a href="/2021/06/30/[React]JSX/" class="archive-article-date">
+  	<time datetime="2021-06-30T02:45:57.321Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在浏览器地址栏输入 URL 发生了什么？</p>
-<ol>
-<li>如果是域名，先进行 DNS 解析，根据 IP 地址去服务端请求页面；</li>
-<li>拿到服务端返回的 HTML，解析构建成 DOM 树；</li>
-<li>计算 DOM🌲 上的 CSS 属性；</li>
-<li>根据 CSS 渲染每个元素，在内存中保存为位图；</li>
-<li>进行渲染合成绘制。</li>
-</ol>
-<p>整个过程是流式过程，网页是逐渐加载出来的。</p>
-<h5 id="HTTP-协议"><a href="#HTTP-协议" class="headerlink" title="HTTP 协议"></a>HTTP 协议</h5><p>HTTP 协议是基于 TCP 协议的，TCP 协议是一个双向协议，而 HTTP 协议是在此基础上规定了 Requst-Response 模式，并且用来传输文本。可以理解为用 TCP 规定了一种用来传输文本的应用层协议。</p>
-
+        <h1 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h1><ul>
+<li>JSX 的本质是什么，它和 JS 之间到底是什么关系？</li>
+<li>为什么要用 JSX？不用会有什么后果？</li>
+<li>JSX 背后的功能模块是什么，这个功能模块都做了哪些事情？</li>
+</ul>
+        
+          <a class="article-more-a" href="/2021/06/30/[React]JSX/#more">more >></a>
+        
       
 
       
@@ -173,17 +170,28 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">React</a>
         		</li>
       		
 		</ul>
 	</div>
 
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/React//" class="article-tag-list-link color1">React</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/27/[浏览器]浏览器是如何工作的？/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/06/30/[React]JSX/">展开全文 >></a>
         </p>
       
 
@@ -213,118 +221,82 @@
 
 
   
-    <article id="post-[重温JS]垃圾收集" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-[React]React-Hooks" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/24/[重温JS]垃圾收集/">&lt;JS Review&gt;垃圾收集</a>
+      <a class="article-title" href="/2021/06/30/[React]React-Hooks/">【React】React-Hooks</a>
     </h1>
   
 
         
-        <a href="/2020/04/24/[重温JS]垃圾收集/" class="archive-article-date">
-  	<time datetime="2020-04-24T08:21:39.625Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-24</time>
+        <a href="/2021/06/30/[React]React-Hooks/" class="archive-article-date">
+  	<time datetime="2021-06-30T02:45:57.321Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>JS 中实现了自动垃圾回收机制，自动分配内存和释放内存。原理是：找到那些不再使用的变量，然后释放它所占的内存。然后按照固定的时间间隔执行。<br>垃圾收集器需要跟踪变量有没有用，对没有用的变量打上标记，以便后续的回收。标识变量的策略常用的有，标记清除，引用计数。</p>
+        <p>React-Hooks 自 React 16.8 以来才真正被推而广之</p>
+<h1 id="What-amp-Why"><a href="#What-amp-Why" class="headerlink" title="What &amp; Why"></a>What &amp; Why</h1><h2 id="类组件-Class-Component-vs-函数-无状态组件"><a href="#类组件-Class-Component-vs-函数-无状态组件" class="headerlink" title="类组件 Class Component vs 函数/无状态组件"></a>类组件 Class Component vs 函数/无状态组件</h2><blockquote>
+<p>所谓类组件，就是基于 ES6 Class 这种写法，通过继承 React.Component 得来的 React 组件<br>函数组件/无状态组件，在没有Hooks加持的条件加，函数组件无法维护自己的state</p>
+</blockquote>
+<p>二者并没有优劣，只是根据不同的场景采用不同的形式。</p>
+<blockquote>
+<p>区别：函数组件会捕获render内部的状态。面向对象与函数式的不同。this调用的区别<br>注：对于函数组件，props会保持渲染结果符合预期。更利于逻辑拆分与重用组件<br>为了回归 UI = render(data)的本质，所以需要补齐函数组件所缺乏的的类组件的能力，React Hooks应运而生。即一套能够使函数组件更强大、更灵活的“钩子”<br>ex.</p>
+</blockquote>
 <ul>
-<li>标记清除 Mark and Sweep<br>进入环境标记。或者维护一个进入环境的列表，一个离开环境的列表。把环境中用到的或者被其他环境内引用的变量标记去掉，剩下还有标记的都是需要删除的变量。</li>
-<li>引用计数 Reference Count。可能会导致内存一直得不到释放，比如在函数内，两个对象相互调用</li>
+<li>useState() 为函数组件引入了state，const [state, setState] = useState(initialState)</li>
+<li>useEffect() 允许函数执行副作用操作，即弥补了生命周期的缺失，比如componentDidMount、componentDidUpdate和componentWillUnmount。操作DOM、订阅事件、调用外部API。<br>useEffect(callBack, [])</li>
+<li>callback 是否有return,决定是否在卸载阶段执行。有return则会在挂载执行return之前的内容，卸载阶段执行return的函数。即useEffect回调中返回了一个函数，那它会被作为清除函数处理。</li>
+<li>[],判断是否每次页面渲染后都执行。如果 []不为空，React会在每次渲染前对比前后两次的渲染，查看数组内部是否有变量发生了更新。注意引用类型的比较可能因为变化导致判断结果不同。</li>
+<li>useLayoutEffect() 同useEffect都是用来处理副作用的，底层函数签名也是一致的，都是mountEffectImpl，在使用上也没有什么区别。但useEffect是异步调用的，useLayoutEffect则是在DOM变更后同步调用，主要避免页面闪烁、调整样式、处理DOM，但正是由于同步操作，所以避免在useLayoutEffect中做计算量大耗时的任务，以免出现阻塞。<br>Hooks 开发需要抛弃生命周期的思考模式，以 effects 的角度重新思考</li>
 </ul>
-<p>解除引用 Dereferencing,一旦不再使用，最好将他们的值置位 null。主要是全局变量，全局对象等。因为局部变量都会在离开执行环境后，直接解除引用。解除引用，是让这个值脱离执行环境，而不是立即内存回收。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/24/[重温JS]垃圾收集/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-[算法基础]树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/20/[算法基础]树/">&lt;Algorithm&gt;树</a>
-    </h1>
-  
-
-        
-        <a href="/2020/04/20/[算法基础]树/" class="archive-article-date">
-  	<time datetime="2020-04-20T06:05:28.236Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h5><p>何为树？ 想象一下自然界的 🌲 形态，用术语表达即为：没有闭环的无向图。几个特征可以描述为：每个节点之间有且只有一条路径相连通；如果增加一条路径，图就会连通起来；所以边的数量为节点数-1。节点和路径可以理解为 🌲 的叉。<br>“高度”树的层数，“度”子节点的数量<br>所以二叉树，就是每个节点最多有两条边，即最多有左右两个节点的树。<br>满二叉树即为每个节点如果有子节点那左右节点都具备。如果有这个树有 n 层，那总节点数为 2 の n 次方 - 1，第 n 层的节点数为 2(n -1)。<br>完全二叉树，则是除了最后一层其他层的节点都填满，并且如果最后一层叶子节点如果是右节点，那这个叶子节点的左边必有节点。<br>二叉树的遍历方式：遍历的顺序为根节点在遍历中的顺序。</p>
+<h2 id="所以-Why"><a href="#所以-Why" class="headerlink" title="所以 Why?"></a>所以 Why?</h2><ul>
+<li>告别难以理解的Class，this和生命周期，降低学习成本。</li>
+<li>更好的进行逻辑拆分，避免重复冗余的代码。</li>
+<li>状态复用 HOC（高阶组件）</li>
+<li>函数补齐能力还需继续完善，声明周期还有未纳入Hooks中的</li>
+<li>常量声明</li>
+</ul>
+<h2 id="原则"><a href="#原则" class="headerlink" title="原则"></a>原则</h2><ol>
+<li>只在React函数中调用Hook</li>
+<li>不要在循环，条件和嵌套中用Hook。why？<br>eslint-plugin-react-hooks</li>
+</ol>
+<p>以setState为例，</p>
 <ul>
-<li>前序遍历：根-左-右</li>
-<li>中序遍历：左-根-右</li>
-<li>后序遍历：左-右-根</li>
+<li>mountState，初始化hook，将hook相关的所有信息都收敛在一个hook对象里，hook对象之间以单向链表的形式相互串联。</li>
+<li>updateState，按顺序去遍历之前构造好的链表，然后取相应的数据进行渲染。重点：按“顺序”去修改！</li>
 </ul>
-<h5 id="优先队列-堆"><a href="#优先队列-堆" class="headerlink" title="优先队列-堆"></a>优先队列-堆</h5><p>理论说明：根节点和子节点之间的关系，以及结点数量。</p>
+<p>PS:<br>心智模型：引用唐纳德·诺曼，是指用户头脑中对一个产品应该具有的概念和行为的知识。这个知识可能来源于用户以前使用类似产品的沉淀，或者用户根据使用该产品要达到的目标而对产品概念和行为的一种期望。</p>
+<h1 id="Q-amp-A-如何设计React的组件？"><a href="#Q-amp-A-如何设计React的组件？" class="headerlink" title="Q&amp;A: 如何设计React的组件？"></a>Q&amp;A: 如何设计React的组件？</h1><blockquote>
+<p>展示组件的复用性更强，灵巧组件则更专注与业务本身</p>
+</blockquote>
+<ul>
+<li>展示组件： 无状态组件，只做展示，独立运行</li>
+</ul>
 <ol>
-<li>如何建堆，最大堆，最小堆。</li>
-<li>数据插入</li>
-<li>应用场景，堆排序，第 K 大的数</li>
+<li>代理组件</li>
+<li>样式组件</li>
+<li>布局组件</li>
 </ol>
-<p>时间复杂度</p>
+<ul>
+<li>灵巧组件： 有状态组件，主要进行业务逻辑和数据状态处理</li>
+</ul>
+<ol>
+<li>容器组件</li>
+<li>高阶组件<ul>
+<li>逻辑复用</li>
+<li>链式调用</li>
+<li>渲染劫持</li>
+<li>缺陷：丢失静态函数，refs属性不能透传</li>
+</ul>
+</li>
+</ol>
 
       
 
@@ -338,25 +310,28 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Algorithm</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">tree</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Binary tree</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">React</a>
         		</li>
       		
 		</ul>
 	</div>
 
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/React//" class="article-tag-list-link color1">React</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/20/[算法基础]树/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/06/30/[React]React-Hooks/">展开全文 >></a>
         </p>
       
 
@@ -386,37 +361,35 @@
 
 
   
-    <article id="post-[CSS]Input Bottom Animation" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-[JS基础]浏览器中JavaScript的执行机制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/16/[CSS]Input Bottom Animation/">Hover&amp;Focus Effects 简单动画示例</a>
+      <a class="article-title" href="/2021/06/30/[JS基础]浏览器中JavaScript的执行机制/">【JS基础】浏览器中JavaScript执行机制</a>
     </h1>
   
 
         
-        <a href="/2020/04/16/[CSS]Input Bottom Animation/" class="archive-article-date">
-  	<time datetime="2020-04-16T03:36:09.777Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-16</time>
+        <a href="/2021/06/30/[JS基础]浏览器中JavaScript的执行机制/" class="archive-article-date">
+  	<time datetime="2021-06-30T02:45:57.320Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>登录页进行账号输入时，为了让焦点聚集在当前输入框上可能会需要配合一些动画效果，或者是某个内容的重点提醒也会在 hover 时增加醒目动画。这些设计虽然很古老，也有用到的场合。<br>主要是借助 CSS3 的 transition 来做效果变换，示例如下：<a href="https://codepen.io/yx233/pen/YzywdJQ" target="_blank" rel="noopener">https://codepen.io/yx233/pen/YzywdJQ</a></p>
-<h5 id="普通元素-hover-effects"><a href="#普通元素-hover-effects" class="headerlink" title="普通元素 hover effects"></a>普通元素 hover effects</h5><ul>
-<li>简单的 border-color 变换。</li>
-<li>借助伪元素实现从左-&gt;右，或从中间向两边延伸的效果。</li>
-</ul>
-<h5 id="input-的-focus"><a href="#input-的-focus" class="headerlink" title="input 的 focus"></a>input 的 focus</h5><p>::after ::before 是指元素文档树内渲染前、后的内容，input 不支持。所以需要借助额外的兄弟元素进行效果实现。</p>
-<p>注：[:focus-within]是当一个元素或者元素的后代有[:focus]伪类时生效的一个选择器。对输入框获得焦点时，其前后左右的小图标，下滑动画等变换都有非常实用的效果。</p>
-<p>注意：登录框前有时会配合放一些小图标，如果用把 icon 当做 input 的 background-image，同时通过定位的方式定位，需要格外注意 Chrome 记住密码情况下的展示。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">input[name=&apos;user&apos;] &#123;</span><br><span class="line">  background-image: url(/login/user.svg);</span><br><span class="line">  background-position: 12px;</span><br><span class="line">  background-repeat: no-repeat;</span><br><span class="line">&#125;</span><br><span class="line">// 注意</span><br><span class="line">input:-webkit-autofill,</span><br><span class="line">input:-webkit-autofill:hover,</span><br><span class="line">input:-webkit-autofill:focus,</span><br><span class="line">input:-webkit-autofill:active &#123;</span><br><span class="line">  -webkit-transition: color 9999s linear, background-color 9999s linear;</span><br><span class="line">  -webkit-transition-delay: 9999s;</span><br><span class="line">  background-color: XXX;</span><br><span class="line">  color: XXX;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h2 id="变量提升（Hoisting）"><a href="#变量提升（Hoisting）" class="headerlink" title="变量提升（Hoisting）"></a>变量提升（Hoisting）</h2><h3 id="What"><a href="#What" class="headerlink" title="What?"></a>What?</h3><blockquote>
+<p>JavaScript代码执行过程中，JS引擎会把变量声明和函数声明部分提升到代码的开头，并不是物理性的移动，实际中代码并没有改变，而是JS引擎在编译阶段放进内存的。<br>一段JS代码在执行时，先经过编译，编译完成后，再进入执行阶段。<br>编译后的内容分为两部分：执行上下文（Execution context）和可执行代码。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">showName()</span><br><span class="line">console.log(myname)</span><br><span class="line">var myname = &apos;xxx&apos;</span><br><span class="line">function showName() &#123;</span><br><span class="line">  console.log(&apos;函数showName被执行&apos;);</span><br><span class="line">&#125;</span><br><span class="line">// 编译</span><br><span class="line">var myname;</span><br><span class="line">function showName() &#123; //函数定义放到堆中，变量环境中showName指向该函数</span><br><span class="line">  console.log(&apos;函数showName被执行&apos;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 执行</span><br><span class="line">showName()</span><br><span class="line">console.log(myname)</span><br><span class="line">myname = &apos;xxx&apos;</span><br></pre></td></tr></table></figure>
 
-
+<h3 id="QA-代码中相同的变量和函数如何处理？"><a href="#QA-代码中相同的变量和函数如何处理？" class="headerlink" title="QA 代码中相同的变量和函数如何处理？"></a>QA 代码中相同的变量和函数如何处理？</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function showName() &#123;</span><br><span class="line">    console.log(&apos;aaa&apos;);</span><br><span class="line">&#125;</span><br><span class="line">showName();</span><br><span class="line">function showName() &#123;</span><br><span class="line">    console.log(&apos;bbb&apos;);</span><br><span class="line">&#125;</span><br><span class="line">showName();</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2021/06/30/[JS基础]浏览器中JavaScript的执行机制/#more">more >></a>
+        
       
 
       
@@ -424,22 +397,22 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">css</a>
+        			<a href="/categories/JavaScript//" class="article-tag-list-link color1">JavaScript</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/16/[CSS]Input Bottom Animation/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/06/30/[JS基础]浏览器中JavaScript的执行机制/">展开全文 >></a>
         </p>
       
 
@@ -469,42 +442,290 @@
 
 
   
-    <article id="post-css_secret" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-[JS基础]异步" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/29/css_secret/">CSS Secrets</a>
+      <a class="article-title" href="/2021/06/30/[JS基础]异步/">【JS基础】异步</a>
     </h1>
   
 
         
-        <a href="/2019/08/29/css_secret/" class="archive-article-date">
-  	<time datetime="2019-08-29T03:23:05.438Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-29</time>
+        <a href="/2021/06/30/[JS基础]异步/" class="archive-article-date">
+  	<time datetime="2021-06-30T02:45:57.320Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>回顾元素获取</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function $$(selector, context) &#123;</span><br><span class="line">  context = context || document;</span><br><span class="line">  var elements = context.querySelectorAll(selector);</span><br><span class="line">  return Array.prototype.slice.call(elements);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h1 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h1><ul>
+<li>同步和异步的区别</li>
+<li>手写Promise</li>
+<li>前端异步的场景</li>
+<li>event loop（事件循环）的机制，画图</li>
+<li>async/await</li>
+<li>Promise的三种状态，then，catch的连接</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">console.log(1)</span><br><span class="line">setTimeout(() =&gt; &#123;</span><br><span class="line">    console.log(2)</span><br><span class="line">&#125;, 1000);</span><br><span class="line">console.log(3)</span><br><span class="line">setTimeout(() =&gt; &#123;</span><br><span class="line">    console.log(4)</span><br><span class="line">&#125;, 0);</span><br><span class="line">console.log(5)</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2021/06/30/[JS基础]异步/#more">more >></a>
+        
+      
 
-<p>11.20 总结：</p>
-<p>浏览器新特性总么办，加前缀是个失败的尝试。<br>可以通过工具加前缀。不过新特性的使用任重而道远。<br>web 标准是浏览器相关厂商，以及委员会的人共同探讨维护的。</p>
-<p>一、CSS 编写注意技巧：</p>
-<ol>
-<li>减少重复的代码，<br>注意 style 之间的依赖关系，如 em，rem，字体和行高等。具体如何计算相互依赖关系，需要根据实际情况。<br>代码量少，和代码容易维护不是一个概念。<br>currentcolor<br>inherit</li>
-<li>相信眼睛而不紧紧关注数字。<br>比如 垂直居中看着并不居中，圆形看着小，padding 上下左右不一致。</li>
-<li>响应式布局 rwd。一直说响应式布局，但是 media query 不能是最好的解决方法，只能是最后的解决方法。<br>每个媒体查询都会增加成本。每次修改 css 的时候都可能改一遍，复杂性高，经不起折腾。表现的是断点式的表现<br>可以先从减少代码重复来入手。<br>写相对大小 依赖关系。宽度不写具体的 px，用百分比的形式，或者和视口相关的表示如 vh。善用 max-width，min-width。替换元素 img，iframe，vedio 等也要设置 max-width： 100%；<br>推荐弹性布局，或者 inine-block。<br>背景图片要完整地平铺，background-size:cover</li>
-<li>合理使用简写。对于可展开的属性。如，border，background，要贯彻减少代码重复的原则，合理使用简写或者展开。</li>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/JavaScript//" class="article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/06/30/[JS基础]异步/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-[JS基础]原型与原型链" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/06/30/[JS基础]原型与原型链/">【JS基础】原型与原型链</a>
+    </h1>
+  
+
+        
+        <a href="/2021/06/30/[JS基础]原型与原型链/" class="archive-article-date">
+  	<time datetime="2021-06-30T02:45:57.319Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h1><ol>
+<li>如何判断一个变量是不是数组？</li>
+<li>class的原型本质</li>
 </ol>
-<p>例子： background: url(tr.png) no-repeat top right / 2em 2em, url(br.png) no-repeat bottom right / 2em 2em,<br>url(bl.png) no-repeat bottom left / 2em 2em;<br>其中， / 是为了避免歧义。</p>
-<ol start="5">
-<li><p>是否使用预处理器，如 less，sass 等。<br>建议在项目开始用 css，无法维护时用预处理器。因为要编译就需要时间，文件体积也会变大，还会有自身的 bug，学习成本。<br>如： 原生高级的例子。<br>ul { –accent-color: purple; }<br>ol { –accent-color: rebeccapurple; } li { background: var(–accent-color); }</p>
-<p>11.21 总结：<br>背景与边框<br>rgba，hsla 0 红 120 绿 240 蓝 h 色调 s 饱和度 l 亮度 a 透明度</p>
+        
+          <a class="article-more-a" href="/2021/06/30/[JS基础]原型与原型链/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/JavaScript//" class="article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/06/30/[JS基础]原型与原型链/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-[JS基础]变量类型与比较" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/06/30/[JS基础]变量类型与比较/">【JS基础】变量类型与比较</a>
+    </h1>
+  
+
+        
+        <a href="/2021/06/30/[JS基础]变量类型与比较/" class="archive-article-date">
+  	<time datetime="2021-06-30T02:45:57.319Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h1><ol>
+<li>typeof 能判断什么类型？</li>
+<li>=== vs == 有什么不同？</li>
+<li>值类型与引用类型有什么区别？</li>
+<li>手写深拷贝？</li>
+</ol>
+        
+          <a class="article-more-a" href="/2021/06/30/[JS基础]变量类型与比较/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/JavaScript//" class="article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/06/30/[JS基础]变量类型与比较/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-[JS基础]事件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/06/30/[JS基础]事件/">【JS基础】事件</a>
+    </h1>
+  
+
+        
+        <a href="/2021/06/30/[JS基础]事件/" class="archive-article-date">
+  	<time datetime="2021-06-30T02:45:57.318Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>事件冒泡的流程</li>
+<li>通用的事件监听</li>
+<li>无限下拉的图片列表，如何监听每个图片的点击</li>
+</ul>
+<h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><ul>
+<li>事件绑定</li>
+<li>事件冒泡</li>
+<li>事件代理</li>
+</ul>
+<ol>
+<li><p>事件绑定，事件冒泡</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">function bindEvent(elem, type, selecotr, fn) &#123;</span><br><span class="line">    if(fn == null) &#123;</span><br><span class="line">        fn = selector;</span><br><span class="line">        selector = null;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    elem.addEventListener(type, e =&gt; &#123;</span><br><span class="line">        let target;</span><br><span class="line">        if(selector) &#123; // 需要代理</span><br><span class="line">            target = e.target;</span><br><span class="line">            if(target.matches(selecotr)) &#123; // 判断是否是触发元素</span><br><span class="line">                fn.call(target, e)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            fn.call(target, e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line">const btn = document.getElementById(&apos;btn&apos;);</span><br><span class="line">bindEvent(btn, &apos;click&apos;, event =&gt; &#123;</span><br><span class="line">    console.log(event.target) // 获取触发的元素 </span><br><span class="line">    event.preventDefault() // 取消默认事件</span><br><span class="line">    event.stopPropagation() // 阻止冒泡</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>事件代理</p>
+<ul>
+<li>代码简洁，事件绑定到触发的父元素上</li>
+<li>减少浏览器内存占用</li>
+<li>不要滥用</li>
+</ul>
 </li>
 </ol>
 
@@ -516,10 +737,21 @@
       
       
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/JavaScript//" class="article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/29/css_secret/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/06/30/[JS基础]事件/">展开全文 >></a>
         </p>
       
 
@@ -549,28 +781,34 @@
 
 
   
-    <article id="post-原型回顾" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-[JS基础]作用域和闭包" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/21/原型回顾/">原型回顾</a>
+      <a class="article-title" href="/2021/06/30/[JS基础]作用域和闭包/">【JS基础】作用域和闭包</a>
     </h1>
   
 
         
-        <a href="/2019/08/21/原型回顾/" class="archive-article-date">
-  	<time datetime="2019-08-21T11:43:55.178Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-21</time>
+        <a href="/2021/06/30/[JS基础]作用域和闭包/" class="archive-article-date">
+  	<time datetime="2021-06-30T02:45:57.318Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>快来快来看一看</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">function Foo() &#123;</span><br><span class="line">    Foo.a = function() &#123;</span><br><span class="line">        console.log(1)</span><br><span class="line">    &#125;</span><br><span class="line">    this.a = function() &#123;</span><br><span class="line">        console.log(2)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">Foo.prototype.a = function() &#123;</span><br><span class="line">    console.log(3)</span><br><span class="line">&#125;</span><br><span class="line">Foo.a = function() &#123;</span><br><span class="line">    console.log(4)</span><br><span class="line">&#125;</span><br><span class="line">Foo.a();</span><br><span class="line">let obj = new Foo();</span><br><span class="line">obj.a();</span><br><span class="line">Foo.a();</span><br></pre></td></tr></table></figure>
+        <h1 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h1><ol>
+<li>this的不同应用场景，以及取值</li>
+<li>手写bind函数</li>
+<li>闭包的场景</li>
+</ol>
+        
+          <a class="article-more-a" href="/2021/06/30/[JS基础]作用域和闭包/#more">more >></a>
+        
       
 
       
@@ -579,10 +817,21 @@
       
       
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/JavaScript//" class="article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/21/原型回顾/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/06/30/[JS基础]作用域和闭包/">展开全文 >></a>
         </p>
       
 
@@ -612,61 +861,64 @@
 
 
   
-    <article id="post-链表队列" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-[JSWebAPI]DOM" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/22/链表队列/">链表</a>
+      <a class="article-title" href="/2021/06/30/[JSWebAPI]DOM/">【WebAPI】DOM</a>
     </h1>
   
 
         
-        <a href="/2019/07/22/链表队列/" class="archive-article-date">
-  	<time datetime="2019-07-22T08:05:17.090Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-22</time>
+        <a href="/2021/06/30/[JSWebAPI]DOM/" class="archive-article-date">
+  	<time datetime="2021-06-30T02:45:57.317Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>what?<br>链表是一种递归的数据结构，它或者为空，或者为一个指向结点的引用。该结点含有一个泛型元素和一个指向另一个链表的引用(next)。<br>其中，结点是一种含有任何类型数据的抽象实体。<br>链表表示的是一列元素。<br>在追踪链表或其他链式结构代码的时候，可用可视化的方式表示：</p>
+        <blockquote>
+<p>DOM -&gt; Document Object Model</p>
+</blockquote>
+<ul>
+<li>DOM数据结构</li>
+<li>DOM常用的API</li>
+<li>attr和property的区别</li>
+<li>如何一次插入多个DOM节点</li>
+</ul>
+<h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><ul>
+<li>DOM 本质</li>
+<li>DOM 节点操作</li>
+<li>DOM 结构操作</li>
+<li>DOM 性能</li>
+</ul>
 <ol>
-<li>用长方形表示对象</li>
-<li>将实例变量的值写在长方形中</li>
-<li>用指向被引用对象的箭头表示引用关系，链接<br>实现任意插入和删除操作的标准解决方案是双向链表，其中每个结点都含有两个链接(pervious, next)，分别指向不同的方向。</li>
+<li>DOM本质：从HTML解析出来的一棵树</li>
+<li>DOM节点<ul>
+<li>节点获取的常见API</li>
+<li>通过js修改页面渲染结构：节点property，直接通过属性修改，如：dom.style.width = xxxx,dom.className = ‘xxx’</li>
+<li>修改的是标签的属性：节点attribute，通过getAttibute(‘style’, ‘font-size:16px’),setAttribute()<blockquote>
+<p>property： 修改JS对象属性，不会体现在html中；attribute：修改html属性，改变html结构。都有可能引起DOM重新渲染，可以先优先用property</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>DOM结构<ul>
+<li>新增/插入节点，createElement()，appendChild()未存在的节点直接创建，已存在的移动。</li>
+<li>删除节点：removeChild()</li>
+</ul>
+</li>
+<li>DOM性能<ul>
+<li>避免频繁的DOM操作</li>
+<li>对DOM查询做缓存，get操作用变量缓存一下</li>
+<li>将频繁操作改为一次操作，通过document.createDocumentFragment() 创建一个文档片段，将高频操作插入到文档片段中，最后再把文档片段插入</li>
+</ul>
+</li>
 </ol>
-<p>特点：</p>
-<ol>
-<li>可以处理任意类型的数据</li>
-<li>所需的空间和集合的大小成正比</li>
-<li>操作的所需要的时间总是和集合的大小无关</li>
-</ol>
-<p>补充：</p>
-<ol>
-<li>背包(Bag)是一种不支持从中删除元素的集合数据类型，目的就是收集元素并且迭代遍历收集到的元素，迭代的顺序不确定且元素的处理顺序不重要，可以用栈也可以用队列。</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">class Bag() &#123;&#125;</span><br><span class="line">  add(item)</span><br><span class="line">  isEmpty()</span><br><span class="line">  size()</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>先进先出队列 FIFO</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class Queue() &#123;&#125;</span><br><span class="line">  enqueue(item) // 添加一个元素</span><br><span class="line">  dequeue() // 删除最近添加的元素</span><br><span class="line">  isEmpty()</span><br><span class="line">  size()</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>下压栈 LIFO</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class Stack() &#123;&#125;</span><br><span class="line">  push(item)</span><br><span class="line">  pop()</span><br><span class="line">  isEmpty()</span><br><span class="line">  size()</span><br><span class="line">例如表达式的求值：遇到左括号忽略，操作数押入操作数的栈里，运算符押入运算符的栈里，遇到右括号运算符栈和操作数栈pop计算得到值，再押入栈中。</span><br><span class="line">如：(1 + ((2 + 3) * (4 * 5)))</span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li>在一些语言中，数组的长度一经定义就不可改变，并且数组的删除和添加操作需要对元素进行平移会很繁琐。JS 中数组和其他的不同，它是通过对象实现的，操作方便，但是效率可能较其他语言有所不足。</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function Node(elem) &#123;</span><br><span class="line">  this.elem = elem;</span><br><span class="line">  this.next = null;</span><br><span class="line">  // this.prvious = null;</span><br><span class="line">&#125;</span><br><span class="line">// 查找，插入，删除结点</span><br></pre></td></tr></table></figure>
-
-<h6 id="跳表-Skip-List"><a href="#跳表-Skip-List" class="headerlink" title="跳表 Skip List"></a>跳表 Skip List</h6><p>1989 前后出现的，适用于有序元素的情况。对标的是二分查找和平衡树(二叉搜索树中的平衡树 AVL Tree)。跳表是一种插入，删除，搜索复杂度都是 logn 的数据结构。如：redis，levelDB<br>一维的数据结构要加速，一般可以升维变成二维的数据结构。空间换时间<br>LRU 缓存</p>
-<p>自己想个 5-10min 看有没有思路，有思路就写了，没思路就直接看题解，学会了。再自己写呦</p>
 
       
 
@@ -676,10 +928,21 @@
       
       
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/JavaScript//" class="article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/07/22/链表队列/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/06/30/[JSWebAPI]DOM/">展开全文 >></a>
         </p>
       
 
@@ -709,107 +972,47 @@
 
 
   
-    <article id="post-理解promise" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-[JSWebAPI]cookie" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/16/理解promise/">理解promise</a>
+      <a class="article-title" href="/2021/06/30/[JSWebAPI]cookie/">【WebAPI】存储</a>
     </h1>
   
 
         
-        <a href="/2019/01/16/理解promise/" class="archive-article-date">
-  	<time datetime="2019-01-15T16:41:34.498Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-16</time>
+        <a href="/2021/06/30/[JSWebAPI]cookie/" class="archive-article-date">
+  	<time datetime="2021-06-30T02:45:57.317Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="为什么"><a href="#为什么" class="headerlink" title="为什么?"></a>为什么?</h4><p>避免回调地狱<br>有什么问题呢？<br>代码臃肿，可读性差，耦合性差，容易产生bug，不容易维护。不容易复用。在回调里面处理问题。<br>js特点-&gt;异步，主要是靠回调函数实现的。<br>比如，nodejs的特点是高并发和非阻塞，主要靠异步来实现。<br>js是事件注册机制的。<br>函数的执行是进栈和出栈这样的，所以普通的回调函数，try catch是没有作用的。</p>
-<h4 id="是什么？"><a href="#是什么？" class="headerlink" title="是什么？"></a>是什么？</h4><p>用于异步计算，用于即将发生的事情，或者不会发生的事情。<br>一个Promise的状态有resolved/rejected/pending/settled<br>new Promise 返回一个promise对象，参数是一个执行函数。执行函数有两个参数，resolve，reject</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">new Promise((resolve, reject) =&gt; &#123;</span><br><span class="line">  // 异步处理</span><br><span class="line">  处理结束后执行resolve , reject</span><br><span class="line">&#125;)</span><br><span class="line">.then() //成功失败的回调，注意：then方法是异步执行的</span><br><span class="line">.catch() //在最外层捕获异常。</span><br><span class="line"></span><br><span class="line">promise.catch(onRejected)</span><br><span class="line">相当于</span><br><span class="line">promise.then(null, onRrejected);</span><br></pre></td></tr></table></figure>
-
-<p>promise的三种状态:<br>pending 初始化<br>fulfilled 执行成功，调用resolve<br>rejected 失败，调用reject<br>注意promsie状态 只能由 pending =&gt; fulfilled/rejected, 一旦修改就不能再变</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/01/16/理解promise/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-webpack学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/15/webpack学习/">webpack学习</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/15/webpack学习/" class="archive-article-date">
-  	<time datetime="2018-06-15T08:34:01.696Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ol>
-<li>postcss 配置，post.config.js，同时webpack.config.js</li>
-<li>mini-css-extract-plugin 与style-loader不共存</li>
-<li>注意路径和文件名，仔细，认真</li>
-<li>ico图片引入，没什么区别？</li>
-<li>可自动设置dist文件夹下的文件，生成文件的目录你来掌握。</li>
-<li>注意图片引入的路径,使用file-loader，url-loader引入的图片需要配合require使用，才能打包。url可以指定图片大小转换成base64等。<br>若不用require，直接src，需要把图片copy到打包后的文件。</li>
-<li>react-hot-loader 与webpack 自带的hot不相互兼容。只能用一个。</li>
-<li>webpack 的publicpath 定义的是服务在哪个文件下启动的，content可以定义文件的目录。</li>
-<li>静态文件可生成hash模式，避免缓存。</li>
-<li>babel也需要相应的配置。配合babel-import-plugin可以进行ui库的部分引入。还要注意选择babel的stage</li>
-<li>react route4 webpack 服务器，用BrowserRouter,historyApiFallback: true</li>
+        <ul>
+<li>介绍cookie、localStorage、sessionStorage区别</li>
+</ul>
+<h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><ol>
+<li><p>cookie</p>
+<ul>
+<li>通过;分割的字符串，每一部分都是key=value的形式</li>
+<li>http请求的一部分，用于浏览器和服务端通讯的</li>
+<li>document.cookie修改，默认每次追加或者修改一个key/value</li>
+<li>限制：最大4KB，每次http请求都需要发送到服务端，api太简陋</li>
+</ul>
+</li>
+<li><p>localStorage、sessionStorage</p>
+<ul>
+<li>HTML5专门为存储设计的，最大可存储5M / pre host</li>
+<li>API：getItem() setItem() 存储的为字符串的形式，所以其他格式的数据要注意</li>
+<li>和http请求没关系</li>
+<li>localStorage 永久存储，除非手动或者代码删除；sessionStorage只存在于当前会话，页面关闭清空</li>
+</ul>
+</li>
 </ol>
-<p>gulp 与 webpack的区别<br>gulp 是任务流的，和task有关。<br>webpack 的核心是根据模块构建项目。<br>Webpack 的核心就是模块化地组织，模块化地依赖，然后模块化地打包。相对来上，场景局限在前端模块化打包上；虽然用 gulp + 插件的方式也能实现，但目前看 Webpack 在依赖的模块化构建上是无人能够替代的。<br>gulp 版本号。<br>可以在打包的时候，打入不同的文件。</p>
 
       
 
@@ -819,75 +1022,21 @@
       
       
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/JavaScript//" class="article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/15/webpack学习/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Echarts3.5.0以上世界地图nameMap修改" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/27/Echarts3.5.0以上世界地图nameMap修改/">Echarts3.5.0以上世界地图nameMap变更</a>
-    </h1>
-  
-
-        
-        <a href="/2017/06/27/Echarts3.5.0以上世界地图nameMap修改/" class="archive-article-date">
-  	<time datetime="2017-06-27T09:23:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>今天发现使用Echarts，nameMap渲染的世界地图，没有显示美国的数据，美国的区域显示的为United States。经过查找发现，Echarts应该是在3.5.0版本的时候，对world.js的一些国家名称进行了变更，从而导致用官网实例提供的nameMap,无法匹配到国家，进而无法显示。<br>大致看了一下地图，修改后对应的国家信息为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var nameMap =&#123;</span><br><span class="line">  &apos;Central African Rep.&apos;:&apos;中非共和国&apos;,</span><br><span class="line">  &apos;Dem. Rep. Congo&apos;:&apos;刚果民主共和国&apos;,</span><br><span class="line">  &apos;Lao PDR&apos;:&apos;老挝&apos;,</span><br><span class="line">  &apos;W. Sahara&apos;:&apos;西撒哈拉&apos;,</span><br><span class="line">  &apos;Tanzania&apos;:&apos;坦桑尼亚联合共和国&apos;,</span><br><span class="line">  &apos;United States&apos;:&apos;美国&apos;,</span><br><span class="line">  &apos;Korea&apos;: &apos;韩国&apos;,</span><br><span class="line">  &apos;Dem. Rep. Korea&apos;: &apos;朝鲜&apos;,</span><br><span class="line">  &apos;Congo&apos;: &apos;刚果共和国&apos;,</span><br><span class="line">  &apos;Solomon Is.&apos;: &apos;所罗门群岛&apos;,</span><br><span class="line">  &apos;Dominican Rep.&apos;:&apos;多明尼加共和国&apos;,</span><br><span class="line">  &apos;S. Sudan&apos;: &apos;南苏丹&apos; ,</span><br><span class="line">  &quot;Côte d&apos;Ivoire&quot;: &apos;科特迪瓦&apos;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/27/Echarts3.5.0以上世界地图nameMap修改/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/06/30/[JSWebAPI]cookie/">展开全文 >></a>
         </p>
       
 
@@ -919,7 +1068,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
     </nav>
   
 
@@ -1006,7 +1155,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css</a>
+                <a href="javascript:void(0)" class="js-tag color1">React</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1014,11 +1163,35 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">CI/CD</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CSS</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">购房</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">保险</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1038,6 +1211,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
@@ -1047,6 +1224,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Binary tree</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">投资</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1062,18 +1247,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">typeof</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">instanceof</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Object.prototype.toString.call()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">moment.js</a>
               </li>
              
@@ -1083,6 +1256,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">typeof</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">instanceof</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Object.prototype.toString.call()</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1098,11 +1283,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">CI/CD</a>
+                <a href="javascript:void(0)" class="js-tag color3">安全</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -130,61 +130,31 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-[浏览器]浏览器原理初识" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-浏览器の网络-HTTP" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/18/[浏览器]浏览器原理初识/">&lt;浏览器&gt;浏览器原理初识</a>
+      <a class="article-title" href="/2021/06/30/浏览器の网络-HTTP/">浏览器の网络-HTTP</a>
     </h1>
   
 
         
-        <a href="/2020/11/18/[浏览器]浏览器原理初识/" class="archive-article-date">
-  	<time datetime="2020-11-18T05:39:16.323Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-18</time>
+        <a href="/2021/06/30/浏览器の网络-HTTP/" class="archive-article-date">
+  	<time datetime="2021-06-30T02:45:57.340Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h5 id="线程VS进程"><a href="#线程VS进程" class="headerlink" title="线程VS进程"></a>线程VS进程</h5><p>一个进程就是一个程序的运行实例。启动一个程序时，浏览器会开辟一块内存用于存放代码，数据和执行任务的主线程。</p>
-<p>进程与线程之间的关系，对于一个进程，其中的线程可以共享进程中的数据，但是一个线程抛出错误，会影响整体进程。对于操作系统中的进程来言，每个进程之间是相互隔离的，每个进程只能访问自己占有的数据，如果一个进程崩溃了或者挂起了，不会影响其他进程。当一个进程关闭时，操作系统会收回它所有占用的内存。</p>
-<p>浏览器变更历史：单线程-&gt;多线程-&gt;SOA形式（Services Oriented Architecture，面向服务架构）<br>单线程浏览器：不稳定，不安全，不流畅，主要是插件和页面脚本，崩溃的心情<br>多线程：以Chrome浏览器为例子，一个浏览器主线程，一个GPU进程，一个网络进程，多个渲染进程Render Process和多个插件进程Plugin Process。会导致资源占用高，复杂的体系结构</p>
-<h5 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h5><h6 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h6><p>TCP协议，保证页面文件被完整的送达浏览器<br>FP First Paint，页面加载到首次开始绘制的时间。网络加载速度<br>用户数据包协议（User Datagram Protocol）”传输层，UDP头，端口号。UDP协议不能知道发送的数据能否到达目的地，但是传输速度快，不那么严格关注数据严格性的领域可以用，如在线视频<br>IP(Internet Protocol)协议，访问任何网站都是从一台计算机向另一台请求信息。数据当然通过网络层进行传输了，IP头地址和数据信息。<br>TCP（Transmission Control Protocol，传输控制协议）是一种面向连接的、可靠的、基于字节流的传输层通信协议。</p>
-<ul>
-<li>对于数据丢失的问题，TCP提供了重传机制。</li>
-<li>TCP引入了数据包排序机制，可以把乱序的数据包合成一个完整的文件。<br>TCP头不仅包含了目的端口号，源端口号，还包含了排序的序列号。<br>一个完整的TCP连接的生命周期包括，“建立连接”、“传输数据”、“断开连接”三个阶段。<br>即三次握手建立连接，数据包校验机制，四次挥手断开连接。 从发送第一个数据包开始，在一定时间没有接收到服务端的反馈则即为丢包，触发重发机制。并且别分成的小数据包，通过TCP头的序列号进行排序得到完整的数据。</li>
-</ul>
-<h6 id="HTTP请求流程"><a href="#HTTP请求流程" class="headerlink" title="HTTP请求流程"></a>HTTP请求流程</h6><p>允许浏览器向服务端发起请求的一种协议，让我们来看一下浏览器端发送HTTP请求的流程。</p>
-<ol>
-<li>构建请求</li>
-<li>查找缓存</li>
-<li>准备IP和端口，DNS解析</li>
-<li>TCP链接，Chrome同一个域名最多只能建6个TCP连接</li>
-<li>HTTP请求<br>Connection: Keep-Alive，会保持TCP连接，省去下次请求时建立连接的时间，提升加载速度</li>
-</ol>
-<p>服务器端</p>
-<ol>
-<li>返回请求</li>
-<li>断开连接</li>
-<li>重定向，重定向的地址在Location里面</li>
-</ol>
-<ul>
-<li>为什么很多站点第二次打开速度很快</li>
-</ul>
-<ol>
-<li>DNS缓存</li>
-<li>浏览器资源缓存<br>Cache-Control: Max-age=2000(s)<br>如果资源过期了，浏览器会继续发出请求，并且在Http的请求头中加入：If-None-Match:”实体标签”ETag，If-Modified-Since:Date可以和Last-Modified服务器响应首部配合工作<br>服务器会根据这个值判断资源是否有更新新鲜度校验，如果没有更新，则返回304，告诉浏览器这个资源可以继续使用<br>登录状态，可以用Cookie实现，或者header头里的Authorization</li>
-</ol>
-<p>PS: 3xx状态码</p>
-<ul>
-<li>300 Multiple Choices。内容协商，客户端协商，服务端协商，透明协商。中英文网站切换</li>
-<li>301 Moved Permanently。永久重定向<br>Cache-Control: no-cache，与服务器进行新鲜度验证前不使用缓存内容。<br>Cache-Control: no-store，删除缓存的文档</li>
-</ul>
-
+        <h2 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h2><p>HTTP是应用层协议</p>
+<img src="/gallery/http.png">
+        
+          <a class="article-more-a" href="/2021/06/30/浏览器の网络-HTTP/#more">more >></a>
+        
       
 
       
@@ -197,21 +167,28 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">浏览器</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">HTTP</a>
         		</li>
       		
 		</ul>
 	</div>
 
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/网络//" class="article-tag-list-link color3">网络</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/18/[浏览器]浏览器原理初识/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/06/30/浏览器の网络-HTTP/">展开全文 >></a>
         </p>
       
 
@@ -241,122 +218,27 @@
 
 
   
-    <article id="post-基础回顾" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-安全了-HTTPS" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/10/16/基础回顾/">JS基础回顾</a>
+      <a class="article-title" href="/2021/06/30/安全了-HTTPS/">HTTPS</a>
     </h1>
   
 
         
-        <a href="/2020/10/16/基础回顾/" class="archive-article-date">
-  	<time datetime="2020-10-16T02:03:15.273Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-16</time>
+        <a href="/2021/06/30/安全了-HTTPS/" class="archive-article-date">
+  	<time datetime="2021-06-30T02:45:57.335Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h5 id="内置类型"><a href="#内置类型" class="headerlink" title="内置类型"></a>内置类型</h5><p>加上 ES6 新加的 Symbol，共 7 种，分别为 String， Number， Boolean， Object， Undefined， Null。<br>分为基本数据类型(6)和 Object。<br>对于基本数据类型，通过字面量的方式声明，类型依旧是字面量，只有在使用的时候才会转换为对应的类型。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">typeof()</span><br><span class="line">  特别：</span><br><span class="line">  Symbol-&gt;symbol</span><br><span class="line">  函数-&gt;function,</span><br><span class="line">  null-&gt;object。历史原因对象以000开头，而null恰好为全零</span><br><span class="line">通过Object.prototype.toString.call()可判断准确的类型[object Type]</span><br></pre></td></tr></table></figure>
-
-<p>PS: Symbol 类型(唯一的值)<br>通过 Symbol()定义，定义后的值不相等，System.prototype.description 为定义时 Symbol(‘xxx’)的标识。<br>使用场景：作为对象的属性</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">let sym = Symbol();</span><br><span class="line">let a = &#123;&#125;;</span><br><span class="line">a[sym] = &apos;symbol&apos;;</span><br><span class="line">a = &#123;</span><br><span class="line">  [sym]: &apos;symbol&apos;</span><br><span class="line">&#125;</span><br><span class="line">Object.defineProperty(a, sym, &#123;value: &apos;symbol&apos;&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>注：</p>
-<ol>
-<li>不能用.运算符，.运算符会直接作为字符串取值。</li>
-<li>Symbol 作为属性名，不会出现在 for…in, for…of 中，也不会出现在 Object.keys(), Object.getOwnPropertyNames()、JSON.stringify()里。</li>
-<li>但也不是私有属性，Object.getOwnPropertySymbols，可以获取指定对象的所有 Symbol 属性名。</li>
-<li>新的 API:Reflect.ownKeys 可以返回所有类型的键名，包括常规键名和 Symbol 键名。</li>
-<li>Symbol.for(description)若没有则会创建一个，若存在则共用一个 symbol 值。 Symbol.keyFor(sym)返回一个已登记即 Symbol.for 的 Symbol 类型值的 key</li>
-<li>其他方法可在需要是再查找。</li>
-</ol>
-<h5 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h5><p>转 Boolean 类型。在条件判断时，除了 undefined， null， false， NaN， ‘’， 0， -0，其他所有值都转为 true，包括所有对象<br>对象在转换基本类型时，首先优先级最高的是，Symbol.toPrimitive，然后会调用 valueOf 然后调用 toString。<br>注：<br>‘a’ + + ‘b’ – ‘aNaN’</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x==y 比较</span><br><span class="line">undefined == null  // true</span><br><span class="line">[] == true // false</span><br><span class="line">[] == ![] // true [].toString() -&gt; &apos;&apos;，!取反运算符的优先级会高于==， ![] -》 false</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>undefined == null，结果是 true。且它俩与所有其他值比较的结果都是 false。</li>
-<li>String == Boolean，需要两个操作数同时转为 Number。</li>
-<li>String/Boolean == Number，需要 String/Boolean 转为 Number。</li>
-<li>Object == Primitive，需要 Object 转为 Primitive(具体通过 valueOf 和 toString 方法)。</li>
-</ol>
-<h5 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h5>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/10/16/基础回顾/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
         
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-[重温JS]类型判断" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/10/16/[重温JS]类型判断/">&lt;JS Review&gt;类型检测</a>
-    </h1>
-  
-
-        
-        <a href="/2020/10/16/[重温JS]类型判断/" class="archive-article-date">
-  	<time datetime="2020-10-16T02:03:15.269Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li><strong>来自 null 的拷问？我是谁，我在哪儿</strong></li>
-<li><strong>[Symbol.toStringTag]</strong></li>
-</ul>
-<p>基本数据类型在内存中占用固定大小的内存空间，因此被保存在栈内存中。引用类型，保存在堆内存中。</p>
-<h5 id="typeof"><a href="#typeof" class="headerlink" title="typeof"></a>typeof</h5><p>说明确什么能够检测，什么不太行。<br>typeof 是检测基本数据类型的利器，number，string，boolean，undefined。<br>null，object 都只会返回 object；function 返回 function</p>
-<h5 id="instanceof"><a href="#instanceof" class="headerlink" title="instanceof"></a>instanceof</h5><p>通过原型链来判断：<br>variable instanceof constructor 判断是什么类型的对象，结果返回 true or false。<br>基础类型判断返回 false</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class PrimitiveString &#123;</span><br><span class="line">  static [Symbol.hasInstance](x) &#123;</span><br><span class="line">    return typeof x === &apos;string&apos;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
       
 
       
@@ -369,29 +251,28 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">typeof</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">instanceof</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Object.prototype.toString.call()</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">HTTPS</a>
         		</li>
       		
 		</ul>
 	</div>
 
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/网络//" class="article-tag-list-link color3">网络</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/10/16/[重温JS]类型判断/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/06/30/安全了-HTTPS/">展开全文 >></a>
         </p>
       
 
@@ -421,319 +302,72 @@
 
 
   
-    <article id="post-[Linux]自动化部署从入门到放弃" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-web安全" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/25/[Linux]自动化部署从入门到放弃/">&lt;Linux&gt;自动化部署从入门到放弃</a>
+      <a class="article-title" href="/2021/06/30/web安全/">同源策略与Web安全</a>
     </h1>
   
 
         
-        <a href="/2020/09/25/[Linux]自动化部署从入门到放弃/" class="archive-article-date">
-  	<time datetime="2020-09-25T07:15:54.448Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-25</time>
+        <a href="/2021/06/30/web安全/" class="archive-article-date">
+  	<time datetime="2021-06-30T02:45:57.334Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ul>
-<li>node 安装，全局使用</li>
-<li>yarn 安装</li>
-<li>nginx 配置</li>
-<li>vue 打包配置</li>
-<li>github action</li>
+        <h1 id="安全问题"><a href="#安全问题" class="headerlink" title="安全问题"></a>安全问题</h1><p>Web页面安全，浏览器网络安全，浏览器安全</p>
+<h1 id="同源策略-Same-origin-policy"><a href="#同源策略-Same-origin-policy" class="headerlink" title="同源策略 Same-origin policy"></a>同源策略 Same-origin policy</h1><p>什么是同源？</p>
+<blockquote>
+<p>两个URL的协议、域名、端口都相同，则这两个URL同源</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http://www.yixuanwang.cn/?article=1</span><br><span class="line">http://www.yixuanwang.cn/?article=0</span><br></pre></td></tr></table></figure>
+
+<p>相同源之间可以互相访问资源和操作DOM结点的，不同源之间会有一定安全策略的制约，即为同源策略。<br>不同源之间不能对DOM对象进行读写操作，不能读取Cookie、LocalStorage等数据，也不能通过XMLHttpRequest传递数据。<br>如果想做以上操作怎么办？</p>
+<ul>
+<li>页面引用第三方资源可能会导致XSS攻击 -&gt; CSP 内容安全策略，让服务器决定浏览器能够加载哪些资源，让服务器决定浏览器是否能够执行内联 JavaScript 代码</li>
+<li>安全地进行数据传递，CORS跨域资源共享</li>
+<li>安全地相互操作DOM，跨文档消息机制window.postMessage</li>
 </ul>
-<h4 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h4><ul>
-<li><p>查看服务器绑定域名，查 dns 用服务器 IP 反向解析域名 &gt; dig -x ip | nslookup</p>
+<h2 id="XSS攻击-Cross-Site-Scripting-跨站脚本"><a href="#XSS攻击-Cross-Site-Scripting-跨站脚本" class="headerlink" title="XSS攻击-Cross Site Scripting 跨站脚本"></a>XSS攻击-Cross Site Scripting 跨站脚本</h2><h3 id="是什么"><a href="#是什么" class="headerlink" title="是什么"></a>是什么</h3><p>XSS是指攻击者向HTML，DOM中注入恶意脚本，从而在用户浏览页面时通过恶意注入的脚本对用户实施攻击。<br>可能会获取用户的Cookies，监控用户的行为“addEventListener”，也可能通过DOM伪造假的登录窗口，也可能生成浮窗广告，影响体验。</p>
+<ul>
+<li><p>存储型XSS，恶意脚本插入网站的数据库里，再读取的时候会进行攻击。</p>
 </li>
-<li><p>WEB 服务器“一键”装机</p>
+<li><p>反射型 XSS 攻击，在请求连接里注入恶意脚本，将请求提交给Web服务器，Web服务器收到请求，又将恶意代码反射给了浏览器</p>
+</li>
+<li><p>基于 DOM 的 XSS 攻击，不涉及服务器，通过页面劫持等方法将恶意脚本注入页面，修改web页面</p>
+<h3 id="怎么办"><a href="#怎么办" class="headerlink" title="怎么办"></a>怎么办</h3></li>
+<li><p>服务器对输入数据进行转码</p>
+</li>
+<li><p>充分利用CSP(Content-Security-Policy)，限制其他源的资源下载，禁止像第三方域提交数据，禁止执行内联脚本和未授权的脚本，即使上报</p>
+</li>
+<li><p>使用 HttpOnly 属性，HTTP的响应头，set-cookied: xxxx ; HttpOnly。只能通过HTTP请求使用，无法通过document.cookie获取<br>还可以通过添加验证码的方式防止脚本冒充用户进行提交危险操作，对于一些不信任的输入，还可以限制其输入长度</p>
 </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install git -y</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ wget -c xxxxxxx</span><br><span class="line">$ tar -xvf xxxxxxx</span><br><span class="line"></span><br><span class="line">// 修改 ~/.profile</span><br><span class="line"></span><br><span class="line"># Nodejs</span><br><span class="line"></span><br><span class="line">VERSION=v12.18.4</span><br><span class="line">DISTRO=linux-x64</span><br><span class="line">export PATH=/usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin:\$PATH</span><br><span class="line"></span><br><span class="line">. ~/.profile</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -o- -L https://yarnpkg.com/install.sh | bash</span><br></pre></td></tr></table></figure>
-
+<p>npm xss库</p>
+<h2 id="CSRF攻击：陌生链接不要随便点"><a href="#CSRF攻击：陌生链接不要随便点" class="headerlink" title="CSRF攻击：陌生链接不要随便点"></a>CSRF攻击：陌生链接不要随便点</h2><h2 id="是什么-1"><a href="#是什么-1" class="headerlink" title="是什么"></a>是什么</h2><p>CSRF(Cross-site request forgery)，跨站请求伪造。攻击者引诱用户打开恶意网站，利用用户的登录状态，发起跨站请求做坏事。</p>
 <ul>
-<li>查找文件 find . -name ‘xxx’</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">CI/CD</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/25/[Linux]自动化部署从入门到放弃/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-[重温JS]JS题目小试" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/25/[重温JS]JS题目小试/">&lt;重温JS&gt;JS题目小试</a>
-    </h1>
-  
-
-        
-        <a href="/2020/09/25/[重温JS]JS题目小试/" class="archive-article-date">
-  	<time datetime="2020-09-25T03:23:35.374Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="一、数组扁平化"><a href="#一、数组扁平化" class="headerlink" title="一、数组扁平化"></a>一、数组扁平化</h4><p>如何将一个多维数组变成一个一维数组，如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const arr = [1, [2, [3, [4, [5]]]]]</span><br><span class="line">// =&gt; [1,2,3,4,5]</span><br></pre></td></tr></table></figure>
-
-<p>看到数组扁平，第一想到的是 concat()，然后是递归，依次实现一番。</p>
-<p>(1) 递归</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const res = [];</span><br><span class="line">const flat = arr =&gt; &#123;</span><br><span class="line">  for (let i = 0; i &lt; arr.length; i++) &#123;</span><br><span class="line">    if (Array.isArray(arr[i])) &#123;</span><br><span class="line">      flat(arr[i]);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      res.push(arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">flat(arr);</span><br></pre></td></tr></table></figure>
-
-<p>(2) reduce()配合 concat()</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const flat = arr =&gt; arr.reduce((temp, elem) =&gt; temp.concat(Array.isArray(elem) ? flat(elem) : elem), [])</span><br><span class="line">const res = flat(arr);</span><br></pre></td></tr></table></figure>
-
-<p>(3) 内置 API，一顿操作，竟然忽略了 Js Array 的内置 api–flat()，按指定深度递归遍历数组，将所有元素与遍历的子数组中的元素合并为一个新数组返回。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var newArray = arr.flat([depth])</span><br><span class="line">const res = arr.flat(Infinity);</span><br></pre></td></tr></table></figure>
-
-<p>(4) 正则，另辟蹊径</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const res1 = JSON.stringify(arr).replace(/\[|\]/g, &apos;&apos;).split(&apos;,&apos;); // 原来数字变成了字符串</span><br><span class="line">const res2 = JSON.parse(`[$&#123;JSON.stringify(arr).replace(/\[|\]/g, &apos;&apos;)&#125;]`);</span><br></pre></td></tr></table></figure>
-
-<h4 id="二、数组去重"><a href="#二、数组去重" class="headerlink" title="二、数组去重"></a>二、数组去重</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const arr = [1, 17, &apos;1&apos;, 17, true, true, false, false, &apos;true&apos;, &apos;a&apos;, &#123;&#125;, &#123;&#125;];</span><br><span class="line">// =&gt; [1, &apos;1&apos;, 17, true, false, &apos;true&apos;, &apos;a&apos;, &#123;&#125;, &#123;&#125;]</span><br></pre></td></tr></table></figure>
-
-<p>看到数组去重，首先想到的是维护一个 object 用于记录出现过的值然后去掉重复，然后想到 filter 也可以实现类似的</p>
-<p>(1) object 方法，普通 object 的 key 都会转换成 String 类型，所以可以借助 ES6 的 Map;</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const uniq = (arr) =&gt; &#123;</span><br><span class="line">  const map = new Map();</span><br><span class="line">  const res = [];</span><br><span class="line">  for (let i = 0; i &lt; arr.length; i++) &#123;</span><br><span class="line">    if (!map.has(arr[i])) &#123;</span><br><span class="line">      map.set(arr[i], true);</span><br><span class="line">      res.push(arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>(2) filter，过滤得到首次出现的元素。判断元素是否出现过还可以使用 arr.indexOf(elem) === -1 或者 arr.includes(elem)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const res = arr.filter((elem, index) =&gt; arr.indexOf(elem) === index);</span><br></pre></td></tr></table></figure>
-
-<p>(3) ES6 的 Set 数据结构，特性是每个元素都是唯一的，没有重复的值</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const res = [...new Set(arr)];</span><br><span class="line">[...new Set(&apos;ababbc&apos;)].join(&apos;&apos;); // &apos;abc&apos;</span><br></pre></td></tr></table></figure>
-
-<p>// 两个有序数组[1,3,5]和[2,4,6]，写一个 mergeArr(a,b)合并两个数组，最终得到一个有序数组</p>
-<p>_.get()</p>
-<p>假设你正在爬楼梯。需要 n 阶你才能到达楼顶。</p>
-<p>每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/25/[重温JS]JS题目小试/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-重温学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/28/重温学习/">&lt;重温JS&gt;数据类型及基本转换</a>
-    </h1>
-  
-
-        
-        <a href="/2020/07/28/重温学习/" class="archive-article-date">
-  	<time datetime="2020-07-28T08:40:39.655Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li><p>7 种语言类型<br>undefined 是一个变量，而并非是一个关键字。老的浏览器中会是，ES5 以后就不是了。函数内部，对象的属性现在也是可以赋值的。<br>if(typeof str === ‘undefined’){<br>// 如果直接用 str === undefined, str 未声明的话可能会报错 not defined<br>}<br>String 用于表示文本数据。String 有最大长度是 2^53 - 1，字符串的 UTF16 编码，charAt、charCodeAt、length 等方法针对的都是 UTF16 编码，其实一个 utf16 单元代表一个字符，这俩数量是对应的，0-65536（U+0000 - U+FFFF）的码点被称为基本字符区域（BMP）<br>Number 2^64-2^53+3<br>NaN，占用了 9007199254740990，这原本是符合 IEEE 规则的数字；Infinity，无穷大；-Infinity，负无穷大。<br>还有 +0 -0，1/x 是 Infinity 还是 -Infinity<br>双精度浮点数，有效的检测范围-0x1fffffffffffff 至 0x1fffffffffffff，浮点数运算精度的问题<br>比较浮点数的准确方法是：与 JS 提供的最小精度比较 Math.abs(0.1 + 0.2 - 0.3) &lt;= Number.EPSILON</p>
-<p>Symbol，非字符串 key 的集合， 可以用于迭代器，Symbol.iterator 需要有 next，next 返回一个对象包括 value 和 done</p>
+<li><p>自动发起GET请求，如将请求接口隐藏在图片中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=&quot;http://www.abc.cn/sendcoin?user=xxx&amp;number=10&quot;/&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>自动发起POST请求，一个隐藏的表单</p>
+</li>
+<li><p>引诱用户点击链接</p>
+</li>
+<li><p>CSRF Token</p>
 </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var o = new Object</span><br><span class="line"></span><br><span class="line">o[Symbol.iterator] = function() &#123;</span><br><span class="line">    var v = 0</span><br><span class="line">    return &#123;</span><br><span class="line">        next: function() &#123;</span><br><span class="line">            return &#123; value: v++, done: v &gt; 10 &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">for(var v of o)</span><br><span class="line">    console.log(v); // 0 1 2 3 ... 9</span><br></pre></td></tr></table></figure>
-
-<p>StringToNumber，字符串转换为数组支持进制转换，支持科学计数法，即用 Number()转换。不建议使用 parseInt，用的时候最好传入第二个参数。parseFloat 则直接把原字符串作为十进制来解析，它不会引入任何的其他进制。都会忽略字符串前后的空格</p>
-<ul>
-<li>Number<br>进行十进制的转换，若字符串中带有非数字，都会变成 NaN，数字会正常转换若 0 开头则会被忽略。如果是对象，则先调用对象的 valueOf()方法，如果为 NaN，则再调用 toString()</li>
+<h3 id="怎么办-1"><a href="#怎么办-1" class="headerlink" title="怎么办"></a>怎么办</h3><ul>
+<li>对于响应头的Cookie设置，SameSite可以设置Strict、Lax 和 None</li>
+<li>验证请求的来源站点，通过Origin，Referer判断</li>
+<li>post请求，增加验证</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Number(&apos;&apos;) 0</span><br><span class="line">Number(true) 1</span><br><span class="line">Number(null) 0</span><br><span class="line">Number(undefined) NaN</span><br><span class="line">Number(&apos;123aaa&apos;) NaN</span><br><span class="line">Number([]) 0 -&gt; Number(&apos;&apos;)</span><br><span class="line">+string</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>parseInt(string, radix)<br>如果字符串以数字开头，则会忽略掉后续的非数字进行类型转换，否则返回 NaN，即找到字符串中的数字进行转换，若没有则为 NaN。以’0x’开头的十六进制也会转换，浮点数是向下取整，科学计数法也是不会正常转换的<br>radix 不填或填 0 的时候默认为 10,取值范围为 2 ～ 36,radix 超出指定范围返回 NaN，若转换的数字大于 radio，也返回 NaN。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">parseInt(&apos;123aaa&apos;) // 123</span><br><span class="line">parseInt([]) // NaN</span><br><span class="line">[&apos;1&apos;, &apos;2&apos;, &apos;3&apos;].map(parseInt) -&gt; [&apos;1&apos;, &apos;2&apos;, &apos;3&apos;].map((elem, index) =&gt; parseInt(elem, index)) // [1, NaN, NaN]</span><br><span class="line">[&apos;10&apos;,&apos;10&apos;,&apos;10&apos;,&apos;10&apos;,&apos;10&apos;].map(parseInt) // [10, NaN, 2, 3, 4]</span><br><span class="line">[&apos;1.1&apos;, &apos;2&apos;, &apos;0.3&apos;].map(parseInt) // [1, NaN, 0]</span><br></pre></td></tr></table></figure>
-
-<p>数组的 toString(),会返回一个字符串的拼接；valueOf 还是返回数组。</p>
-<p>NumberToString，正常。</p>
-<h6 id="装箱"><a href="#装箱" class="headerlink" title="装箱"></a>装箱</h6><p>装箱，是指讲基本数据类型转化为对象，会频繁产生临时对象，在一些性能要求高的情况下，尽量避免。<br>.运算符提供了装箱操作，所以基本类型通过.可以临时创建一个对象来调用对象的方法。<br>Object.prototype.toString.call() 是可以准确识别对象对应的基本类型的方法，它比 instanceof(constructor) 更加准确，因为 JS 中没有方法可以更改私有的 class 属性。call 本身会产生装箱操作，所以需要配合 typeof 来区分基本类型还是对象类型。</p>
-<h6 id="拆箱"><a href="#拆箱" class="headerlink" title="拆箱"></a>拆箱</h6><p>拆箱是把对象转换成基本数据类型。toPrimitive<br>对象到 Number，String 的转换都遵循“先拆箱再转换”的原则。把对象-&gt;基本类型-&gt;对应的 String/Number</p>
-<p>通过调用 valueOf()，toString()，没有则报错 TypeError。ES6 以后可以用 Symbol.toPrimitive 自定义转换覆盖以前的 valueOf()，toString()。</p>
-<p>通过 new Number()声明的类型和直接用 Number()声明的类型不同，object 与 number 的区别。<br>toString()还可以传入进制进行计算。valueOf 返回数字</p>
-<p>toFixed(), toPrecision(num)向上取整, toExponential()科学计数法</p>
-<p>String,chartAt(index),chartCodeAt(index)</p>
-<p>PS: 实现一个 parseInt()，Number()</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/07/28/重温学习/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-[实践]性能优化二三事" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/28/[实践]性能优化二三事/">&lt;Work&gt; 实践</a>
-    </h1>
-  
-
-        
-        <a href="/2020/07/28/[实践]性能优化二三事/" class="archive-article-date">
-  	<time datetime="2020-07-28T08:40:39.653Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="Performance"><a href="#Performance" class="headerlink" title="Performance"></a>Performance</h5><ol>
-<li>gzip</li>
-<li>告警系统/埋点</li>
-<li>图表优化，步骤，加载</li>
-</ol>
-<p>其他的通用的方式：秒开率控制，toB 的没有这么多顾虑<br>减少 http 请求 =&gt; JS,CSS 打包，小图片用 data-uri，svg。避免大型背景图<br>利用缓存<br>了解整个前端加载的过程。<br>DNS 解析 =&gt; HTTP DNS<br>TCP 链接三次握手。HTTP/TLS HTTP 2 / HTTPS</p>
-<p>首先得评估下现状，要配合实际情况和业务情况进行性能优化，还得设计相关的指标和标准。最后对结果进行评估，有始有终哦</p>
-<h6 id="Tool"><a href="#Tool" class="headerlink" title="Tool"></a>Tool</h6><p>开发体验，提升效率<br>工具体系构建：版本统一，避免冲突。<br>用一套统一的过程比较方便，从 init 到 dev 再到 public。重要的是构建时间，效率</p>
-<h6 id="持续性构建"><a href="#持续性构建" class="headerlink" title="持续性构建"></a>持续性构建</h6><p>手动，自动。代码提交到仓库，自动发布到测试环境，自动发布系统。<br>结构扫描 phantomjs，代码扫描 jshint，数据采集通过 performance API 检测性能，window.onerror 检测问题。<br>组件化，兼容性，适配性：ppi，dpr。PWA<br>组件化： 三大框架，web component，css houdini，不需要任何额外的运行时支持，就能在现代浏览器环境运行，也可以跟 HTML 无缝结合。<br>适配：</p>
-<ul>
-<li>PPI:Pixel Per Inch 单位英寸像素，屏幕的显示质量。文字，media query</li>
-<li>DPR:Device Pixel Ratio 设备像素比例，物理像素与逻辑像素 px 之间的关系。viewport 控制缩放比</li>
-<li>Resolution: 分辨率，屏幕区域的宽高所占像素数。用 vw，vh 解决</li>
-</ul>
-<p>单页应用</p>
 
       
 
@@ -747,17 +381,28 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">安全</a>
         		</li>
       		
 		</ul>
 	</div>
 
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/安全//" class="article-tag-list-link color3">安全</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/07/28/[实践]性能优化二三事/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/06/30/web安全/">展开全文 >></a>
         </p>
       
 
@@ -787,148 +432,389 @@
 
 
   
-    <article id="post-[重温JS]对象" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-[读书]小狗钱钱" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/28/[重温JS]对象/">&lt;JS Review&gt;对象</a>
+      <a class="article-title" href="/2021/06/30/[读书]小狗钱钱/">【读书】小狗钱钱</a>
     </h1>
   
 
         
-        <a href="/2020/07/28/[重温JS]对象/" class="archive-article-date">
-  	<time datetime="2020-07-28T08:40:39.560Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-28</time>
+        <a href="/2021/06/30/[读书]小狗钱钱/" class="archive-article-date">
+  	<time datetime="2021-06-30T02:45:57.333Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h5 id="对象是什么？"><a href="#对象是什么？" class="headerlink" title="对象是什么？"></a>对象是什么？</h5><ul>
-<li>具有唯一标识，内存地址。</li>
-<li>具有状态，属性。</li>
-<li>具有行为，方法。</li>
+        <h2 id="如何实现梦想"><a href="#如何实现梦想" class="headerlink" title="如何实现梦想"></a>如何实现梦想</h2><ul>
+<li>要有自信！！！（建立自信，最好每天写成功日记）</li>
+<li>72小时法则：当你决定做一件事的时候，必须在72小时内开始行动，不然很有可能再也不会做（上升到本人，大概需要在72秒内就做吧🐶）</li>
+<li>不要抱怨</li>
+<li>一定要坚持！！！养成习惯</li>
+<li>幸运是充分准备加努力工作的结果</li>
+<li>利用碎片化时间，珍惜时间，不要等待。每天十分钟，可以带来真正的改变</li>
+<li>要勇敢</li>
 </ul>
-<p>JS 的对象具有高度的动态性，可以在运行时对对象添加状态，修改行为。<br>JS 中 Object 的定义，用 new 构造函数()、对象字面量</p>
-<p>构造类的函数-&gt;类的构造函数，一个构建函数通常是大写字母开头，这样便于区分构建函数和普通函数。用 this 创建对象，无需重新创建一个对象再返回。<br>创建对象的方法，字面量，构造函数 new Object()，Object.create(proto, [propertiesObject])<br>构造函数以大写字母开头，不需要借助 return，通过 this 对象配合 new 实现</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">let a = &#123;name: &apos;xxx&apos;&#125;</span><br><span class="line"></span><br><span class="line">function Person(name) &#123;</span><br><span class="line">  this.name = name;</span><br><span class="line">&#125;</span><br><span class="line">let b = new Person(&apos;xxx&apos;)</span><br><span class="line"></span><br><span class="line">Object.creat(&#123;name: &apos;xxx&apos;&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="如何赚💰"><a href="#如何赚💰" class="headerlink" title="如何赚💰"></a>如何赚💰</h2>
+        
+          <a class="article-more-a" href="/2021/06/30/[读书]小狗钱钱/#more">more >></a>
+        
+      
 
-<h5 id="对象的属性类型"><a href="#对象的属性类型" class="headerlink" title="对象的属性类型"></a>对象的属性类型</h5><p>JS 中，属性和方法其实都可以成为对象的属性。属性并不是简单的名称和值，可以用一组特征来描述属性，可分为数据属性和访问器(getter/setter)属性两类。</p>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">投资</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/生活//" class="article-tag-list-link color3">生活</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/06/30/[读书]小狗钱钱/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-[网络]http" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/06/30/[网络]http/">【网络】前端开发中的HTTP</a>
+    </h1>
+  
+
+        
+        <a href="/2021/06/30/[网络]http/" class="archive-article-date">
+  	<time datetime="2021-06-30T02:45:57.332Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><ul>
+<li>HTTP的缓存机制！！！<strong>重要</strong></li>
+<li>状态码</li>
+<li>headers</li>
+<li>Restful API</li>
+</ul>
+<h2 id="状态码"><a href="#状态码" class="headerlink" title="状态码"></a>状态码</h2><ol>
+<li>分类<ul>
+<li>1xx 服务器收到请求</li>
+<li>2xx 请求成功</li>
+<li>3xx 重定向</li>
+<li>4xx 客户端错误</li>
+<li>5xx 服务端错误</li>
+</ul>
+</li>
+<li>常见<ul>
+<li>200 成功</li>
+<li>301 永久重定向（配合location新地址，浏览器自动处理，下次会直接访问新的地址）</li>
+<li>302 临时重定向（配合location新地址，浏览器自动处理，下次还会访问旧的地址）短网址，百度之类的搜索引擎的链接，why？</li>
+<li>304 资源未修改，缓存 <strong>注</strong></li>
+<li>307 internal redirect</li>
+<li>403 没有权限</li>
+<li>404 not found</li>
+<li>500 服务器错误</li>
+<li>502</li>
+<li>504 网关超时，服务器内部</li>
+</ul>
+</li>
+<li>协议规范</li>
+</ol>
+<h2 id="Restful-API"><a href="#Restful-API" class="headerlink" title="Restful API"></a>Restful API</h2><blockquote>
+<p>API设计方法，把每个URL当做唯一的资源标识。<br>如何设计一个资源？</p>
+</blockquote>
 <ul>
-<li>数据属性。这个就是常见的对象属性，具有以下特征：</li>
+<li>尽量不用url参数，如：/api/list?page=2  -&gt; /api/list/2</li>
+<li>用method表示操作类型，POST,PATCH/PUT,DELETE,GET</li>
+</ul>
+<h2 id="HTTP-Headers"><a href="#HTTP-Headers" class="headerlink" title="HTTP Headers"></a>HTTP Headers</h2><ol>
+<li>常见的Request Headers<ul>
+<li>Accept 浏览器可以的数据格式</li>
+<li>Accept-Encoding 浏览器可支持的压缩算法，如：gzip</li>
+<li>Accept-Language 浏览器支持的语言</li>
+<li>Connection: keep-alive 保持TCP连接</li>
+<li>Cookie</li>
+<li>Host</li>
+<li>User-Agent </li>
+<li>Content-Type 发送数据格式，如：application/json</li>
+<li>Authorization token验证</li>
+</ul>
+</li>
+<li>常见的Response Headers<ul>
+<li>Content-Type 发送数据格式，如：application/json</li>
+<li>Content-Length 返回数据的大小，多少字节</li>
+<li>Content-Encoding 返回数据的压缩算法，如：gzip</li>
+<li>Set-Cookie 服务端改cookie</li>
+</ul>
+</li>
+<li>自定义headers</li>
+<li>用于缓存的headers</li>
+</ol>
+<h2 id="HTTP缓存机制"><a href="#HTTP缓存机制" class="headerlink" title="HTTP缓存机制"></a>HTTP缓存机制</h2><p>什么是缓存？为什么需要缓存？哪些资源可以被缓存-&gt;js/css/img静态资源和业务数据，html不能被缓存</p>
+<blockquote>
+<p>页面加载更快，网络请求慢，减少网络请求的体积和数量，也是不稳定的</p>
+</blockquote>
+<ol>
+<li>强制缓存<br>服务端控制什么资源可以缓存，通过Response Headers中的cache-control 控制过期时间<br>Cache-Control的值</li>
+</ol>
+<ul>
+<li>max-age=86400(秒)</li>
+<li>no-cache 不用强制缓存，去服务端处理</li>
+<li>no-store 不用强制缓存，也不用服务器缓存</li>
+<li>private 允许用户客户端做缓存</li>
+<li>public 允许中间如cdn<br>Expires也是做缓存过期控制的，已被Cache-Control代替，以Cache-Control为主</li>
+</ul>
+<ol start="2">
+<li>协商缓存(对比缓存)<br>服务端缓存策略，服务端来判断是否用缓存，即服务端判断客户端资源是否和服务端资源一样。如果一致则返回304，否则返回200和最新资源<br>注意：资源标识</li>
+</ol>
+<ul>
+<li>Response Headers里Last-Modified：资源最后修改时间(精确到秒级)，Etag资源的唯一标识(优先级高，资源被重复生成而内容不变)</li>
+<li>再次请求的时候，If-Modified-Since: Last-Modified时间(Request Headers里)</li>
+<li>Etag，If-None-Match: Etag的值(Request Headers里)<br>两者共存会优先使用Etag，Last-Modified只能精确到秒级</li>
+</ul>
+<p>整个缓存过程！</p>
+<h2 id="刷新页面"><a href="#刷新页面" class="headerlink" title="刷新页面"></a>刷新页面</h2><ol>
+<li>正常操作：浏览器url，跳转，前进后退等。<blockquote>
+<p>强制缓存有效，协商缓存有效 </p>
+</blockquote>
+</li>
+<li>手动刷新，F5，刷新按钮<blockquote>
+<p>强制缓存失效，协商缓存有效 </p>
+</blockquote>
+</li>
+<li>强制刷新<blockquote>
+<p>强制缓存失效，协商缓存失效</p>
+</blockquote>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">HTTP</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/网络//" class="article-tag-list-link color3">网络</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/06/30/[网络]http/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-[版本管理]git的世界" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/06/30/[版本管理]git的世界/">【版本管理】gitの世界</a>
+    </h1>
+  
+
+        
+        <a href="/2021/06/30/[版本管理]git的世界/" class="archive-article-date">
+  	<time datetime="2021-06-30T02:45:57.330Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git --version</span><br><span class="line">git config --global user.name &apos;xxx&apos;</span><br><span class="line">git config --global user.email &apos;xxx&apos;</span><br><span class="line">git config --list</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>local</li>
+<li>global</li>
+<li>system</li>
+</ul>
+<h1 id="工作区-暂存区"><a href="#工作区-暂存区" class="headerlink" title="工作区/暂存区"></a>工作区/暂存区</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add -u // 已经被管理的文件 update</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>重命名，git的命令类比linux的系统命令，可直接git commit </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git rm xxx // 删除</span><br><span class="line">git mv old new</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>git log</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git log --oneline</span><br><span class="line">git log -n // 最近几次commit</span><br><span class="line">git log -all --graph// 所有分支</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>git branch</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git branch -v // 本地分支</span><br><span class="line">git branch -av</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>.git文件夹</p>
+</li>
 </ul>
 <ol>
-<li>value</li>
-<li>writable：能否被赋值</li>
-<li>enumerable：被 for in 枚举</li>
-<li>configurable：被删除，或者改变特征值。false 时，writable 可从 true-&gt;false，但无法反向修改。enumerable 则不能修改，会报 TypeError: cannot redefine property。一旦设置为 false，cannot set true</li>
+<li><p>HEAD 指向某个commit</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b branch </span><br><span class="line">git diff HEAD HEAD^^ / HEAD~n</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>config</p>
+</li>
+<li><p>refs</p>
+</li>
 </ol>
 <ul>
-<li>访问器(getter/setter)属性。属性在读写的时候执行。</li>
+<li>heads 分支</li>
+<li>tags 里程碑</li>
+</ul>
+<ol start="4">
+<li>objects<br>blob文件对象 tree commit三者之间的关系<br>只要文件的内容相同，在git里就是唯一的，和文件名没有关系<br>加入暂存区的内容，才会再objects里面有体现<br>commit -&gt; tree -&gt; blob<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git cat-file -t xxx 看文件的类型</span><br><span class="line">git cat-file -p xxx 看内容</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ul>
+<li><p>分离头指针 detached HEAD 没有经过某个分支做修改<br>git checkout commit-id 开发后切换分支易丢失，会提示创建新分支git branch name commit-id<br>在分支上做变更</p>
+</li>
+<li><p>branch 清理</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git branch -v</span><br><span class="line">git branch -d</span><br><span class="line">git branch -D</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>修改commit message</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git commit --amend // 最近一次commit</span><br><span class="line">git rebase -i   // 变基要修改的父commit，在为同步到远端，合并commit也可以实现</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>diff</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git diff --cached //暂存区和HEAD的不同</span><br><span class="line">git diff // 工作区和暂存区的差异，不加参数是比较所有变动</span><br><span class="line">git diff -- filename filename filename </span><br><span class="line">git diff branch_name/commit-id/ branch_name/commit-id -- filename</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git reset HEAD // 暂存区恢复到工作区</span><br><span class="line">git reset HEAD -- filename</span><br><span class="line">git reset --hard/--soft commit-id</span><br><span class="line">git checkout -- filename // 工作区内容恢复到暂存区一样</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>stash</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git stash</span><br><span class="line">git stash list</span><br><span class="line">git stash pop // stash </span><br><span class="line">git stash apply // stash 列表内的信息还在</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>.gitignore</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xxx/ // xxx的文件夹会被忽略</span><br><span class="line">xxx // xxx的文件和文件夹都会忽略</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>备份</li>
 </ul>
 <ol>
-<li>getter：get: () =&gt; {} || undifined</li>
-<li>setter: set: () =&gt; {} || undifined，两者成对出现，若不设置则为 undefined</li>
-<li>enumerable：被 for in 枚举</li>
-<li>configurable：被删除，或者改变特征值<br>ES5 以后：<br>查看属性可用，Object.getOwnPropertyDescripter(object, ‘key’)<br>设置属性的特性可用，Object.defineProperty(object, ‘key’, {})<br>如果通过赋值的方式为属性赋值，则该属性的特征都默认为 true。但如果通过 defineProperty 赋值而不指定特性，则特征都默认为 false</li>
+<li>哑协议：没有协议头 xxx/xx.git，看不到传输速度，速率没有智能协议高</li>
+<li>智能协议：带协议头 &gt; file:///xxx/xxx.git<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone --bare</span><br><span class="line">git remote add xxx.git</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var o = &#123;a:1&#125;;</span><br><span class="line">o.b = 2;</span><br><span class="line">Object.getOwnPropertyDescripter(o, &apos;b&apos;);</span><br><span class="line"></span><br><span class="line">Object.defineProperty(o, &apos;c&apos;, &#123;value: 3&#125;);</span><br><span class="line">Object.getOwnPropertyDescripter(o, &apos;c&apos;);</span><br><span class="line"></span><br><span class="line">var o = &#123; get a() &#123; return &apos;a&apos; &#125; &#125;;</span><br><span class="line">Object.defineProperty(o, &apos;b&apos;, &#123;get: () =&gt; 2, set: (b) =&gt; console.log(b), configurable:true&#125;)</span><br></pre></td></tr></table></figure>
-
-<h5 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h5>
-        
-          <a class="article-more-a" href="/2020/07/28/[重温JS]对象/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Object</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">prototype</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/07/28/[重温JS]对象/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-[CSS]flex" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/22/[CSS]flex/">&lt;CSS&gt;Flex</a>
-    </h1>
-  
-
-        
-        <a href="/2020/07/22/[CSS]flex/" class="archive-article-date">
-  	<time datetime="2020-07-22T07:22:47.016Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>flex: 1<br>flex-shrink<br>flex-grow<br>flex-basis</p>
-<p>标准盒模型：margin，border，padding，width(即 content area)<br>ie 的 margin，width(border,padding , content area width)</p>
-<p>BFC(Block formatting context) 块级格式化上下文，W3C CSS2.1 规范中的一个概念。盒模型布局的 css 渲染模式，一个隔离的独立容器(独立渲染区域)<br>通俗理解，BFC 像一个封闭的箱子，内部元素随意变换不会影响外部的布局。<br>BFC 的形成条件：<br>html<br>浮动元素：float 除 none 以外的值<br>绝对定位元素：position (absolute、fixed)<br>display 为 inline-block、table-cells、flex<br>overflow 除了 visible 以外的值 (hidden、auto、scroll)<br>解决的问题：</p>
+<ul>
+<li><p>远端操作，fast-forwards，解决冲突，集成的分支不要做变基，注意fast-forwards</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git fetch</span><br><span class="line">git merge</span><br><span class="line">git pull</span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>git vs svn</p>
+</li>
+</ul>
 <ol>
-<li>同一 BCF 下外边距 margin 重叠问题，不同 BFC 容器则不会重叠</li>
-<li>用 BCF 容器清除浮动，包裹浮动的元素。(借助 overflow 触发)</li>
-<li>阻止被浮动覆盖。(借助 overflow 触发)</li>
-<li>用 bcf 实现两栏布局。(借助 overflow 触发)</li>
+<li>svn需要获取批准</li>
+<li>权限问题，效率</li>
+<li>可以托管代码，协同合作</li>
 </ol>
 
       
@@ -943,17 +829,28 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">flex</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
         		</li>
       		
 		</ul>
 	</div>
 
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/git//" class="article-tag-list-link color4">git</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/07/22/[CSS]flex/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/06/30/[版本管理]git的世界/">展开全文 >></a>
         </p>
       
 
@@ -983,27 +880,114 @@
 
 
   
-    <article id="post-[问题汇总]" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-[开发]工具" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/22/[问题汇总]/">&lt;问题汇总&gt;</a>
+      <a class="article-title" href="/2021/06/30/[开发]工具/">【必备】开发环境 &amp; 运行环境</a>
     </h1>
   
 
         
-        <a href="/2020/07/22/[问题汇总]/" class="archive-article-date">
-  	<time datetime="2020-07-22T07:04:52.719Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-22</time>
+        <a href="/2021/06/30/[开发]工具/" class="archive-article-date">
+  	<time datetime="2021-06-30T02:45:57.329Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="1-cdn-是什么，干什么，哪些地方实现了加速"><a href="#1-cdn-是什么，干什么，哪些地方实现了加速" class="headerlink" title="1. cdn 是什么，干什么，哪些地方实现了加速"></a>1. cdn 是什么，干什么，哪些地方实现了加速</h4><h4 id="2-前端缓存策略，强缓存、协商缓存的优先级"><a href="#2-前端缓存策略，强缓存、协商缓存的优先级" class="headerlink" title="2. 前端缓存策略，强缓存、协商缓存的优先级"></a>2. 前端缓存策略，强缓存、协商缓存的优先级</h4>
+        <h1 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h1><ul>
+<li>git</li>
+<li>调试工具</li>
+<li>抓包</li>
+<li>webpack babel</li>
+<li>linux</li>
+</ul>
+<h2 id="git"><a href="#git" class="headerlink" title="git"></a>git</h2><p>git show commit-id</p>
+<p>~/.ssh</p>
+<h2 id="抓包"><a href="#抓包" class="headerlink" title="抓包"></a>抓包</h2><ul>
+<li>同一个局域网下</li>
+<li>手机配电脑的代理</li>
+<li>设置ssh代理proxy</li>
+<li>重定向map</li>
+</ul>
+<h2 id="webpack-amp-babel"><a href="#webpack-amp-babel" class="headerlink" title="webpack &amp; babel"></a>webpack &amp; babel</h2><ol>
+<li>ES6模块化<ul>
+<li>export {aaa,bbb,ccc}; import {aaa,bbb,ccc} from ‘xxx’ </li>
+<li>export default {aaa}; import a from ‘xxx’</li>
+</ul>
+</li>
+<li>ES6语法</li>
+<li>压缩，整合代码，配置</li>
+</ol>
+<h2 id="常用linux命令"><a href="#常用linux命令" class="headerlink" title="常用linux命令"></a>常用linux命令</h2><pre><code>- ls -a
+- mv old new 修改文件名
+- cp name copyname
+- cat head tail
+- grep 查找
+- vimtutor</code></pre><h1 id="运行环境"><a href="#运行环境" class="headerlink" title="运行环境"></a>运行环境</h1><ul>
+<li>页面加载过程</li>
+<li>性能优化</li>
+<li>安全</li>
+</ul>
+<h2 id="页面加载过程"><a href="#页面加载过程" class="headerlink" title="页面加载过程"></a>页面加载过程</h2><ul>
+<li>从输入url到渲染出页面的整个过程</li>
+<li>window.onload vs DOMContentLoaded</li>
+</ul>
+<ol>
+<li>加载资源形式</li>
+<li>加载过程<ul>
+<li>DNS解析：域名-&gt;IP地址</li>
+<li>浏览器根据IP地址向服务器发起http请求</li>
+<li>服务器处理请求，并返回给浏览器</li>
+</ul>
+</li>
+<li>渲染过程<ul>
+<li>DOM树</li>
+<li>CSSOM</li>
+<li>DOM + CSSOM -&gt; Render Tree</li>
+<li>根据Render Tree渲染页面</li>
+<li>遇到 script 则暂停渲染，优先加载js文件，执行js 代码</li>
+<li>直到渲染完</li>
+</ul>
+</li>
+</ol>
+<p>css文件为什么要放在head中？避免重复渲染<br>js为什么要放在body最后？不阻塞加载</p>
+<p>load // 页面全部加载完，整个资源加载完，比如img，视频，iframe都加载完<br>DOMContentLoaded // DOM渲染完即可执行<br>window.load</p>
+<h2 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h2><h3 id="原则"><a href="#原则" class="headerlink" title="原则"></a>原则</h3><ul>
+<li>减少CPU计算量，减少网络加载耗时</li>
+<li>多使用缓存 - 空间换时间（Chrome浏览器，简洁，每个标签页一个进程）</li>
+</ul>
+<h3 id="从何入手"><a href="#从何入手" class="headerlink" title="从何入手"></a>从何入手</h3><ul>
+<li>加载更快<ol>
+<li>减少资源体积：压缩代码（JS，CSS，图片…）服务器端gzip，三分之一</li>
+<li>减少访问次数：合并代码，SSR服务端渲染，缓存(文件内容不变，hash不变)</li>
+<li>使用更快的网络，CDN</li>
+</ol>
+</li>
+<li>渲染更快<ol>
+<li>css放在head，js放在body最后</li>
+<li>尽早的执行js，用DOMContentLoaded</li>
+<li>懒加载，图片懒加载</li>
+<li>对DOM查询进行缓存</li>
+<li>频繁DOM操作合并一起</li>
+<li>节流 throttle、防抖 debounce</li>
+</ol>
+</li>
+</ul>
+<h3 id="防抖-debounce"><a href="#防抖-debounce" class="headerlink" title="防抖 debounce"></a>防抖 debounce</h3><blockquote>
+<p>两个事件之间的时间间隔超过time才会执行，没超过间隔的任务都会取消。即在事件结束和暂停的时候触发，间断理解</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function debounce(fn, delay = 500) &#123;</span><br><span class="line">    let timer = null;</span><br><span class="line">    return function () &#123;</span><br><span class="line">        if (timer) clearTimeout(timer);</span><br><span class="line">        timer = setTimeout(() =&gt; &#123;</span><br><span class="line">            fn.apply(this, arguments);</span><br><span class="line">            timer = null;</span><br><span class="line">        &#125;, delay);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="节流-throttle"><a href="#节流-throttle" class="headerlink" title="节流 throttle"></a>节流 throttle</h3><blockquote>
+<p>无论触发速率多快，都保持一个频率触发。比如，拖拽时间，无论拖拽的多快都会每隔100ms触发一次。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function throttle(fn, delay = 100) &#123;</span><br><span class="line">    let timer = null;</span><br><span class="line">    return function () &#123;</span><br><span class="line">        if (timer) return;</span><br><span class="line">        timer = setTimeout(() =&gt; &#123;</span><br><span class="line">            fn.apply(this, arguments);</span><br><span class="line">            timer = null;</span><br><span class="line">        &#125;, delay);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
 
       
@@ -1016,17 +1000,359 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
         		</li>
       		
 		</ul>
 	</div>
 
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/工具//" class="article-tag-list-link color3">工具</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/07/22/[问题汇总]/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/06/30/[开发]工具/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-[工程化]Webpack" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/06/30/[工程化]Webpack/">【工程化】Webpack</a>
+    </h1>
+  
+
+        
+        <a href="/2021/06/30/[工程化]Webpack/" class="archive-article-date">
+  	<time datetime="2021-06-30T02:45:57.328Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="历史"><a href="#历史" class="headerlink" title="历史"></a>历史</h1><h2 id="为什么需要"><a href="#为什么需要" class="headerlink" title="为什么需要"></a>为什么需要</h2><ol>
+<li>转换ES6</li>
+<li>转换JSX</li>
+<li>压缩混淆</li>
+<li>CSS预处理器</li>
+<li>图片压缩<br>…</li>
+</ol>
+<p>gulp 任务打包器，文件流的概念，每一步构建的结果不会存本地磁盘，而是存在内存里，可以加快打包速度。</p>
+<p>webpack vs gulp 社区生态丰富，配置灵活，插件化扩展，官方更新迭代快；module builder vs task runner</p>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>配置文件，默认：webpack.config.js<br>可以使用 webpack –config xxx 指定配置文件</p>
+<p>webpack<br>webpack-cli</p>
+<h3 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h3><ol>
+<li>entry：模块依赖打包的入口，单页应用为字符串，多页应用为{key: value}</li>
+<li>output：将编译的文件输出到磁盘，通过filename [xxx]区别多入口多输出，输出的文件名称，为entry设置的key名</li>
+<li>loaders！webpack开箱即用的只有js和json两种类型，所以需要通过loaders去支持其他文件类型并转成有效的模块，并且可以加到依赖图里<br>loaders其实是个函数，接受源文件为参数，返回转换的结果<br>比如：</li>
+</ol>
+<ul>
+<li>babel-loader</li>
+<li>css-loader</li>
+<li>less-loader</li>
+<li>file-loader</li>
+</ul>
+<ol start="4">
+<li>plugins，增强webpack的功能，对打包文件的优化，资源的管理，环境变量的注入。作用于整个构建过程</li>
+</ol>
+<ul>
+<li>CommonsChunkPlugin</li>
+<li>HtmlWebpackPlugin</li>
+<li>UglifyjsWebpackPlugin</li>
+</ul>
+<ol start="5">
+<li>mode: 指定打包的环境，production，development</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">const path = require(&apos;path&apos;);</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">    entry: &#123;</span><br><span class="line">        app: &apos;xxx&apos;,</span><br><span class="line">        admin: &apos;sss&apos;</span><br><span class="line">    &#125;,</span><br><span class="line">    output: &#123;</span><br><span class="line">        filename: &apos;[xxx].js&apos;,</span><br><span class="line">        path: &apos;&apos;</span><br><span class="line">    &#125;</span><br><span class="line">    mode: &apos;production&apos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Webpack//" class="article-tag-list-link color3">Webpack</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/06/30/[工程化]Webpack/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-[人生]购房" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/06/30/[人生]购房/">【生活】如果有购房需求</a>
+    </h1>
+  
+
+        
+        <a href="/2021/06/30/[人生]购房/" class="archive-article-date">
+  	<time datetime="2021-06-30T02:45:57.328Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>房产经纪人-一度觉得自己可以成为</p>
+</blockquote>
+<h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1><p>不论二手还是新房都有一些共通之处，最终要的是要多学，多看，多比较</p>
+<blockquote>
+<p>平时买个几块钱的菜都要比来比去，怎么到了几十上百万的🏡的时候就比买白菜还随意呢？</p>
+</blockquote>
+<ul>
+<li><p>现在资讯无比发达，所以在下手之前可以通过各种大v，公众号，或者直播了解一些房产的基本信息。</p>
+<h2 id="外部因素"><a href="#外部因素" class="headerlink" title="外部因素"></a>外部因素</h2><ol>
+<li>学区属性是否刚需</li>
+<li>交通地铁</li>
+<li>邻居</li>
+<li>车位</li>
+<li>流通性</li>
+<li>…</li>
+</ol>
+<h2 id="内部因素"><a href="#内部因素" class="headerlink" title="内部因素"></a>内部因素</h2><ol>
+<li>楼层，楼高</li>
+<li>采光，遮挡</li>
+<li>隔音，噪音，是否临街</li>
+<li>下水，独立下水</li>
+<li>供暖，物业</li>
+<li>窗户</li>
+<li>…</li>
+</ol>
+</li>
+<li><p>可以多实地看几套二手房，看房又不💰，实地感受一下各种因素的影响，以及自己的接受度</p>
+</li>
+<li><p>二手房尤其要注意🏡的流通性，大概率5-8年会换房，所以中介费，还有税费要注意</p>
+</li>
+<li><p>新房封顶以后才能批贷，这点要注意。</p>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">购房</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/生活//" class="article-tag-list-link color3">生活</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/06/30/[人生]购房/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-[人生]家庭保险配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/06/30/[人生]家庭保险配置/">【生活】如果有保险需求</a>
+    </h1>
+  
+
+        
+        <a href="/2021/06/30/[人生]家庭保险配置/" class="archive-article-date">
+  	<time datetime="2021-06-30T02:45:57.327Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>人生中总有各种事情发生，鉴于马上要背上巨额贷款，为了一定程度上抵御风险，不得不看起了保险。基于自己浅薄的研究，总结了几大类产品：</p>
+<p>看病(尤其是大病)：</p>
+<ul>
+<li>百万医疗</li>
+<li>重疾</li>
+</ul>
+<p>GG:</p>
+<ul>
+<li>寿险</li>
+<li>意外险</li>
+</ul>
+<p>如果不考虑太多的，平时缴纳的社保，以及公司的补充医疗基本能够覆盖平时的看病就医。所以保险里的医疗部分一般主要cover大病系列，百万医疗是可以报销治疗过程中的费用。而重疾则是一次性给付，确诊了就赔付，弥补无法搬砖导致的损失，支撑生活。</p>
+<ul>
+<li>百万医疗，支付宝上可以入好医保6/20年版本的，年轻时刻几百左右。</li>
+<li>重疾，是真的贵。2021/2月要执行新规，先观望吧，之前入的话，能择优理赔的更好。</li>
+</ul>
+<p>意外和馅饼也不知道哪个先来。所以如果为了买个安心，用不到当然更好，这个时候就祭出了寿险。如果不小心GG，还会留下一部分💰，保证家里的继续。</p>
+<ul>
+<li>寿险，选个性价比高的就行，最好用不到，所以选个自己能接受的价格，保自己想要的额度就好。目前只看了大麦2021，擎天柱5号…，如果是夫妻双方都苦苦支撑起了一个家，还有大麦甜蜜家2021这种项目。</li>
+<li>意外，如果配置了其他的寿险，医疗啥的，也可以不用care这个。也不需要买长期的，即买即用，一年的价格也便宜，比如大护甲xxx。</li>
+</ul>
+<p>如果要买保险的话，一定要仔细看下投保须知和除外责任，尽量减少踩太多坑坑坑。<br>jin se太难了</p>
+<p>当然一切都看开，其实无所畏惧！</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">保险</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/生活//" class="article-tag-list-link color3">生活</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/06/30/[人生]家庭保险配置/">展开全文 >></a>
         </p>
       
 
@@ -1058,7 +1384,7 @@
   
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
@@ -1145,7 +1471,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css</a>
+                <a href="javascript:void(0)" class="js-tag color1">React</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1153,11 +1479,35 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">CI/CD</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CSS</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">购房</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">保险</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1177,6 +1527,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
@@ -1186,6 +1540,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Binary tree</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">投资</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1201,18 +1563,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">typeof</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">instanceof</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Object.prototype.toString.call()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">moment.js</a>
               </li>
              
@@ -1222,6 +1572,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">typeof</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">instanceof</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Object.prototype.toString.call()</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1237,11 +1599,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">CI/CD</a>
+                <a href="javascript:void(0)" class="js-tag color3">安全</a>
               </li>
              
               <li class="article-tag-list-item">
