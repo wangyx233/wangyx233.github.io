@@ -130,6 +130,168 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-[浏览器]浏览器是如何工作的？" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/27/[浏览器]浏览器是如何工作的？/">&lt;了解&gt;浏览器是如何工作的？</a>
+    </h1>
+  
+
+        
+        <a href="/2020/04/27/[浏览器]浏览器是如何工作的？/" class="archive-article-date">
+  	<time datetime="2020-04-27T08:07:25.056Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在浏览器地址栏输入 URL 发生了什么？</p>
+<ol>
+<li>如果是域名，先进行 DNS 解析，根据 IP 地址去服务端请求页面；</li>
+<li>拿到服务端返回的 HTML，解析构建成 DOM 树；</li>
+<li>计算 DOM🌲 上的 CSS 属性；</li>
+<li>根据 CSS 渲染每个元素，在内存中保存为位图；</li>
+<li>进行渲染合成绘制。</li>
+</ol>
+<p>整个过程是流式过程，网页是逐渐加载出来的。</p>
+<h5 id="HTTP-协议"><a href="#HTTP-协议" class="headerlink" title="HTTP 协议"></a>HTTP 协议</h5><p>HTTP 协议是基于 TCP 协议的，TCP 协议是一个双向协议，而 HTTP 协议是在此基础上规定了 Requst-Response 模式，并且用来传输文本。可以理解为用 TCP 规定了一种用来传输文本的应用层协议。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/27/[浏览器]浏览器是如何工作的？/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-[重温JS]垃圾收集" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/24/[重温JS]垃圾收集/">&lt;JS Review&gt;垃圾收集</a>
+    </h1>
+  
+
+        
+        <a href="/2020/04/24/[重温JS]垃圾收集/" class="archive-article-date">
+  	<time datetime="2020-04-24T08:21:39.625Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>JS 中实现了自动垃圾回收机制，自动分配内存和释放内存。原理是：找到那些不再使用的变量，然后释放它所占的内存。然后按照固定的时间间隔执行。<br>垃圾收集器需要跟踪变量有没有用，对没有用的变量打上标记，以便后续的回收。标识变量的策略常用的有，标记清除，引用计数。</p>
+<ul>
+<li>标记清除 Mark and Sweep<br>进入环境标记。或者维护一个进入环境的列表，一个离开环境的列表。把环境中用到的或者被其他环境内引用的变量标记去掉，剩下还有标记的都是需要删除的变量。</li>
+<li>引用计数 Reference Count。可能会导致内存一直得不到释放，比如在函数内，两个对象相互调用</li>
+</ul>
+<p>解除引用 Dereferencing,一旦不再使用，最好将他们的值置位 null。主要是全局变量，全局对象等。因为局部变量都会在离开执行环境后，直接解除引用。解除引用，是让这个值脱离执行环境，而不是立即内存回收。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/24/[重温JS]垃圾收集/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-[算法基础]树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -755,140 +917,6 @@
 
 
   
-    <article id="post-写给大家看的设计书" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/21/写给大家看的设计书/">一些设计知识~</a>
-    </h1>
-  
-
-        
-        <a href="/2017/06/21/写给大家看的设计书/" class="archive-article-date">
-  	<time datetime="2017-06-21T03:37:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>最近要看的书好多，全都在排排坐，先挑了一本设计类的书籍《写给大家看的设计书》</p>
-<h3 id="设计的四大原则"><a href="#设计的四大原则" class="headerlink" title="设计的四大原则"></a>设计的四大原则</h3><h6 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h6><p>对比是为页面增加视觉效果的最有效的途径,也是在不同元素之间建立一种有组织的层次结构最有效方法。要记住一个重要规则:要想实现有效的对比,对比就必须 强烈。千万不要畏畏缩缩。<br>字体的对比，颜色的对比，一定要保持强烈，差别不大的对比没有效果。<br>对比的根本目的有两个,这两个目的相辅相成,无法分开。一个目的是增强页面的效果,如果一个页面看起来很有意思,往往更有可读性。另一个目的是有助于信息的组织。读者应当能立即了解信息以何种方式组织,以及从一项到另一项的逻辑流程。对比元素不能让读者混淆,也不能错误地强调重点(即本不该是重点的元素)。</p>
-<h6 id="重复-一致性"><a href="#重复-一致性" class="headerlink" title="重复-一致性"></a>重复-一致性</h6><p>设计的某些方面需要在整个作品中重复。控制读者视线，设计中视觉元素的重复可以将作品中的各部分连在一起,从而统一并增强整个作品。<br>重复的目的就是统一,并增强视觉效果。不要低估页面视觉效果的威力,如果一个作品看起来很有趣,它往往也更易于阅读。<br>要避免太多地重复一个元素,重复太多会让人讨厌。要注意对比的价值<br>可以通过字体选择、线宽、颜色、形状、大小、空间等来增加对比。 增加对比很容易,途径有很多,这可能是增加视觉效果最有意思也最让人满意的方 法了。重要的是:对比一定要强烈!</p>
-        
-          <a class="article-more-a" href="/2017/06/21/写给大家看的设计书/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/21/写给大家看的设计书/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-D3.js学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/21/D3.js学习/">D3.js学习</a>
-    </h1>
-  
-
-        
-        <a href="/2017/06/21/D3.js学习/" class="archive-article-date">
-  	<time datetime="2017-06-21T02:47:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ol>
-<li>D3.js实现数据和元素的绑定<br>对于DOM结点的选择，d3.select(‘tag’)选择第一个元素,d3.selectAll(‘tag’)选择所有的元素。<br>对于数据的绑定，tag.datum()将一个数据绑定到元素上，tag.data()将数组内元素分别绑定各元素。</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var body = d3.select(&apos;body&apos;);</span><br></pre></td></tr></table></figure>
-
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/06/21/D3.js学习/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
@@ -903,7 +931,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2020 Xuan
+    		&copy; 2021 Xuan
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -978,15 +1006,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">flex</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">css</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">flex</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1003,10 +1035,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数字签名</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1034,14 +1062,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">moment.js</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Date</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">typeof</a>
               </li>
              
@@ -1051,6 +1071,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Object.prototype.toString.call()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">moment.js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Date</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1067,6 +1095,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">CI/CD</a>
               </li>
              
               <li class="article-tag-list-item">
