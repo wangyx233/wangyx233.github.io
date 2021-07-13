@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="历史为什么需要 转换ES6 转换JSX 压缩混淆 CSS预处理器 图片压缩…  gulp 任务打包器，文件流的概念，每一步构建的结果不会存本地磁盘，而是存在内存里，可以加快打包速度。 webpack vs gulp 社区生态丰富，配置灵活，插件化扩展，官方更新迭代快；module builder vs task runner 简介配置文件，默认：webpack.config.js可以使用 webp">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2021-06-30T02:45:57.329Z">
+<meta property="og:updated_time" content="2021-07-13T03:21:58.452Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【工程化】Webpack">
 <meta name="twitter:description" content="历史为什么需要 转换ES6 转换JSX 压缩混淆 CSS预处理器 图片压缩…  gulp 任务打包器，文件流的概念，每一步构建的结果不会存本地磁盘，而是存在内存里，可以加快打包速度。 webpack vs gulp 社区生态丰富，配置灵活，插件化扩展，官方更新迭代快；module builder vs task runner 简介配置文件，默认：webpack.config.js可以使用 webp">
@@ -166,7 +166,7 @@
 <h3 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h3><ol>
 <li>entry：模块依赖打包的入口，单页应用为字符串，多页应用为{key: value}</li>
 <li>output：将编译的文件输出到磁盘，通过filename [xxx]区别多入口多输出，输出的文件名称，为entry设置的key名</li>
-<li>loaders！webpack开箱即用的只有js和json两种类型，所以需要通过loaders去支持其他文件类型并转成有效的模块，并且可以加到依赖图里<br>loaders其实是个函数，接受源文件为参数，返回转换的结果<br>比如：</li>
+<li>loaders！webpack开箱即用的只有js和json两种类型，所以需要通过loaders去支持其他文件类型并转成有效的模块，并且可以加到依赖图里<br>loaders其实是个函数，接受源文件为参数，返回转换的结果。链式调用的，从右向左执行<br>比如：</li>
 </ol>
 <ul>
 <li>babel-loader</li>
@@ -186,6 +186,78 @@
 <li>mode: 指定打包的环境，production，development</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">const path = require(&apos;path&apos;);</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">    entry: &#123;</span><br><span class="line">        app: &apos;xxx&apos;,</span><br><span class="line">        admin: &apos;sss&apos;</span><br><span class="line">    &#125;,</span><br><span class="line">    output: &#123;</span><br><span class="line">        filename: &apos;[xxx].js&apos;,</span><br><span class="line">        path: &apos;&apos;</span><br><span class="line">    &#125;</span><br><span class="line">    mode: &apos;production&apos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="6">
+<li><p>文件监听的原理分析<br>轮询地判断文件最后编辑时间是否变化，某个文件发生了变化，并不会立刻告诉监听者，而是先缓存起来，等aggregateTimeout</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">watchOptions: &#123;</span><br><span class="line">    ignored: /node_modules/,</span><br><span class="line">    aggregateTimeout: 300, // 监听到变化后，多长时间后再去执行</span><br><span class="line">    poll: 1000 // 1s询问多少次</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>热更新<br>webpack compile<br>HMR Server   -&gt; HMR Runtime，会被注入到浏览器的bundle.js里面，浏览器里的bundle.js 就可以建立连接websocket，更新变化<br>Bundle Server -&gt; 浏览器访问 localhost</p>
+</li>
+</ol>
+<ul>
+<li>两个阶段，启动阶段 文件系统 -&gt; webpack compile -&gt; Bundle Server</li>
+<li>变更阶段，文件系统 -&gt; webpack compile -&gt; HMR Server -&gt; HMR Runtime （json形式）</li>
+</ul>
+<ol start="8">
+<li>文件指纹 - 打包后输出的文件名后缀<br>怎样生成的？</li>
+</ol>
+<ul>
+<li>hash，和整个项目的构建有关，只要项目文件有修改，整个项目构建的hash就会更改</li>
+<li>chunkhash，和webpack打包的chunk有关，不同的entry会生成不同的chunkhash</li>
+<li>contenthash，根据文件内容来生成hash，文件内容不变，则contenthash不变</li>
+</ul>
+<p>ps. file-loader 里面的hash也是指contenthash的意思。style-loader是将css代码插入到head中,MiniCssExtractPlugin是将css文件提取出独立的文件，二者互斥</p>
+<ol start="9">
+<li>清理构建目录 - clean-webpack-plugin</li>
+<li>css</li>
+</ol>
+<ul>
+<li>属性前缀 - autoprefixer，postcss-loader</li>
+<li>px rem 相互转换 rem: font-size of the root element。px2rem-loader</li>
+</ul>
+<ol start="10">
+<li><p>静态资源内联，raw-loader。读取文件的内容，然后把文件的内容插入到对应的位置</p>
+</li>
+<li><p>多页面打包，MPA - 借助 glob</p>
+<blockquote>
+<p>glob.sync(path.join(__dirname, ‘./src/*/index.js’))<br>动态获取entry以及HtmlWebpackPlugin</p>
+</blockquote>
+</li>
+<li><p>source-map定位到源代码，开发环境中用，线上环境关闭<br>cheap-source-map , inline-source-map，eval 不会有单独的map文件</p>
+</li>
+<li><p>提取公共资源</p>
+</li>
+</ol>
+<ul>
+<li>HtmlWebpackExternalsPlugin，放cdn的地址</li>
+<li>SplitChunkPlugin</li>
+</ul>
+<ol start="14">
+<li>Tree Shaking<br>设置mode: production,是默认开启的</li>
+</ol>
+<ul>
+<li>原理：DCE（Dead Code  Elimination）<br>代码不可到达的，不能执行；执行结果不会使用；代码只写不用</li>
+<li>利用ES6模块的特点，只能作为模块顶部的语句出现；import的模块名只能是字符串常量；import binding是不可变的</li>
+<li>uglify阶段删除无用代码</li>
+<li>具有副作用的代码，tree shaking会失效</li>
+</ul>
+<p>副作用：一个函数会、或者可能会对函数外部变量产生影响的行为</p>
+<ol start="15">
+<li><p>Scope hoisting<br>问题：</p>
+<ul>
+<li>大量函数闭包包裹代码，导致体积增大</li>
+<li>运行代码时创建的函数作用域多，内存开销大</li>
+</ul>
+<p>模块转换，一个闭包包裹；import被转换成__webpack_require</p>
+</li>
+<li><p>代码分割，动态import，通过JSONP实现</p>
+</li>
+</ol>
+<ul>
+<li>抽离相同代码到一个共享块</li>
+<li>脚本懒加载，初始下载的代码更小 </li>
+</ul>
+
       
 
       
@@ -431,27 +503,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">React</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">flex</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">CI/CD</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">css</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">购房</a>
+                <a href="javascript:void(0)" class="js-tag color1">React</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -459,15 +515,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color3">购房</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -487,11 +543,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">flex</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">投资</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">search</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -503,23 +579,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">投资</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">search</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Promise</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">setTimeout</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">closure</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -531,7 +607,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
+                <a href="javascript:void(0)" class="js-tag color1">CI/CD</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -544,10 +620,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Object.prototype.toString.call()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">closure</a>
               </li>
              
               <li class="article-tag-list-item">

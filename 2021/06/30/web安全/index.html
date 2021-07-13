@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="安全问题Web页面安全，浏览器网络安全，浏览器安全 同源策略 Same-origin policy什么是同源？  两个URL的协议、域名、端口都相同，则这两个URL同源  12http://www.yixuanwang.cn/?article=1http://www.yixuanwang.cn/?article=0  相同源之间可以互相访问资源和操作DOM结点的，不同源之间会有一定安全策略的制约，">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2021-06-30T02:45:57.334Z">
+<meta property="og:updated_time" content="2021-07-13T03:21:58.388Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="同源策略与Web安全">
 <meta name="twitter:description" content="安全问题Web页面安全，浏览器网络安全，浏览器安全 同源策略 Same-origin policy什么是同源？  两个URL的协议、域名、端口都相同，则这两个URL同源  12http://www.yixuanwang.cn/?article=1http://www.yixuanwang.cn/?article=0  相同源之间可以互相访问资源和操作DOM结点的，不同源之间会有一定安全策略的制约，">
@@ -176,7 +176,7 @@
 <h3 id="怎么办"><a href="#怎么办" class="headerlink" title="怎么办"></a>怎么办</h3></li>
 <li><p>服务器对输入数据进行转码</p>
 </li>
-<li><p>充分利用CSP(Content-Security-Policy)，限制其他源的资源下载，禁止像第三方域提交数据，禁止执行内联脚本和未授权的脚本，即使上报</p>
+<li><p>充分利用CSP(Content-Security-Policy)，限制其他源的资源下载，禁止向第三方域提交数据，禁止执行内联脚本和未授权的脚本，即使上报</p>
 </li>
 <li><p>使用 HttpOnly 属性，HTTP的响应头，set-cookied: xxxx ; HttpOnly。只能通过HTTP请求使用，无法通过document.cookie获取<br>还可以通过添加验证码的方式防止脚本冒充用户进行提交危险操作，对于一些不信任的输入，还可以限制其输入长度</p>
 </li>
@@ -191,13 +191,11 @@
 </li>
 <li><p>引诱用户点击链接</p>
 </li>
-<li><p>CSRF Token</p>
-</li>
 </ul>
 <h3 id="怎么办-1"><a href="#怎么办-1" class="headerlink" title="怎么办"></a>怎么办</h3><ul>
 <li>对于响应头的Cookie设置，SameSite可以设置Strict、Lax 和 None</li>
 <li>验证请求的来源站点，通过Origin，Referer判断</li>
-<li>post请求，增加验证</li>
+<li>设置CSRF Token，每次请求都携带该token进行验证</li>
 </ul>
 
       
@@ -456,27 +454,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">React</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">flex</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">CI/CD</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">css</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">购房</a>
+                <a href="javascript:void(0)" class="js-tag color1">React</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -484,15 +466,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color3">购房</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -512,11 +494,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">flex</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">投资</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">search</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -528,23 +530,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">投资</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">search</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Promise</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">setTimeout</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">closure</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -556,7 +558,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
+                <a href="javascript:void(0)" class="js-tag color1">CI/CD</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -569,10 +571,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Object.prototype.toString.call()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">closure</a>
               </li>
              
               <li class="article-tag-list-item">

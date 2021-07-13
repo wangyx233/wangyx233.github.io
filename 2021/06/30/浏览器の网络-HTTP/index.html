@@ -17,7 +17,7 @@
 <meta property="og:description" content="HTTPHTTP是应用层协议">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://wangyx233.github.io/gallery/http.png">
-<meta property="og:updated_time" content="2021-06-30T02:45:57.341Z">
+<meta property="og:updated_time" content="2021-07-13T03:21:58.408Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浏览器の网络-HTTP">
 <meta name="twitter:description" content="HTTPHTTP是应用层协议">
@@ -159,6 +159,7 @@
 <img src="/gallery/http.png">
 <a id="more"></a>
 
+<p>ABNF语法规则<br>Chrome小绩效，network里面，按住shift可以看到鼠标悬停请求的上下游，绿色是其上游，红色是其下游</p>
 <h3 id="HTTP-1"><a href="#HTTP-1" class="headerlink" title="HTTP/1"></a>HTTP/1</h3><ul>
 <li><p>HTTP/0.9 -&gt; 1991出现的，依靠TCP(传输层协议)，三次握手建立连接，四次挥手断开连接。只有一个请求行类似GET /index.html，没有请求头和请求体，服务端也没有返回头信息，用ASCII字节码来传递HTML消息</p>
 </li>
@@ -192,10 +193,10 @@
 </ol>
 <p>除了多路复用，HTTP/2还可以设置请求的优先级，服务推送，头部压缩</p>
 <h3 id="HTTP-3"><a href="#HTTP-3" class="headerlink" title="HTTP/3"></a>HTTP/3</h3><p>甩掉TCP,TCL的包袱，HTTP/2在应用层解决了队头阻塞的问题，但是TCP协议可以理解为上是一个按照顺序传递数据的管道，所以管道内丢数据，或者故障了，整个TCP连接都会处于暂停状态，需要等待丢失的数据包重新传输，所以在TCP的传输过程中，由于单个数据包的丢失而造成的阻塞成为TCP上的队头阻塞。<br>由于HTTP/1.1可以同时维持多个TCP连接，而HTTP/2同时只维持一个TCP连接，所以随着丢包率的增加，HTTP/2的传输速率表现反而不如HTTP/1.1好用</p>
-<p>RTT是反映网络性能的一个重要指标，TCP的握手会出现网络延时</p>
+<p>RTT是反映网络性能的一个重要指标，TCP的握手会出现网络延时，浪费多个RTT的时间</p>
 <p>TCP协议僵化</p>
 <blockquote>
-<p>HTTP/3 选择了UDP协议，基于UDP实现了可靠传输，多路复用，快速握手，有序交付，TLS —–&gt; QUIC 协议</p>
+<p>HTTP/3 选择了UDP协议，基于UDP实现了可靠传输，多路复用，快速握手，有序交付，TLS —–&gt; QUIC 协议，音同quick</p>
 </blockquote>
 
       
@@ -311,6 +312,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2021/07/13/[读书]JavaScript高级程序设计/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          【读书】JavaScript高级程序设计
+        
+      </div>
+    </a>
   
   
     <a href="/2021/06/30/安全了-HTTPS/" id="article-nav-older" class="article-nav-link-wrap">
@@ -445,27 +455,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">React</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">flex</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">CI/CD</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">css</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">购房</a>
+                <a href="javascript:void(0)" class="js-tag color1">React</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -473,15 +467,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color3">购房</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -501,11 +495,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">flex</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">投资</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">search</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -517,23 +531,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">投资</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">search</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Promise</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">setTimeout</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">closure</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -545,7 +559,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
+                <a href="javascript:void(0)" class="js-tag color1">CI/CD</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -558,10 +572,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Object.prototype.toString.call()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">closure</a>
               </li>
              
               <li class="article-tag-list-item">
