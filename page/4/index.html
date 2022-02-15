@@ -46,7 +46,7 @@
 			<img src="https://s2.ax1x.com/2019/07/19/ZvAuZj.jpg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">Xuan</a></h1>
+		  <h1 class="header-author"><a href="/">YX</a></h1>
 		</hgroup>
 		
 
@@ -92,7 +92,7 @@
 				<img src="https://s2.ax1x.com/2019/07/19/ZvAuZj.jpg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">Xuan</h1>
+			  <h1 class="header-author js-header-author">YX</h1>
 			</hgroup>
 			
 			
@@ -130,19 +130,19 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-[JSWebAPI]cookie" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-[JSWebAPI]DOM" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/30/[JSWebAPI]cookie/">【WebAPI】存储</a>
+      <a class="article-title" href="/2021/06/30/[JSWebAPI]DOM/">【WebAPI】DOM</a>
     </h1>
   
 
         
-        <a href="/2021/06/30/[JSWebAPI]cookie/" class="archive-article-date">
+        <a href="/2021/06/30/[JSWebAPI]DOM/" class="archive-article-date">
   	<time datetime="2021-06-30T02:45:57.317Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
 </a>
         
@@ -150,24 +150,41 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ul>
-<li>介绍cookie、localStorage、sessionStorage区别</li>
-</ul>
-<h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><ol>
-<li><p>cookie</p>
+        <blockquote>
+<p>DOM -&gt; Document Object Model</p>
+</blockquote>
 <ul>
-<li>通过;分割的字符串，每一部分都是key=value的形式</li>
-<li>http请求的一部分，用于浏览器和服务端通讯的</li>
-<li>document.cookie修改，默认每次追加或者修改一个key/value</li>
-<li>限制：最大4KB，每次http请求都需要发送到服务端，api太简陋</li>
+<li>DOM数据结构</li>
+<li>DOM常用的API</li>
+<li>attr和property的区别</li>
+<li>如何一次插入多个DOM节点</li>
+</ul>
+<h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><ul>
+<li>DOM 本质</li>
+<li>DOM 节点操作</li>
+<li>DOM 结构操作</li>
+<li>DOM 性能</li>
+</ul>
+<ol>
+<li>DOM本质：从HTML解析出来的一棵树</li>
+<li>DOM节点<ul>
+<li>节点获取的常见API</li>
+<li>通过js修改页面渲染结构：节点property，直接通过属性修改，如：dom.style.width = xxxx,dom.className = ‘xxx’</li>
+<li>修改的是标签的属性：节点attribute，通过getAttibute(‘style’, ‘font-size:16px’),setAttribute()<blockquote>
+<p>property： 修改JS对象属性，不会体现在html中；attribute：修改html属性，改变html结构。都有可能引起DOM重新渲染，可以先优先用property</p>
+</blockquote>
+</li>
 </ul>
 </li>
-<li><p>localStorage、sessionStorage</p>
-<ul>
-<li>HTML5专门为存储设计的，最大可存储5M / pre host</li>
-<li>API：getItem() setItem() 存储的为字符串的形式，所以其他格式的数据要注意</li>
-<li>和http请求没关系</li>
-<li>localStorage 永久存储，除非手动或者代码删除；sessionStorage只存在于当前会话，页面关闭清空</li>
+<li>DOM结构<ul>
+<li>新增/插入节点，createElement()，appendChild()未存在的节点直接创建，已存在的移动。</li>
+<li>删除节点：removeChild()</li>
+</ul>
+</li>
+<li>DOM性能<ul>
+<li>避免频繁的DOM操作</li>
+<li>对DOM查询做缓存，get操作用变量缓存一下</li>
+<li>将频繁操作改为一次操作，通过document.createDocumentFragment() 创建一个文档片段，将高频操作插入到文档片段中，最后再把文档片段插入</li>
 </ul>
 </li>
 </ol>
@@ -194,98 +211,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/30/[JSWebAPI]cookie/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-[HTML]查漏补缺" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/30/[HTML]查漏补缺/">【HTML】查漏补缺</a>
-    </h1>
-  
-
-        
-        <a href="/2021/06/30/[HTML]查漏补缺/" class="archive-article-date">
-  	<time datetime="2021-06-30T02:45:57.316Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>语义化</li>
-<li>块级元素，内联元素</li>
-</ul>
-<ol>
-<li>语义化</li>
-</ol>
-<ul>
-<li>人更容易读懂，可读性</li>
-<li>搜索引擎SEO更容易懂</li>
-</ul>
-<ol start="2">
-<li></li>
-</ol>
-<ul>
-<li>块级： block/table, div, h1, table, p, ul, li</li>
-<li>内联： inline/inline-block, span, img, input, button</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/HTML//" class="article-tag-list-link color5">HTML</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/30/[HTML]查漏补缺/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/06/30/[JSWebAPI]DOM/">展开全文 >></a>
         </p>
       
 
@@ -416,6 +342,97 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/06/30/[JSWebAPI]AJAX/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-[HTML]查漏补缺" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/06/30/[HTML]查漏补缺/">【HTML】查漏补缺</a>
+    </h1>
+  
+
+        
+        <a href="/2021/06/30/[HTML]查漏补缺/" class="archive-article-date">
+  	<time datetime="2021-06-30T02:45:57.316Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>语义化</li>
+<li>块级元素，内联元素</li>
+</ul>
+<ol>
+<li>语义化</li>
+</ol>
+<ul>
+<li>人更容易读懂，可读性</li>
+<li>搜索引擎SEO更容易懂</li>
+</ul>
+<ol start="2">
+<li></li>
+</ol>
+<ul>
+<li>块级： block/table, div, h1, table, p, ul, li</li>
+<li>内联： inline/inline-block, span, img, input, button</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/HTML//" class="article-tag-list-link color5">HTML</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/06/30/[HTML]查漏补缺/">展开全文 >></a>
         </p>
       
 
@@ -1200,7 +1217,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2022 Xuan
+    		&copy; 2022 YX
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -1275,6 +1292,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">flex</a>
               </li>
              
@@ -1287,11 +1308,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">保险</a>
+                <a href="javascript:void(0)" class="js-tag color1">CI/CD</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1300,6 +1317,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">保险</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1319,6 +1340,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
@@ -1335,10 +1360,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tree</a>
               </li>
              
@@ -1347,11 +1368,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">投资</a>
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" class="js-tag color3">投资</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1360,6 +1381,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">setTimeout</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">moment.js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Date</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1376,22 +1409,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Object.prototype.toString.call()</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">moment.js</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Date</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">CI/CD</a>
               </li>
              
               <li class="article-tag-list-item">
