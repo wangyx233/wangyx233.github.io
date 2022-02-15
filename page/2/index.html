@@ -780,19 +780,19 @@
 
 
   
-    <article id="post-[React]性能优化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-[React]事件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/30/[React]性能优化/">【React】性能优化</a>
+      <a class="article-title" href="/2021/06/30/[React]事件/">【React】事件系统</a>
     </h1>
   
 
         
-        <a href="/2021/06/30/[React]性能优化/" class="archive-article-date">
+        <a href="/2021/06/30/[React]事件/" class="archive-article-date">
   	<time datetime="2021-06-30T02:45:57.323Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
 </a>
         
@@ -800,11 +800,23 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ul>
-<li>善用 shouldComponentUpdate</li>
-<li>PureComponent  + Immutable.js</li>
-<li>函数组件的性能优化：React.memo 和 useMemo</li>
-</ul>
+        <h1 id="DOM事件流"><a href="#DOM事件流" class="headerlink" title="DOM事件流"></a>DOM事件流</h1><ol>
+<li>事件捕获</li>
+<li>目标阶段</li>
+<li>事件冒泡</li>
+</ol>
+<h1 id="事件委托-事件代理"><a href="#事件委托-事件代理" class="headerlink" title="事件委托/事件代理"></a>事件委托/事件代理</h1><blockquote>
+<p>把多个子元素的同一类型的监听逻辑，合并到父元素上通过一个监听函数来管理的行为，就是事件委托。<br>e.target 这个属性，指的是触发事件的具体目标，记录着事件的源头。</p>
+</blockquote>
+<h1 id="React事件系统"><a href="#React事件系统" class="headerlink" title="React事件系统"></a>React事件系统</h1><h2 id="合成事件"><a href="#合成事件" class="headerlink" title="合成事件"></a>合成事件</h2><blockquote>
+<p>当事件在具体的DOM节点上被触发后，最终都会冒泡到document(或者ReactDOM.render绑定的元素)，document上所绑定的统一事件处理程序会将事件分发给具体的组件实例。</p>
+</blockquote>
+<p>合成事件是React自定义的事件对象，符合W3C规范，在底层抹平了不同浏览器的差异，在上层向开发者暴露统一的，稳定的，与DOM原生事件相同的事件接口。不必关注兼容问题，专注业务开发。<br>合成事件不是原生的事件，但是它保存了原生事件的引用，e.nativeEvent</p>
+<blockquote>
+<p>React 事件的命名采用小驼峰式（camelCase），而不是纯小写。使用 JSX 语法时你需要传入一个函数作为事件处理函数，而不是一个字符串。不能通过返回 false 的方式阻止默认行为。你必须显式的使用 preventDefault<br>比如：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">handleClick() &#123;</span><br><span class="line">  console.log(&apos;this is:&apos;, this);</span><br><span class="line">&#125;</span><br><span class="line">&lt;div onClick=&#123;()=&gt;this.handleClick()&#125;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
 
       
 
@@ -839,7 +851,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/30/[React]性能优化/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/06/30/[React]事件/">展开全文 >></a>
         </p>
       
 
@@ -969,19 +981,19 @@
 
 
   
-    <article id="post-[React]事件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-[React]性能优化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/30/[React]事件/">【React】事件系统</a>
+      <a class="article-title" href="/2021/06/30/[React]性能优化/">【React】性能优化</a>
     </h1>
   
 
         
-        <a href="/2021/06/30/[React]事件/" class="archive-article-date">
+        <a href="/2021/06/30/[React]性能优化/" class="archive-article-date">
   	<time datetime="2021-06-30T02:45:57.323Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
 </a>
         
@@ -989,23 +1001,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="DOM事件流"><a href="#DOM事件流" class="headerlink" title="DOM事件流"></a>DOM事件流</h1><ol>
-<li>事件捕获</li>
-<li>目标阶段</li>
-<li>事件冒泡</li>
-</ol>
-<h1 id="事件委托-事件代理"><a href="#事件委托-事件代理" class="headerlink" title="事件委托/事件代理"></a>事件委托/事件代理</h1><blockquote>
-<p>把多个子元素的同一类型的监听逻辑，合并到父元素上通过一个监听函数来管理的行为，就是事件委托。<br>e.target 这个属性，指的是触发事件的具体目标，记录着事件的源头。</p>
-</blockquote>
-<h1 id="React事件系统"><a href="#React事件系统" class="headerlink" title="React事件系统"></a>React事件系统</h1><h2 id="合成事件"><a href="#合成事件" class="headerlink" title="合成事件"></a>合成事件</h2><blockquote>
-<p>当事件在具体的DOM节点上被触发后，最终都会冒泡到document(或者ReactDOM.render绑定的元素)，document上所绑定的统一事件处理程序会将事件分发给具体的组件实例。</p>
-</blockquote>
-<p>合成事件是React自定义的事件对象，符合W3C规范，在底层抹平了不同浏览器的差异，在上层向开发者暴露统一的，稳定的，与DOM原生事件相同的事件接口。不必关注兼容问题，专注业务开发。<br>合成事件不是原生的事件，但是它保存了原生事件的引用，e.nativeEvent</p>
-<blockquote>
-<p>React 事件的命名采用小驼峰式（camelCase），而不是纯小写。使用 JSX 语法时你需要传入一个函数作为事件处理函数，而不是一个字符串。不能通过返回 false 的方式阻止默认行为。你必须显式的使用 preventDefault<br>比如：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">handleClick() &#123;</span><br><span class="line">  console.log(&apos;this is:&apos;, this);</span><br><span class="line">&#125;</span><br><span class="line">&lt;div onClick=&#123;()=&gt;this.handleClick()&#125;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-
+        <ul>
+<li>善用 shouldComponentUpdate</li>
+<li>PureComponent  + Immutable.js</li>
+<li>函数组件的性能优化：React.memo 和 useMemo</li>
+</ul>
 
       
 
@@ -1040,7 +1040,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/30/[React]事件/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/06/30/[React]性能优化/">展开全文 >></a>
         </p>
       
 
@@ -1173,7 +1173,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2021 Xuan
+    		&copy; 2022 Xuan
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -1248,11 +1248,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css</a>
+                <a href="javascript:void(0)" class="js-tag color5">flex</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">React</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1264,11 +1272,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1288,23 +1292,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">flex</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">投资</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1316,11 +1308,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tree</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Binary tree</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">投资</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1332,27 +1336,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">closure</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">moment.js</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Date</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">CI/CD</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1365,6 +1349,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Object.prototype.toString.call()</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">moment.js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Date</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">CI/CD</a>
               </li>
              
               <li class="article-tag-list-item">
