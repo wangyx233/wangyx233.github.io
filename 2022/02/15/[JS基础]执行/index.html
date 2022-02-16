@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="https://wangyx233.github.io">
   <title>【JS基础】执行 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="JavaScript 执行主要分为两个阶段：  代码预编译阶段  代码执行阶段 1.代码预编译阶段  预编译阶段进行变量声明  预编译阶段变量声明进行提升，但是值为 undefined  预编译阶段所有非表达式的函数声明进行提升   12345678910111213foo(10)function foo (num) &amp;#123;    console.log(foo)    foo = num;">
+  <meta name="description" content="JavaScript 执行主要分为两个阶段：  代码预编译阶段 代码执行阶段  代码预编译阶段  预编译阶段进行变量声明 预编译阶段变量声明进行提升，但是值为 undefined 预编译阶段所有非表达式的函数声明进行提升  12345678910111213foo(10)function foo (num) &amp;#123;    console.log(foo)    foo = num;    c">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【JS基础】执行">
 <meta property="og:url" content="https://wangyx233.github.io/2022/02/15/[JS基础]执行/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="JavaScript 执行主要分为两个阶段：  代码预编译阶段  代码执行阶段 1.代码预编译阶段  预编译阶段进行变量声明  预编译阶段变量声明进行提升，但是值为 undefined  预编译阶段所有非表达式的函数声明进行提升   12345678910111213foo(10)function foo (num) &amp;#123;    console.log(foo)    foo = num;">
+<meta property="og:description" content="JavaScript 执行主要分为两个阶段：  代码预编译阶段 代码执行阶段  代码预编译阶段  预编译阶段进行变量声明 预编译阶段变量声明进行提升，但是值为 undefined 预编译阶段所有非表达式的函数声明进行提升  12345678910111213foo(10)function foo (num) &amp;#123;    console.log(foo)    foo = num;    c">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2022-02-15T06:26:06.776Z">
+<meta property="og:updated_time" content="2022-02-15T10:35:50.021Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【JS基础】执行">
-<meta name="twitter:description" content="JavaScript 执行主要分为两个阶段：  代码预编译阶段  代码执行阶段 1.代码预编译阶段  预编译阶段进行变量声明  预编译阶段变量声明进行提升，但是值为 undefined  预编译阶段所有非表达式的函数声明进行提升   12345678910111213foo(10)function foo (num) &amp;#123;    console.log(foo)    foo = num;">
+<meta name="twitter:description" content="JavaScript 执行主要分为两个阶段：  代码预编译阶段 代码执行阶段  代码预编译阶段  预编译阶段进行变量声明 预编译阶段变量声明进行提升，但是值为 undefined 预编译阶段所有非表达式的函数声明进行提升  12345678910111213foo(10)function foo (num) &amp;#123;    console.log(foo)    foo = num;    c">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -154,17 +154,14 @@
       
         <p>JavaScript 执行主要分为两个阶段：</p>
 <ul>
-<li><p>代码预编译阶段</p>
-</li>
-<li><p>代码执行阶段</p>
-<p>1.代码预编译阶段</p>
-</li>
-<li><p>预编译阶段进行变量声明</p>
-</li>
-<li><p>预编译阶段变量声明进行提升，但是值为 undefined</p>
-</li>
-<li><p>预编译阶段所有非表达式的函数声明进行提升</p>
-</li>
+<li>代码预编译阶段</li>
+<li>代码执行阶段</li>
+</ul>
+<p>代码预编译阶段</p>
+<ul>
+<li>预编译阶段进行变量声明</li>
+<li>预编译阶段变量声明进行提升，但是值为 undefined</li>
+<li>预编译阶段所有非表达式的函数声明进行提升</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">foo(10)</span><br><span class="line">function foo (num) &#123;</span><br><span class="line">    console.log(foo)</span><br><span class="line">    foo = num;</span><br><span class="line">    console.log(foo)</span><br><span class="line">    var foo</span><br><span class="line">&#125;</span><br><span class="line">console.log(foo)</span><br><span class="line">foo = 1</span><br><span class="line">console.log(foo)</span><br><span class="line">// undefined</span><br><span class="line">// 10</span><br><span class="line">// 1</span><br></pre></td></tr></table></figure>
 
@@ -178,9 +175,7 @@
 <blockquote>
 <p>闭包： 函数嵌套函数时，内层函数引用了外层函数作用域下的变量，并且内层函数在全局环境下可访问，就形成了闭包。</p>
 </blockquote>
-<blockquote>
 <p>浏览器的垃圾清除</p>
-</blockquote>
 <ul>
 <li>标记清除</li>
 <li>引用计数</li>
@@ -288,6 +283,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2022/02/16/[浏览器]从输入URL到页面展示发生了什么/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          【浏览器】从输入URL到页面展示发生了什么？
+        
+      </div>
+    </a>
   
   
     <a href="/2022/02/15/[重温JS]作用域和闭包/" id="article-nav-older" class="article-nav-link-wrap">
@@ -422,15 +426,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">flex</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">React</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -438,31 +434,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">React</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">CI/CD</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">购房</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">保险</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -482,19 +466,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">购房</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">search</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">投资</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -506,11 +502,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">moment.js</a>
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Date</a>
+                <a href="javascript:void(0)" class="js-tag color3">投资</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -519,6 +515,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">setTimeout</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">moment.js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Date</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -538,19 +546,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">安全</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">安全</a>
               </li>
              
               <li class="article-tag-list-item">

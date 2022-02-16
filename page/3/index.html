@@ -130,19 +130,19 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-[React]性能优化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-[React]前端路由" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/30/[React]性能优化/">【React】性能优化</a>
+      <a class="article-title" href="/2021/06/30/[React]前端路由/">【React】前端路由-React Router</a>
     </h1>
   
 
         
-        <a href="/2021/06/30/[React]性能优化/" class="archive-article-date">
+        <a href="/2021/06/30/[React]前端路由/" class="archive-article-date">
   	<time datetime="2021-06-30T02:45:57.323Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
 </a>
         
@@ -150,11 +150,22 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ul>
-<li>善用 shouldComponentUpdate</li>
-<li>PureComponent  + Immutable.js</li>
-<li>函数组件的性能优化：React.memo 和 useMemo</li>
+        <h1 id="What"><a href="#What" class="headerlink" title="What"></a>What</h1><ul>
+<li>切换Hash</li>
+<li>切换Path<br>HTML5的History API中的 pushState、replaceState，还需要在服务端配置historyApiFallback<br>路由守卫<h1 id="How"><a href="#How" class="headerlink" title="How"></a>How</h1></li>
 </ul>
+<ol>
+<li>路由器：BrowserRouter 和 HashRouter</li>
+</ol>
+<ul>
+<li>BrowserRouter 是使用 HTML 5 的 history API 来控制路由跳转的。</li>
+<li>HashRouter 是通过 URL 的 hash 属性来控制路由跳转的。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">window.location.hash</span><br><span class="line">// 监听hash变化，点击浏览器的前进后退会触发</span><br><span class="line">window.addEventListener(&apos;hashchange&apos;, function(event)&#123;</span><br><span class="line">    // 根据 hash 的变化更新内容</span><br><span class="line">&#125;,false)</span><br><span class="line">window.history.forward()  // 前进到下一页</span><br><span class="line">window.history.back() // 后退到上一页</span><br><span class="line">window.history.go(2)</span><br><span class="line">history.pushState(data[,title][,url]); // 向浏览历史中追加一条记录</span><br><span class="line">history.replaceState(data[,title][,url]); // 修改（替换）当前页在浏览历史中的信息</span><br><span class="line">window.addEventListener(&apos;popstate&apos;, function(e) &#123;</span><br><span class="line">  console.log(e)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<blockquote>
+<p>go、forward 和 back 等方法的调用确实会触发 popstate，但是pushState 和 replaceState 不会。不过这一点问题不大，我们可以通过自定义事件和全局事件总线来手动触发事件。</p>
+</blockquote>
 
       
 
@@ -189,7 +200,108 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/30/[React]性能优化/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/06/30/[React]前端路由/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-[React]事件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/06/30/[React]事件/">【React】事件系统</a>
+    </h1>
+  
+
+        
+        <a href="/2021/06/30/[React]事件/" class="archive-article-date">
+  	<time datetime="2021-06-30T02:45:57.323Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="DOM事件流"><a href="#DOM事件流" class="headerlink" title="DOM事件流"></a>DOM事件流</h1><ol>
+<li>事件捕获</li>
+<li>目标阶段</li>
+<li>事件冒泡</li>
+</ol>
+<h1 id="事件委托-事件代理"><a href="#事件委托-事件代理" class="headerlink" title="事件委托/事件代理"></a>事件委托/事件代理</h1><blockquote>
+<p>把多个子元素的同一类型的监听逻辑，合并到父元素上通过一个监听函数来管理的行为，就是事件委托。<br>e.target 这个属性，指的是触发事件的具体目标，记录着事件的源头。</p>
+</blockquote>
+<h1 id="React事件系统"><a href="#React事件系统" class="headerlink" title="React事件系统"></a>React事件系统</h1><h2 id="合成事件"><a href="#合成事件" class="headerlink" title="合成事件"></a>合成事件</h2><blockquote>
+<p>当事件在具体的DOM节点上被触发后，最终都会冒泡到document(或者ReactDOM.render绑定的元素)，document上所绑定的统一事件处理程序会将事件分发给具体的组件实例。</p>
+</blockquote>
+<p>合成事件是React自定义的事件对象，符合W3C规范，在底层抹平了不同浏览器的差异，在上层向开发者暴露统一的，稳定的，与DOM原生事件相同的事件接口。不必关注兼容问题，专注业务开发。<br>合成事件不是原生的事件，但是它保存了原生事件的引用，e.nativeEvent</p>
+<blockquote>
+<p>React 事件的命名采用小驼峰式（camelCase），而不是纯小写。使用 JSX 语法时你需要传入一个函数作为事件处理函数，而不是一个字符串。不能通过返回 false 的方式阻止默认行为。你必须显式的使用 preventDefault<br>比如：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">handleClick() &#123;</span><br><span class="line">  console.log(&apos;this is:&apos;, this);</span><br><span class="line">&#125;</span><br><span class="line">&lt;div onClick=&#123;()=&gt;this.handleClick()&#125;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">React</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/React//" class="article-tag-list-link color1">React</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/06/30/[React]事件/">展开全文 >></a>
         </p>
       
 
@@ -632,87 +744,6 @@
 
 
   
-    <article id="post-[JS基础]浏览器中JavaScript的执行机制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/30/[JS基础]浏览器中JavaScript的执行机制/">【JS基础】浏览器中JavaScript执行机制</a>
-    </h1>
-  
-
-        
-        <a href="/2021/06/30/[JS基础]浏览器中JavaScript的执行机制/" class="archive-article-date">
-  	<time datetime="2021-06-30T02:45:57.320Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="变量提升（Hoisting）"><a href="#变量提升（Hoisting）" class="headerlink" title="变量提升（Hoisting）"></a>变量提升（Hoisting）</h2><h3 id="What"><a href="#What" class="headerlink" title="What?"></a>What?</h3><blockquote>
-<p>JavaScript代码执行过程中，JS引擎会把变量声明和函数声明部分提升到代码的开头，并不是物理性的移动，实际中代码并没有改变，而是JS引擎在编译阶段放进内存的。<br>一段JS代码在执行时，先经过编译，编译完成后，再进入执行阶段。<br>编译后的内容分为两部分：执行上下文（Execution context）和可执行代码。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">showName()</span><br><span class="line">console.log(myname)</span><br><span class="line">var myname = &apos;xxx&apos;</span><br><span class="line">function showName() &#123;</span><br><span class="line">  console.log(&apos;函数showName被执行&apos;);</span><br><span class="line">&#125;</span><br><span class="line">// 编译</span><br><span class="line">var myname;</span><br><span class="line">function showName() &#123; //函数定义放到堆中，变量环境中showName指向该函数</span><br><span class="line">  console.log(&apos;函数showName被执行&apos;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 执行</span><br><span class="line">showName()</span><br><span class="line">console.log(myname)</span><br><span class="line">myname = &apos;xxx&apos;</span><br></pre></td></tr></table></figure>
-
-<h3 id="QA-代码中相同的变量和函数如何处理？"><a href="#QA-代码中相同的变量和函数如何处理？" class="headerlink" title="QA 代码中相同的变量和函数如何处理？"></a>QA 代码中相同的变量和函数如何处理？</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function showName() &#123;</span><br><span class="line">    console.log(&apos;aaa&apos;);</span><br><span class="line">&#125;</span><br><span class="line">showName();</span><br><span class="line">function showName() &#123;</span><br><span class="line">    console.log(&apos;bbb&apos;);</span><br><span class="line">&#125;</span><br><span class="line">showName();</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2021/06/30/[JS基础]浏览器中JavaScript的执行机制/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/JavaScript//" class="article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/30/[JS基础]浏览器中JavaScript的执行机制/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-[JS基础]异步" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -768,6 +799,87 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/06/30/[JS基础]异步/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-[JS基础]浏览器中JavaScript的执行机制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/06/30/[JS基础]浏览器中JavaScript的执行机制/">【JS基础】浏览器中JavaScript执行机制</a>
+    </h1>
+  
+
+        
+        <a href="/2021/06/30/[JS基础]浏览器中JavaScript的执行机制/" class="archive-article-date">
+  	<time datetime="2021-06-30T02:45:57.320Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="变量提升（Hoisting）"><a href="#变量提升（Hoisting）" class="headerlink" title="变量提升（Hoisting）"></a>变量提升（Hoisting）</h2><h3 id="What"><a href="#What" class="headerlink" title="What?"></a>What?</h3><blockquote>
+<p>JavaScript代码执行过程中，JS引擎会把变量声明和函数声明部分提升到代码的开头，并不是物理性的移动，实际中代码并没有改变，而是JS引擎在编译阶段放进内存的。<br>一段JS代码在执行时，先经过编译，编译完成后，再进入执行阶段。<br>编译后的内容分为两部分：执行上下文（Execution context）和可执行代码。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">showName()</span><br><span class="line">console.log(myname)</span><br><span class="line">var myname = &apos;xxx&apos;</span><br><span class="line">function showName() &#123;</span><br><span class="line">  console.log(&apos;函数showName被执行&apos;);</span><br><span class="line">&#125;</span><br><span class="line">// 编译</span><br><span class="line">var myname;</span><br><span class="line">function showName() &#123; //函数定义放到堆中，变量环境中showName指向该函数</span><br><span class="line">  console.log(&apos;函数showName被执行&apos;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 执行</span><br><span class="line">showName()</span><br><span class="line">console.log(myname)</span><br><span class="line">myname = &apos;xxx&apos;</span><br></pre></td></tr></table></figure>
+
+<h3 id="QA-代码中相同的变量和函数如何处理？"><a href="#QA-代码中相同的变量和函数如何处理？" class="headerlink" title="QA 代码中相同的变量和函数如何处理？"></a>QA 代码中相同的变量和函数如何处理？</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function showName() &#123;</span><br><span class="line">    console.log(&apos;aaa&apos;);</span><br><span class="line">&#125;</span><br><span class="line">showName();</span><br><span class="line">function showName() &#123;</span><br><span class="line">    console.log(&apos;bbb&apos;);</span><br><span class="line">&#125;</span><br><span class="line">showName();</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2021/06/30/[JS基础]浏览器中JavaScript的执行机制/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/JavaScript//" class="article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/06/30/[JS基础]浏览器中JavaScript的执行机制/">展开全文 >></a>
         </p>
       
 
@@ -957,86 +1069,6 @@
 
 
   
-    <article id="post-[JS基础]作用域和闭包" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/30/[JS基础]作用域和闭包/">【JS基础】作用域和闭包</a>
-    </h1>
-  
-
-        
-        <a href="/2021/06/30/[JS基础]作用域和闭包/" class="archive-article-date">
-  	<time datetime="2021-06-30T02:45:57.318Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h1><ol>
-<li>this 的不同应用场景，以及取值</li>
-<li>手写 bind 函数</li>
-<li>闭包的场景</li>
-</ol>
-        
-          <a class="article-more-a" href="/2021/06/30/[JS基础]作用域和闭包/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/JavaScript//" class="article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/30/[JS基础]作用域和闭包/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
@@ -1126,15 +1158,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">flex</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">React</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1142,31 +1166,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">React</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">CI/CD</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">购房</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">保险</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1186,19 +1198,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">购房</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">search</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">投资</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1210,11 +1234,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">moment.js</a>
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Date</a>
+                <a href="javascript:void(0)" class="js-tag color3">投资</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1223,6 +1247,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">setTimeout</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">moment.js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Date</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1242,19 +1278,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">安全</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">安全</a>
               </li>
              
               <li class="article-tag-list-item">
