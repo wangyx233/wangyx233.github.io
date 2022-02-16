@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://wangyx233.github.io">
-  <title>JS基础回顾 | Hexo</title>
+  <title>&lt;JS基础&gt;手写小试 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="内置类型加上 ES6 新加的 Symbol，共 7 种，分别为 String， Number， Boolean， Object， Undefined， Null。分为基本数据类型(6)和 Object。对于基本数据类型，通过字面量的方式声明，类型依旧是字面量，只有在使用的时候才会转换为对应的类型。 123456typeof()  特别：  Symbol-&amp;gt;symbol  函数-&amp;gt;fun">
+  <meta name="description" content="一、数组扁平化如何将一个多维数组变成一个一维数组，如： 12const arr = [1, [2, [3, [4, [5]]]]]// =&amp;gt; [1,2,3,4,5]  看到数组扁平，第一想到的是 concat()，然后是递归，依次实现一番。 (1) 递归 1234567891011function flat(arr, depth = 1) &amp;#123;  let res = []  arr.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JS基础回顾">
-<meta property="og:url" content="https://wangyx233.github.io/2020/07/28/基础回顾/index.html">
+<meta property="og:title" content="&lt;JS基础&gt;手写小试">
+<meta property="og:url" content="https://wangyx233.github.io/2022/02/16/[JS基础]手写小试/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="内置类型加上 ES6 新加的 Symbol，共 7 种，分别为 String， Number， Boolean， Object， Undefined， Null。分为基本数据类型(6)和 Object。对于基本数据类型，通过字面量的方式声明，类型依旧是字面量，只有在使用的时候才会转换为对应的类型。 123456typeof()  特别：  Symbol-&amp;gt;symbol  函数-&amp;gt;fun">
+<meta property="og:description" content="一、数组扁平化如何将一个多维数组变成一个一维数组，如： 12const arr = [1, [2, [3, [4, [5]]]]]// =&amp;gt; [1,2,3,4,5]  看到数组扁平，第一想到的是 concat()，然后是递归，依次实现一番。 (1) 递归 1234567891011function flat(arr, depth = 1) &amp;#123;  let res = []  arr.">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-07-28T08:40:39.654Z">
+<meta property="og:updated_time" content="2022-02-16T07:53:29.292Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JS基础回顾">
-<meta name="twitter:description" content="内置类型加上 ES6 新加的 Symbol，共 7 种，分别为 String， Number， Boolean， Object， Undefined， Null。分为基本数据类型(6)和 Object。对于基本数据类型，通过字面量的方式声明，类型依旧是字面量，只有在使用的时候才会转换为对应的类型。 123456typeof()  特别：  Symbol-&amp;gt;symbol  函数-&amp;gt;fun">
+<meta name="twitter:title" content="&lt;JS基础&gt;手写小试">
+<meta name="twitter:description" content="一、数组扁平化如何将一个多维数组变成一个一维数组，如： 12const arr = [1, [2, [3, [4, [5]]]]]// =&amp;gt; [1,2,3,4,5]  看到数组扁平，第一想到的是 concat()，然后是递归，依次实现一番。 (1) 递归 1234567891011function flat(arr, depth = 1) &amp;#123;  let res = []  arr.">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -50,7 +50,7 @@
 			<img src="https://s2.ax1x.com/2019/07/19/ZvAuZj.jpg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">Xuan</a></h1>
+		  <h1 class="header-author"><a href="/">Yx</a></h1>
 		</hgroup>
 		
 
@@ -96,7 +96,7 @@
 				<img src="https://s2.ax1x.com/2019/07/19/ZvAuZj.jpg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">Xuan</h1>
+			  <h1 class="header-author js-header-author">Yx</h1>
 			</hgroup>
 			
 			
@@ -132,51 +132,64 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-基础回顾" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-[JS基础]手写小试" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      JS基础回顾
+      &lt;JS基础&gt;手写小试
     </h1>
   
 
         
-        <a href="/2020/07/28/基础回顾/" class="archive-article-date">
-  	<time datetime="2020-07-28T08:40:39.654Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-28</time>
+        <a href="/2022/02/16/[JS基础]手写小试/" class="archive-article-date">
+  	<time datetime="2022-02-16T06:44:26.879Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-16</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h5 id="内置类型"><a href="#内置类型" class="headerlink" title="内置类型"></a>内置类型</h5><p>加上 ES6 新加的 Symbol，共 7 种，分别为 String， Number， Boolean， Object， Undefined， Null。<br>分为基本数据类型(6)和 Object。<br>对于基本数据类型，通过字面量的方式声明，类型依旧是字面量，只有在使用的时候才会转换为对应的类型。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">typeof()</span><br><span class="line">  特别：</span><br><span class="line">  Symbol-&gt;symbol</span><br><span class="line">  函数-&gt;function,</span><br><span class="line">  null-&gt;object。历史原因对象以000开头，而null恰好为全零</span><br><span class="line">通过Object.prototype.toString.call()可判断准确的类型[object Type]</span><br></pre></td></tr></table></figure>
+        <h4 id="一、数组扁平化"><a href="#一、数组扁平化" class="headerlink" title="一、数组扁平化"></a>一、数组扁平化</h4><p>如何将一个多维数组变成一个一维数组，如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const arr = [1, [2, [3, [4, [5]]]]]</span><br><span class="line">// =&gt; [1,2,3,4,5]</span><br></pre></td></tr></table></figure>
 
-<p>PS: Symbol 类型(唯一的值)<br>通过 Symbol()定义，定义后的值不相等，System.prototype.description 为定义时 Symbol(‘xxx’)的标识。<br>使用场景：作为对象的属性</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">let sym = Symbol();</span><br><span class="line">let a = &#123;&#125;;</span><br><span class="line">a[sym] = &apos;symbol&apos;;</span><br><span class="line">a = &#123;</span><br><span class="line">  [sym]: &apos;symbol&apos;</span><br><span class="line">&#125;</span><br><span class="line">Object.defineProperty(a, sym, &#123;value: &apos;symbol&apos;&#125;)</span><br></pre></td></tr></table></figure>
+<p>看到数组扁平，第一想到的是 concat()，然后是递归，依次实现一番。</p>
+<p>(1) 递归</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function flat(arr, depth = 1) &#123;</span><br><span class="line">  let res = []</span><br><span class="line">  arr.forEach((elem) =&gt; &#123;</span><br><span class="line">    if(!Array.isArray(elem) || !depth)&#123;</span><br><span class="line">      res.push(elem)</span><br><span class="line">    &#125;else &#123;</span><br><span class="line">      res = res.concat(flat(elem, depth - 1))</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  return res</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>注：</p>
-<ol>
-<li>不能用.运算符，.运算符会直接作为字符串取值。</li>
-<li>Symbol 作为属性名，不会出现在 for…in, for…of 中，也不会出现在 Object.keys(), Object.getOwnPropertyNames()、JSON.stringify()里。</li>
-<li>但也不是私有属性，Object.getOwnPropertySymbols，可以获取指定对象的所有 Symbol 属性名。</li>
-<li>新的 API:Reflect.ownKeys 可以返回所有类型的键名，包括常规键名和 Symbol 键名。</li>
-<li>Symbol.for(description)若没有则会创建一个，若存在则共用一个 symbol 值。 Symbol.keyFor(sym)返回一个已登记即 Symbol.for 的 Symbol 类型值的 key</li>
-<li>其他方法可在需要是再查找。</li>
-</ol>
-<h5 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h5><p>转 Boolean 类型。在条件判断时，除了 undefined， null， false， NaN， ‘’， 0， -0，其他所有值都转为 true，包括所有对象<br>对象在转换基本类型时，首先会调用 valueOf 然后调用 toString。<br>注：<br>‘a’ + + ‘b’ – ‘aNaN’</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x==y 比较</span><br><span class="line">undefined == null  // true</span><br><span class="line">[] == true // false</span><br><span class="line">[] == ![] // true [].toString() -&gt; &apos;&apos;，!取反运算符的优先级会高于==， ![] -》 false</span><br></pre></td></tr></table></figure>
+<p>(2) reduce()配合 concat()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function flat(arr, depth = 1) &#123;</span><br><span class="line">  return depth ? arr.reduce((temp, elem) =&gt; (temp.concat(Array.isArray(elem) ? flat(elem, depth - 1) : elem)) , []) : arr</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<ol>
-<li>undefined == null，结果是 true。且它俩与所有其他值比较的结果都是 false。</li>
-<li>String == Boolean，需要两个操作数同时转为 Number。</li>
-<li>String/Boolean == Number，需要 String/Boolean 转为 Number。</li>
-<li>Object == Primitive，需要 Object 转为 Primitive(具体通过 valueOf 和 toString 方法)。</li>
-</ol>
-<h5 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h5>
+<p>(3) 内置 API，一顿操作，竟然忽略了 Js Array 的内置 api–flat()，按指定深度递归遍历数组，将所有元素与遍历的子数组中的元素合并为一个新数组返回。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var newArray = arr.flat([depth])</span><br><span class="line">const res = arr.flat(Infinity);</span><br></pre></td></tr></table></figure>
+
+<p>(4) 正则，另辟蹊径</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const res1 = JSON.stringify(arr).replace(/\[|\]/g, &apos;&apos;).split(&apos;,&apos;); // 原来数字变成了字符串</span><br><span class="line">const res2 = JSON.parse(`[$&#123;JSON.stringify(arr).replace(/\[|\]/g, &apos;&apos;)&#125;]`);</span><br></pre></td></tr></table></figure>
+
+<p>(5) 迭代</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function flat(arr, depth = 1) &#123;</span><br><span class="line">  while(arr.some(elem =&gt; Array.isArray(elem)) &amp;&amp; depth) &#123;</span><br><span class="line">    arr = [].concat(...arr)</span><br><span class="line">    depth--</span><br><span class="line">  &#125;</span><br><span class="line">  return arr</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="二、数组去重"><a href="#二、数组去重" class="headerlink" title="二、数组去重"></a>二、数组去重</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const arr = [1, 17, &apos;1&apos;, 17, true, true, false, false, &apos;true&apos;, &apos;a&apos;, &#123;&#125;, &#123;&#125;];</span><br><span class="line">// =&gt; [1, &apos;1&apos;, 17, true, false, &apos;true&apos;, &apos;a&apos;, &#123;&#125;, &#123;&#125;]</span><br></pre></td></tr></table></figure>
+
+<p>看到数组去重，首先想到的是维护一个 object 用于记录出现过的值然后去掉重复，然后想到 filter 也可以实现类似的</p>
+<p>(1) object 方法，普通 object 的 key 都会转换成 String 类型，所以可以借助 ES6 的 Map;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const uniq = (arr) =&gt; &#123;</span><br><span class="line">  const map = new Map();</span><br><span class="line">  const res = [];</span><br><span class="line">  for (let i = 0; i &lt; arr.length; i++) &#123;</span><br><span class="line">    if (!map.has(arr[i])) &#123;</span><br><span class="line">      map.set(arr[i], true);</span><br><span class="line">      res.push(arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>(2) filter，过滤得到首次出现的元素。判断元素是否出现过还可以使用 arr.indexOf(elem) === -1 或者 arr.includes(elem)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const res = arr.filter((elem, index) =&gt; arr.indexOf(elem) === index);</span><br></pre></td></tr></table></figure>
+
+<p>(3) ES6 的 Set 数据结构，特性是每个元素都是唯一的，没有重复的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const res = [...new Set(arr)];</span><br><span class="line">[...new Set(&apos;ababbc&apos;)].join(&apos;&apos;); // &apos;abc&apos;</span><br></pre></td></tr></table></figure>
+
+<h4 id="三、深拷贝"><a href="#三、深拷贝" class="headerlink" title="三、深拷贝"></a>三、深拷贝</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function cloneDeep(data, exist = new Map()) &#123;</span><br><span class="line">  if(typeof data !== &apos;object&apos; || data === null) return data</span><br><span class="line">  if(data instanceof Date) return new Date(data)</span><br><span class="line">  if(data instanceof RegExp) return new RegExp(data)</span><br><span class="line">  if(exist.has(data)) return exist.get(data)</span><br><span class="line">  let result = Array.isArray(data) ? [] : &#123;&#125;</span><br><span class="line">  exist.set(data, result)</span><br><span class="line">  const keys = [...Object.keys(data), ...Object.getOwnPropertySymbols(data)]</span><br><span class="line">  keys.forEach(key =&gt; &#123;</span><br><span class="line">    result[key] = cloneDeep(data[key], exist)</span><br><span class="line">  &#125;)</span><br><span class="line">  return result</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>// 两个有序数组[1,3,5]和[2,4,6]，写一个 mergeArr(a,b)合并两个数组，最终得到一个有序数组</p>
+<p>_.get()</p>
+<p>假设你正在爬楼梯。需要 n 阶你才能到达楼顶。</p>
+<p>每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？</p>
+
       
 
       
@@ -255,7 +268,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLElEQVR42u3aQW4CMQwF0Ln/palUdYOA8O1MkfC8rCooGT8WJrF9HPG6/a5Xrz++++r15CnVTx0YGBgXYNyW65HxKuj1buv/rO72hIqBgXEBxjrJJsGt0+U6jSbsN7thYGBgLNNifnysgjEwMDB6CXf9SjX0fE8MDAyMncPfPuCjd3EMDIwvZFQbA5/8+x/7GxgYGF/CuBVXNZT84NiL5++zGBgYoxk7hbNeQa1aYsuvtRgYGFMZO6MVvXJbbyzszWcxMDBGM5ItEkwPn4xfVOPEwMCYx6gGV02CeSMhP6piYGBck5EX5T8zYJG3KDAwMDCqjcbelTVvCbyMAQMDYzSjF0RexK82HvL9CzNuGBgYgxj7ZbJkhCIPOk/QGBgYsxm9lmEy4JVfUHcOphgYGFdgJEe6nQJcb5Ci2jbAwMCYzagmu/xomIN3eHe/GxgYGEMZST5OrqY9QP70QkEQAwNjKKM6+NVraualvV4kGBgYsxnJuEOegnsX194XdCS/DxgYGF/O6F0sq82A6thrucGJgYFxAcaxXGcFnYSeg+/excDAGM3Yf/DOtTZpkRbKdhgYGEMZt+LKg8svqL0Uj4GBcR1GvvYPf71SWuFoiIGBMZpRTbJnJeJq4+GE5iUGBsaXM3pJdqcNWV1vdsPAwMA49Qp61hgHBgYGRp5ezy3SJdfaJ18EBgbGBRhJEEmq7fVRo5S6jgQDA2M0o3qBrKbLvMTWS/QYGBijGT9EYZNh6m7VzwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACN0lEQVR42u3aW27CQAwFUPa/aboASLi2odLMnHxFKKQ5QXL9ejzi43lxXF3z+vnVJ6/nr9d/7cDAwFiW8bw9rq65f6D8b11dkz8bBgbGOYz8dknorD56754YGBgYecCdhNEkWcTAwMCYpGj3ZWry+SSIY2BgnMbIHzRvvU1ewQ9rcQwMjAUZedf9/89/Mt/AwMBYivFsHZPp4TzIvrk/BgbG1oxeYVkNzUky10tGMTAwTmDk7bBq4ywpbvPXFP0OGBgYmzLy0JmHyN5aRrWF16y/MTAwFmT0wugkQOfBNwn05dQQAwNjQUavQK2md8n9JwkoBgbGOYxJXpkE3OqLKL8UDAyMTRnJSCAB52POecB9c08MDIwDGNWkLQ+mvcB6H77fnGNgYGzNyNtheZDtDTUnC2QYGBjnMJKBYt6m76WPVRgGBsY5jPwh5mVtHqbvX2Kh6YaBgbEFo1fEVte8qgOJ5B8ABgbGmYy8QVZd/6oG0GoIxsDA2JUx2tGIW3WTNly5U4iBgbEdozdW7O1i9cYP5dQQAwNjO0ZeiCYpWt5i+27zDgMDY29Gs8neW334UgKKgYFxGqMXQJMwWh2C5gODDzNYDAyM7Ri9QWZ1CSy/Q7UJOJrHYmBgLMWYjBjzBa9JqRz9AhgYGAcw5gsW80FmtWzGwMDAqAbKybd6pW/UNcTAwDiMMdnmyJc5esEdAwPjBEZ1YSJ5oDxA9xp5zXYbBgbGgoxR6VgMoJPiNk8cMTAwNmL8ASreIuBMEqnQAAAAAElFTkSuQmCC" alt="微信分享二维码">
     </div>
 </div>
 
@@ -269,18 +282,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/07/28/重温学习/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          &lt;重温JS&gt;数据类型及基本转换
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/07/28/[实践]性能优化二三事/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">&lt;Work&gt; 实践</div>
+    <a href="/2022/02/16/[浏览器]从输入URL到页面展示发生了什么/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">【浏览器】从输入URL到页面展示发生了什么？</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -323,7 +327,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2020 Xuan
+    		&copy; 2022 Yx
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -398,15 +402,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">flex</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">css</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">flex</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">React</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">保险</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">CI/CD</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -426,7 +446,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">购房</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -446,11 +482,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Promise</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">setTimeout</a>
+                <a href="javascript:void(0)" class="js-tag color3">投资</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -459,6 +491,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Date</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Promise</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">setTimeout</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -474,14 +518,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">closure</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -490,11 +526,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">closure</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Object</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">prototype</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">安全</a>
               </li>
              
               <li class="article-tag-list-item">

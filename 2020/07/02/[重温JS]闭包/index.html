@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="https://wangyx233.github.io">
   <title>&lt;重温JS&gt;闭包，作用域 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="作用域123456789101112function foo(arg1 = arg2, arg2) &amp;#123;    console.log(`$&amp;#123;arg1&amp;#125; $&amp;#123;arg2&amp;#125;`)&amp;#125;foo(undefined, &amp;apos;arg2&amp;apos;) // Uncaught ReferenceError: arg2 is not definedfoo(">
+  <meta name="description" content="执行上下文闭包是带执行环境的函数，本质是个函数立即执行函数表达式 IIFE，括号前要加;分隔;(function(){})(); 不然会被解析成上一行的函数调用；或者用 void function() {}()  var let： for, if, switch, try/catch/finally…{}包裹的 Realm： 9.0 标准提出的，主要应用于通过 iframe 等方式创造 windo">
 <meta name="keywords" content="closure">
 <meta property="og:type" content="article">
 <meta property="og:title" content="&lt;重温JS&gt;闭包，作用域">
 <meta property="og:url" content="https://wangyx233.github.io/2020/07/02/[重温JS]闭包/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="作用域123456789101112function foo(arg1 = arg2, arg2) &amp;#123;    console.log(`$&amp;#123;arg1&amp;#125; $&amp;#123;arg2&amp;#125;`)&amp;#125;foo(undefined, &amp;apos;arg2&amp;apos;) // Uncaught ReferenceError: arg2 is not definedfoo(">
+<meta property="og:description" content="执行上下文闭包是带执行环境的函数，本质是个函数立即执行函数表达式 IIFE，括号前要加;分隔;(function(){})(); 不然会被解析成上一行的函数调用；或者用 void function() {}()  var let： for, if, switch, try/catch/finally…{}包裹的 Realm： 9.0 标准提出的，主要应用于通过 iframe 等方式创造 windo">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2022-02-15T05:32:05.673Z">
+<meta property="og:updated_time" content="2022-02-16T03:56:15.861Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="&lt;重温JS&gt;闭包，作用域">
-<meta name="twitter:description" content="作用域123456789101112function foo(arg1 = arg2, arg2) &amp;#123;    console.log(`$&amp;#123;arg1&amp;#125; $&amp;#123;arg2&amp;#125;`)&amp;#125;foo(undefined, &amp;apos;arg2&amp;apos;) // Uncaught ReferenceError: arg2 is not definedfoo(">
+<meta name="twitter:description" content="执行上下文闭包是带执行环境的函数，本质是个函数立即执行函数表达式 IIFE，括号前要加;分隔;(function(){})(); 不然会被解析成上一行的函数调用；或者用 void function() {}()  var let： for, if, switch, try/catch/finally…{}包裹的 Realm： 9.0 标准提出的，主要应用于通过 iframe 等方式创造 windo">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -153,9 +153,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h5 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function foo(arg1 = arg2, arg2) &#123;</span><br><span class="line">    console.log(`$&#123;arg1&#125; $&#123;arg2&#125;`)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo(undefined, &apos;arg2&apos;) // Uncaught ReferenceError: arg2 is not defined</span><br><span class="line">foo(null, &apos;arg2&apos;) // null arg2</span><br><span class="line"></span><br><span class="line">function foo(arg1) &#123;</span><br><span class="line">    let arg1</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo(&apos;arg1&apos;) // Uncaught SyntaxError: Identifier &apos;arg1&apos; has already been declared</span><br></pre></td></tr></table></figure>
-
-<h5 id="执行上下文"><a href="#执行上下文" class="headerlink" title="执行上下文"></a>执行上下文</h5><p>闭包是带执行环境的函数，本质是个函数<br>立即执行函数表达式 IIFE，括号前要加;分隔;(function(){})(); 不然会被解析成上一行的函数调用；或者用 void function() {}()</p>
+        <h5 id="执行上下文"><a href="#执行上下文" class="headerlink" title="执行上下文"></a>执行上下文</h5><p>闭包是带执行环境的函数，本质是个函数<br>立即执行函数表达式 IIFE，括号前要加;分隔;(function(){})(); 不然会被解析成上一行的函数调用；或者用 void function() {}()</p>
 <ul>
 <li>var</li>
 <li>let： for, if, switch, try/catch/finally…{}包裹的</li>
@@ -408,6 +406,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">flex</a>
               </li>
              
@@ -416,11 +418,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css</a>
+                <a href="javascript:void(0)" class="js-tag color1">React</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">React</a>
+                <a href="javascript:void(0)" class="js-tag color3">保险</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -428,7 +430,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">保险</a>
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -448,6 +450,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">购房</a>
               </li>
              
@@ -456,23 +462,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">search</a>
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -484,19 +482,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+                <a href="javascript:void(0)" class="js-tag color2">search</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">投资</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Promise</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">setTimeout</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -512,6 +502,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Promise</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">setTimeout</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">typeof</a>
               </li>
              
@@ -524,10 +522,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">closure</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -536,7 +530,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">安全</a>
+                <a href="javascript:void(0)" class="js-tag color3">closure</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -545,6 +539,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">prototype</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">安全</a>
               </li>
              
               <li class="article-tag-list-item">

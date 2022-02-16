@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wangyx233.github.io/"/>
-  <updated>2022-02-16T02:04:47.727Z</updated>
+  <updated>2022-02-16T07:53:29.292Z</updated>
   <id>https://wangyx233.github.io/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>&lt;JS基础&gt;手写小试</title>
+    <link href="https://wangyx233.github.io/2022/02/16/%5BJS%E5%9F%BA%E7%A1%80%5D%E6%89%8B%E5%86%99%E5%B0%8F%E8%AF%95/"/>
+    <id>https://wangyx233.github.io/2022/02/16/[JS基础]手写小试/</id>
+    <published>2022-02-16T06:44:26.879Z</published>
+    <updated>2022-02-16T07:53:29.292Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="一、数组扁平化"><a href="#一、数组扁平化" class="headerlink" title="一、数组扁平化"></a>一、数组扁平化</h4><p>如何将一个多维数组变成一个一维数组，如：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const arr = [1, [2, [3, [4, [5]]]]]</span><br><span class="line">// =&gt; [1,2,3,4,5]</span><br></pre></td></tr></table></figure><p>看到数组扁平，第一想到的是 concat()，然后是递归，依次实现一番。</p><p>(1) 递归</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function flat(arr, depth = 1) &#123;</span><br><span class="line">  let res = []</span><br><span class="line">  arr.forEach((elem) =&gt; &#123;</span><br><span class="line">    if(!Array.isArray(elem) || !depth)&#123;</span><br><span class="line">      res.push(elem)</span><br><span class="line">    &#125;else &#123;</span><br><span class="line">      res = res.concat(flat(elem, depth - 1))</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  return res</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>(2) reduce()配合 concat()</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function flat(arr, depth = 1) &#123;</span><br><span class="line">  return depth ? arr.reduce((temp, elem) =&gt; (temp.concat(Array.isArray(elem) ? flat(elem, depth - 1) : elem)) , []) : arr</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>(3) 内置 API，一顿操作，竟然忽略了 Js Array 的内置 api–flat()，按指定深度递归遍历数组，将所有元素与遍历的子数组中的元素合并为一个新数组返回。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var newArray = arr.flat([depth])</span><br><span class="line">const res = arr.flat(Infinity);</span><br></pre></td></tr></table></figure><p>(4) 正则，另辟蹊径</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const res1 = JSON.stringify(arr).replace(/\[|\]/g, &apos;&apos;).split(&apos;,&apos;); // 原来数字变成了字符串</span><br><span class="line">const res2 = JSON.parse(`[$&#123;JSON.stringify(arr).replace(/\[|\]/g, &apos;&apos;)&#125;]`);</span><br></pre></td></tr></table></figure><p>(5) 迭代</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function flat(arr, depth = 1) &#123;</span><br><span class="line">  while(arr.some(elem =&gt; Array.isArray(elem)) &amp;&amp; depth) &#123;</span><br><span class="line">    arr = [].concat(...arr)</span><br><span class="line">    depth--</span><br><span class="line">  &#125;</span><br><span class="line">  return arr</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="二、数组去重"><a href="#二、数组去重" class="headerlink" title="二、数组去重"></a>二、数组去重</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const arr = [1, 17, &apos;1&apos;, 17, true, true, false, false, &apos;true&apos;, &apos;a&apos;, &#123;&#125;, &#123;&#125;];</span><br><span class="line">// =&gt; [1, &apos;1&apos;, 17, true, false, &apos;true&apos;, &apos;a&apos;, &#123;&#125;, &#123;&#125;]</span><br></pre></td></tr></table></figure><p>看到数组去重，首先想到的是维护一个 object 用于记录出现过的值然后去掉重复，然后想到 filter 也可以实现类似的</p><p>(1) object 方法，普通 object 的 key 都会转换成 String 类型，所以可以借助 ES6 的 Map;</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const uniq = (arr) =&gt; &#123;</span><br><span class="line">  const map = new Map();</span><br><span class="line">  const res = [];</span><br><span class="line">  for (let i = 0; i &lt; arr.length; i++) &#123;</span><br><span class="line">    if (!map.has(arr[i])) &#123;</span><br><span class="line">      map.set(arr[i], true);</span><br><span class="line">      res.push(arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>(2) filter，过滤得到首次出现的元素。判断元素是否出现过还可以使用 arr.indexOf(elem) === -1 或者 arr.includes(elem)</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const res = arr.filter((elem, index) =&gt; arr.indexOf(elem) === index);</span><br></pre></td></tr></table></figure><p>(3) ES6 的 Set 数据结构，特性是每个元素都是唯一的，没有重复的值</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const res = [...new Set(arr)];</span><br><span class="line">[...new Set(&apos;ababbc&apos;)].join(&apos;&apos;); // &apos;abc&apos;</span><br></pre></td></tr></table></figure><h4 id="三、深拷贝"><a href="#三、深拷贝" class="headerlink" title="三、深拷贝"></a>三、深拷贝</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function cloneDeep(data, exist = new Map()) &#123;</span><br><span class="line">  if(typeof data !== &apos;object&apos; || data === null) return data</span><br><span class="line">  if(data instanceof Date) return new Date(data)</span><br><span class="line">  if(data instanceof RegExp) return new RegExp(data)</span><br><span class="line">  if(exist.has(data)) return exist.get(data)</span><br><span class="line">  let result = Array.isArray(data) ? [] : &#123;&#125;</span><br><span class="line">  exist.set(data, result)</span><br><span class="line">  const keys = [...Object.keys(data), ...Object.getOwnPropertySymbols(data)]</span><br><span class="line">  keys.forEach(key =&gt; &#123;</span><br><span class="line">    result[key] = cloneDeep(data[key], exist)</span><br><span class="line">  &#125;)</span><br><span class="line">  return result</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>// 两个有序数组[1,3,5]和[2,4,6]，写一个 mergeArr(a,b)合并两个数组，最终得到一个有序数组</p><p>_.get()</p><p>假设你正在爬楼梯。需要 n 阶你才能到达楼顶。</p><p>每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;一、数组扁平化&quot;&gt;&lt;a href=&quot;#一、数组扁平化&quot; class=&quot;headerlink&quot; title=&quot;一、数组扁平化&quot;&gt;&lt;/a&gt;一、数组扁平化&lt;/h4&gt;&lt;p&gt;如何将一个多维数组变成一个一维数组，如：&lt;/p&gt;
+&lt;figure class=&quot;highlight 
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>【浏览器】从输入URL到页面展示发生了什么？</title>
@@ -48,9 +70,9 @@
     <link href="https://wangyx233.github.io/2022/02/15/%5BJS%E5%9F%BA%E7%A1%80%5D%E6%89%A7%E8%A1%8C/"/>
     <id>https://wangyx233.github.io/2022/02/15/[JS基础]执行/</id>
     <published>2022-02-15T06:26:06.772Z</published>
-    <updated>2022-02-15T10:35:50.021Z</updated>
+    <updated>2022-02-16T03:33:36.571Z</updated>
     
-    <content type="html"><![CDATA[<p>JavaScript 执行主要分为两个阶段：</p><ul><li>代码预编译阶段</li><li>代码执行阶段</li></ul><p>代码预编译阶段</p><ul><li>预编译阶段进行变量声明</li><li>预编译阶段变量声明进行提升，但是值为 undefined</li><li>预编译阶段所有非表达式的函数声明进行提升</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">foo(10)</span><br><span class="line">function foo (num) &#123;</span><br><span class="line">    console.log(foo)</span><br><span class="line">    foo = num;</span><br><span class="line">    console.log(foo)</span><br><span class="line">    var foo</span><br><span class="line">&#125;</span><br><span class="line">console.log(foo)</span><br><span class="line">foo = 1</span><br><span class="line">console.log(foo)</span><br><span class="line">// undefined</span><br><span class="line">// 10</span><br><span class="line">// 1</span><br></pre></td></tr></table></figure><blockquote><p>作用域在预编译阶段确定，但是作用域链是在执行上下文的创建阶段完全生成的。因为函数在调用时，才会开始创建对应的执行上下文。执行上下文包括了：变量对象、作用域链以及 this 的指向</p></blockquote><p>预编译阶段创建变量对象(Variable Object, VO)，在执行阶段，变量对象转换为激活对象(Active Object)，即完成 VO -&gt; AO</p><blockquote><p>正常来讲，在函数执行完毕并出栈时，函数内局部变量在下一个垃圾回收节点会被回收，该函数对应的执行上下文将会被销毁，这也正是我们在外界无法访问函数内定义的变量的原因。也就是说，只有在函数执行时，相关函数可以访问该变量，该变量在预编译阶段进行创建，在执行阶段进行激活，在函数执行完毕后，相关上下文被销毁。</p></blockquote><blockquote><p>闭包： 函数嵌套函数时，内层函数引用了外层函数作用域下的变量，并且内层函数在全局环境下可访问，就形成了闭包。</p></blockquote><p>浏览器的垃圾清除</p><ul><li>标记清除</li><li>引用计数</li></ul>]]></content>
+    <content type="html"><![CDATA[<p>JavaScript 执行主要分为两个阶段：</p><ul><li>代码预编译阶段</li><li>代码执行阶段</li></ul><p>代码预编译阶段</p><ul><li>预编译阶段进行变量声明</li><li>预编译阶段变量声明进行提升，但是值为 undefined</li><li>预编译阶段所有非表达式的函数声明进行提升</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">foo(10)</span><br><span class="line">function foo (num) &#123;</span><br><span class="line">    console.log(foo)</span><br><span class="line">    foo = num;</span><br><span class="line">    console.log(foo)</span><br><span class="line">    var foo</span><br><span class="line">&#125;</span><br><span class="line">console.log(foo)</span><br><span class="line">foo = 1</span><br><span class="line">console.log(foo)</span><br><span class="line">// undefined</span><br><span class="line">// 10</span><br><span class="line">// 1</span><br></pre></td></tr></table></figure><blockquote><p>作用域在预编译阶段确定，但是作用域链是在执行上下文的创建阶段完全生成的。执行上下文包括了：变量对象、作用域链以及 this 的指向</p></blockquote><p>预编译阶段创建变量对象(Variable Object, VO)，在执行阶段，变量对象转换为激活对象(Active Object)，即完成 VO -&gt; AO</p><blockquote><p>正常来讲，在函数执行完毕并出栈时，函数内局部变量在下一个垃圾回收节点会被回收，该函数对应的执行上下文将会被销毁，这也正是我们在外界无法访问函数内定义的变量的原因。也就是说，只有在函数执行时，相关函数可以访问该变量，该变量在预编译阶段进行创建，在执行阶段进行激活，在函数执行完毕后，相关上下文被销毁。</p></blockquote><blockquote><p>闭包： 函数嵌套函数时，内层函数引用了外层函数作用域下的变量，并且内层函数在全局环境下可访问，就形成了闭包。</p></blockquote><p>浏览器的垃圾清除</p><ul><li>标记清除</li><li>引用计数</li></ul>]]></content>
     
     <summary type="html">
     
@@ -70,20 +92,6 @@
     </summary>
     
       <category term="JavaScript" scheme="https://wangyx233.github.io/categories/JavaScript/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="https://wangyx233.github.io/2022/02/15/%5B%E9%87%8D%E6%B8%A9JS%5D%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/"/>
-    <id>https://wangyx233.github.io/2022/02/15/[重温JS]作用域和闭包/</id>
-    <published>2022-02-15T03:40:38.445Z</published>
-    <updated>2022-02-15T03:40:38.445Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
     
     
   </entry>
@@ -354,36 +362,6 @@
   </entry>
   
   <entry>
-    <title>【WebAPI】BOM</title>
-    <link href="https://wangyx233.github.io/2021/06/30/%5BWebAPI%5DBOM/"/>
-    <id>https://wangyx233.github.io/2021/06/30/[WebAPI]BOM/</id>
-    <published>2021-06-30T02:45:57.327Z</published>
-    <updated>2021-07-13T03:21:58.455Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>BOM -&gt; Browser Object Model</p></blockquote><ul><li>如何识别浏览器的类型</li><li>分别拆解url各部分</li></ul><h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><ul><li>navigator</li><li>screen</li><li>location</li><li>history<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// 1. navigator</span><br><span class="line">const ua = navigator.userAgent;</span><br><span class="line"></span><br><span class="line">// 2. screen</span><br><span class="line">const width = screen.width;</span><br><span class="line">const height = screen.height;</span><br><span class="line"></span><br><span class="line">// 3. location</span><br><span class="line">location.href</span><br><span class="line">location.protocol</span><br><span class="line">location.pathname</span><br><span class="line">location.hash</span><br><span class="line">location.search</span><br><span class="line">location.host</span><br><span class="line"></span><br><span class="line">// 4. history</span><br><span class="line">history.back();</span><br><span class="line">history.forwards();</span><br></pre></td></tr></table></figure></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;blockquote&gt;
-&lt;p&gt;BOM -&amp;gt; Browser Object Model&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;如何识别浏览器的类型&lt;/li&gt;
-&lt;li&gt;分别拆解url各部分&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&quot;知识点&quot;&gt;&lt;a href=&quot;#知
-      
-    
-    </summary>
-    
-      <category term="JavaScript" scheme="https://wangyx233.github.io/categories/JavaScript/"/>
-    
-    
-  </entry>
-  
-  <entry>
     <title>【生活】如果有保险需求</title>
     <link href="https://wangyx233.github.io/2021/06/30/%5B%E4%BA%BA%E7%94%9F%5D%E5%AE%B6%E5%BA%AD%E4%BF%9D%E9%99%A9%E9%85%8D%E7%BD%AE/"/>
     <id>https://wangyx233.github.io/2021/06/30/[人生]家庭保险配置/</id>
@@ -416,27 +394,32 @@
   </entry>
   
   <entry>
-    <title>【React】Virtual DOM</title>
-    <link href="https://wangyx233.github.io/2021/06/30/%5BReact%5D%E8%99%9A%E6%8B%9FDOM/"/>
-    <id>https://wangyx233.github.io/2021/06/30/[React]虚拟DOM/</id>
-    <published>2021-06-30T02:45:57.326Z</published>
-    <updated>2021-07-13T03:21:58.358Z</updated>
+    <title>【WebAPI】BOM</title>
+    <link href="https://wangyx233.github.io/2021/06/30/%5BWebAPI%5DBOM/"/>
+    <id>https://wangyx233.github.io/2021/06/30/[WebAPI]BOM/</id>
+    <published>2021-06-30T02:45:57.327Z</published>
+    <updated>2021-07-13T03:21:58.455Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="What？"><a href="#What？" class="headerlink" title="What？"></a>What？</h1><p>Virtual DOM本质上是JS 和 DOM 之间的一个映射缓存，是能够描述DOM结构及其属性的JS对象。</p><ul><li>虚拟DOM是JS对象</li><li>虚拟DOM是对真实DOM的描述</li></ul><p>挂载阶段，根据JSX的描述，构建出虚拟DOM，然后通过ReactDOM.render实现虚拟DOM到真实DOM的映射<br>更新阶段，页面的变化在作用于真实DOM之前，会先作用于虚拟DOM</p><h1 id="Why？"><a href="#Why？" class="headerlink" title="Why？"></a>Why？</h1><ul><li>jQuery解决DOM API 不好使的问题。还解决浏览器兼容，链式API调用，插件扩展</li><li>模板引擎，只关心数据，不关心DOM细节。操作真实DOM的范围过大、频率过高，但思想是数据驱动视图</li><li>虚拟DOM的点不在性能。虚拟DOM有没有借鉴模板引擎无法考证，但是思想上有一定的递进关系。JSX不是模板，而是JS的一个体验像模板的扩展语法糖，然后增加了个虚拟DOM的缓存层。</li></ul><blockquote><p>差量更新。即当DOM操作比较频繁时，会将前后两次的DOM树变化进行对比diff，定位到需要更新的部分，生成一个“补丁集”，把“补丁”patch打在需要更新的那部分真实DOM上，就可以实现差量更新<br>批量更新。batch函数处理，把短时间内的多次DOM操作合成一个次更新，即把收集的多个补丁集暂存到队列中，再讲最终结果交给渲染函数，实现DOM的集中化批量更新。</p></blockquote><ol><li>研发体验/研发效率。虚拟DOM思想是数据驱动视图，前端声明式编程。</li><li>性能不是卖点。性能还不错，性能量化不能一概而论只看一个指标，得看实际情况。DOM操作量级有关</li><li>价值？跨平台，一次编码多次应用。虚拟DOM是对实际渲染内容的一次抽象</li><li>规避xss攻击</li></ol><p>缺点：</p><ol><li>内存占用高，虚拟DOM，object</li><li>无法进行极致优化。如Google Earth</li></ol><h1 id="How"><a href="#How" class="headerlink" title="How?"></a>How?</h1><h2 id="调和Reconciliation-和-Diff算法"><a href="#调和Reconciliation-和-Diff算法" class="headerlink" title="调和Reconciliation 和 Diff算法"></a>调和Reconciliation 和 Diff算法</h2><blockquote><p>调和是将虚拟DOM映射到真实DOM的过程。Diff算法只是其中的一个小部分，深度优先遍历</p></blockquote><ol><li><p>React 15为代表的“栈调和”<br>传统的递归比较两棵树结构的不同算法复杂度是O(n^3)，这个复杂度显然不能令人接受，所以React中做了什么呢，将复杂度转换成O(n)</p><ul><li>Diff算法性能突破的关键点是“分层比较”<br>分层比较其实是分层递归比较，所以“同层级操作”是主流，只针对相同层级的节点进行比较，如果是跨层级的节点操作，其实是对应这销毁和重建的过程，尽量保持DOM节点的稳定性。</li><li>类型一致的节点才有继续Diff的必要<br>根据主要“矛盾”类型不一致的节点，直接放弃比较，原地替换旧的节点。</li><li>key属性的设置，可以尽可能重用同一层级内的节点<br>key主要解决的是同一层级下节点的重用问题。设置key的元素可以避免不必要的销毁和重建，只是调整顺序排列。<blockquote><p>注：作为一个节点的唯一标识，使用key之前，保证key的唯一和稳定。<br>大致过程可以描述为树对比、组件对比、元素对比<br>总结：栈调和机制下的Diff算法，其实是树的深度优先遍历过程。<br>这个过程是同步的过程，不可被打断。Stack Reconciler 需要的时间越长，意味着JS线程将霸占主线程的时间越长。进而导致会出现渲染卡死、交互无响应的现象。</p></blockquote></li></ul></li><li><p>React 16以来的“Fiber调和”<br>Fiber：纤程，对渲染过程进行更加精细的控制。是Fiber树结构的节点单位，也就是React 16下的“虚拟DOM”,并且Fiber节点保存了组件需要更新的状态和副作用。</p></li></ol><ul><li>可中断</li><li>可恢复</li><li>优先级</li></ul><h1 id="Better？"><a href="#Better？" class="headerlink" title="Better？"></a>Better？</h1><ol><li>避免跨层级节点移动</li><li>设置唯一的key，尽量减少组件层级</li><li>设置shouldComponentUpdate 或者 React.pureComponet 减少 diff 次数</li></ol>]]></content>
+    <content type="html"><![CDATA[<blockquote><p>BOM -&gt; Browser Object Model</p></blockquote><ul><li>如何识别浏览器的类型</li><li>分别拆解url各部分</li></ul><h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><ul><li>navigator</li><li>screen</li><li>location</li><li>history<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// 1. navigator</span><br><span class="line">const ua = navigator.userAgent;</span><br><span class="line"></span><br><span class="line">// 2. screen</span><br><span class="line">const width = screen.width;</span><br><span class="line">const height = screen.height;</span><br><span class="line"></span><br><span class="line">// 3. location</span><br><span class="line">location.href</span><br><span class="line">location.protocol</span><br><span class="line">location.pathname</span><br><span class="line">location.hash</span><br><span class="line">location.search</span><br><span class="line">location.host</span><br><span class="line"></span><br><span class="line">// 4. history</span><br><span class="line">history.back();</span><br><span class="line">history.forwards();</span><br></pre></td></tr></table></figure></li></ul>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h1 id=&quot;What？&quot;&gt;&lt;a href=&quot;#What？&quot; class=&quot;headerlink&quot; title=&quot;What？&quot;&gt;&lt;/a&gt;What？&lt;/h1&gt;&lt;p&gt;Virtual DOM本质上是JS 和 DOM 之间的一个映射缓存，是能够描述DOM结构及其属性的JS对象。&lt;/p&gt;
+        &lt;blockquote&gt;
+&lt;p&gt;BOM -&amp;gt; Browser Object Model&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;如何识别浏览器的类型&lt;/li&gt;
+&lt;li&gt;分别拆解url各部分&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;知识点&quot;&gt;&lt;a href=&quot;#知
       
     
     </summary>
     
-      <category term="React" scheme="https://wangyx233.github.io/categories/React/"/>
+      <category term="JavaScript" scheme="https://wangyx233.github.io/categories/JavaScript/"/>
     
-    
-      <category term="React" scheme="https://wangyx233.github.io/tags/React/"/>
     
   </entry>
   
@@ -463,6 +446,31 @@
 &lt;li&gt;Unmounting 阶段：组件的卸载。 组件被移除了，或者设置了 key，在 render 过程中发现 key 改变了&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&quot;React-16&quot;&gt;&lt;a href=&quot;#React-16&quot; class=&quot;headerlink&quot; title=&quot;React 16&quot;&gt;&lt;/a&gt;React 16&lt;/h2&gt;&lt;h3 id=&quot;React-16-4&quot;&gt;&lt;a href=&quot;#React-16-4&quot; class=&quot;headerlink&quot; title=&quot;React 16.4&quot;&gt;&lt;/a&gt;React 16.4&lt;/h3&gt;&lt;img src=&quot;/gallery/react16life.png&quot;&gt;
+    
+    </summary>
+    
+      <category term="React" scheme="https://wangyx233.github.io/categories/React/"/>
+    
+    
+      <category term="React" scheme="https://wangyx233.github.io/tags/React/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【React】Virtual DOM</title>
+    <link href="https://wangyx233.github.io/2021/06/30/%5BReact%5D%E8%99%9A%E6%8B%9FDOM/"/>
+    <id>https://wangyx233.github.io/2021/06/30/[React]虚拟DOM/</id>
+    <published>2021-06-30T02:45:57.326Z</published>
+    <updated>2021-07-13T03:21:58.358Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="What？"><a href="#What？" class="headerlink" title="What？"></a>What？</h1><p>Virtual DOM本质上是JS 和 DOM 之间的一个映射缓存，是能够描述DOM结构及其属性的JS对象。</p><ul><li>虚拟DOM是JS对象</li><li>虚拟DOM是对真实DOM的描述</li></ul><p>挂载阶段，根据JSX的描述，构建出虚拟DOM，然后通过ReactDOM.render实现虚拟DOM到真实DOM的映射<br>更新阶段，页面的变化在作用于真实DOM之前，会先作用于虚拟DOM</p><h1 id="Why？"><a href="#Why？" class="headerlink" title="Why？"></a>Why？</h1><ul><li>jQuery解决DOM API 不好使的问题。还解决浏览器兼容，链式API调用，插件扩展</li><li>模板引擎，只关心数据，不关心DOM细节。操作真实DOM的范围过大、频率过高，但思想是数据驱动视图</li><li>虚拟DOM的点不在性能。虚拟DOM有没有借鉴模板引擎无法考证，但是思想上有一定的递进关系。JSX不是模板，而是JS的一个体验像模板的扩展语法糖，然后增加了个虚拟DOM的缓存层。</li></ul><blockquote><p>差量更新。即当DOM操作比较频繁时，会将前后两次的DOM树变化进行对比diff，定位到需要更新的部分，生成一个“补丁集”，把“补丁”patch打在需要更新的那部分真实DOM上，就可以实现差量更新<br>批量更新。batch函数处理，把短时间内的多次DOM操作合成一个次更新，即把收集的多个补丁集暂存到队列中，再讲最终结果交给渲染函数，实现DOM的集中化批量更新。</p></blockquote><ol><li>研发体验/研发效率。虚拟DOM思想是数据驱动视图，前端声明式编程。</li><li>性能不是卖点。性能还不错，性能量化不能一概而论只看一个指标，得看实际情况。DOM操作量级有关</li><li>价值？跨平台，一次编码多次应用。虚拟DOM是对实际渲染内容的一次抽象</li><li>规避xss攻击</li></ol><p>缺点：</p><ol><li>内存占用高，虚拟DOM，object</li><li>无法进行极致优化。如Google Earth</li></ol><h1 id="How"><a href="#How" class="headerlink" title="How?"></a>How?</h1><h2 id="调和Reconciliation-和-Diff算法"><a href="#调和Reconciliation-和-Diff算法" class="headerlink" title="调和Reconciliation 和 Diff算法"></a>调和Reconciliation 和 Diff算法</h2><blockquote><p>调和是将虚拟DOM映射到真实DOM的过程。Diff算法只是其中的一个小部分，深度优先遍历</p></blockquote><ol><li><p>React 15为代表的“栈调和”<br>传统的递归比较两棵树结构的不同算法复杂度是O(n^3)，这个复杂度显然不能令人接受，所以React中做了什么呢，将复杂度转换成O(n)</p><ul><li>Diff算法性能突破的关键点是“分层比较”<br>分层比较其实是分层递归比较，所以“同层级操作”是主流，只针对相同层级的节点进行比较，如果是跨层级的节点操作，其实是对应这销毁和重建的过程，尽量保持DOM节点的稳定性。</li><li>类型一致的节点才有继续Diff的必要<br>根据主要“矛盾”类型不一致的节点，直接放弃比较，原地替换旧的节点。</li><li>key属性的设置，可以尽可能重用同一层级内的节点<br>key主要解决的是同一层级下节点的重用问题。设置key的元素可以避免不必要的销毁和重建，只是调整顺序排列。<blockquote><p>注：作为一个节点的唯一标识，使用key之前，保证key的唯一和稳定。<br>大致过程可以描述为树对比、组件对比、元素对比<br>总结：栈调和机制下的Diff算法，其实是树的深度优先遍历过程。<br>这个过程是同步的过程，不可被打断。Stack Reconciler 需要的时间越长，意味着JS线程将霸占主线程的时间越长。进而导致会出现渲染卡死、交互无响应的现象。</p></blockquote></li></ul></li><li><p>React 16以来的“Fiber调和”<br>Fiber：纤程，对渲染过程进行更加精细的控制。是Fiber树结构的节点单位，也就是React 16下的“虚拟DOM”,并且Fiber节点保存了组件需要更新的状态和副作用。</p></li></ol><ul><li>可中断</li><li>可恢复</li><li>优先级</li></ul><h1 id="Better？"><a href="#Better？" class="headerlink" title="Better？"></a>Better？</h1><ol><li>避免跨层级节点移动</li><li>设置唯一的key，尽量减少组件层级</li><li>设置shouldComponentUpdate 或者 React.pureComponet 减少 diff 次数</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;What？&quot;&gt;&lt;a href=&quot;#What？&quot; class=&quot;headerlink&quot; title=&quot;What？&quot;&gt;&lt;/a&gt;What？&lt;/h1&gt;&lt;p&gt;Virtual DOM本质上是JS 和 DOM 之间的一个映射缓存，是能够描述DOM结构及其属性的JS对象。&lt;/p&gt;
+      
     
     </summary>
     
@@ -533,6 +541,33 @@
   </entry>
   
   <entry>
+    <title>【React】前端路由-React Router</title>
+    <link href="https://wangyx233.github.io/2021/06/30/%5BReact%5D%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%94%B1/"/>
+    <id>https://wangyx233.github.io/2021/06/30/[React]前端路由/</id>
+    <published>2021-06-30T02:45:57.323Z</published>
+    <updated>2021-07-13T03:21:58.447Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="What"><a href="#What" class="headerlink" title="What"></a>What</h1><ul><li>切换Hash</li><li>切换Path<br>HTML5的History API中的 pushState、replaceState，还需要在服务端配置historyApiFallback<br>路由守卫<h1 id="How"><a href="#How" class="headerlink" title="How"></a>How</h1></li></ul><ol><li>路由器：BrowserRouter 和 HashRouter</li></ol><ul><li>BrowserRouter 是使用 HTML 5 的 history API 来控制路由跳转的。</li><li>HashRouter 是通过 URL 的 hash 属性来控制路由跳转的。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">window.location.hash</span><br><span class="line">// 监听hash变化，点击浏览器的前进后退会触发</span><br><span class="line">window.addEventListener(&apos;hashchange&apos;, function(event)&#123;</span><br><span class="line">    // 根据 hash 的变化更新内容</span><br><span class="line">&#125;,false)</span><br><span class="line">window.history.forward()  // 前进到下一页</span><br><span class="line">window.history.back() // 后退到上一页</span><br><span class="line">window.history.go(2)</span><br><span class="line">history.pushState(data[,title][,url]); // 向浏览历史中追加一条记录</span><br><span class="line">history.replaceState(data[,title][,url]); // 修改（替换）当前页在浏览历史中的信息</span><br><span class="line">window.addEventListener(&apos;popstate&apos;, function(e) &#123;</span><br><span class="line">  console.log(e)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li></ul><blockquote><p>go、forward 和 back 等方法的调用确实会触发 popstate，但是pushState 和 replaceState 不会。不过这一点问题不大，我们可以通过自定义事件和全局事件总线来手动触发事件。</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;What&quot;&gt;&lt;a href=&quot;#What&quot; class=&quot;headerlink&quot; title=&quot;What&quot;&gt;&lt;/a&gt;What&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;切换Hash&lt;/li&gt;
+&lt;li&gt;切换Path&lt;br&gt;HTML5的History API中的 pushState、
+      
+    
+    </summary>
+    
+      <category term="React" scheme="https://wangyx233.github.io/categories/React/"/>
+    
+    
+      <category term="React" scheme="https://wangyx233.github.io/tags/React/"/>
+    
+  </entry>
+  
+  <entry>
     <title>【React】性能优化</title>
     <link href="https://wangyx233.github.io/2021/06/30/%5BReact%5D%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
     <id>https://wangyx233.github.io/2021/06/30/[React]性能优化/</id>
@@ -551,33 +586,6 @@
 &lt;li&gt;函数组件的性能优化：React.memo 和 useMemo&lt;/li&gt;
 &lt;/ul&gt;
 
-      
-    
-    </summary>
-    
-      <category term="React" scheme="https://wangyx233.github.io/categories/React/"/>
-    
-    
-      <category term="React" scheme="https://wangyx233.github.io/tags/React/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【React】前端路由-React Router</title>
-    <link href="https://wangyx233.github.io/2021/06/30/%5BReact%5D%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%94%B1/"/>
-    <id>https://wangyx233.github.io/2021/06/30/[React]前端路由/</id>
-    <published>2021-06-30T02:45:57.323Z</published>
-    <updated>2021-07-13T03:21:58.447Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="What"><a href="#What" class="headerlink" title="What"></a>What</h1><ul><li>切换Hash</li><li>切换Path<br>HTML5的History API中的 pushState、replaceState，还需要在服务端配置historyApiFallback<br>路由守卫<h1 id="How"><a href="#How" class="headerlink" title="How"></a>How</h1></li></ul><ol><li>路由器：BrowserRouter 和 HashRouter</li></ol><ul><li>BrowserRouter 是使用 HTML 5 的 history API 来控制路由跳转的。</li><li>HashRouter 是通过 URL 的 hash 属性来控制路由跳转的。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">window.location.hash</span><br><span class="line">// 监听hash变化，点击浏览器的前进后退会触发</span><br><span class="line">window.addEventListener(&apos;hashchange&apos;, function(event)&#123;</span><br><span class="line">    // 根据 hash 的变化更新内容</span><br><span class="line">&#125;,false)</span><br><span class="line">window.history.forward()  // 前进到下一页</span><br><span class="line">window.history.back() // 后退到上一页</span><br><span class="line">window.history.go(2)</span><br><span class="line">history.pushState(data[,title][,url]); // 向浏览历史中追加一条记录</span><br><span class="line">history.replaceState(data[,title][,url]); // 修改（替换）当前页在浏览历史中的信息</span><br><span class="line">window.addEventListener(&apos;popstate&apos;, function(e) &#123;</span><br><span class="line">  console.log(e)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li></ul><blockquote><p>go、forward 和 back 等方法的调用确实会触发 popstate，但是pushState 和 replaceState 不会。不过这一点问题不大，我们可以通过自定义事件和全局事件总线来手动触发事件。</p></blockquote>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;What&quot;&gt;&lt;a href=&quot;#What&quot; class=&quot;headerlink&quot; title=&quot;What&quot;&gt;&lt;/a&gt;What&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;切换Hash&lt;/li&gt;
-&lt;li&gt;切换Path&lt;br&gt;HTML5的History API中的 pushState、
       
     
     </summary>
@@ -620,31 +628,6 @@
   </entry>
   
   <entry>
-    <title>【React】ReactDom.render</title>
-    <link href="https://wangyx233.github.io/2021/06/30/%5BReact%5DReactDOM.render/"/>
-    <id>https://wangyx233.github.io/2021/06/30/[React]ReactDOM.render/</id>
-    <published>2021-06-30T02:45:57.322Z</published>
-    <updated>2021-07-13T03:21:58.412Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="ReactDom-render-调用栈逻辑"><a href="#ReactDom-render-调用栈逻辑" class="headerlink" title="ReactDom.render 调用栈逻辑"></a>ReactDom.render 调用栈逻辑</h1><ul><li>scheduleUpdateOnFiber</li><li>commitRoot 正式渲染DOM</li></ul><ol><li>初始化阶段 - 完成Fiber🌲基本实体的构建</li><li>render阶段 - 深度优先搜索过程</li><li>commit阶段</li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;ReactDom-render-调用栈逻辑&quot;&gt;&lt;a href=&quot;#ReactDom-render-调用栈逻辑&quot; class=&quot;headerlink&quot; title=&quot;ReactDom.render 调用栈逻辑&quot;&gt;&lt;/a&gt;ReactDom.render 调用栈逻辑&lt;/
-      
-    
-    </summary>
-    
-      <category term="React" scheme="https://wangyx233.github.io/categories/React/"/>
-    
-    
-      <category term="React" scheme="https://wangyx233.github.io/tags/React/"/>
-    
-  </entry>
-  
-  <entry>
     <title>【React】setState 同步 or 异步？</title>
     <link href="https://wangyx233.github.io/2021/06/30/%5BReact%5DsetState/"/>
     <id>https://wangyx233.github.io/2021/06/30/[React]setState/</id>
@@ -669,21 +652,20 @@
   </entry>
   
   <entry>
-    <title>【React】Why JSX?</title>
-    <link href="https://wangyx233.github.io/2021/06/30/%5BReact%5DJSX/"/>
-    <id>https://wangyx233.github.io/2021/06/30/[React]JSX/</id>
-    <published>2021-06-30T02:45:57.321Z</published>
-    <updated>2021-07-13T03:21:58.422Z</updated>
+    <title>【React】ReactDom.render</title>
+    <link href="https://wangyx233.github.io/2021/06/30/%5BReact%5DReactDOM.render/"/>
+    <id>https://wangyx233.github.io/2021/06/30/[React]ReactDOM.render/</id>
+    <published>2021-06-30T02:45:57.322Z</published>
+    <updated>2021-07-13T03:21:58.412Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h1><ul><li>JSX 的本质是什么，它和 JS 之间到底是什么关系？</li><li>为什么要用 JSX？不用会有什么后果？</li><li>JSX 背后的功能模块是什么，这个功能模块都做了哪些事情？</li></ul><a id="more"></a><h1 id="What？"><a href="#What？" class="headerlink" title="What？"></a>What？</h1><blockquote><p>JSX是JavaScript的一个语法扩展，实质是快速构建页面结构的语法糖<br>ReactDOM在渲染所有输入内容之前，默认会进行转义，可以有效地防止XSS攻击</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">React.creatElement(type, config, children)  // 格式化数据，调用ReactElement创建虚拟DOM</span><br><span class="line"></span><br><span class="line">export function createElement(type, config, children) &#123;</span><br><span class="line">  ....</span><br><span class="line">  return ReactElement(</span><br><span class="line">    type,</span><br><span class="line">    key,</span><br><span class="line">    ref,</span><br><span class="line">    self,</span><br><span class="line">    source,</span><br><span class="line">    ReactCurrentOwner.current,</span><br><span class="line">    props,</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const ReactElement = function(type, key, ref, self, source, owner, props) &#123;</span><br><span class="line">  const element = &#123;</span><br><span class="line">    // REACT_ELEMENT_TYPE是一个常量，用来标识该对象是一个ReactElement</span><br><span class="line">    $$typeof: REACT_ELEMENT_TYPE,</span><br><span class="line"></span><br><span class="line">    // 内置属性赋值</span><br><span class="line">    type: type,</span><br><span class="line">    key: key,</span><br><span class="line">    ref: ref,</span><br><span class="line">    props: props,</span><br><span class="line"></span><br><span class="line">    // 记录创造该元素的组件</span><br><span class="line">    _owner: owner,</span><br><span class="line">  &#125;;</span><br><span class="line">  return element;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(element, container, [callback]) // 真实的DOM</span><br></pre></td></tr></table></figure><h1 id="Why？"><a href="#Why？" class="headerlink" title="Why？"></a>Why？</h1><p>JSX层次分明，嵌套逻辑清晰。用JSX降低学习成本，提高研发效率和研发体验</p><h1 id="How？"><a href="#How？" class="headerlink" title="How？"></a>How？</h1>]]></content>
+    <content type="html"><![CDATA[<h1 id="ReactDom-render-调用栈逻辑"><a href="#ReactDom-render-调用栈逻辑" class="headerlink" title="ReactDom.render 调用栈逻辑"></a>ReactDom.render 调用栈逻辑</h1><ul><li>scheduleUpdateOnFiber</li><li>commitRoot 正式渲染DOM</li></ul><ol><li>初始化阶段 - 完成Fiber🌲基本实体的构建</li><li>render阶段 - 深度优先搜索过程</li><li>commit阶段</li></ol>]]></content>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;Question&quot;&gt;&lt;a href=&quot;#Question&quot; class=&quot;headerlink&quot; title=&quot;Question&quot;&gt;&lt;/a&gt;Question&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;JSX 的本质是什么，它和 JS 之间到底是什么关系？&lt;/li&gt;
-&lt;li&gt;为什么要用 JSX？不用会有什么后果？&lt;/li&gt;
-&lt;li&gt;JSX 背后的功能模块是什么，这个功能模块都做了哪些事情？&lt;/li&gt;
-&lt;/ul&gt;
+      
+      
+        &lt;h1 id=&quot;ReactDom-render-调用栈逻辑&quot;&gt;&lt;a href=&quot;#ReactDom-render-调用栈逻辑&quot; class=&quot;headerlink&quot; title=&quot;ReactDom.render 调用栈逻辑&quot;&gt;&lt;/a&gt;ReactDom.render 调用栈逻辑&lt;/
+      
     
     </summary>
     
@@ -710,6 +692,32 @@
         &lt;p&gt;React-Hooks 自 React 16.8 以来才真正被推而广之&lt;/p&gt;
 &lt;h1 id=&quot;What-amp-Why&quot;&gt;&lt;a href=&quot;#What-amp-Why&quot; class=&quot;headerlink&quot; title=&quot;What &amp;amp; Why&quot;&gt;&lt;/a&gt;What 
       
+    
+    </summary>
+    
+      <category term="React" scheme="https://wangyx233.github.io/categories/React/"/>
+    
+    
+      <category term="React" scheme="https://wangyx233.github.io/tags/React/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【React】Why JSX?</title>
+    <link href="https://wangyx233.github.io/2021/06/30/%5BReact%5DJSX/"/>
+    <id>https://wangyx233.github.io/2021/06/30/[React]JSX/</id>
+    <published>2021-06-30T02:45:57.321Z</published>
+    <updated>2021-07-13T03:21:58.422Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h1><ul><li>JSX 的本质是什么，它和 JS 之间到底是什么关系？</li><li>为什么要用 JSX？不用会有什么后果？</li><li>JSX 背后的功能模块是什么，这个功能模块都做了哪些事情？</li></ul><a id="more"></a><h1 id="What？"><a href="#What？" class="headerlink" title="What？"></a>What？</h1><blockquote><p>JSX是JavaScript的一个语法扩展，实质是快速构建页面结构的语法糖<br>ReactDOM在渲染所有输入内容之前，默认会进行转义，可以有效地防止XSS攻击</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">React.creatElement(type, config, children)  // 格式化数据，调用ReactElement创建虚拟DOM</span><br><span class="line"></span><br><span class="line">export function createElement(type, config, children) &#123;</span><br><span class="line">  ....</span><br><span class="line">  return ReactElement(</span><br><span class="line">    type,</span><br><span class="line">    key,</span><br><span class="line">    ref,</span><br><span class="line">    self,</span><br><span class="line">    source,</span><br><span class="line">    ReactCurrentOwner.current,</span><br><span class="line">    props,</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const ReactElement = function(type, key, ref, self, source, owner, props) &#123;</span><br><span class="line">  const element = &#123;</span><br><span class="line">    // REACT_ELEMENT_TYPE是一个常量，用来标识该对象是一个ReactElement</span><br><span class="line">    $$typeof: REACT_ELEMENT_TYPE,</span><br><span class="line"></span><br><span class="line">    // 内置属性赋值</span><br><span class="line">    type: type,</span><br><span class="line">    key: key,</span><br><span class="line">    ref: ref,</span><br><span class="line">    props: props,</span><br><span class="line"></span><br><span class="line">    // 记录创造该元素的组件</span><br><span class="line">    _owner: owner,</span><br><span class="line">  &#125;;</span><br><span class="line">  return element;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(element, container, [callback]) // 真实的DOM</span><br></pre></td></tr></table></figure><h1 id="Why？"><a href="#Why？" class="headerlink" title="Why？"></a>Why？</h1><p>JSX层次分明，嵌套逻辑清晰。用JSX降低学习成本，提高研发效率和研发体验</p><h1 id="How？"><a href="#How？" class="headerlink" title="How？"></a>How？</h1>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Question&quot;&gt;&lt;a href=&quot;#Question&quot; class=&quot;headerlink&quot; title=&quot;Question&quot;&gt;&lt;/a&gt;Question&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;JSX 的本质是什么，它和 JS 之间到底是什么关系？&lt;/li&gt;
+&lt;li&gt;为什么要用 JSX？不用会有什么后果？&lt;/li&gt;
+&lt;li&gt;JSX 背后的功能模块是什么，这个功能模块都做了哪些事情？&lt;/li&gt;
+&lt;/ul&gt;
     
     </summary>
     
@@ -774,31 +782,6 @@
   </entry>
   
   <entry>
-    <title>【JS基础】变量类型与比较</title>
-    <link href="https://wangyx233.github.io/2021/06/30/%5BJS%E5%9F%BA%E7%A1%80%5D%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B%E4%B8%8E%E6%AF%94%E8%BE%83/"/>
-    <id>https://wangyx233.github.io/2021/06/30/[JS基础]变量类型与比较/</id>
-    <published>2021-06-30T02:45:57.319Z</published>
-    <updated>2021-07-13T03:21:58.416Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h1><ol><li>typeof 能判断什么类型？</li><li>=== vs == 有什么不同？</li><li>值类型与引用类型有什么区别？</li><li>手写深拷贝？</li></ol><a id="more"></a><h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><h2 id="值类型-引用类型"><a href="#值类型-引用类型" class="headerlink" title="值类型 | 引用类型"></a>值类型 | 引用类型</h2><blockquote><p>值类型包括，string，number，boolean，undefined，symbol 值类型是存储在栈中的，存的是值本身</p></blockquote><blockquote><p>常见的引用类型包括，object，array，null(特殊的引用类型，只向空地址)，function(特殊的引用类型，也可以独立为函数类型)  引用类型则是在栈中存变量以及变量指向的内存地址，实际的值是由内存地址指向存在堆中的，普通的浅拷贝，复制的是栈中的内容（考虑到存储，性能）</p></blockquote><h2 id="typeof"><a href="#typeof" class="headerlink" title="typeof"></a>typeof</h2><ul><li>能区分是值类型还是引用类型，并且能够区分具体的值类型，但是无法细化区分引用类型</li><li>能识别出function类型</li></ul><h2 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h2><p>递归实现，function内容</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">https://codepen.io/yx233/pen/oNzKvbg</span><br><span class="line"></span><br><span class="line">function deepClone(obj) &#123;</span><br><span class="line">  if(typeof obj !== &apos;object&apos; || obj == null) return obj;</span><br><span class="line">  let res = obj instanceof Array ? [] : &#123;&#125;;</span><br><span class="line">  for(let key in obj) &#123;</span><br><span class="line">    if(obj.hasOwnProperty(key)) res[key] = deepClone(obj[key]);</span><br><span class="line">  &#125;</span><br><span class="line">  return res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h2><ul><li>字符串拼接，和字符串的加法</li><li>==，类型转换，null == undefined // true, 除了 == null(=== null || === undefined)，其他情况用===判断</li><li>if，逻辑判断，判断的是truely变量 !!a === true，falsely变量 !!b === false。 &amp;&amp; || 返回终止前的值<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">👇为falsely变量，除此以外为truely变量</span><br><span class="line">!!0 === false</span><br><span class="line">!!null === false</span><br><span class="line">!!undefined === false</span><br><span class="line">!!NaN === false</span><br><span class="line">!!&apos;&apos; === false</span><br><span class="line">!!false === false</span><br></pre></td></tr></table></figure></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;思考&quot;&gt;&lt;a href=&quot;#思考&quot; class=&quot;headerlink&quot; title=&quot;思考&quot;&gt;&lt;/a&gt;思考&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;typeof 能判断什么类型？&lt;/li&gt;
-&lt;li&gt;=== vs == 有什么不同？&lt;/li&gt;
-&lt;li&gt;值类型与引用类型有什么区别？&lt;/li&gt;
-&lt;li&gt;手写深拷贝？&lt;/li&gt;
-&lt;/ol&gt;
-    
-    </summary>
-    
-      <category term="JavaScript" scheme="https://wangyx233.github.io/categories/JavaScript/"/>
-    
-    
-  </entry>
-  
-  <entry>
     <title>【JS基础】原型与原型链</title>
     <link href="https://wangyx233.github.io/2021/06/30/%5BJS%E5%9F%BA%E7%A1%80%5D%E5%8E%9F%E5%9E%8B%E4%B8%8E%E5%8E%9F%E5%9E%8B%E9%93%BE/"/>
     <id>https://wangyx233.github.io/2021/06/30/[JS基础]原型与原型链/</id>
@@ -822,20 +805,21 @@
   </entry>
   
   <entry>
-    <title>【JS基础】作用域和闭包</title>
-    <link href="https://wangyx233.github.io/2021/06/30/%5BJS%E5%9F%BA%E7%A1%80%5D%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/"/>
-    <id>https://wangyx233.github.io/2021/06/30/[JS基础]作用域和闭包/</id>
-    <published>2021-06-30T02:45:57.318Z</published>
-    <updated>2022-02-15T05:36:49.881Z</updated>
+    <title>【JS基础】变量类型与比较</title>
+    <link href="https://wangyx233.github.io/2021/06/30/%5BJS%E5%9F%BA%E7%A1%80%5D%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B%E4%B8%8E%E6%AF%94%E8%BE%83/"/>
+    <id>https://wangyx233.github.io/2021/06/30/[JS基础]变量类型与比较/</id>
+    <published>2021-06-30T02:45:57.319Z</published>
+    <updated>2021-07-13T03:21:58.416Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h1><ol><li>this 的不同应用场景，以及取值</li><li>手写 bind 函数</li><li>闭包的场景</li></ol><a id="more"></a><h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><ol><li>作用域，一个变量的合法使用范围</li></ol><ul><li>全局作用域</li><li>函数作用域</li><li>块级作用域（ES6）TDZ（Temporal Dead Zone<blockquote><p>自由变量，一个变量在当前作用域没有定义却被使用了，需要沿着作用域一层一层向上查找，找到为止，如果全局作用域都没有找到，那就是 xxxx is not defined 咯</p></blockquote></li></ul><ol start="2"><li>闭包：作用域应用的特殊情况</li></ol><ul><li>函数作为参数被传递</li><li>函数作为返回值被返回<blockquote><p>自由变量的查找是在函数定义的地方，向上级作用域查找，而不是在函数执行的地方查找！</p></blockquote></li></ul><ol start="3"><li>this，函数执行的时候确认的</li></ol><ul><li>普通函数，setTimeout 话看执行时刻</li><li>call apply bind: call,apply 原函数直接调用，bind 会返回一个新的函数</li><li>对象方法</li><li>class</li><li>箭头函数：取上级作用域的 this</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">const obj = &#123;</span><br><span class="line">    name: &apos;xxx&apos;,</span><br><span class="line">    sayHi() &#123;</span><br><span class="line">        console.log(this)</span><br><span class="line">    &#125;,</span><br><span class="line">    wait() &#123;</span><br><span class="line">        setTimeout(function() &#123;</span><br><span class="line">            console.log(this)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    waitTwo() &#123;</span><br><span class="line">        setTimeout(()=&gt; &#123;</span><br><span class="line">            console.log(this)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h1 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h1><ul><li>手写 bind 函数</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Function.prototype.bind1 = function () &#123;</span><br><span class="line">    // 获取参数</span><br><span class="line">    const args = Array.prototype.slice.call(arguments);</span><br><span class="line">    const _this = args.shift();</span><br><span class="line">    const self = this;</span><br><span class="line">    return function () &#123;</span><br><span class="line">        return self.apply(_this, args);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<h1 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h1><ol><li>typeof 能判断什么类型？</li><li>=== vs == 有什么不同？</li><li>值类型与引用类型有什么区别？</li><li>手写深拷贝？</li></ol><a id="more"></a><h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><h2 id="值类型-引用类型"><a href="#值类型-引用类型" class="headerlink" title="值类型 | 引用类型"></a>值类型 | 引用类型</h2><blockquote><p>值类型包括，string，number，boolean，undefined，symbol 值类型是存储在栈中的，存的是值本身</p></blockquote><blockquote><p>常见的引用类型包括，object，array，null(特殊的引用类型，只向空地址)，function(特殊的引用类型，也可以独立为函数类型)  引用类型则是在栈中存变量以及变量指向的内存地址，实际的值是由内存地址指向存在堆中的，普通的浅拷贝，复制的是栈中的内容（考虑到存储，性能）</p></blockquote><h2 id="typeof"><a href="#typeof" class="headerlink" title="typeof"></a>typeof</h2><ul><li>能区分是值类型还是引用类型，并且能够区分具体的值类型，但是无法细化区分引用类型</li><li>能识别出function类型</li></ul><h2 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h2><p>递归实现，function内容</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">https://codepen.io/yx233/pen/oNzKvbg</span><br><span class="line"></span><br><span class="line">function deepClone(obj) &#123;</span><br><span class="line">  if(typeof obj !== &apos;object&apos; || obj == null) return obj;</span><br><span class="line">  let res = obj instanceof Array ? [] : &#123;&#125;;</span><br><span class="line">  for(let key in obj) &#123;</span><br><span class="line">    if(obj.hasOwnProperty(key)) res[key] = deepClone(obj[key]);</span><br><span class="line">  &#125;</span><br><span class="line">  return res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h2><ul><li>字符串拼接，和字符串的加法</li><li>==，类型转换，null == undefined // true, 除了 == null(=== null || === undefined)，其他情况用===判断</li><li>if，逻辑判断，判断的是truely变量 !!a === true，falsely变量 !!b === false。 &amp;&amp; || 返回终止前的值<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">👇为falsely变量，除此以外为truely变量</span><br><span class="line">!!0 === false</span><br><span class="line">!!null === false</span><br><span class="line">!!undefined === false</span><br><span class="line">!!NaN === false</span><br><span class="line">!!&apos;&apos; === false</span><br><span class="line">!!false === false</span><br></pre></td></tr></table></figure></li></ul>]]></content>
     
     <summary type="html">
     
       &lt;h1 id=&quot;思考&quot;&gt;&lt;a href=&quot;#思考&quot; class=&quot;headerlink&quot; title=&quot;思考&quot;&gt;&lt;/a&gt;思考&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;this 的不同应用场景，以及取值&lt;/li&gt;
-&lt;li&gt;手写 bind 函数&lt;/li&gt;
-&lt;li&gt;闭包的场景&lt;/li&gt;
+&lt;li&gt;typeof 能判断什么类型？&lt;/li&gt;
+&lt;li&gt;=== vs == 有什么不同？&lt;/li&gt;
+&lt;li&gt;值类型与引用类型有什么区别？&lt;/li&gt;
+&lt;li&gt;手写深拷贝？&lt;/li&gt;
 &lt;/ol&gt;
     
     </summary>
@@ -874,24 +858,21 @@
   </entry>
   
   <entry>
-    <title>【WebAPI】存储</title>
-    <link href="https://wangyx233.github.io/2021/06/30/%5BJSWebAPI%5Dcookie/"/>
-    <id>https://wangyx233.github.io/2021/06/30/[JSWebAPI]cookie/</id>
-    <published>2021-06-30T02:45:57.317Z</published>
-    <updated>2021-07-13T03:21:58.364Z</updated>
+    <title>【JS基础】作用域和闭包</title>
+    <link href="https://wangyx233.github.io/2021/06/30/%5BJS%E5%9F%BA%E7%A1%80%5D%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/"/>
+    <id>https://wangyx233.github.io/2021/06/30/[JS基础]作用域和闭包/</id>
+    <published>2021-06-30T02:45:57.318Z</published>
+    <updated>2022-02-16T05:45:08.537Z</updated>
     
-    <content type="html"><![CDATA[<ul><li>介绍cookie、localStorage、sessionStorage区别</li></ul><h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><ol><li><p>cookie</p><ul><li>通过;分割的字符串，每一部分都是key=value的形式</li><li>http请求的一部分，用于浏览器和服务端通讯的</li><li>document.cookie修改，默认每次追加或者修改一个key/value</li><li>限制：最大4KB，每次http请求都需要发送到服务端，api太简陋</li></ul></li><li><p>localStorage、sessionStorage</p><ul><li>HTML5专门为存储设计的，最大可存储5M / pre host</li><li>API：getItem() setItem() 存储的为字符串的形式，所以其他格式的数据要注意</li><li>和http请求没关系</li><li>localStorage 永久存储，除非手动或者代码删除；sessionStorage只存在于当前会话，页面关闭清空</li></ul></li></ol>]]></content>
+    <content type="html"><![CDATA[<h1 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h1><ol><li>this 的不同应用场景，以及取值</li><li>手写 bind 函数</li><li>闭包的场景</li></ol><a id="more"></a><h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><ol><li>作用域，一个变量的合法使用范围</li></ol><ul><li>全局作用域</li><li>函数作用域</li><li>块级作用域（ES6）TDZ（Temporal Dead Zone）<blockquote><p>自由变量，一个变量在当前作用域没有定义却被使用了，需要沿着作用域一层一层向上查找，找到为止，如果全局作用域都没有找到，那就是 xxxx is not defined 咯</p></blockquote></li></ul><ol start="2"><li>闭包：作用域应用的特殊情况</li></ol><ul><li>函数作为参数被传递</li><li>函数作为返回值被返回<blockquote><p>自由变量的查找是在函数定义的地方，向上级作用域查找，而不是在函数执行的地方查找！</p></blockquote></li></ul><ol start="3"><li>this，函数执行的时候确认的</li></ol><ul><li>普通函数，setTimeout 话看执行时刻</li><li>call apply bind: call,apply 原函数直接调用，bind 会返回一个新的函数</li><li>对象方法</li><li>class</li><li>箭头函数：取上级作用域的 this</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">const obj = &#123;</span><br><span class="line">    name: &apos;xxx&apos;,</span><br><span class="line">    sayHi() &#123;</span><br><span class="line">        console.log(this)</span><br><span class="line">    &#125;,</span><br><span class="line">    wait() &#123;</span><br><span class="line">        setTimeout(function() &#123;</span><br><span class="line">            console.log(this)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    waitTwo() &#123;</span><br><span class="line">        setTimeout(()=&gt; &#123;</span><br><span class="line">            console.log(this)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h1 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h1><ul><li>手写 bind 函数</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Function.prototype.bind1 = function () &#123;</span><br><span class="line">    // 获取参数</span><br><span class="line">    const args = Array.prototype.slice.call(arguments);</span><br><span class="line">    const _this = args.shift();</span><br><span class="line">    const self = this;</span><br><span class="line">    return function () &#123;</span><br><span class="line">        return self.apply(_this, args);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
-      
-      
-        &lt;ul&gt;
-&lt;li&gt;介绍cookie、localStorage、sessionStorage区别&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&quot;知识点&quot;&gt;&lt;a href=&quot;#知识点&quot; class=&quot;headerlink&quot; title=&quot;知识点&quot;&gt;&lt;/a&gt;知识点&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;&lt;
-      
+      &lt;h1 id=&quot;思考&quot;&gt;&lt;a href=&quot;#思考&quot; class=&quot;headerlink&quot; title=&quot;思考&quot;&gt;&lt;/a&gt;思考&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;this 的不同应用场景，以及取值&lt;/li&gt;
+&lt;li&gt;手写 bind 函数&lt;/li&gt;
+&lt;li&gt;闭包的场景&lt;/li&gt;
+&lt;/ol&gt;
     
     </summary>
     
@@ -921,6 +902,33 @@
 &lt;li&gt;DOM常用的API&lt;/li&gt;
 &lt;li&gt;attr和property的区别&lt;/li&gt;
 &lt;li&gt;如何一
+      
+    
+    </summary>
+    
+      <category term="JavaScript" scheme="https://wangyx233.github.io/categories/JavaScript/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>【WebAPI】存储</title>
+    <link href="https://wangyx233.github.io/2021/06/30/%5BJSWebAPI%5Dcookie/"/>
+    <id>https://wangyx233.github.io/2021/06/30/[JSWebAPI]cookie/</id>
+    <published>2021-06-30T02:45:57.317Z</published>
+    <updated>2021-07-13T03:21:58.364Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>介绍cookie、localStorage、sessionStorage区别</li></ul><h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><ol><li><p>cookie</p><ul><li>通过;分割的字符串，每一部分都是key=value的形式</li><li>http请求的一部分，用于浏览器和服务端通讯的</li><li>document.cookie修改，默认每次追加或者修改一个key/value</li><li>限制：最大4KB，每次http请求都需要发送到服务端，api太简陋</li></ul></li><li><p>localStorage、sessionStorage</p><ul><li>HTML5专门为存储设计的，最大可存储5M / pre host</li><li>API：getItem() setItem() 存储的为字符串的形式，所以其他格式的数据要注意</li><li>和http请求没关系</li><li>localStorage 永久存储，除非手动或者代码删除；sessionStorage只存在于当前会话，页面关闭清空</li></ul></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ul&gt;
+&lt;li&gt;介绍cookie、localStorage、sessionStorage区别&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;知识点&quot;&gt;&lt;a href=&quot;#知识点&quot; class=&quot;headerlink&quot; title=&quot;知识点&quot;&gt;&lt;/a&gt;知识点&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;&lt;
       
     
     </summary>
@@ -1136,28 +1144,6 @@
   </entry>
   
   <entry>
-    <title>&lt;重温JS&gt;JS题目小试</title>
-    <link href="https://wangyx233.github.io/2020/09/25/%5B%E9%87%8D%E6%B8%A9JS%5DJS%E9%A2%98%E7%9B%AE%E5%B0%8F%E8%AF%95/"/>
-    <id>https://wangyx233.github.io/2020/09/25/[重温JS]JS题目小试/</id>
-    <published>2020-09-25T03:23:35.374Z</published>
-    <updated>2020-10-23T00:56:11.707Z</updated>
-    
-    <content type="html"><![CDATA[<h4 id="一、数组扁平化"><a href="#一、数组扁平化" class="headerlink" title="一、数组扁平化"></a>一、数组扁平化</h4><p>如何将一个多维数组变成一个一维数组，如：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const arr = [1, [2, [3, [4, [5]]]]]</span><br><span class="line">// =&gt; [1,2,3,4,5]</span><br></pre></td></tr></table></figure><p>看到数组扁平，第一想到的是 concat()，然后是递归，依次实现一番。</p><p>(1) 递归</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const res = [];</span><br><span class="line">const flat = arr =&gt; &#123;</span><br><span class="line">  for (let i = 0; i &lt; arr.length; i++) &#123;</span><br><span class="line">    if (Array.isArray(arr[i])) &#123;</span><br><span class="line">      flat(arr[i]);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      res.push(arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">flat(arr);</span><br></pre></td></tr></table></figure><p>(2) reduce()配合 concat()</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const flat = arr =&gt; arr.reduce((temp, elem) =&gt; temp.concat(Array.isArray(elem) ? flat(elem) : elem), [])</span><br><span class="line">const res = flat(arr);</span><br></pre></td></tr></table></figure><p>(3) 内置 API，一顿操作，竟然忽略了 Js Array 的内置 api–flat()，按指定深度递归遍历数组，将所有元素与遍历的子数组中的元素合并为一个新数组返回。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var newArray = arr.flat([depth])</span><br><span class="line">const res = arr.flat(Infinity);</span><br></pre></td></tr></table></figure><p>(4) 正则，另辟蹊径</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const res1 = JSON.stringify(arr).replace(/\[|\]/g, &apos;&apos;).split(&apos;,&apos;); // 原来数字变成了字符串</span><br><span class="line">const res2 = JSON.parse(`[$&#123;JSON.stringify(arr).replace(/\[|\]/g, &apos;&apos;)&#125;]`);</span><br></pre></td></tr></table></figure><h4 id="二、数组去重"><a href="#二、数组去重" class="headerlink" title="二、数组去重"></a>二、数组去重</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const arr = [1, 17, &apos;1&apos;, 17, true, true, false, false, &apos;true&apos;, &apos;a&apos;, &#123;&#125;, &#123;&#125;];</span><br><span class="line">// =&gt; [1, &apos;1&apos;, 17, true, false, &apos;true&apos;, &apos;a&apos;, &#123;&#125;, &#123;&#125;]</span><br></pre></td></tr></table></figure><p>看到数组去重，首先想到的是维护一个 object 用于记录出现过的值然后去掉重复，然后想到 filter 也可以实现类似的</p><p>(1) object 方法，普通 object 的 key 都会转换成 String 类型，所以可以借助 ES6 的 Map;</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const uniq = (arr) =&gt; &#123;</span><br><span class="line">  const map = new Map();</span><br><span class="line">  const res = [];</span><br><span class="line">  for (let i = 0; i &lt; arr.length; i++) &#123;</span><br><span class="line">    if (!map.has(arr[i])) &#123;</span><br><span class="line">      map.set(arr[i], true);</span><br><span class="line">      res.push(arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>(2) filter，过滤得到首次出现的元素。判断元素是否出现过还可以使用 arr.indexOf(elem) === -1 或者 arr.includes(elem)</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const res = arr.filter((elem, index) =&gt; arr.indexOf(elem) === index);</span><br></pre></td></tr></table></figure><p>(3) ES6 的 Set 数据结构，特性是每个元素都是唯一的，没有重复的值</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const res = [...new Set(arr)];</span><br><span class="line">[...new Set(&apos;ababbc&apos;)].join(&apos;&apos;); // &apos;abc&apos;</span><br></pre></td></tr></table></figure><p>// 两个有序数组[1,3,5]和[2,4,6]，写一个 mergeArr(a,b)合并两个数组，最终得到一个有序数组</p><p>_.get()</p><p>假设你正在爬楼梯。需要 n 阶你才能到达楼顶。</p><p>每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h4 id=&quot;一、数组扁平化&quot;&gt;&lt;a href=&quot;#一、数组扁平化&quot; class=&quot;headerlink&quot; title=&quot;一、数组扁平化&quot;&gt;&lt;/a&gt;一、数组扁平化&lt;/h4&gt;&lt;p&gt;如何将一个多维数组变成一个一维数组，如：&lt;/p&gt;
-&lt;figure class=&quot;highlight 
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
     <title>&lt;重温JS&gt;数据类型及基本转换</title>
     <link href="https://wangyx233.github.io/2020/07/28/%E9%87%8D%E6%B8%A9%E5%AD%A6%E4%B9%A0/"/>
     <id>https://wangyx233.github.io/2020/07/28/重温学习/</id>
@@ -1334,15 +1320,15 @@
     <link href="https://wangyx233.github.io/2020/07/02/%5B%E9%87%8D%E6%B8%A9JS%5D%E9%97%AD%E5%8C%85/"/>
     <id>https://wangyx233.github.io/2020/07/02/[重温JS]闭包/</id>
     <published>2020-07-02T08:39:03.139Z</published>
-    <updated>2022-02-15T05:32:05.673Z</updated>
+    <updated>2022-02-16T03:56:15.861Z</updated>
     
-    <content type="html"><![CDATA[<h5 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function foo(arg1 = arg2, arg2) &#123;</span><br><span class="line">    console.log(`$&#123;arg1&#125; $&#123;arg2&#125;`)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo(undefined, &apos;arg2&apos;) // Uncaught ReferenceError: arg2 is not defined</span><br><span class="line">foo(null, &apos;arg2&apos;) // null arg2</span><br><span class="line"></span><br><span class="line">function foo(arg1) &#123;</span><br><span class="line">    let arg1</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo(&apos;arg1&apos;) // Uncaught SyntaxError: Identifier &apos;arg1&apos; has already been declared</span><br></pre></td></tr></table></figure><h5 id="执行上下文"><a href="#执行上下文" class="headerlink" title="执行上下文"></a>执行上下文</h5><p>闭包是带执行环境的函数，本质是个函数<br>立即执行函数表达式 IIFE，括号前要加;分隔;(function(){})(); 不然会被解析成上一行的函数调用；或者用 void function() {}()</p><ul><li>var</li><li>let： for, if, switch, try/catch/finally…{}包裹的</li><li>Realm： 9.0 标准提出的，主要应用于通过 iframe 等方式创造 window 环境</li></ul><h5 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h5><ul><li>普通函数，用 function 定义的普通函数 function fun() {}</li><li>箭头函数，const fun = () =&gt; { }</li><li>在 class 中定义的函数，class a { fun() {} }</li><li>生成器函数，function * fun (){}</li><li>用 class 定义的类，实际也是函数 class Foo {constructor (){}}</li><li>异步函数，async function fun() {}，const fun = async ()=&gt; {}， async function fun*() {}</li></ul><h6 id="this"><a href="#this" class="headerlink" title="this"></a>this</h6><p>同一个函数调用方式不同，this 也不同，普通函数的 this 由调用函数时使用的引用决定。箭头函数不论什么引用调用都不会影响它原来的 this，即外层函数调用的 this。<br>生成器函数、异步生成器函数和异步普通函数跟普通函数行为是一致的，异步箭头函数与箭头函数行为是一致的。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">function showThis()&#123;</span><br><span class="line">    console.log(this);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var o = &#123;</span><br><span class="line">    showThis: showThis</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">showThis(); // global</span><br><span class="line">o.showThis(); // o</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">const showThis = () =&gt; &#123;</span><br><span class="line">    console.log(this);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var o = &#123;</span><br><span class="line">    showThis: showThis</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">showThis(); // global</span><br><span class="line">o.showThis(); // global</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class C &#123;</span><br><span class="line">    showThis() &#123;</span><br><span class="line">        console.log(this);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var o = new C();</span><br><span class="line">var showThis = o.showThis;</span><br><span class="line"></span><br><span class="line">showThis(); // undefined</span><br><span class="line">o.showThis(); // o</span><br></pre></td></tr></table></figure><p>切换上下文：函数保存定义时上下文的私有变量[[Environment]],当一个函数执行时，会创建一条新的执行环境记录，记录的外层词法环境（outer lexical environment）会被设置成函数的[[Environment]]</p><h5 id="apply，call，bind-操作-this"><a href="#apply，call，bind-操作-this" class="headerlink" title="apply，call，bind 操作 this"></a>apply，call，bind 操作 this</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">var number = 5;</span><br><span class="line">var obj = &#123;</span><br><span class="line">    number: 3,</span><br><span class="line">    fn: (function () &#123;</span><br><span class="line">        var number;</span><br><span class="line">        this.number *= 2;</span><br><span class="line">        number = number * 2;</span><br><span class="line">        number = 3;</span><br><span class="line">        return function () &#123;</span><br><span class="line">            var num = this.number;</span><br><span class="line">            this.number *= 2;</span><br><span class="line">            console.log(num);</span><br><span class="line">            number *= 3;</span><br><span class="line">            console.log(number);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)()</span><br><span class="line">&#125;</span><br><span class="line">var myFun = obj.fn;</span><br><span class="line">myFun.call(null);</span><br><span class="line">obj.fn();</span><br><span class="line">console.log(window.number);</span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<h5 id="执行上下文"><a href="#执行上下文" class="headerlink" title="执行上下文"></a>执行上下文</h5><p>闭包是带执行环境的函数，本质是个函数<br>立即执行函数表达式 IIFE，括号前要加;分隔;(function(){})(); 不然会被解析成上一行的函数调用；或者用 void function() {}()</p><ul><li>var</li><li>let： for, if, switch, try/catch/finally…{}包裹的</li><li>Realm： 9.0 标准提出的，主要应用于通过 iframe 等方式创造 window 环境</li></ul><h5 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h5><ul><li>普通函数，用 function 定义的普通函数 function fun() {}</li><li>箭头函数，const fun = () =&gt; { }</li><li>在 class 中定义的函数，class a { fun() {} }</li><li>生成器函数，function * fun (){}</li><li>用 class 定义的类，实际也是函数 class Foo {constructor (){}}</li><li>异步函数，async function fun() {}，const fun = async ()=&gt; {}， async function fun*() {}</li></ul><h6 id="this"><a href="#this" class="headerlink" title="this"></a>this</h6><p>同一个函数调用方式不同，this 也不同，普通函数的 this 由调用函数时使用的引用决定。箭头函数不论什么引用调用都不会影响它原来的 this，即外层函数调用的 this。<br>生成器函数、异步生成器函数和异步普通函数跟普通函数行为是一致的，异步箭头函数与箭头函数行为是一致的。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">function showThis()&#123;</span><br><span class="line">    console.log(this);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var o = &#123;</span><br><span class="line">    showThis: showThis</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">showThis(); // global</span><br><span class="line">o.showThis(); // o</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">const showThis = () =&gt; &#123;</span><br><span class="line">    console.log(this);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var o = &#123;</span><br><span class="line">    showThis: showThis</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">showThis(); // global</span><br><span class="line">o.showThis(); // global</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class C &#123;</span><br><span class="line">    showThis() &#123;</span><br><span class="line">        console.log(this);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var o = new C();</span><br><span class="line">var showThis = o.showThis;</span><br><span class="line"></span><br><span class="line">showThis(); // undefined</span><br><span class="line">o.showThis(); // o</span><br></pre></td></tr></table></figure><p>切换上下文：函数保存定义时上下文的私有变量[[Environment]],当一个函数执行时，会创建一条新的执行环境记录，记录的外层词法环境（outer lexical environment）会被设置成函数的[[Environment]]</p><h5 id="apply，call，bind-操作-this"><a href="#apply，call，bind-操作-this" class="headerlink" title="apply，call，bind 操作 this"></a>apply，call，bind 操作 this</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">var number = 5;</span><br><span class="line">var obj = &#123;</span><br><span class="line">    number: 3,</span><br><span class="line">    fn: (function () &#123;</span><br><span class="line">        var number;</span><br><span class="line">        this.number *= 2;</span><br><span class="line">        number = number * 2;</span><br><span class="line">        number = 3;</span><br><span class="line">        return function () &#123;</span><br><span class="line">            var num = this.number;</span><br><span class="line">            this.number *= 2;</span><br><span class="line">            console.log(num);</span><br><span class="line">            number *= 3;</span><br><span class="line">            console.log(number);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)()</span><br><span class="line">&#125;</span><br><span class="line">var myFun = obj.fn;</span><br><span class="line">myFun.call(null);</span><br><span class="line">obj.fn();</span><br><span class="line">console.log(window.number);</span><br></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h5 id=&quot;作用域&quot;&gt;&lt;a href=&quot;#作用域&quot; class=&quot;headerlink&quot; title=&quot;作用域&quot;&gt;&lt;/a&gt;作用域&lt;/h5&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;s
+        &lt;h5 id=&quot;执行上下文&quot;&gt;&lt;a href=&quot;#执行上下文&quot; class=&quot;headerlink&quot; title=&quot;执行上下文&quot;&gt;&lt;/a&gt;执行上下文&lt;/h5&gt;&lt;p&gt;闭包是带执行环境的函数，本质是个函数&lt;br&gt;立即执行函数表达式 IIFE，括号前要加;分隔;(function(){
       
     
     </summary>

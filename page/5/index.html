@@ -225,100 +225,6 @@
 
 
   
-    <article id="post-[重温JS]JS题目小试" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/25/[重温JS]JS题目小试/">&lt;重温JS&gt;JS题目小试</a>
-    </h1>
-  
-
-        
-        <a href="/2020/09/25/[重温JS]JS题目小试/" class="archive-article-date">
-  	<time datetime="2020-09-25T03:23:35.374Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="一、数组扁平化"><a href="#一、数组扁平化" class="headerlink" title="一、数组扁平化"></a>一、数组扁平化</h4><p>如何将一个多维数组变成一个一维数组，如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const arr = [1, [2, [3, [4, [5]]]]]</span><br><span class="line">// =&gt; [1,2,3,4,5]</span><br></pre></td></tr></table></figure>
-
-<p>看到数组扁平，第一想到的是 concat()，然后是递归，依次实现一番。</p>
-<p>(1) 递归</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const res = [];</span><br><span class="line">const flat = arr =&gt; &#123;</span><br><span class="line">  for (let i = 0; i &lt; arr.length; i++) &#123;</span><br><span class="line">    if (Array.isArray(arr[i])) &#123;</span><br><span class="line">      flat(arr[i]);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      res.push(arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">flat(arr);</span><br></pre></td></tr></table></figure>
-
-<p>(2) reduce()配合 concat()</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const flat = arr =&gt; arr.reduce((temp, elem) =&gt; temp.concat(Array.isArray(elem) ? flat(elem) : elem), [])</span><br><span class="line">const res = flat(arr);</span><br></pre></td></tr></table></figure>
-
-<p>(3) 内置 API，一顿操作，竟然忽略了 Js Array 的内置 api–flat()，按指定深度递归遍历数组，将所有元素与遍历的子数组中的元素合并为一个新数组返回。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var newArray = arr.flat([depth])</span><br><span class="line">const res = arr.flat(Infinity);</span><br></pre></td></tr></table></figure>
-
-<p>(4) 正则，另辟蹊径</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const res1 = JSON.stringify(arr).replace(/\[|\]/g, &apos;&apos;).split(&apos;,&apos;); // 原来数字变成了字符串</span><br><span class="line">const res2 = JSON.parse(`[$&#123;JSON.stringify(arr).replace(/\[|\]/g, &apos;&apos;)&#125;]`);</span><br></pre></td></tr></table></figure>
-
-<h4 id="二、数组去重"><a href="#二、数组去重" class="headerlink" title="二、数组去重"></a>二、数组去重</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const arr = [1, 17, &apos;1&apos;, 17, true, true, false, false, &apos;true&apos;, &apos;a&apos;, &#123;&#125;, &#123;&#125;];</span><br><span class="line">// =&gt; [1, &apos;1&apos;, 17, true, false, &apos;true&apos;, &apos;a&apos;, &#123;&#125;, &#123;&#125;]</span><br></pre></td></tr></table></figure>
-
-<p>看到数组去重，首先想到的是维护一个 object 用于记录出现过的值然后去掉重复，然后想到 filter 也可以实现类似的</p>
-<p>(1) object 方法，普通 object 的 key 都会转换成 String 类型，所以可以借助 ES6 的 Map;</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const uniq = (arr) =&gt; &#123;</span><br><span class="line">  const map = new Map();</span><br><span class="line">  const res = [];</span><br><span class="line">  for (let i = 0; i &lt; arr.length; i++) &#123;</span><br><span class="line">    if (!map.has(arr[i])) &#123;</span><br><span class="line">      map.set(arr[i], true);</span><br><span class="line">      res.push(arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>(2) filter，过滤得到首次出现的元素。判断元素是否出现过还可以使用 arr.indexOf(elem) === -1 或者 arr.includes(elem)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const res = arr.filter((elem, index) =&gt; arr.indexOf(elem) === index);</span><br></pre></td></tr></table></figure>
-
-<p>(3) ES6 的 Set 数据结构，特性是每个元素都是唯一的，没有重复的值</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const res = [...new Set(arr)];</span><br><span class="line">[...new Set(&apos;ababbc&apos;)].join(&apos;&apos;); // &apos;abc&apos;</span><br></pre></td></tr></table></figure>
-
-<p>// 两个有序数组[1,3,5]和[2,4,6]，写一个 mergeArr(a,b)合并两个数组，最终得到一个有序数组</p>
-<p>_.get()</p>
-<p>假设你正在爬楼梯。需要 n 阶你才能到达楼顶。</p>
-<p>每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/25/[重温JS]JS题目小试/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-重温学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -862,9 +768,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h5 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function foo(arg1 = arg2, arg2) &#123;</span><br><span class="line">    console.log(`$&#123;arg1&#125; $&#123;arg2&#125;`)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo(undefined, &apos;arg2&apos;) // Uncaught ReferenceError: arg2 is not defined</span><br><span class="line">foo(null, &apos;arg2&apos;) // null arg2</span><br><span class="line"></span><br><span class="line">function foo(arg1) &#123;</span><br><span class="line">    let arg1</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo(&apos;arg1&apos;) // Uncaught SyntaxError: Identifier &apos;arg1&apos; has already been declared</span><br></pre></td></tr></table></figure>
-
-<h5 id="执行上下文"><a href="#执行上下文" class="headerlink" title="执行上下文"></a>执行上下文</h5><p>闭包是带执行环境的函数，本质是个函数<br>立即执行函数表达式 IIFE，括号前要加;分隔;(function(){})(); 不然会被解析成上一行的函数调用；或者用 void function() {}()</p>
+        <h5 id="执行上下文"><a href="#执行上下文" class="headerlink" title="执行上下文"></a>执行上下文</h5><p>闭包是带执行环境的函数，本质是个函数<br>立即执行函数表达式 IIFE，括号前要加;分隔;(function(){})(); 不然会被解析成上一行的函数调用；或者用 void function() {}()</p>
 <ul>
 <li>var</li>
 <li>let： for, if, switch, try/catch/finally…{}包裹的</li>
@@ -1025,6 +929,108 @@
 
 
   
+    <article id="post-[算法基础]动态规划" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/01/[算法基础]动态规划/">&lt;算法基础&gt;动态规划</a>
+    </h1>
+  
+
+        
+        <a href="/2020/06/01/[算法基础]动态规划/" class="archive-article-date">
+  	<time datetime="2020-06-01T06:55:32.693Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="适用情况"><a href="#适用情况" class="headerlink" title="适用情况"></a>适用情况</h5><ol>
+<li>计数：how many xxx? 多少种方法可以 blabla</li>
+<li>求最大最小值：max，min…</li>
+<li>求存在性：博弈，是否能 blabla，先手能不能赢，存不存在策略。</li>
+</ol>
+<h5 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h5><ol>
+<li>确定状态。属于定海神针，相当于未知量，类似于 x,y,z。需要开一个数组</li>
+</ol>
+<ul>
+<li>最后一步，最后一个。比如：一共有 k 个硬币，不关心 k-1 前的状态。只要保证 k-1 是最少的达到目标的</li>
+<li>子问题。问题一样，规模变小</li>
+</ul>
+<p>递归的问题，会存在大量的重复计算，效率低下。所以如何优化呢？最容易想到的是加缓存，存一下中间计算值</p>
+<ol start="2">
+<li><p>转移方程。问题解决了一半</p>
+</li>
+<li><p>初始条件，边界情况：注意边界情况处理数组不要越界，初始条件是一开始就能定下来的比如 f[0]一般是最小的，关键是用转移方程算不出来的，手动定义值。</p>
+</li>
+<li><p>计算顺序。一般情况是从小到大。从上到下，从左到右。原则是，算等式左边的时候，等式右边已经能算出来，用到的状态已经算到了</p>
+</li>
+</ol>
+<p>消除冗余，加速计算。递归的另一种优化方式。</p>
+<p><strong>加法原理</strong></p>
+<ul>
+<li>无重复</li>
+<li>无遗漏</li>
+</ul>
+<h6 id="coin-change-最值"><a href="#coin-change-最值" class="headerlink" title="coin change 最值"></a>coin change 最值</h6><h6 id="unique-path-计数"><a href="#unique-path-计数" class="headerlink" title="unique path 计数"></a>unique path 计数</h6><h6 id="jump-game-存在性"><a href="#jump-game-存在性" class="headerlink" title="jump game 存在性"></a>jump game 存在性</h6><h5 id="常见的动态规划的类型"><a href="#常见的动态规划的类型" class="headerlink" title="常见的动态规划的类型"></a>常见的动态规划的类型</h5><ul>
+<li>坐标</li>
+<li>序列</li>
+<li>划分</li>
+<li>区间</li>
+<li>背包</li>
+<li>最长序列，最长上升子序列</li>
+<li>博弈</li>
+<li>综合</li>
+<li>打印路径</li>
+</ul>
+<h5 id="了解博弈"><a href="#了解博弈" class="headerlink" title="了解博弈"></a>了解博弈</h5><h6 id="巴什博奕-Bash-game"><a href="#巴什博奕-Bash-game" class="headerlink" title="巴什博奕 Bash game"></a>巴什博奕 Bash game</h6><p>A,B 玩报数的游戏，若先报到 30 的那个人会赢，每人每次最多报 2(max) 个数，最少报 1 个数，如何保持自己的不败之地。</p>
+<p>从简单的来思考，若报到 max + 1 即 3，则后面报数的一定会赢。就先看有多少个这个循环 30 / max + 1，若能整除则后者赢，若有余数则前者先报余数个数则必赢。每次都保证两人报的数是 1+max 个就是一个完整的循环。这是基于两人都是特别聪明的前提。<br>1+max 的倍数</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/01/[算法基础]动态规划/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/6/">Next &raquo;</a>
@@ -1114,6 +1120,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">flex</a>
               </li>
              
@@ -1122,11 +1132,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css</a>
+                <a href="javascript:void(0)" class="js-tag color1">React</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">React</a>
+                <a href="javascript:void(0)" class="js-tag color3">保险</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1134,7 +1144,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">保险</a>
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1154,6 +1164,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">购房</a>
               </li>
              
@@ -1162,23 +1176,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">search</a>
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1190,19 +1196,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+                <a href="javascript:void(0)" class="js-tag color2">search</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">投资</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Promise</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">setTimeout</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1218,6 +1216,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Promise</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">setTimeout</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">typeof</a>
               </li>
              
@@ -1230,10 +1236,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">closure</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -1242,7 +1244,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">安全</a>
+                <a href="javascript:void(0)" class="js-tag color3">closure</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1251,6 +1253,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">prototype</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">安全</a>
               </li>
              
               <li class="article-tag-list-item">
