@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Question JSX 的本质是什么，它和 JS 之间到底是什么关系？ 为什么要用 JSX？不用会有什么后果？ JSX 背后的功能模块是什么，这个功能模块都做了哪些事情？">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2021-07-13T03:21:58.422Z">
+<meta property="og:updated_time" content="2022-03-10T08:52:15.095Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【React】Why JSX?">
 <meta name="twitter:description" content="Question JSX 的本质是什么，它和 JS 之间到底是什么关系？ 为什么要用 JSX？不用会有什么后果？ JSX 背后的功能模块是什么，这个功能模块都做了哪些事情？">
@@ -159,13 +159,15 @@
 <li>JSX 背后的功能模块是什么，这个功能模块都做了哪些事情？</li>
 </ul>
 <a id="more"></a>
+
 <h1 id="What？"><a href="#What？" class="headerlink" title="What？"></a>What？</h1><blockquote>
-<p>JSX是JavaScript的一个语法扩展，实质是快速构建页面结构的语法糖<br>ReactDOM在渲染所有输入内容之前，默认会进行转义，可以有效地防止XSS攻击</p>
+<p>JSX 是 JavaScript 的一个语法扩展，实质是快速构建页面结构的语法糖<br>ReactDOM 在渲染所有输入内容之前，默认会进行转义，可以有效地防止 XSS 攻击</p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">React.creatElement(type, config, children)  // 格式化数据，调用ReactElement创建虚拟DOM</span><br><span class="line"></span><br><span class="line">export function createElement(type, config, children) &#123;</span><br><span class="line">  ....</span><br><span class="line">  return ReactElement(</span><br><span class="line">    type,</span><br><span class="line">    key,</span><br><span class="line">    ref,</span><br><span class="line">    self,</span><br><span class="line">    source,</span><br><span class="line">    ReactCurrentOwner.current,</span><br><span class="line">    props,</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const ReactElement = function(type, key, ref, self, source, owner, props) &#123;</span><br><span class="line">  const element = &#123;</span><br><span class="line">    // REACT_ELEMENT_TYPE是一个常量，用来标识该对象是一个ReactElement</span><br><span class="line">    $$typeof: REACT_ELEMENT_TYPE,</span><br><span class="line"></span><br><span class="line">    // 内置属性赋值</span><br><span class="line">    type: type,</span><br><span class="line">    key: key,</span><br><span class="line">    ref: ref,</span><br><span class="line">    props: props,</span><br><span class="line"></span><br><span class="line">    // 记录创造该元素的组件</span><br><span class="line">    _owner: owner,</span><br><span class="line">  &#125;;</span><br><span class="line">  return element;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(element, container, [callback]) // 真实的DOM</span><br></pre></td></tr></table></figure>
 
-<h1 id="Why？"><a href="#Why？" class="headerlink" title="Why？"></a>Why？</h1><p>JSX层次分明，嵌套逻辑清晰。用JSX降低学习成本，提高研发效率和研发体验</p>
-<h1 id="How？"><a href="#How？" class="headerlink" title="How？"></a>How？</h1>
+<h1 id="Why？"><a href="#Why？" class="headerlink" title="Why？"></a>Why？</h1><p>代码变得更为简洁，而且代码结构层次更为清晰<br>JSX 层次分明，嵌套逻辑清晰。用 JSX 降低学习成本，提高研发效率和研发体验</p>
+<h1 id="How？"><a href="#How？" class="headerlink" title="How？"></a>How？</h1><p>是什么 -&gt; 不用会怎样 -&gt; 用了有什么好处<br>JSX 是一个 JavaScript 的语法扩展。主要用于声明 React 元素，通过 Babel 插件编译为 React.createElement。所以 JSX 更像是 React.createElement 的一种语法糖。<br>Babel 读取代码并解析，生成 AST，再将 AST 传入插件层进行转换，在转换时就可以将 JSX 的结构转换为 React.createElement 的函数</p>
+
       
 
       
@@ -280,18 +282,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/06/30/[React]React-Hooks/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2021/06/30/[React]ReactDOM.render/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          【React】React-Hooks
+          【React】ReactDom.render
         
       </div>
     </a>
   
   
-    <a href="/2021/06/30/[JS基础]异步/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">【JS基础】异步</div>
+    <a href="/2021/06/30/[React]React-Hooks/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">【React】React-Hooks</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -438,15 +440,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">CI/CD</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">保险</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">购房</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -466,15 +464,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">购房</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -495,10 +501,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">CI/CD</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -538,11 +540,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">安全</a>
+                <a href="javascript:void(0)" class="js-tag color4">Three.js</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Three.js</a>
+                <a href="javascript:void(0)" class="js-tag color3">安全</a>
               </li>
             
             <div class="clearfix"></div>

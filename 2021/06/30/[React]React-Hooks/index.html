@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="https://wangyx233.github.io">
   <title>【React】React-Hooks | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="React-Hooks 自 React 16.8 以来才真正被推而广之 What &amp;amp; Why类组件 Class Component vs 函数/无状态组件 所谓类组件，就是基于 ES6 Class 这种写法，通过继承 React.Component 得来的 React 组件函数组件/无状态组件，在没有Hooks加持的条件加，函数组件无法维护自己的state  二者并没有优劣，只是根据不同的">
+  <meta name="description" content="React-Hooks 自 React 16.8 以来才真正被推而广之 What &amp;amp; Why类组件 Class Component vs 函数/无状态组件 所谓类组件，就是基于 ES6 Class 这种写法，通过继承 React.Component 得来的 React 组件函数组件/无状态组件，在没有 Hooks 加持的条件加，函数组件无法维护自己的 state  二者并没有优劣，只是根据">
 <meta name="keywords" content="React">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【React】React-Hooks">
 <meta property="og:url" content="https://wangyx233.github.io/2021/06/30/[React]React-Hooks/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="React-Hooks 自 React 16.8 以来才真正被推而广之 What &amp;amp; Why类组件 Class Component vs 函数/无状态组件 所谓类组件，就是基于 ES6 Class 这种写法，通过继承 React.Component 得来的 React 组件函数组件/无状态组件，在没有Hooks加持的条件加，函数组件无法维护自己的state  二者并没有优劣，只是根据不同的">
+<meta property="og:description" content="React-Hooks 自 React 16.8 以来才真正被推而广之 What &amp;amp; Why类组件 Class Component vs 函数/无状态组件 所谓类组件，就是基于 ES6 Class 这种写法，通过继承 React.Component 得来的 React 组件函数组件/无状态组件，在没有 Hooks 加持的条件加，函数组件无法维护自己的 state  二者并没有优劣，只是根据">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2021-07-13T03:21:58.430Z">
+<meta property="og:updated_time" content="2022-03-10T08:51:49.028Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【React】React-Hooks">
-<meta name="twitter:description" content="React-Hooks 自 React 16.8 以来才真正被推而广之 What &amp;amp; Why类组件 Class Component vs 函数/无状态组件 所谓类组件，就是基于 ES6 Class 这种写法，通过继承 React.Component 得来的 React 组件函数组件/无状态组件，在没有Hooks加持的条件加，函数组件无法维护自己的state  二者并没有优劣，只是根据不同的">
+<meta name="twitter:description" content="React-Hooks 自 React 16.8 以来才真正被推而广之 What &amp;amp; Why类组件 Class Component vs 函数/无状态组件 所谓类组件，就是基于 ES6 Class 这种写法，通过继承 React.Component 得来的 React 组件函数组件/无状态组件，在没有 Hooks 加持的条件加，函数组件无法维护自己的 state  二者并没有优劣，只是根据">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -155,37 +155,42 @@
       
         <p>React-Hooks 自 React 16.8 以来才真正被推而广之</p>
 <h1 id="What-amp-Why"><a href="#What-amp-Why" class="headerlink" title="What &amp; Why"></a>What &amp; Why</h1><h2 id="类组件-Class-Component-vs-函数-无状态组件"><a href="#类组件-Class-Component-vs-函数-无状态组件" class="headerlink" title="类组件 Class Component vs 函数/无状态组件"></a>类组件 Class Component vs 函数/无状态组件</h2><blockquote>
-<p>所谓类组件，就是基于 ES6 Class 这种写法，通过继承 React.Component 得来的 React 组件<br>函数组件/无状态组件，在没有Hooks加持的条件加，函数组件无法维护自己的state</p>
+<p>所谓类组件，就是基于 ES6 Class 这种写法，通过继承 React.Component 得来的 React 组件<br>函数组件/无状态组件，在没有 Hooks 加持的条件加，函数组件无法维护自己的 state</p>
 </blockquote>
 <p>二者并没有优劣，只是根据不同的场景采用不同的形式。</p>
 <blockquote>
-<p>区别：函数组件会捕获render内部的状态。面向对象与函数式的不同。this调用的区别<br>注：对于函数组件，props会保持渲染结果符合预期。更利于逻辑拆分与重用组件<br>为了回归 UI = render(data)的本质，所以需要补齐函数组件所缺乏的的类组件的能力，React Hooks应运而生。即一套能够使函数组件更强大、更灵活的“钩子”<br>ex.</p>
+<p>区别：函数组件会捕获 render 内部的状态。面向对象与函数式的不同。this 调用的区别<br>注：对于函数组件，props 会保持渲染结果符合预期。更利于逻辑拆分与重用组件<br>为了回归 UI = render(data)的本质，所以需要补齐函数组件所缺乏的的类组件的能力，React Hooks 应运而生。即一套能够使函数组件更强大、更灵活的“钩子”<br>ex.</p>
 </blockquote>
 <ul>
-<li>useState() 为函数组件引入了state，const [state, setState] = useState(initialState)</li>
-<li>useEffect() 允许函数执行副作用操作，即弥补了生命周期的缺失，比如componentDidMount、componentDidUpdate和componentWillUnmount。操作DOM、订阅事件、调用外部API。<br>useEffect(callBack, [])</li>
-<li>callback 是否有return,决定是否在卸载阶段执行。有return则会在挂载执行return之前的内容，卸载阶段执行return的函数。即useEffect回调中返回了一个函数，那它会被作为清除函数处理。</li>
-<li>[],判断是否每次页面渲染后都执行。如果 []不为空，React会在每次渲染前对比前后两次的渲染，查看数组内部是否有变量发生了更新。注意引用类型的比较可能因为变化导致判断结果不同。</li>
-<li>useLayoutEffect() 同useEffect都是用来处理副作用的，底层函数签名也是一致的，都是mountEffectImpl，在使用上也没有什么区别。但useEffect是异步调用的，useLayoutEffect则是在DOM变更后同步调用，主要避免页面闪烁、调整样式、处理DOM，但正是由于同步操作，所以避免在useLayoutEffect中做计算量大耗时的任务，以免出现阻塞。<br>Hooks 开发需要抛弃生命周期的思考模式，以 effects 的角度重新思考</li>
+<li>useState() 为函数组件引入了 state，const [state, setState] = useState(initialState)</li>
+<li>useEffect() 允许函数执行副作用操作，即弥补了生命周期的缺失，比如 componentDidMount、componentDidUpdate 和 componentWillUnmount。操作 DOM、订阅事件、调用外部 API。<br>useEffect(callBack, [])，返回的函数成为“清除函数 ”</li>
+<li>callback 是否有 return,决定是否在卸载阶段执行。有 return 则会在挂载执行 return 之前的内容，卸载阶段执行 return 的函数。即 useEffect 回调中返回了一个函数，那它会被作为清除函数处理。</li>
+<li>[],判断是否每次页面渲染后都执行。如果 []不为空，React 会在每次渲染前对比前后两次的渲染，查看数组内部是否有变量发生了更新。注意引用类型的比较可能因为变化导致判断结果不同。</li>
+<li>useLayoutEffect() 同 useEffect 都是用来处理副作用的，底层函数签名也是一致的，都是 mountEffectImpl，在使用上也没有什么区别。但 useEffect 是异步调用的，useLayoutEffect 则是在 DOM 变更后同步调用，主要避免页面闪烁、调整样式、处理 DOM，但正是由于同步操作，所以避免在 useLayoutEffect 中做计算量大耗时的任务，以免出现阻塞。<br>Hooks 开发需要抛弃生命周期的思考模式，以 effects 的角度重新思考</li>
 </ul>
-<h2 id="所以-Why"><a href="#所以-Why" class="headerlink" title="所以 Why?"></a>所以 Why?</h2><ul>
-<li>告别难以理解的Class，this和生命周期，降低学习成本。</li>
-<li>更好的进行逻辑拆分，避免重复冗余的代码。</li>
-<li>状态复用 HOC（高阶组件）</li>
-<li>函数补齐能力还需继续完善，声明周期还有未纳入Hooks中的</li>
+<h2 id="所以-Why"><a href="#所以-Why" class="headerlink" title="所以 Why?"></a>所以 Why?</h2><p>优势：</p>
+<ul>
+<li>告别难以理解的 Class，this 和生命周期，降低学习成本。不必用实践层面的约束解决设计层面的问题</li>
+<li>解决业务逻辑难以拆分的问题。更好的进行逻辑拆分，避免重复冗余的代码。</li>
+<li>使状态逻辑复用变得简单可行。状态复用 HOC（高阶组件）</li>
+</ul>
+<p>局限：</p>
+<ul>
+<li>函数补齐能力还需继续完善，声明周期还有未纳入 Hooks 中的</li>
+<li>复杂的，耦合和自由。有严格的规则约束</li>
 <li>常量声明</li>
 </ul>
 <h2 id="原则"><a href="#原则" class="headerlink" title="原则"></a>原则</h2><ol>
-<li>只在React函数中调用Hook</li>
-<li>不要在循环，条件和嵌套中用Hook。why？<br>eslint-plugin-react-hooks</li>
+<li>只在 React 函数中调用 Hook</li>
+<li>不要在循环，条件和嵌套中用 Hook。why？<br>eslint-plugin-react-hooks</li>
 </ol>
-<p>以setState为例，</p>
+<p>以 setState 为例，</p>
 <ul>
-<li>mountState，初始化hook，将hook相关的所有信息都收敛在一个hook对象里，hook对象之间以单向链表的形式相互串联。</li>
+<li>mountState，初始化 hook，将 hook 相关的所有信息都收敛在一个 hook 对象里，hook 对象之间以单向链表的形式相互串联。</li>
 <li>updateState，按顺序去遍历之前构造好的链表，然后取相应的数据进行渲染。重点：按“顺序”去修改！</li>
 </ul>
 <p>PS:<br>心智模型：引用唐纳德·诺曼，是指用户头脑中对一个产品应该具有的概念和行为的知识。这个知识可能来源于用户以前使用类似产品的沉淀，或者用户根据使用该产品要达到的目标而对产品概念和行为的一种期望。</p>
-<h1 id="Q-amp-A-如何设计React的组件？"><a href="#Q-amp-A-如何设计React的组件？" class="headerlink" title="Q&amp;A: 如何设计React的组件？"></a>Q&amp;A: 如何设计React的组件？</h1><blockquote>
+<h1 id="Q-amp-A-如何设计-React-的组件？"><a href="#Q-amp-A-如何设计-React-的组件？" class="headerlink" title="Q&amp;A: 如何设计 React 的组件？"></a>Q&amp;A: 如何设计 React 的组件？</h1><blockquote>
 <p>展示组件的复用性更强，灵巧组件则更专注与业务本身</p>
 </blockquote>
 <ul>
@@ -201,14 +206,14 @@
 </ul>
 <ol>
 <li>容器组件</li>
-<li>高阶组件<ul>
+<li>高阶组件</li>
+</ol>
+<ul>
 <li>逻辑复用</li>
 <li>链式调用</li>
 <li>渲染劫持</li>
-<li>缺陷：丢失静态函数，refs属性不能透传</li>
+<li>缺陷：丢失静态函数，refs 属性不能透传</li>
 </ul>
-</li>
-</ol>
 
       
 
@@ -324,18 +329,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/06/30/[React]setState/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2021/06/30/[React]JSX/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          【React】setState 同步 or 异步？
+          【React】Why JSX?
         
       </div>
     </a>
   
   
-    <a href="/2021/06/30/[React]JSX/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">【React】Why JSX?</div>
+    <a href="/2021/06/30/[JS基础]浏览器中JavaScript的执行机制/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">【JS基础】浏览器中JavaScript执行机制</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -362,7 +367,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#What-amp-Why"><span class="toc-number">1.</span> <span class="toc-text">What &amp; Why</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#类组件-Class-Component-vs-函数-无状态组件"><span class="toc-number">1.1.</span> <span class="toc-text">类组件 Class Component vs 函数/无状态组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#所以-Why"><span class="toc-number">1.2.</span> <span class="toc-text">所以 Why?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原则"><span class="toc-number">1.3.</span> <span class="toc-text">原则</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Q-amp-A-如何设计React的组件？"><span class="toc-number">2.</span> <span class="toc-text">Q&amp;A: 如何设计React的组件？</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#What-amp-Why"><span class="toc-number">1.</span> <span class="toc-text">What &amp; Why</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#类组件-Class-Component-vs-函数-无状态组件"><span class="toc-number">1.1.</span> <span class="toc-text">类组件 Class Component vs 函数/无状态组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#所以-Why"><span class="toc-number">1.2.</span> <span class="toc-text">所以 Why?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原则"><span class="toc-number">1.3.</span> <span class="toc-text">原则</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Q-amp-A-如何设计-React-的组件？"><span class="toc-number">2.</span> <span class="toc-text">Q&amp;A: 如何设计 React 的组件？</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -482,15 +487,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">CI/CD</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">保险</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">购房</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -510,15 +511,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">购房</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -539,10 +548,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">CI/CD</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -582,11 +587,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">安全</a>
+                <a href="javascript:void(0)" class="js-tag color4">Three.js</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Three.js</a>
+                <a href="javascript:void(0)" class="js-tag color3">安全</a>
               </li>
             
             <div class="clearfix"></div>

@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://wangyx233.github.io/2021/06/30/%5BReact%5D%E6%95%B0%E6%8D%AE%E4%BA%A4%E4%BA%92/</loc>
+    <lastmod>2022-03-10</lastmod>
+  </url>  <url>
+    <loc>https://wangyx233.github.io/2021/06/30/%5BReact%5DJSX/</loc>
+    <lastmod>2022-03-10</lastmod>
+  </url>  <url>
+    <loc>https://wangyx233.github.io/2021/06/30/%5BReact%5DReact-Hooks/</loc>
+    <lastmod>2022-03-10</lastmod>
+  </url>  <url>
+    <loc>https://wangyx233.github.io/2022/03/10/%5BJS%E5%9F%BA%E7%A1%80%5D%E6%95%B0%E7%BB%84%E4%B9%B1%E5%BA%8F/</loc>
+    <lastmod>2022-03-10</lastmod>
+  </url>  <url>
     <loc>https://wangyx233.github.io/2022/03/04/%5B%E5%A4%8D%E7%9B%98%5D%E5%9F%BA%E7%A1%80%E4%B8%AD%E7%9A%84%E5%9F%BA%E7%A1%80/</loc>
     <lastmod>2022-03-04</lastmod>
   </url>  <url>
@@ -61,16 +73,7 @@
     <loc>https://wangyx233.github.io/2021/06/30/%5BCSS%5D%E6%A2%B3%E7%90%86/</loc>
     <lastmod>2021-07-13</lastmod>
   </url>  <url>
-    <loc>https://wangyx233.github.io/2021/06/30/%5BReact%5D%E6%95%B0%E6%8D%AE%E4%BA%A4%E4%BA%92/</loc>
-    <lastmod>2021-07-13</lastmod>
-  </url>  <url>
-    <loc>https://wangyx233.github.io/2021/06/30/%5BReact%5DReact-Hooks/</loc>
-    <lastmod>2021-07-13</lastmod>
-  </url>  <url>
     <loc>https://wangyx233.github.io/2021/06/30/%5BJSWebAPI%5DDOM/</loc>
-    <lastmod>2021-07-13</lastmod>
-  </url>  <url>
-    <loc>https://wangyx233.github.io/2021/06/30/%5BReact%5DJSX/</loc>
     <lastmod>2021-07-13</lastmod>
   </url>  <url>
     <loc>https://wangyx233.github.io/2021/06/30/%5B%E4%BA%BA%E7%94%9F%5D%E5%AE%B6%E5%BA%AD%E4%BF%9D%E9%99%A9%E9%85%8D%E7%BD%AE/</loc>
@@ -121,10 +124,10 @@
     <loc>https://wangyx233.github.io/2021/07/13/%5B%E8%AF%BB%E4%B9%A6%5DJavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/</loc>
     <lastmod>2021-07-13</lastmod>
   </url>  <url>
-    <loc>https://wangyx233.github.io/2021/06/30/%5B%E5%BC%80%E5%8F%91%5D%E5%B7%A5%E5%85%B7/</loc>
+    <loc>https://wangyx233.github.io/2021/06/30/%5BReact%5D%E8%99%9A%E6%8B%9FDOM/</loc>
     <lastmod>2021-07-13</lastmod>
   </url>  <url>
-    <loc>https://wangyx233.github.io/2021/06/30/%5BReact%5D%E8%99%9A%E6%8B%9FDOM/</loc>
+    <loc>https://wangyx233.github.io/2021/06/30/%5B%E5%BC%80%E5%8F%91%5D%E5%B7%A5%E5%85%B7/</loc>
     <lastmod>2021-07-13</lastmod>
   </url>  <url>
     <loc>https://wangyx233.github.io/2021/06/30/%5BJS%E5%9F%BA%E7%A1%80%5D%E4%BA%8B%E4%BB%B6/</loc>

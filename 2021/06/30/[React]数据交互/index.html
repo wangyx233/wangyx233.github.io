@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="https://wangyx233.github.io">
   <title>【React】数据交互 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="React 的核心特征是“数据驱动视图” 1UI = render(data)  基于 props 的单向数据流 props：组件从概念上类似与JavaScript函数，它接受任意的入参(props)并返回用于描述页面展示内容的React元素。  所谓单向数据流，指的就是当前组件的 state 以 props 的形式流动时，只能流向组件树中比自己层级更低的组件。 比如在父-子组件这种嵌套关系中，只">
+  <meta name="description" content="React 的核心特征是“数据驱动视图” 1UI = render(data)  基于 props 的单向数据流 props：组件从概念上类似与 JavaScript 函数，它接受任意的入参(props)并返回用于描述页面展示内容的 React 元素。  所谓单向数据流，指的就是当前组件的 state 以 props 的形式流动时，只能流向组件树中比自己层级更低的组件。 比如在父-子组件这种嵌套关">
 <meta name="keywords" content="React">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【React】数据交互">
 <meta property="og:url" content="https://wangyx233.github.io/2021/06/30/[React]数据交互/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="React 的核心特征是“数据驱动视图” 1UI = render(data)  基于 props 的单向数据流 props：组件从概念上类似与JavaScript函数，它接受任意的入参(props)并返回用于描述页面展示内容的React元素。  所谓单向数据流，指的就是当前组件的 state 以 props 的形式流动时，只能流向组件树中比自己层级更低的组件。 比如在父-子组件这种嵌套关系中，只">
+<meta property="og:description" content="React 的核心特征是“数据驱动视图” 1UI = render(data)  基于 props 的单向数据流 props：组件从概念上类似与 JavaScript 函数，它接受任意的入参(props)并返回用于描述页面展示内容的 React 元素。  所谓单向数据流，指的就是当前组件的 state 以 props 的形式流动时，只能流向组件树中比自己层级更低的组件。 比如在父-子组件这种嵌套关">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2021-07-13T03:21:58.431Z">
+<meta property="og:updated_time" content="2022-03-10T08:52:44.561Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【React】数据交互">
-<meta name="twitter:description" content="React 的核心特征是“数据驱动视图” 1UI = render(data)  基于 props 的单向数据流 props：组件从概念上类似与JavaScript函数，它接受任意的入参(props)并返回用于描述页面展示内容的React元素。  所谓单向数据流，指的就是当前组件的 state 以 props 的形式流动时，只能流向组件树中比自己层级更低的组件。 比如在父-子组件这种嵌套关系中，只">
+<meta name="twitter:description" content="React 的核心特征是“数据驱动视图” 1UI = render(data)  基于 props 的单向数据流 props：组件从概念上类似与 JavaScript 函数，它接受任意的入参(props)并返回用于描述页面展示内容的 React 元素。  所谓单向数据流，指的就是当前组件的 state 以 props 的形式流动时，只能流向组件树中比自己层级更低的组件。 比如在父-子组件这种嵌套关">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -157,7 +157,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UI = render(data)</span><br></pre></td></tr></table></figure>
 
 <h2 id="基于-props-的单向数据流"><a href="#基于-props-的单向数据流" class="headerlink" title="基于 props 的单向数据流"></a>基于 props 的单向数据流</h2><blockquote>
-<p>props：组件从概念上类似与JavaScript函数，它接受任意的入参(props)并返回用于描述页面展示内容的React元素。</p>
+<p>props：组件从概念上类似与 JavaScript 函数，它接受任意的入参(props)并返回用于描述页面展示内容的 React 元素。</p>
 </blockquote>
 <p>所谓单向数据流，指的就是当前组件的 state 以 props 的形式流动时，只能流向组件树中比自己层级更低的组件。 比如在父-子组件这种嵌套关系中，只能由父组件传 props 给子组件，而不能反过来。</p>
 <p>基于 props 传参这种形式，我们可以轻松实现父-子通信、子-父通信和兄弟组件通信。</p>
@@ -168,7 +168,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">class Child extends React.Component &#123;</span><br><span class="line">  state = &#123;</span><br><span class="line">    text: &apos;child&apos;s text&apos;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  changeText = () =&gt; &#123;</span><br><span class="line">    this.props.changeFatherText(this.state.text)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;div className=&quot;child&quot;&gt;</span><br><span class="line">        &lt;button onClick=&#123;this.changeText&#125;&gt;</span><br><span class="line">          Change father&apos;s text</span><br><span class="line">        &lt;/button&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Father extends React.Component &#123;</span><br><span class="line">  state = &#123;</span><br><span class="line">    text: &quot;Init father&apos;s text&quot;</span><br><span class="line">  &#125;;</span><br><span class="line">  changeText = (newText) =&gt; &#123;</span><br><span class="line">    this.setState(&#123;</span><br><span class="line">      text: newText</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;div className=&quot;father&quot;&gt;</span><br><span class="line">        &lt;p&gt;&#123;`father&apos;s text：[$&#123;this.state.text&#125;]`&#125;&lt;/p&gt;</span><br><span class="line">        &lt;Child</span><br><span class="line">          changeFatherText=&#123;this.changeText&#125;</span><br><span class="line">        /&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="兄弟组件通信"><a href="#兄弟组件通信" class="headerlink" title="兄弟组件通信"></a>兄弟组件通信</h3><p>前提：兄弟组件之间共享了同一个父组件。这个前提条件使得我们可以继续利用父子组件这一层关系，将“兄弟 1 → 兄弟 2”之间的通信，转化为“兄弟 1 → 父组件”（子-父通信）、“父组件 → 兄弟 2”（父-子）通信两个步骤。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>props进行数据传递除了适合上述三种情况外，特别复杂的情况并不推荐， 比如多层嵌套的组件结构就不适用。会浪费很多中间代码，非常繁琐，中间组件也会引入很多无意义的属性，维护成本剧增，所以层层传递 props 要不得。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>props 进行数据传递除了适合上述三种情况外，特别复杂的情况并不推荐， 比如多层嵌套的组件结构就不适用。会浪费很多中间代码，非常繁琐，中间组件也会引入很多无意义的属性，维护成本剧增，所以层层传递 props 要不得。</p>
 <h2 id="“发布-订阅”模式驱动数据流"><a href="#“发布-订阅”模式驱动数据流" class="headerlink" title="“发布-订阅”模式驱动数据流"></a>“发布-订阅”模式驱动数据流</h2><p>监听事件的位置和触发事件的位置是不受限的，所以如何实现呢？<br>发布-订阅模式中有两个关键的动作：事件的监听（订阅）和事件的触发（发布）：</p>
 <ul>
 <li>on()：负责注册事件的监听器，指定事件触发时的回调函数</li>
@@ -178,7 +178,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">class tryEventEmitter &#123;</span><br><span class="line">  constructor() &#123;</span><br><span class="line">    this.eventMap = &#123;&#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  on(type, handler) &#123;</span><br><span class="line">    if (typeof handler !== &apos;function&apos;) throw new Error(&quot;请输入一个函数&quot;);</span><br><span class="line">    if (!this.eventMap[type]) this.eventMap[type] = [];</span><br><span class="line">    this.eventMap[type].push(handler);</span><br><span class="line">  &#125;</span><br><span class="line">  emit(type, params) &#123;</span><br><span class="line">    if (this.eventMap[type]) &#123;</span><br><span class="line">      this.eventMap[type].forEach((handler, index) =&gt; &#123;</span><br><span class="line">        handler(params);</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  off(type, handler) &#123;</span><br><span class="line">    if (this.eventMap[type]) &#123;</span><br><span class="line">      this.eventMap[type].splice(this.eventMap[type].indexOf(handler) &gt;&gt;&gt; 0 , 1);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="Context-API-工作流"><a href="#Context-API-工作流" class="headerlink" title="Context API 工作流"></a>Context API 工作流</h2><blockquote>
-<p>React 16.3开始改进。React.createContext,Provider,Consumer</p>
+<p>React 16.3 开始改进。React.createContext,Provider,Consumer</p>
 </blockquote>
 <ul>
 <li>Provider,数据的提供者</li>
@@ -186,16 +186,16 @@
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const AppContext = React.createContext(defaultValue)</span><br><span class="line">const &#123; Provider, Consumer &#125; = AppContext</span><br><span class="line">&lt;Provider&gt;</span><br><span class="line">&lt;/Provider&gt;</span><br><span class="line">&lt;Consumer&gt;</span><br><span class="line">&lt;/Consumer&gt;</span><br></pre></td></tr></table></figure>
 
-<p>新版改进后的Context，在shouldComponentUpdate为false时，仍可以保持后代组件数据的一致性<br>在 Redux 的整个工作过程中，数据流是严格单向的<br>Redux 通过提供一个统一的状态容器，使得数据能够自由而有序地在任意组件之间穿梭</p>
+<p>新版改进后的 Context，在 shouldComponentUpdate 为 false 时，仍可以保持后代组件数据的一致性<br>在 Redux 的整个工作过程中，数据流是严格单向的<br>Redux 通过提供一个统一的状态容器，使得数据能够自由而有序地在任意组件之间穿梭</p>
 <blockquote>
 <p>PS: 可用来进行国际化</p>
 </blockquote>
 <h2 id="全局变量-事件-window-xxx-document-addEventListener-不推荐。不易维护，事件的顺序性"><a href="#全局变量-事件-window-xxx-document-addEventListener-不推荐。不易维护，事件的顺序性" class="headerlink" title="全局变量/事件 window.xxx, document.addEventListener() 不推荐。不易维护，事件的顺序性"></a>全局变量/事件 window.xxx, document.addEventListener() 不推荐。不易维护，事件的顺序性</h2><h2 id="Redux-提供可预测化的状态管理"><a href="#Redux-提供可预测化的状态管理" class="headerlink" title="Redux - 提供可预测化的状态管理"></a>Redux - 提供可预测化的状态管理</h2><ul>
-<li>全局单一数据源 Store</li>
-<li>纯函数，保持稳定输出 Reducer</li>
-<li>State只读的静态类型，通过Action触发</li>
+<li>全局单一数据源 store，只读的</li>
+<li>纯函数，保持稳定输出 reducer，对变化进行分发和处理</li>
+<li>state 只读的静态类型，通过 ation 触发。action 的作用是通知 reduce 让改变发生<br>数据流是严格单向的！！！通过提供一个统一的状态容器，使得数据能够自由有序地在任意组件之间穿梭</li>
 </ul>
-<p>Redux-thunk，如何处理异步Action？深入理解，手写</p>
+<p>Redux-thunk，如何处理异步 Action？深入理解，手写</p>
 <blockquote>
 <p>技术无高低，切勿捧一踩一</p>
 </blockquote>
@@ -472,15 +472,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">CI/CD</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">保险</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">购房</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -500,15 +496,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">购房</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -529,10 +533,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">CI/CD</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -572,11 +572,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">安全</a>
+                <a href="javascript:void(0)" class="js-tag color4">Three.js</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Three.js</a>
+                <a href="javascript:void(0)" class="js-tag color3">安全</a>
               </li>
             
             <div class="clearfix"></div>

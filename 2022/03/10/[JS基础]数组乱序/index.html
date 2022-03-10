@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://wangyx233.github.io">
-  <title>【WebAPI】BOM | Hexo</title>
+  <title>【JS基础】数组乱序 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="BOM -&amp;gt; Browser Object Model   如何识别浏览器的类型 分别拆解url各部分  知识点 navigator screen location history123456789101112131415161718// 1. navigatorconst ua = navigator.userAgent;// 2. screenconst width = screen.">
+  <meta name="description" content="最近在解决一个分布式高可用的问题，如何能够让多机的定时任务能够不重复执行，引入了 redis 的分布式锁。但一个任务列表如果都顺序遍历那每个任务的抢占可能不会那么随机，所以想让任务列表打乱顺序，就稍微了解了一下数组乱序的实现。  （其实最后用的还是 lodash 的_.shuffle() 😯  一、随机数？ 123[12,4,16,3].sort(function() &amp;#123;    ret">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【WebAPI】BOM">
-<meta property="og:url" content="https://wangyx233.github.io/2021/06/30/[WebAPI]BOM/index.html">
+<meta property="og:title" content="【JS基础】数组乱序">
+<meta property="og:url" content="https://wangyx233.github.io/2022/03/10/[JS基础]数组乱序/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="BOM -&amp;gt; Browser Object Model   如何识别浏览器的类型 分别拆解url各部分  知识点 navigator screen location history123456789101112131415161718// 1. navigatorconst ua = navigator.userAgent;// 2. screenconst width = screen.">
+<meta property="og:description" content="最近在解决一个分布式高可用的问题，如何能够让多机的定时任务能够不重复执行，引入了 redis 的分布式锁。但一个任务列表如果都顺序遍历那每个任务的抢占可能不会那么随机，所以想让任务列表打乱顺序，就稍微了解了一下数组乱序的实现。  （其实最后用的还是 lodash 的_.shuffle() 😯  一、随机数？ 123[12,4,16,3].sort(function() &amp;#123;    ret">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2021-07-13T03:21:58.455Z">
+<meta property="og:updated_time" content="2022-03-10T08:50:45.927Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【WebAPI】BOM">
-<meta name="twitter:description" content="BOM -&amp;gt; Browser Object Model   如何识别浏览器的类型 分别拆解url各部分  知识点 navigator screen location history123456789101112131415161718// 1. navigatorconst ua = navigator.userAgent;// 2. screenconst width = screen.">
+<meta name="twitter:title" content="【JS基础】数组乱序">
+<meta name="twitter:description" content="最近在解决一个分布式高可用的问题，如何能够让多机的定时任务能够不重复执行，引入了 redis 的分布式锁。但一个任务列表如果都顺序遍历那每个任务的抢占可能不会那么随机，所以想让任务列表打乱顺序，就稍微了解了一下数组乱序的实现。  （其实最后用的还是 lodash 的_.shuffle() 😯  一、随机数？ 123[12,4,16,3].sort(function() &amp;#123;    ret">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -132,39 +132,37 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-[WebAPI]BOM" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-[JS基础]数组乱序" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      【WebAPI】BOM
+      【JS基础】数组乱序
     </h1>
   
 
         
-        <a href="/2021/06/30/[WebAPI]BOM/" class="archive-article-date">
-  	<time datetime="2021-06-30T02:45:57.327Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
+        <a href="/2022/03/10/[JS基础]数组乱序/" class="archive-article-date">
+  	<time datetime="2022-03-10T08:50:45.924Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-10</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p>BOM -&gt; Browser Object Model</p>
+        <p>最近在解决一个分布式高可用的问题，如何能够让多机的定时任务能够不重复执行，引入了 redis 的分布式锁。但一个任务列表如果都顺序遍历那每个任务的抢占可能不会那么随机，所以想让任务列表打乱顺序，就稍微了解了一下数组乱序的实现。</p>
+<blockquote>
+<p>（其实最后用的还是 lodash 的_.shuffle() 😯</p>
 </blockquote>
-<ul>
-<li>如何识别浏览器的类型</li>
-<li>分别拆解url各部分</li>
-</ul>
-<h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><ul>
-<li>navigator</li>
-<li>screen</li>
-<li>location</li>
-<li>history<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// 1. navigator</span><br><span class="line">const ua = navigator.userAgent;</span><br><span class="line"></span><br><span class="line">// 2. screen</span><br><span class="line">const width = screen.width;</span><br><span class="line">const height = screen.height;</span><br><span class="line"></span><br><span class="line">// 3. location</span><br><span class="line">location.href</span><br><span class="line">location.protocol</span><br><span class="line">location.pathname</span><br><span class="line">location.hash</span><br><span class="line">location.search</span><br><span class="line">location.host</span><br><span class="line"></span><br><span class="line">// 4. history</span><br><span class="line">history.back();</span><br><span class="line">history.forwards();</span><br></pre></td></tr></table></figure></li>
-</ul>
+<p>一、随机数？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[12,4,16,3].sort(function() &#123;</span><br><span class="line">    return .5 - Math.random();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>v8 在处理 sort 方法时，使用了插入排序和快排两种方案。当目标数组长度小于 10（不同版本有差别）时，使用插入排序；反之，使用快排。</p>
+<p>二、Fisher–Yates shuffle 洗牌算法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Array.prototype.shuffle = function() &#123;</span><br><span class="line">    let array = this;</span><br><span class="line">    let len = array.length,</span><br><span class="line">        temp, i;</span><br><span class="line">    while (len) &#123;</span><br><span class="line">        i = Math.floor(Math.random() * len--);</span><br><span class="line">        temp = array[len];</span><br><span class="line">        array[len] = array[i];</span><br><span class="line">        array[i] = temp;</span><br><span class="line">    &#125;</span><br><span class="line">    return array;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
       
 
@@ -255,7 +253,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJ0lEQVR42u3aSW4DIRAF0Nz/0p1tIofOrwInanisLE/welGiho+PeF1f1us7yae9XRYvDAyMxzKu25VvkPxq/nEMT4KBgXEAY3Ss++/cfz/ZfnT0/GwYGBgY90ecD7g5CQMDA6MXcPNktXftw8DAwJj5u/uAm1wH/y0Xx8DAeCAjr7r//eu39DcwMDAexbiKq3dNXHtl/GEXDAyMrRnVon8eLtdeJaOxDAwMjE0Z1VCYFOnyEn/SWogeNAYGxgGMvNHYGxfL/zMpzA0DLgYGxjGMaqDMg2YviEelNwwMjK0Z1TCaHyIZDusBhjAMDIxNGflgxH3hPhmk6F06owsoBgbG1ozqoEM11cyrYfP7YmBg7MrobbAqNM83UDEwME5mzDQpqwMZ1d2H0yIYGBibMlYV3VaF2gUNAwwMjO0YMyNf+adJktz7zrerIQYGxmGMVZe/Qlm/OlrxWm7DwMA4gLG2KFYdja02A4YBFwMDYzvGTKNxvmHQe13IxTEwMDZiVA+UJJ/VobFqCS8qumFgYGzKSK5i1XQ0L6U125YYGBgHM/JgWk1WZx7N8FcYGBibMq7imhnRqAboJG2O6nwYGBgPZ1S36Y265m2Dd7RFMTAw9mDkrcdeu7E6YNEbfsXAwDiB0SvD9ZoEPfAvSAwMDIw4yZzBTwVxDAwMjOLYRLUwt2AvDAyMAxj5kNZM2yBPg+95GBgYpzHWthirZf13DJlhYGBsxPgEAMtLqWAFd2oAAAAASUVORK5CYII=" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACL0lEQVR42u3awW7rMAwEwP7/T7vAO71L3F3KLWBpdAocWfbkwIgUv77icf0byZz/ZyZX7ld4eGBgYLyWcd2O9vH3K+T35itjYGCcw7gPsp9uTl46+XwfoKM/AAwMDIzgkcnMNjRjYGBgzBjJRi3Z5N2zMTAwMNZT0KQ0lgTT/MpjuTgGBsYLGe3BwF9+/sXzDQwMjJcwrnK0q7XfDt8KAwNja0abXiZltadCdr7dxMDAOIHRhrxk/kqRrg3fGBgYezOSUlf+7UrLV1uww8DAOIeRhMu2fN+ueY8p0mkMDIwDGLO2sNmhQr5lLMp2GBgYmzLaZDK/0m43Z3MwMDBOYCSFrTYEP7VafRcGBsamjDzktWF0fUNZtHRgYGBszchDW9swkbduzH7E4kfBwMDYjnHFI28Fm7VQ5McGGBgYezPyrVt73DjbGrblPwwMjBMY64eOyWPy8JonrvXeFgMD47WMNq/NQ+0s0c2D8tIJAwYGxqsY+cPacDzDt0E5CrsYGBgvZ+SltLZYn6y8clCKgYFxMqMNwbN2rpXmiY9JLAYGxqaMWZvFSon/qZn1wQAGBsZrGVc5Zi/UNo21czAwMPZm5CPZDs5S01nCjIGBcRqjLZC1oTlvp0gC7sfVMDAwDmC03Qsrieis1aNotsDAwDiYsXLYmSfGeSHvY88IBgYGxi/MTwL3D+U2DAyMAxhtErvSVJGfrxZvgoGBsTVjljo+dejYtosNARgYGG9lfANAvoSa7g4FOQAAAABJRU5ErkJggg==" alt="微信分享二维码">
     </div>
 </div>
 
@@ -269,18 +267,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/06/30/[人生]家庭保险配置/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          【生活】如果有保险需求
-        
-      </div>
-    </a>
   
-  
-    <a href="/2021/06/30/[React]生命周期/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">【React】生命周期</div>
+    <a href="/2022/03/04/[复盘]基础中的基础/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">【JS基础】复盘</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -307,7 +296,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#知识点"><span class="toc-number">1.</span> <span class="toc-text">知识点</span></a></li></ol>
+                    目录，不存在的…
                     </div>
                 </span>
             </div>
