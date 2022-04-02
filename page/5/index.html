@@ -130,6 +130,136 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-[JSWebAPI]AJAX" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/06/30/[JSWebAPI]AJAX/">【WebAPI】AJAX</a>
+    </h1>
+  
+
+        
+        <a href="/2021/06/30/[JSWebAPI]AJAX/" class="archive-article-date">
+  	<time datetime="2021-06-30T02:45:57.316Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>手写一个简易的ajax</li>
+<li>跨域</li>
+</ul>
+<h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><ul>
+<li>XMLHttpRequest</li>
+<li>状态码</li>
+<li>跨域： 同源策略，跨域解决方案</li>
+</ul>
+<h2 id="1-XMLHttpRequest"><a href="#1-XMLHttpRequest" class="headerlink" title="1. XMLHttpRequest"></a>1. XMLHttpRequest</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">const xhr = new XMLHttpRequest();</span><br><span class="line">xhr.open(&apos;method&apos;, &apos;url&apos;, &apos;true/false&apos;); // 是否是异步</span><br><span class="line">xhr.onreadystatechange = function () &#123;</span><br><span class="line">    if(xhr.readyState === 4) &#123;</span><br><span class="line">        if(xhr.status === 200) &#123;</span><br><span class="line">            console.log(JSON.parse(xhr.responseText))</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">xhr.send(null)</span><br><span class="line">// post</span><br><span class="line">xhr.send(JSON.stringify(&#123;&#125;))</span><br></pre></td></tr></table></figure>
+
+<p>可以改成promise的情况</p>
+<ul>
+<li><p>xhr.readyState</p>
+<ul>
+<li>0 (未初始化)没有调用send()方法</li>
+<li>1 (载入)已调用send()，正在发送请求</li>
+<li>2 (载入完成)send()方法执行完成，已经接收到全部响应内容</li>
+<li>3 (交互)正在解析响应内容</li>
+<li>4 (完成)响应内容解析完成，可在客户端调用</li>
+</ul>
+</li>
+<li><p>xhr.status http状态码</p>
+<ul>
+<li>2xx 成功处理请求</li>
+<li>3xx 重定向，浏览器直接跳转 301：永久重定向 302：临时重定向 304：资源未改变，用缓存</li>
+<li>4xx 客户端请求错误，404：not found 403：客户端没有权限</li>
+<li>5xx 服务端错误</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-跨域"><a href="#2-跨域" class="headerlink" title="2. 跨域"></a>2. 跨域</h2><ul>
+<li><p>什么是跨域 同源策略</p>
+</li>
+<li><p>JSONP</p>
+</li>
+<li><p>CORS</p>
+<h3 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h3><blockquote>
+<p>同源：协议，域名，端口三者一致。 Ajax请求时， <strong>浏览器</strong>要求当前页面和server必须同源。CSP安全<br>加载图片css，js可无视同源策略</p>
+</blockquote>
+</li>
+<li><p>img src=’跨域的图片地址’，可用于统计埋点</p>
+</li>
+<li><p>link href=’跨域的css地址’ ，可以使用CDN</p>
+</li>
+<li><p>script src=’跨域的js地址’，可以使用CDN，实现JSONP<br>所有的跨域，都必须经过server端的允许和配合</p>
+<h3 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h3></li>
+<li><p>script可以实现跨域</p>
+</li>
+<li><p>server端可以动态拼接数据返回</p>
+<h3 id="CORS-服务器端设置-http-header"><a href="#CORS-服务器端设置-http-header" class="headerlink" title="CORS - 服务器端设置 http header"></a>CORS - 服务器端设置 http header</h3><ul>
+<li>Access-Control-Allow-Origin</li>
+<li>Access-Control-Allow-Headers</li>
+<li>Access-Control-Allow-Methods</li>
+</ul>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/JavaScript//" class="article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/06/30/[JSWebAPI]AJAX/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-[HTML]查漏补缺" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1051,88 +1181,6 @@
 
 
   
-    <article id="post-[CSS]flex" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/22/[CSS]flex/">&lt;CSS&gt;Flex</a>
-    </h1>
-  
-
-        
-        <a href="/2020/07/22/[CSS]flex/" class="archive-article-date">
-  	<time datetime="2020-07-22T07:22:47.016Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>flex: 1<br>flex-shrink<br>flex-grow<br>flex-basis</p>
-<p>标准盒模型：margin，border，padding，width(即 content area)<br>ie 的 margin，width(border,padding , content area width)</p>
-<p>BFC(Block formatting context) 块级格式化上下文，W3C CSS2.1 规范中的一个概念。盒模型布局的 css 渲染模式，一个隔离的独立容器(独立渲染区域)<br>通俗理解，BFC 像一个封闭的箱子，内部元素随意变换不会影响外部的布局。<br>BFC 的形成条件：<br>html<br>浮动元素：float 除 none 以外的值<br>绝对定位元素：position (absolute、fixed)<br>display 为 inline-block、table-cells、flex<br>overflow 除了 visible 以外的值 (hidden、auto、scroll)<br>解决的问题：</p>
-<ol>
-<li>同一 BCF 下外边距 margin 重叠问题，不同 BFC 容器则不会重叠</li>
-<li>用 BCF 容器清除浮动，包裹浮动的元素。(借助 overflow 触发)</li>
-<li>阻止被浮动覆盖。(借助 overflow 触发)</li>
-<li>用 bcf 实现两栏布局。(借助 overflow 触发)</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">flex</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/07/22/[CSS]flex/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/6/">Next &raquo;</a>
@@ -1242,11 +1290,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">购房</a>
+                <a href="javascript:void(0)" class="js-tag color3">保险</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">保险</a>
+                <a href="javascript:void(0)" class="js-tag color3">购房</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1266,11 +1314,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1286,11 +1338,27 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">tree</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Binary tree</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">投资</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Promise</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">setTimeout</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1306,27 +1374,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">tree</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Binary tree</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Promise</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">setTimeout</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">closure</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">

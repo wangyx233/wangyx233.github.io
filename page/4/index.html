@@ -221,38 +221,88 @@
 
 
   
-    <article id="post-[JS基础]异步" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-[React]React-Hooks" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/30/[JS基础]异步/">【JS基础】异步</a>
+      <a class="article-title" href="/2021/06/30/[React]React-Hooks/">【React】React-Hooks</a>
     </h1>
   
 
         
-        <a href="/2021/06/30/[JS基础]异步/" class="archive-article-date">
-  	<time datetime="2021-06-30T02:45:57.320Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
+        <a href="/2021/06/30/[React]React-Hooks/" class="archive-article-date">
+  	<time datetime="2021-06-30T02:45:57.321Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h1><ul>
-<li>同步和异步的区别</li>
-<li>手写Promise</li>
-<li>前端异步的场景</li>
-<li>event loop（事件循环）的机制，画图</li>
-<li>async/await</li>
-<li>Promise的三种状态，then，catch的连接</li>
+        <p>React-Hooks 自 React 16.8 以来才真正被推而广之</p>
+<h1 id="What-amp-Why"><a href="#What-amp-Why" class="headerlink" title="What &amp; Why"></a>What &amp; Why</h1><h2 id="类组件-Class-Component-vs-函数-无状态组件"><a href="#类组件-Class-Component-vs-函数-无状态组件" class="headerlink" title="类组件 Class Component vs 函数/无状态组件"></a>类组件 Class Component vs 函数/无状态组件</h2><blockquote>
+<p>所谓类组件，就是基于 ES6 Class 这种写法，通过继承 React.Component 得来的 React 组件<br>函数组件/无状态组件，在没有 Hooks 加持的条件加，函数组件无法维护自己的 state</p>
+</blockquote>
+<p>二者并没有优劣，只是根据不同的场景采用不同的形式。</p>
+<blockquote>
+<p>区别：函数组件会捕获 render 内部的状态。面向对象与函数式的不同。this 调用的区别<br>注：对于函数组件，props 会保持渲染结果符合预期。更利于逻辑拆分与重用组件<br>为了回归 UI = render(data)的本质，所以需要补齐函数组件所缺乏的的类组件的能力，React Hooks 应运而生。即一套能够使函数组件更强大、更灵活的“钩子”<br>ex.</p>
+</blockquote>
+<ul>
+<li>useState() 为函数组件引入了 state，const [state, setState] = useState(initialState)</li>
+<li>useEffect() 允许函数执行副作用操作，即弥补了生命周期的缺失，比如 componentDidMount、componentDidUpdate 和 componentWillUnmount。操作 DOM、订阅事件、调用外部 API。<br>useEffect(callBack, [])，返回的函数成为“清除函数 ”</li>
+<li>callback 是否有 return,决定是否在卸载阶段执行。有 return 则会在挂载执行 return 之前的内容，卸载阶段执行 return 的函数。即 useEffect 回调中返回了一个函数，那它会被作为清除函数处理。</li>
+<li>[],判断是否每次页面渲染后都执行。如果 []不为空，React 会在每次渲染前对比前后两次的渲染，查看数组内部是否有变量发生了更新。注意引用类型的比较可能因为变化导致判断结果不同。</li>
+<li>useLayoutEffect() 同 useEffect 都是用来处理副作用的，底层函数签名也是一致的，都是 mountEffectImpl，在使用上也没有什么区别。但 useEffect 是异步调用的，useLayoutEffect 则是在 DOM 变更后同步调用，主要避免页面闪烁、调整样式、处理 DOM，但正是由于同步操作，所以避免在 useLayoutEffect 中做计算量大耗时的任务，以免出现阻塞。<br>Hooks 开发需要抛弃生命周期的思考模式，以 effects 的角度重新思考</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">console.log(1)</span><br><span class="line">setTimeout(() =&gt; &#123;</span><br><span class="line">    console.log(2)</span><br><span class="line">&#125;, 1000);</span><br><span class="line">console.log(3)</span><br><span class="line">setTimeout(() =&gt; &#123;</span><br><span class="line">    console.log(4)</span><br><span class="line">&#125;, 0);</span><br><span class="line">console.log(5)</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2021/06/30/[JS基础]异步/#more">more >></a>
-        
+<h2 id="所以-Why"><a href="#所以-Why" class="headerlink" title="所以 Why?"></a>所以 Why?</h2><p>优势：</p>
+<ul>
+<li>告别难以理解的 Class，this 和生命周期，降低学习成本。不必用实践层面的约束解决设计层面的问题</li>
+<li>解决业务逻辑难以拆分的问题。更好的进行逻辑拆分，避免重复冗余的代码。</li>
+<li>使状态逻辑复用变得简单可行。状态复用 HOC（高阶组件）</li>
+</ul>
+<p>局限：</p>
+<ul>
+<li>函数补齐能力还需继续完善，声明周期还有未纳入 Hooks 中的</li>
+<li>复杂的，耦合和自由。有严格的规则约束</li>
+<li>常量声明</li>
+</ul>
+<h2 id="原则"><a href="#原则" class="headerlink" title="原则"></a>原则</h2><ol>
+<li>只在 React 函数中调用 Hook</li>
+<li>不要在循环，条件和嵌套中用 Hook。why？<br>eslint-plugin-react-hooks</li>
+</ol>
+<p>以 setState 为例，</p>
+<ul>
+<li>mountState，初始化 hook，将 hook 相关的所有信息都收敛在一个 hook 对象里，hook 对象之间以单向链表的形式相互串联。</li>
+<li>updateState，按顺序去遍历之前构造好的链表，然后取相应的数据进行渲染。重点：按“顺序”去修改！</li>
+</ul>
+<p>PS:<br>心智模型：引用唐纳德·诺曼，是指用户头脑中对一个产品应该具有的概念和行为的知识。这个知识可能来源于用户以前使用类似产品的沉淀，或者用户根据使用该产品要达到的目标而对产品概念和行为的一种期望。</p>
+<h1 id="Q-amp-A-如何设计-React-的组件？"><a href="#Q-amp-A-如何设计-React-的组件？" class="headerlink" title="Q&amp;A: 如何设计 React 的组件？"></a>Q&amp;A: 如何设计 React 的组件？</h1><blockquote>
+<p>展示组件的复用性更强，灵巧组件则更专注与业务本身</p>
+</blockquote>
+<ul>
+<li>展示组件： 无状态组件，只做展示，独立运行</li>
+</ul>
+<ol>
+<li>代理组件</li>
+<li>样式组件</li>
+<li>布局组件</li>
+</ol>
+<ul>
+<li>灵巧组件： 有状态组件，主要进行业务逻辑和数据状态处理</li>
+</ul>
+<ol>
+<li>容器组件</li>
+<li>高阶组件</li>
+</ol>
+<ul>
+<li>逻辑复用</li>
+<li>链式调用</li>
+<li>渲染劫持</li>
+<li>缺陷：丢失静态函数，refs 属性不能透传</li>
+</ul>
+
       
 
       
@@ -260,13 +310,24 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">React</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/JavaScript//" class="article-tag-list-link color1">JavaScript</a>
+        			<a href="/categories/React//" class="article-tag-list-link color1">React</a>
         		</li>
       		
 		</ul>
@@ -275,7 +336,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/30/[JS基础]异步/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/06/30/[React]React-Hooks/">展开全文 >></a>
         </p>
       
 
@@ -386,6 +447,169 @@
 
 
   
+    <article id="post-[JS基础]异步" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/06/30/[JS基础]异步/">【JS基础】异步</a>
+    </h1>
+  
+
+        
+        <a href="/2021/06/30/[JS基础]异步/" class="archive-article-date">
+  	<time datetime="2021-06-30T02:45:57.320Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h1><ul>
+<li>同步和异步的区别</li>
+<li>手写Promise</li>
+<li>前端异步的场景</li>
+<li>event loop（事件循环）的机制，画图</li>
+<li>async/await</li>
+<li>Promise的三种状态，then，catch的连接</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">console.log(1)</span><br><span class="line">setTimeout(() =&gt; &#123;</span><br><span class="line">    console.log(2)</span><br><span class="line">&#125;, 1000);</span><br><span class="line">console.log(3)</span><br><span class="line">setTimeout(() =&gt; &#123;</span><br><span class="line">    console.log(4)</span><br><span class="line">&#125;, 0);</span><br><span class="line">console.log(5)</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2021/06/30/[JS基础]异步/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/JavaScript//" class="article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/06/30/[JS基础]异步/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-[JS基础]原型与原型链" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/06/30/[JS基础]原型与原型链/">【JS基础】原型与原型链</a>
+    </h1>
+  
+
+        
+        <a href="/2021/06/30/[JS基础]原型与原型链/" class="archive-article-date">
+  	<time datetime="2021-06-30T02:45:57.319Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h1><ol>
+<li>如何判断一个变量是不是数组？</li>
+<li>class的原型本质</li>
+</ol>
+        
+          <a class="article-more-a" href="/2021/06/30/[JS基础]原型与原型链/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/JavaScript//" class="article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/06/30/[JS基础]原型与原型链/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-[JS基础]变量类型与比较" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -467,33 +691,49 @@
 
 
   
-    <article id="post-[JS基础]原型与原型链" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-[JS基础]事件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/30/[JS基础]原型与原型链/">【JS基础】原型与原型链</a>
+      <a class="article-title" href="/2021/06/30/[JS基础]事件/">【JS基础】事件</a>
     </h1>
   
 
         
-        <a href="/2021/06/30/[JS基础]原型与原型链/" class="archive-article-date">
-  	<time datetime="2021-06-30T02:45:57.319Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
+        <a href="/2021/06/30/[JS基础]事件/" class="archive-article-date">
+  	<time datetime="2021-06-30T02:45:57.318Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h1><ol>
-<li>如何判断一个变量是不是数组？</li>
-<li>class的原型本质</li>
+        <ul>
+<li>事件冒泡的流程</li>
+<li>通用的事件监听</li>
+<li>无限下拉的图片列表，如何监听每个图片的点击</li>
+</ul>
+<h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><ul>
+<li>事件绑定</li>
+<li>事件冒泡</li>
+<li>事件代理</li>
+</ul>
+<ol>
+<li><p>事件绑定，事件冒泡</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">function bindEvent(elem, type, selecotr, fn) &#123;</span><br><span class="line">    if(fn == null) &#123;</span><br><span class="line">        fn = selector;</span><br><span class="line">        selector = null;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    elem.addEventListener(type, e =&gt; &#123;</span><br><span class="line">        let target;</span><br><span class="line">        if(selector) &#123; // 需要代理</span><br><span class="line">            target = e.target;</span><br><span class="line">            if(target.matches(selecotr)) &#123; // 判断是否是触发元素</span><br><span class="line">                fn.call(target, e)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            fn.call(target, e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line">const btn = document.getElementById(&apos;btn&apos;);</span><br><span class="line">bindEvent(btn, &apos;click&apos;, event =&gt; &#123;</span><br><span class="line">    console.log(event.target) // 获取触发的元素 </span><br><span class="line">    event.preventDefault() // 取消默认事件</span><br><span class="line">    event.stopPropagation() // 阻止冒泡</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>事件代理</p>
+<ul>
+<li>代码简洁，事件绑定到触发的父元素上</li>
+<li>减少浏览器内存占用</li>
+<li>不要滥用</li>
+</ul>
+</li>
 </ol>
-        
-          <a class="article-more-a" href="/2021/06/30/[JS基础]原型与原型链/#more">more >></a>
-        
+
       
 
       
@@ -516,7 +756,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/30/[JS基础]原型与原型链/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/06/30/[JS基础]事件/">展开全文 >></a>
         </p>
       
 
@@ -626,20 +866,20 @@
 
 
   
-    <article id="post-[JS基础]事件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-[JSWebAPI]cookie" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/30/[JS基础]事件/">【JS基础】事件</a>
+      <a class="article-title" href="/2021/06/30/[JSWebAPI]cookie/">【WebAPI】存储</a>
     </h1>
   
 
         
-        <a href="/2021/06/30/[JS基础]事件/" class="archive-article-date">
-  	<time datetime="2021-06-30T02:45:57.318Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
+        <a href="/2021/06/30/[JSWebAPI]cookie/" class="archive-article-date">
+  	<time datetime="2021-06-30T02:45:57.317Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
 </a>
         
       </header>
@@ -647,24 +887,23 @@
     <div class="article-entry" itemprop="articleBody">
       
         <ul>
-<li>事件冒泡的流程</li>
-<li>通用的事件监听</li>
-<li>无限下拉的图片列表，如何监听每个图片的点击</li>
+<li>介绍cookie、localStorage、sessionStorage区别</li>
 </ul>
-<h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><ul>
-<li>事件绑定</li>
-<li>事件冒泡</li>
-<li>事件代理</li>
-</ul>
-<ol>
-<li><p>事件绑定，事件冒泡</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">function bindEvent(elem, type, selecotr, fn) &#123;</span><br><span class="line">    if(fn == null) &#123;</span><br><span class="line">        fn = selector;</span><br><span class="line">        selector = null;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    elem.addEventListener(type, e =&gt; &#123;</span><br><span class="line">        let target;</span><br><span class="line">        if(selector) &#123; // 需要代理</span><br><span class="line">            target = e.target;</span><br><span class="line">            if(target.matches(selecotr)) &#123; // 判断是否是触发元素</span><br><span class="line">                fn.call(target, e)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            fn.call(target, e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line">const btn = document.getElementById(&apos;btn&apos;);</span><br><span class="line">bindEvent(btn, &apos;click&apos;, event =&gt; &#123;</span><br><span class="line">    console.log(event.target) // 获取触发的元素 </span><br><span class="line">    event.preventDefault() // 取消默认事件</span><br><span class="line">    event.stopPropagation() // 阻止冒泡</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>事件代理</p>
+<h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><ol>
+<li><p>cookie</p>
 <ul>
-<li>代码简洁，事件绑定到触发的父元素上</li>
-<li>减少浏览器内存占用</li>
-<li>不要滥用</li>
+<li>通过;分割的字符串，每一部分都是key=value的形式</li>
+<li>http请求的一部分，用于浏览器和服务端通讯的</li>
+<li>document.cookie修改，默认每次追加或者修改一个key/value</li>
+<li>限制：最大4KB，每次http请求都需要发送到服务端，api太简陋</li>
+</ul>
+</li>
+<li><p>localStorage、sessionStorage</p>
+<ul>
+<li>HTML5专门为存储设计的，最大可存储5M / pre host</li>
+<li>API：getItem() setItem() 存储的为字符串的形式，所以其他格式的数据要注意</li>
+<li>和http请求没关系</li>
+<li>localStorage 永久存储，除非手动或者代码删除；sessionStorage只存在于当前会话，页面关闭清空</li>
 </ul>
 </li>
 </ol>
@@ -691,7 +930,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/30/[JS基础]事件/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/06/30/[JSWebAPI]cookie/">展开全文 >></a>
         </p>
       
 
@@ -832,230 +1071,6 @@
 
 
   
-    <article id="post-[JSWebAPI]cookie" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/30/[JSWebAPI]cookie/">【WebAPI】存储</a>
-    </h1>
-  
-
-        
-        <a href="/2021/06/30/[JSWebAPI]cookie/" class="archive-article-date">
-  	<time datetime="2021-06-30T02:45:57.317Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>介绍cookie、localStorage、sessionStorage区别</li>
-</ul>
-<h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><ol>
-<li><p>cookie</p>
-<ul>
-<li>通过;分割的字符串，每一部分都是key=value的形式</li>
-<li>http请求的一部分，用于浏览器和服务端通讯的</li>
-<li>document.cookie修改，默认每次追加或者修改一个key/value</li>
-<li>限制：最大4KB，每次http请求都需要发送到服务端，api太简陋</li>
-</ul>
-</li>
-<li><p>localStorage、sessionStorage</p>
-<ul>
-<li>HTML5专门为存储设计的，最大可存储5M / pre host</li>
-<li>API：getItem() setItem() 存储的为字符串的形式，所以其他格式的数据要注意</li>
-<li>和http请求没关系</li>
-<li>localStorage 永久存储，除非手动或者代码删除；sessionStorage只存在于当前会话，页面关闭清空</li>
-</ul>
-</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/JavaScript//" class="article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/30/[JSWebAPI]cookie/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-[JSWebAPI]AJAX" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/30/[JSWebAPI]AJAX/">【WebAPI】AJAX</a>
-    </h1>
-  
-
-        
-        <a href="/2021/06/30/[JSWebAPI]AJAX/" class="archive-article-date">
-  	<time datetime="2021-06-30T02:45:57.316Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>手写一个简易的ajax</li>
-<li>跨域</li>
-</ul>
-<h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><ul>
-<li>XMLHttpRequest</li>
-<li>状态码</li>
-<li>跨域： 同源策略，跨域解决方案</li>
-</ul>
-<h2 id="1-XMLHttpRequest"><a href="#1-XMLHttpRequest" class="headerlink" title="1. XMLHttpRequest"></a>1. XMLHttpRequest</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">const xhr = new XMLHttpRequest();</span><br><span class="line">xhr.open(&apos;method&apos;, &apos;url&apos;, &apos;true/false&apos;); // 是否是异步</span><br><span class="line">xhr.onreadystatechange = function () &#123;</span><br><span class="line">    if(xhr.readyState === 4) &#123;</span><br><span class="line">        if(xhr.status === 200) &#123;</span><br><span class="line">            console.log(JSON.parse(xhr.responseText))</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">xhr.send(null)</span><br><span class="line">// post</span><br><span class="line">xhr.send(JSON.stringify(&#123;&#125;))</span><br></pre></td></tr></table></figure>
-
-<p>可以改成promise的情况</p>
-<ul>
-<li><p>xhr.readyState</p>
-<ul>
-<li>0 (未初始化)没有调用send()方法</li>
-<li>1 (载入)已调用send()，正在发送请求</li>
-<li>2 (载入完成)send()方法执行完成，已经接收到全部响应内容</li>
-<li>3 (交互)正在解析响应内容</li>
-<li>4 (完成)响应内容解析完成，可在客户端调用</li>
-</ul>
-</li>
-<li><p>xhr.status http状态码</p>
-<ul>
-<li>2xx 成功处理请求</li>
-<li>3xx 重定向，浏览器直接跳转 301：永久重定向 302：临时重定向 304：资源未改变，用缓存</li>
-<li>4xx 客户端请求错误，404：not found 403：客户端没有权限</li>
-<li>5xx 服务端错误</li>
-</ul>
-</li>
-</ul>
-<h2 id="2-跨域"><a href="#2-跨域" class="headerlink" title="2. 跨域"></a>2. 跨域</h2><ul>
-<li><p>什么是跨域 同源策略</p>
-</li>
-<li><p>JSONP</p>
-</li>
-<li><p>CORS</p>
-<h3 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h3><blockquote>
-<p>同源：协议，域名，端口三者一致。 Ajax请求时， <strong>浏览器</strong>要求当前页面和server必须同源。CSP安全<br>加载图片css，js可无视同源策略</p>
-</blockquote>
-</li>
-<li><p>img src=’跨域的图片地址’，可用于统计埋点</p>
-</li>
-<li><p>link href=’跨域的css地址’ ，可以使用CDN</p>
-</li>
-<li><p>script src=’跨域的js地址’，可以使用CDN，实现JSONP<br>所有的跨域，都必须经过server端的允许和配合</p>
-<h3 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h3></li>
-<li><p>script可以实现跨域</p>
-</li>
-<li><p>server端可以动态拼接数据返回</p>
-<h3 id="CORS-服务器端设置-http-header"><a href="#CORS-服务器端设置-http-header" class="headerlink" title="CORS - 服务器端设置 http header"></a>CORS - 服务器端设置 http header</h3><ul>
-<li>Access-Control-Allow-Origin</li>
-<li>Access-Control-Allow-Headers</li>
-<li>Access-Control-Allow-Methods</li>
-</ul>
-</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/JavaScript//" class="article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/30/[JSWebAPI]AJAX/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
@@ -1165,11 +1180,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">购房</a>
+                <a href="javascript:void(0)" class="js-tag color3">保险</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">保险</a>
+                <a href="javascript:void(0)" class="js-tag color3">购房</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1189,11 +1204,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1209,11 +1228,27 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">tree</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Binary tree</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">投资</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Promise</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">setTimeout</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1229,27 +1264,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">tree</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Binary tree</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Promise</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">setTimeout</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">closure</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">

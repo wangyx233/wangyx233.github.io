@@ -130,6 +130,82 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-webpack学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/15/webpack学习/">webpack学习</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/15/webpack学习/" class="archive-article-date">
+  	<time datetime="2018-06-15T08:34:01.696Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li>postcss 配置，post.config.js，同时webpack.config.js</li>
+<li>mini-css-extract-plugin 与style-loader不共存</li>
+<li>注意路径和文件名，仔细，认真</li>
+<li>ico图片引入，没什么区别？</li>
+<li>可自动设置dist文件夹下的文件，生成文件的目录你来掌握。</li>
+<li>注意图片引入的路径,使用file-loader，url-loader引入的图片需要配合require使用，才能打包。url可以指定图片大小转换成base64等。<br>若不用require，直接src，需要把图片copy到打包后的文件。</li>
+<li>react-hot-loader 与webpack 自带的hot不相互兼容。只能用一个。</li>
+<li>webpack 的publicpath 定义的是服务在哪个文件下启动的，content可以定义文件的目录。</li>
+<li>静态文件可生成hash模式，避免缓存。</li>
+<li>babel也需要相应的配置。配合babel-import-plugin可以进行ui库的部分引入。还要注意选择babel的stage</li>
+<li>react route4 webpack 服务器，用BrowserRouter,historyApiFallback: true</li>
+</ol>
+<p>gulp 与 webpack的区别<br>gulp 是任务流的，和task有关。<br>webpack 的核心是根据模块构建项目。<br>Webpack 的核心就是模块化地组织，模块化地依赖，然后模块化地打包。相对来上，场景局限在前端模块化打包上；虽然用 gulp + 插件的方式也能实现，但目前看 Webpack 在依赖的模块化构建上是无人能够替代的。<br>gulp 版本号。<br>可以在打包的时候，打入不同的文件。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/15/webpack学习/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Echarts3.5.0以上世界地图nameMap修改" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -757,11 +833,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">购房</a>
+                <a href="javascript:void(0)" class="js-tag color3">保险</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">保险</a>
+                <a href="javascript:void(0)" class="js-tag color3">购房</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -781,11 +857,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -801,11 +881,27 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">tree</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Binary tree</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">投资</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Promise</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">setTimeout</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -821,27 +917,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">tree</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Binary tree</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Promise</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">setTimeout</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">closure</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
