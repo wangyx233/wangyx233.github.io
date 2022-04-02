@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wangyx233.github.io/"/>
-  <updated>2022-04-02T01:50:00.211Z</updated>
+  <updated>2022-04-02T02:01:21.852Z</updated>
   <id>https://wangyx233.github.io/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://wangyx233.github.io/2022/04/02/%5B%E7%BD%91%E7%BB%9C%5Dcdn/"/>
     <id>https://wangyx233.github.io/2022/04/02/[网络]cdn/</id>
     <published>2022-04-02T01:50:00.208Z</published>
-    <updated>2022-04-02T01:50:00.211Z</updated>
+    <updated>2022-04-02T02:01:21.852Z</updated>
     
-    <content type="html"><![CDATA[<blockquote><p>前置知识：正向代理 &amp; 反向代理</p></blockquote><ol><li>正向代理其实是客户端的代理，帮助客户端访问其无法访问的服务器资源。正向代理一般是客户端架设的，反向代理一般是服务器架设的。反向代理则是服务器的代理，帮助服务器做负载均衡，安全防护等。</li><li>正向代理中，服务器不知道真正的客户端到底是谁，以为访问自己的就是真实的客户端。而在反向代理中，客户端不知道真正的服务器是谁，以为自己访问的就是真实的客户端。</li><li>正向代理和反向代理的作用和目的不同。正向代理主要是用来解决访问限制问题。而反向代理则是提供负载均衡、安全防护等作用。二者均能提高访问速度。</li></ol><blockquote><p>CDN(Content Delivery Network) 是一种内容分发网络，部署在应用层，利用智能分配技术，根据用户访问的地点，按照就近访问的原则分配到多个节点，来实现多点负载均衡。简单来说，用户就近访问，访问速度更快，CDN 的常见实现是有一台源站服务器，多个 CDN 节点定时从源站同步。</p></blockquote><p>CDN 的<code>缓存</code>和<code>回源</code><br>“缓存”就是说我们把资源推送一份到 CDN 服务器上这个过程，“回源”就是说 CDN 发现自己没有这个资源或者资源过期了，从而去原站或者或者它的上层服务器请求这个资源的过程。</p><ul><li>没有 CDN：用户访问域名 -&gt; 域名解析成对应的 IP(DNS 解析) -&gt; 根据 IP + 请求端口去服务器请求资源</li><li>用 CDN：用户访问域名 -&gt; DNS 解析返回配置的 CNAME -&gt; 智能调度 DNS 查询域名(CNAME)的 IP 地址(最适合的 CDN 节点) -&gt; 根据 IP 访问 CDN 节点服务器 -&gt; 有缓存返回，无则回源</li></ul><p>Q &amp; A</p><ul><li>所以，CDN 是正向代理还是反向代理呢？</li><li>服务端有新的更新，如何清除 CDN 的缓存呢？</li></ul><a id="more"></a><ul><li>当当当当然是反向代理啦，客户端不知道真正的服务端是谁咯。</li><li>常见的有两种方式：一是服务端把更新推送到 CDN 节点，二是通过不同的版本号进行区分</li></ul>]]></content>
+    <content type="html"><![CDATA[<blockquote><p>前置知识：正向代理 &amp; 反向代理</p></blockquote><ol><li>正向代理其实是客户端的代理，帮助客户端访问其无法访问的服务器资源。正向代理一般是客户端架设的，反向代理一般是服务器架设的。反向代理则是服务器的代理，帮助服务器做负载均衡，安全防护等。</li><li>正向代理中，服务器不知道真正的客户端到底是谁，以为访问自己的是真实的客户端。而在反向代理中，客户端不知道真正的服务器是谁，以为自己访问的是真实的客户端。</li><li>正向代理和反向代理的作用和目的不同。正向代理主要是用来解决访问限制问题。而反向代理则是提供负载均衡、安全防护等作用。二者均能提高访问速度。</li></ol><blockquote><p>CDN(Content Delivery Network) 是一种内容分发网络，部署在应用层，利用智能分配技术，根据用户访问的地点，按照就近访问的原则分配到多个节点，来实现多点负载均衡。简单来说，用户就近访问，访问速度更快，CDN 的常见实现是有一台源站服务器，多个 CDN 节点定时从源站同步。</p></blockquote><p>CDN 的<code>缓存</code>和<code>回源</code><br>“缓存”是说我们把资源推送一份到 CDN 服务器上这个过程，“回源”是说 CDN 发现自己没有这个资源或者资源过期了，从而去原站或者或者它的上层服务器请求这个资源的过程。</p><ul><li>没有 CDN：用户访问域名 -&gt; 域名解析成对应的 IP(DNS 解析) -&gt; 根据 IP + 请求端口去服务器请求资源</li><li>用 CDN：用户访问域名 -&gt; DNS 解析返回配置的 CNAME -&gt; 智能调度 DNS 查询域名(CNAME)的 IP 地址(最适合的 CDN 节点) -&gt; 根据 IP 访问 CDN 节点服务器 -&gt; 有缓存返回，无则回源</li></ul><p>Q &amp; A</p><ul><li>所以，CDN 是正向代理还是反向代理呢？</li><li>服务端有新的更新，如何清除 CDN 的缓存呢？</li></ul><a id="more"></a><ul><li>当当当当然是反向代理啦，客户端不知道真正的服务端是谁咯。</li><li>常见的有两种方式：一是服务端把更新推送到 CDN 节点，二是通过不同的版本号进行区分</li></ul>]]></content>
     
     <summary type="html">
     
@@ -32,13 +32,13 @@
 &lt;/blockquote&gt;
 &lt;ol&gt;
 &lt;li&gt;正向代理其实是客户端的代理，帮助客户端访问其无法访问的服务器资源。正向代理一般是客户端架设的，反向代理一般是服务器架设的。反向代理则是服务器的代理，帮助服务器做负载均衡，安全防护等。&lt;/li&gt;
-&lt;li&gt;正向代理中，服务器不知道真正的客户端到底是谁，以为访问自己的就是真实的客户端。而在反向代理中，客户端不知道真正的服务器是谁，以为自己访问的就是真实的客户端。&lt;/li&gt;
+&lt;li&gt;正向代理中，服务器不知道真正的客户端到底是谁，以为访问自己的是真实的客户端。而在反向代理中，客户端不知道真正的服务器是谁，以为自己访问的是真实的客户端。&lt;/li&gt;
 &lt;li&gt;正向代理和反向代理的作用和目的不同。正向代理主要是用来解决访问限制问题。而反向代理则是提供负载均衡、安全防护等作用。二者均能提高访问速度。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;blockquote&gt;
 &lt;p&gt;CDN(Content Delivery Network) 是一种内容分发网络，部署在应用层，利用智能分配技术，根据用户访问的地点，按照就近访问的原则分配到多个节点，来实现多点负载均衡。简单来说，用户就近访问，访问速度更快，CDN 的常见实现是有一台源站服务器，多个 CDN 节点定时从源站同步。&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;CDN 的&lt;code&gt;缓存&lt;/code&gt;和&lt;code&gt;回源&lt;/code&gt;&lt;br&gt;“缓存”就是说我们把资源推送一份到 CDN 服务器上这个过程，“回源”就是说 CDN 发现自己没有这个资源或者资源过期了，从而去原站或者或者它的上层服务器请求这个资源的过程。&lt;/p&gt;
+&lt;p&gt;CDN 的&lt;code&gt;缓存&lt;/code&gt;和&lt;code&gt;回源&lt;/code&gt;&lt;br&gt;“缓存”是说我们把资源推送一份到 CDN 服务器上这个过程，“回源”是说 CDN 发现自己没有这个资源或者资源过期了，从而去原站或者或者它的上层服务器请求这个资源的过程。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;没有 CDN：用户访问域名 -&amp;gt; 域名解析成对应的 IP(DNS 解析) -&amp;gt; 根据 IP + 请求端口去服务器请求资源&lt;/li&gt;
 &lt;li&gt;用 CDN：用户访问域名 -&amp;gt; DNS 解析返回配置的 CNAME -&amp;gt; 智能调度 DNS 查询域名(CNAME)的 IP 地址(最适合的 CDN 节点) -&amp;gt; 根据 IP 访问 CDN 节点服务器 -&amp;gt; 有缓存返回，无则回源&lt;/li&gt;
@@ -626,6 +626,31 @@
   </entry>
   
   <entry>
+    <title>【React】Virtual DOM</title>
+    <link href="https://wangyx233.github.io/2021/06/30/%5BReact%5D%E8%99%9A%E6%8B%9FDOM/"/>
+    <id>https://wangyx233.github.io/2021/06/30/[React]虚拟DOM/</id>
+    <published>2021-06-30T02:45:57.326Z</published>
+    <updated>2021-07-13T03:21:58.358Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="What？"><a href="#What？" class="headerlink" title="What？"></a>What？</h1><p>Virtual DOM本质上是JS 和 DOM 之间的一个映射缓存，是能够描述DOM结构及其属性的JS对象。</p><ul><li>虚拟DOM是JS对象</li><li>虚拟DOM是对真实DOM的描述</li></ul><p>挂载阶段，根据JSX的描述，构建出虚拟DOM，然后通过ReactDOM.render实现虚拟DOM到真实DOM的映射<br>更新阶段，页面的变化在作用于真实DOM之前，会先作用于虚拟DOM</p><h1 id="Why？"><a href="#Why？" class="headerlink" title="Why？"></a>Why？</h1><ul><li>jQuery解决DOM API 不好使的问题。还解决浏览器兼容，链式API调用，插件扩展</li><li>模板引擎，只关心数据，不关心DOM细节。操作真实DOM的范围过大、频率过高，但思想是数据驱动视图</li><li>虚拟DOM的点不在性能。虚拟DOM有没有借鉴模板引擎无法考证，但是思想上有一定的递进关系。JSX不是模板，而是JS的一个体验像模板的扩展语法糖，然后增加了个虚拟DOM的缓存层。</li></ul><blockquote><p>差量更新。即当DOM操作比较频繁时，会将前后两次的DOM树变化进行对比diff，定位到需要更新的部分，生成一个“补丁集”，把“补丁”patch打在需要更新的那部分真实DOM上，就可以实现差量更新<br>批量更新。batch函数处理，把短时间内的多次DOM操作合成一个次更新，即把收集的多个补丁集暂存到队列中，再讲最终结果交给渲染函数，实现DOM的集中化批量更新。</p></blockquote><ol><li>研发体验/研发效率。虚拟DOM思想是数据驱动视图，前端声明式编程。</li><li>性能不是卖点。性能还不错，性能量化不能一概而论只看一个指标，得看实际情况。DOM操作量级有关</li><li>价值？跨平台，一次编码多次应用。虚拟DOM是对实际渲染内容的一次抽象</li><li>规避xss攻击</li></ol><p>缺点：</p><ol><li>内存占用高，虚拟DOM，object</li><li>无法进行极致优化。如Google Earth</li></ol><h1 id="How"><a href="#How" class="headerlink" title="How?"></a>How?</h1><h2 id="调和Reconciliation-和-Diff算法"><a href="#调和Reconciliation-和-Diff算法" class="headerlink" title="调和Reconciliation 和 Diff算法"></a>调和Reconciliation 和 Diff算法</h2><blockquote><p>调和是将虚拟DOM映射到真实DOM的过程。Diff算法只是其中的一个小部分，深度优先遍历</p></blockquote><ol><li><p>React 15为代表的“栈调和”<br>传统的递归比较两棵树结构的不同算法复杂度是O(n^3)，这个复杂度显然不能令人接受，所以React中做了什么呢，将复杂度转换成O(n)</p><ul><li>Diff算法性能突破的关键点是“分层比较”<br>分层比较其实是分层递归比较，所以“同层级操作”是主流，只针对相同层级的节点进行比较，如果是跨层级的节点操作，其实是对应这销毁和重建的过程，尽量保持DOM节点的稳定性。</li><li>类型一致的节点才有继续Diff的必要<br>根据主要“矛盾”类型不一致的节点，直接放弃比较，原地替换旧的节点。</li><li>key属性的设置，可以尽可能重用同一层级内的节点<br>key主要解决的是同一层级下节点的重用问题。设置key的元素可以避免不必要的销毁和重建，只是调整顺序排列。<blockquote><p>注：作为一个节点的唯一标识，使用key之前，保证key的唯一和稳定。<br>大致过程可以描述为树对比、组件对比、元素对比<br>总结：栈调和机制下的Diff算法，其实是树的深度优先遍历过程。<br>这个过程是同步的过程，不可被打断。Stack Reconciler 需要的时间越长，意味着JS线程将霸占主线程的时间越长。进而导致会出现渲染卡死、交互无响应的现象。</p></blockquote></li></ul></li><li><p>React 16以来的“Fiber调和”<br>Fiber：纤程，对渲染过程进行更加精细的控制。是Fiber树结构的节点单位，也就是React 16下的“虚拟DOM”,并且Fiber节点保存了组件需要更新的状态和副作用。</p></li></ol><ul><li>可中断</li><li>可恢复</li><li>优先级</li></ul><h1 id="Better？"><a href="#Better？" class="headerlink" title="Better？"></a>Better？</h1><ol><li>避免跨层级节点移动</li><li>设置唯一的key，尽量减少组件层级</li><li>设置shouldComponentUpdate 或者 React.pureComponet 减少 diff 次数</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;What？&quot;&gt;&lt;a href=&quot;#What？&quot; class=&quot;headerlink&quot; title=&quot;What？&quot;&gt;&lt;/a&gt;What？&lt;/h1&gt;&lt;p&gt;Virtual DOM本质上是JS 和 DOM 之间的一个映射缓存，是能够描述DOM结构及其属性的JS对象。&lt;/p&gt;
+      
+    
+    </summary>
+    
+      <category term="React" scheme="https://wangyx233.github.io/categories/React/"/>
+    
+    
+      <category term="React" scheme="https://wangyx233.github.io/tags/React/"/>
+    
+  </entry>
+  
+  <entry>
     <title>【React】生命周期</title>
     <link href="https://wangyx233.github.io/2021/06/30/%5BReact%5D%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/"/>
     <id>https://wangyx233.github.io/2021/06/30/[React]生命周期/</id>
@@ -648,31 +673,6 @@
 &lt;li&gt;Unmounting 阶段：组件的卸载。 组件被移除了，或者设置了 key，在 render 过程中发现 key 改变了&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&quot;React-16&quot;&gt;&lt;a href=&quot;#React-16&quot; class=&quot;headerlink&quot; title=&quot;React 16&quot;&gt;&lt;/a&gt;React 16&lt;/h2&gt;&lt;h3 id=&quot;React-16-4&quot;&gt;&lt;a href=&quot;#React-16-4&quot; class=&quot;headerlink&quot; title=&quot;React 16.4&quot;&gt;&lt;/a&gt;React 16.4&lt;/h3&gt;&lt;img src=&quot;/gallery/react16life.png&quot;&gt;
-    
-    </summary>
-    
-      <category term="React" scheme="https://wangyx233.github.io/categories/React/"/>
-    
-    
-      <category term="React" scheme="https://wangyx233.github.io/tags/React/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【React】Virtual DOM</title>
-    <link href="https://wangyx233.github.io/2021/06/30/%5BReact%5D%E8%99%9A%E6%8B%9FDOM/"/>
-    <id>https://wangyx233.github.io/2021/06/30/[React]虚拟DOM/</id>
-    <published>2021-06-30T02:45:57.326Z</published>
-    <updated>2021-07-13T03:21:58.358Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="What？"><a href="#What？" class="headerlink" title="What？"></a>What？</h1><p>Virtual DOM本质上是JS 和 DOM 之间的一个映射缓存，是能够描述DOM结构及其属性的JS对象。</p><ul><li>虚拟DOM是JS对象</li><li>虚拟DOM是对真实DOM的描述</li></ul><p>挂载阶段，根据JSX的描述，构建出虚拟DOM，然后通过ReactDOM.render实现虚拟DOM到真实DOM的映射<br>更新阶段，页面的变化在作用于真实DOM之前，会先作用于虚拟DOM</p><h1 id="Why？"><a href="#Why？" class="headerlink" title="Why？"></a>Why？</h1><ul><li>jQuery解决DOM API 不好使的问题。还解决浏览器兼容，链式API调用，插件扩展</li><li>模板引擎，只关心数据，不关心DOM细节。操作真实DOM的范围过大、频率过高，但思想是数据驱动视图</li><li>虚拟DOM的点不在性能。虚拟DOM有没有借鉴模板引擎无法考证，但是思想上有一定的递进关系。JSX不是模板，而是JS的一个体验像模板的扩展语法糖，然后增加了个虚拟DOM的缓存层。</li></ul><blockquote><p>差量更新。即当DOM操作比较频繁时，会将前后两次的DOM树变化进行对比diff，定位到需要更新的部分，生成一个“补丁集”，把“补丁”patch打在需要更新的那部分真实DOM上，就可以实现差量更新<br>批量更新。batch函数处理，把短时间内的多次DOM操作合成一个次更新，即把收集的多个补丁集暂存到队列中，再讲最终结果交给渲染函数，实现DOM的集中化批量更新。</p></blockquote><ol><li>研发体验/研发效率。虚拟DOM思想是数据驱动视图，前端声明式编程。</li><li>性能不是卖点。性能还不错，性能量化不能一概而论只看一个指标，得看实际情况。DOM操作量级有关</li><li>价值？跨平台，一次编码多次应用。虚拟DOM是对实际渲染内容的一次抽象</li><li>规避xss攻击</li></ol><p>缺点：</p><ol><li>内存占用高，虚拟DOM，object</li><li>无法进行极致优化。如Google Earth</li></ol><h1 id="How"><a href="#How" class="headerlink" title="How?"></a>How?</h1><h2 id="调和Reconciliation-和-Diff算法"><a href="#调和Reconciliation-和-Diff算法" class="headerlink" title="调和Reconciliation 和 Diff算法"></a>调和Reconciliation 和 Diff算法</h2><blockquote><p>调和是将虚拟DOM映射到真实DOM的过程。Diff算法只是其中的一个小部分，深度优先遍历</p></blockquote><ol><li><p>React 15为代表的“栈调和”<br>传统的递归比较两棵树结构的不同算法复杂度是O(n^3)，这个复杂度显然不能令人接受，所以React中做了什么呢，将复杂度转换成O(n)</p><ul><li>Diff算法性能突破的关键点是“分层比较”<br>分层比较其实是分层递归比较，所以“同层级操作”是主流，只针对相同层级的节点进行比较，如果是跨层级的节点操作，其实是对应这销毁和重建的过程，尽量保持DOM节点的稳定性。</li><li>类型一致的节点才有继续Diff的必要<br>根据主要“矛盾”类型不一致的节点，直接放弃比较，原地替换旧的节点。</li><li>key属性的设置，可以尽可能重用同一层级内的节点<br>key主要解决的是同一层级下节点的重用问题。设置key的元素可以避免不必要的销毁和重建，只是调整顺序排列。<blockquote><p>注：作为一个节点的唯一标识，使用key之前，保证key的唯一和稳定。<br>大致过程可以描述为树对比、组件对比、元素对比<br>总结：栈调和机制下的Diff算法，其实是树的深度优先遍历过程。<br>这个过程是同步的过程，不可被打断。Stack Reconciler 需要的时间越长，意味着JS线程将霸占主线程的时间越长。进而导致会出现渲染卡死、交互无响应的现象。</p></blockquote></li></ul></li><li><p>React 16以来的“Fiber调和”<br>Fiber：纤程，对渲染过程进行更加精细的控制。是Fiber树结构的节点单位，也就是React 16下的“虚拟DOM”,并且Fiber节点保存了组件需要更新的状态和副作用。</p></li></ol><ul><li>可中断</li><li>可恢复</li><li>优先级</li></ul><h1 id="Better？"><a href="#Better？" class="headerlink" title="Better？"></a>Better？</h1><ol><li>避免跨层级节点移动</li><li>设置唯一的key，尽量减少组件层级</li><li>设置shouldComponentUpdate 或者 React.pureComponet 减少 diff 次数</li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;What？&quot;&gt;&lt;a href=&quot;#What？&quot; class=&quot;headerlink&quot; title=&quot;What？&quot;&gt;&lt;/a&gt;What？&lt;/h1&gt;&lt;p&gt;Virtual DOM本质上是JS 和 DOM 之间的一个映射缓存，是能够描述DOM结构及其属性的JS对象。&lt;/p&gt;
-      
     
     </summary>
     
@@ -743,33 +743,6 @@
   </entry>
   
   <entry>
-    <title>【React】前端路由-React Router</title>
-    <link href="https://wangyx233.github.io/2021/06/30/%5BReact%5D%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%94%B1/"/>
-    <id>https://wangyx233.github.io/2021/06/30/[React]前端路由/</id>
-    <published>2021-06-30T02:45:57.323Z</published>
-    <updated>2021-07-13T03:21:58.447Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="What"><a href="#What" class="headerlink" title="What"></a>What</h1><ul><li>切换Hash</li><li>切换Path<br>HTML5的History API中的 pushState、replaceState，还需要在服务端配置historyApiFallback<br>路由守卫<h1 id="How"><a href="#How" class="headerlink" title="How"></a>How</h1></li></ul><ol><li>路由器：BrowserRouter 和 HashRouter</li></ol><ul><li>BrowserRouter 是使用 HTML 5 的 history API 来控制路由跳转的。</li><li>HashRouter 是通过 URL 的 hash 属性来控制路由跳转的。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">window.location.hash</span><br><span class="line">// 监听hash变化，点击浏览器的前进后退会触发</span><br><span class="line">window.addEventListener(&apos;hashchange&apos;, function(event)&#123;</span><br><span class="line">    // 根据 hash 的变化更新内容</span><br><span class="line">&#125;,false)</span><br><span class="line">window.history.forward()  // 前进到下一页</span><br><span class="line">window.history.back() // 后退到上一页</span><br><span class="line">window.history.go(2)</span><br><span class="line">history.pushState(data[,title][,url]); // 向浏览历史中追加一条记录</span><br><span class="line">history.replaceState(data[,title][,url]); // 修改（替换）当前页在浏览历史中的信息</span><br><span class="line">window.addEventListener(&apos;popstate&apos;, function(e) &#123;</span><br><span class="line">  console.log(e)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li></ul><blockquote><p>go、forward 和 back 等方法的调用确实会触发 popstate，但是pushState 和 replaceState 不会。不过这一点问题不大，我们可以通过自定义事件和全局事件总线来手动触发事件。</p></blockquote>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;What&quot;&gt;&lt;a href=&quot;#What&quot; class=&quot;headerlink&quot; title=&quot;What&quot;&gt;&lt;/a&gt;What&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;切换Hash&lt;/li&gt;
-&lt;li&gt;切换Path&lt;br&gt;HTML5的History API中的 pushState、
-      
-    
-    </summary>
-    
-      <category term="React" scheme="https://wangyx233.github.io/categories/React/"/>
-    
-    
-      <category term="React" scheme="https://wangyx233.github.io/tags/React/"/>
-    
-  </entry>
-  
-  <entry>
     <title>【React】性能优化</title>
     <link href="https://wangyx233.github.io/2021/06/30/%5BReact%5D%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
     <id>https://wangyx233.github.io/2021/06/30/[React]性能优化/</id>
@@ -788,6 +761,33 @@
 &lt;li&gt;函数组件的性能优化：React.memo 和 useMemo&lt;/li&gt;
 &lt;/ul&gt;
 
+      
+    
+    </summary>
+    
+      <category term="React" scheme="https://wangyx233.github.io/categories/React/"/>
+    
+    
+      <category term="React" scheme="https://wangyx233.github.io/tags/React/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【React】前端路由-React Router</title>
+    <link href="https://wangyx233.github.io/2021/06/30/%5BReact%5D%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%94%B1/"/>
+    <id>https://wangyx233.github.io/2021/06/30/[React]前端路由/</id>
+    <published>2021-06-30T02:45:57.323Z</published>
+    <updated>2021-07-13T03:21:58.447Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="What"><a href="#What" class="headerlink" title="What"></a>What</h1><ul><li>切换Hash</li><li>切换Path<br>HTML5的History API中的 pushState、replaceState，还需要在服务端配置historyApiFallback<br>路由守卫<h1 id="How"><a href="#How" class="headerlink" title="How"></a>How</h1></li></ul><ol><li>路由器：BrowserRouter 和 HashRouter</li></ol><ul><li>BrowserRouter 是使用 HTML 5 的 history API 来控制路由跳转的。</li><li>HashRouter 是通过 URL 的 hash 属性来控制路由跳转的。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">window.location.hash</span><br><span class="line">// 监听hash变化，点击浏览器的前进后退会触发</span><br><span class="line">window.addEventListener(&apos;hashchange&apos;, function(event)&#123;</span><br><span class="line">    // 根据 hash 的变化更新内容</span><br><span class="line">&#125;,false)</span><br><span class="line">window.history.forward()  // 前进到下一页</span><br><span class="line">window.history.back() // 后退到上一页</span><br><span class="line">window.history.go(2)</span><br><span class="line">history.pushState(data[,title][,url]); // 向浏览历史中追加一条记录</span><br><span class="line">history.replaceState(data[,title][,url]); // 修改（替换）当前页在浏览历史中的信息</span><br><span class="line">window.addEventListener(&apos;popstate&apos;, function(e) &#123;</span><br><span class="line">  console.log(e)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li></ul><blockquote><p>go、forward 和 back 等方法的调用确实会触发 popstate，但是pushState 和 replaceState 不会。不过这一点问题不大，我们可以通过自定义事件和全局事件总线来手动触发事件。</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;What&quot;&gt;&lt;a href=&quot;#What&quot; class=&quot;headerlink&quot; title=&quot;What&quot;&gt;&lt;/a&gt;What&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;切换Hash&lt;/li&gt;
+&lt;li&gt;切换Path&lt;br&gt;HTML5的History API中的 pushState、
       
     
     </summary>
