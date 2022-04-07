@@ -130,6 +130,118 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-[CSS]回顾伪类与伪元素" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/11/[CSS]回顾伪类与伪元素/">&lt;CSS&gt;回顾伪类与伪元素</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/11/[CSS]回顾伪类与伪元素/" class="archive-article-date">
+  	<time datetime="2020-05-11T06:35:48.173Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在重温 CSS 选择的时候，看到伪类与伪元素有一瞬间迷惑之情，所以这次重新加深一番印象。</p>
+<h5 id="伪类-pseudo-classes-？伪元素-pseudo-elements-？"><a href="#伪类-pseudo-classes-？伪元素-pseudo-elements-？" class="headerlink" title="伪类(pseudo-classes)？伪元素(pseudo-elements)？"></a>伪类(pseudo-classes)？伪元素(pseudo-elements)？</h5><p>为什么要引入伪类，伪元素？为了格式化文档树以外的信息。</p>
+<ul>
+<li>伪类：用于描述已经存在的元素的某个状态，添加对应的样式。用:,如：hover,:first-child…</li>
+<li>伪元素：用于创建一些不在文档树中的元素。多用::,如：::before,::after…，虽然用户可以看到这些内容，但事实上并不存在在文档树中。</li>
+</ul>
+<p>补充：CSS 的选择器</p>
+<ol>
+<li>元素选择器</li>
+</ol>
+<ul>
+<li>* 通配符选择器</li>
+<li>div,p,span… 元素选择器</li>
+<li>#id</li>
+<li>.class</li>
+</ul>
+<ol start="2">
+<li>属性选择器</li>
+</ol>
+<ul>
+<li>[attr]</li>
+<li>[attr=val]</li>
+<li>[attr^=val] 以 val 开头属性值的元素</li>
+<li>[attr$=val] 以 val 结尾</li>
+<li>[attr*=val] 属性值包含这个 val 属性值的元素</li>
+<li>[attr~=val] 属性值为 val，或其中一个值为 val 的元素</li>
+<li>[attr|=val] 属性值为 val，或者 val-xxx 的元素</li>
+<li>i 不区分大小写，s 区分大小写<br>eg. <a href="https://codepen.io/yx233/pen/abvGgad" target="_blank" rel="noopener">https://codepen.io/yx233/pen/abvGgad</a></li>
+</ul>
+<ol start="3">
+<li>关系选择器</li>
+</ol>
+<ul>
+<li>后代选择器： 空格，所有后代</li>
+<li>子选择器：&gt; 直接后代，不包括隔代元素</li>
+<li>兄弟选择器：~ 所有兄弟结点</li>
+<li>相邻选择气：+ 相邻兄弟结点</li>
+</ul>
+<p>选择指向越准确，优先级越高。尽量减少 CSS 选择器的层数</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CSS</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/11/[CSS]回顾伪类与伪元素/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-[重温JS]正则从开始到结束" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -877,72 +989,9 @@
 
 
   
-    <article id="post-原型回顾" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/21/原型回顾/">原型回顾</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/21/原型回顾/" class="archive-article-date">
-  	<time datetime="2019-08-21T11:43:55.178Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>快来快来看一看</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">function Foo() &#123;</span><br><span class="line">    Foo.a = function() &#123;</span><br><span class="line">        console.log(1)</span><br><span class="line">    &#125;</span><br><span class="line">    this.a = function() &#123;</span><br><span class="line">        console.log(2)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">Foo.prototype.a = function() &#123;</span><br><span class="line">    console.log(3)</span><br><span class="line">&#125;</span><br><span class="line">Foo.a = function() &#123;</span><br><span class="line">    console.log(4)</span><br><span class="line">&#125;</span><br><span class="line">Foo.a();</span><br><span class="line">let obj = new Foo();</span><br><span class="line">obj.a();</span><br><span class="line">Foo.a();</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/21/原型回顾/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/6/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/8/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/6/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/8/">Next &raquo;</a>
     </nav>
   
 
@@ -1029,15 +1078,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">css</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">flex</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1081,11 +1130,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1097,15 +1146,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tree</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Binary tree</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1121,6 +1170,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">closure</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">moment.js</a>
               </li>
              
@@ -1130,10 +1183,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">closure</a>
               </li>
              
               <li class="article-tag-list-item">

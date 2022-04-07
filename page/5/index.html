@@ -130,61 +130,45 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-[JSWebAPI]DOM" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-[JS基础]事件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/30/[JSWebAPI]DOM/">【WebAPI】DOM</a>
+      <a class="article-title" href="/2021/06/30/[JS基础]事件/">【JS基础】事件</a>
     </h1>
   
 
         
-        <a href="/2021/06/30/[JSWebAPI]DOM/" class="archive-article-date">
-  	<time datetime="2021-06-30T02:45:57.317Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
+        <a href="/2021/06/30/[JS基础]事件/" class="archive-article-date">
+  	<time datetime="2021-06-30T02:45:57.318Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p>DOM -&gt; Document Object Model</p>
-</blockquote>
-<ul>
-<li>DOM数据结构</li>
-<li>DOM常用的API</li>
-<li>attr和property的区别</li>
-<li>如何一次插入多个DOM节点</li>
+        <ul>
+<li>事件冒泡的流程</li>
+<li>通用的事件监听</li>
+<li>无限下拉的图片列表，如何监听每个图片的点击</li>
 </ul>
 <h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><ul>
-<li>DOM 本质</li>
-<li>DOM 节点操作</li>
-<li>DOM 结构操作</li>
-<li>DOM 性能</li>
+<li>事件绑定</li>
+<li>事件冒泡</li>
+<li>事件代理</li>
 </ul>
 <ol>
-<li>DOM本质：从HTML解析出来的一棵树</li>
-<li>DOM节点<ul>
-<li>节点获取的常见API</li>
-<li>通过js修改页面渲染结构：节点property，直接通过属性修改，如：dom.style.width = xxxx,dom.className = ‘xxx’</li>
-<li>修改的是标签的属性：节点attribute，通过getAttibute(‘style’, ‘font-size:16px’),setAttribute()<blockquote>
-<p>property： 修改JS对象属性，不会体现在html中；attribute：修改html属性，改变html结构。都有可能引起DOM重新渲染，可以先优先用property</p>
-</blockquote>
+<li><p>事件绑定，事件冒泡</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">function bindEvent(elem, type, selecotr, fn) &#123;</span><br><span class="line">    if(fn == null) &#123;</span><br><span class="line">        fn = selector;</span><br><span class="line">        selector = null;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    elem.addEventListener(type, e =&gt; &#123;</span><br><span class="line">        let target;</span><br><span class="line">        if(selector) &#123; // 需要代理</span><br><span class="line">            target = e.target;</span><br><span class="line">            if(target.matches(selecotr)) &#123; // 判断是否是触发元素</span><br><span class="line">                fn.call(target, e)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            fn.call(target, e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line">const btn = document.getElementById(&apos;btn&apos;);</span><br><span class="line">bindEvent(btn, &apos;click&apos;, event =&gt; &#123;</span><br><span class="line">    console.log(event.target) // 获取触发的元素 </span><br><span class="line">    event.preventDefault() // 取消默认事件</span><br><span class="line">    event.stopPropagation() // 阻止冒泡</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 </li>
-</ul>
-</li>
-<li>DOM结构<ul>
-<li>新增/插入节点，createElement()，appendChild()未存在的节点直接创建，已存在的移动。</li>
-<li>删除节点：removeChild()</li>
-</ul>
-</li>
-<li>DOM性能<ul>
-<li>避免频繁的DOM操作</li>
-<li>对DOM查询做缓存，get操作用变量缓存一下</li>
-<li>将频繁操作改为一次操作，通过document.createDocumentFragment() 创建一个文档片段，将高频操作插入到文档片段中，最后再把文档片段插入</li>
+<li><p>事件代理</p>
+<ul>
+<li>代码简洁，事件绑定到触发的父元素上</li>
+<li>减少浏览器内存占用</li>
+<li>不要滥用</li>
 </ul>
 </li>
 </ol>
@@ -211,7 +195,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/30/[JSWebAPI]DOM/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/06/30/[JS基础]事件/">展开全文 >></a>
         </p>
       
 
@@ -306,6 +290,117 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/06/30/[JSWebAPI]cookie/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-[JSWebAPI]DOM" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/06/30/[JSWebAPI]DOM/">【WebAPI】DOM</a>
+    </h1>
+  
+
+        
+        <a href="/2021/06/30/[JSWebAPI]DOM/" class="archive-article-date">
+  	<time datetime="2021-06-30T02:45:57.317Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>DOM -&gt; Document Object Model</p>
+</blockquote>
+<ul>
+<li>DOM数据结构</li>
+<li>DOM常用的API</li>
+<li>attr和property的区别</li>
+<li>如何一次插入多个DOM节点</li>
+</ul>
+<h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><ul>
+<li>DOM 本质</li>
+<li>DOM 节点操作</li>
+<li>DOM 结构操作</li>
+<li>DOM 性能</li>
+</ul>
+<ol>
+<li>DOM本质：从HTML解析出来的一棵树</li>
+<li>DOM节点<ul>
+<li>节点获取的常见API</li>
+<li>通过js修改页面渲染结构：节点property，直接通过属性修改，如：dom.style.width = xxxx,dom.className = ‘xxx’</li>
+<li>修改的是标签的属性：节点attribute，通过getAttibute(‘style’, ‘font-size:16px’),setAttribute()<blockquote>
+<p>property： 修改JS对象属性，不会体现在html中；attribute：修改html属性，改变html结构。都有可能引起DOM重新渲染，可以先优先用property</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>DOM结构<ul>
+<li>新增/插入节点，createElement()，appendChild()未存在的节点直接创建，已存在的移动。</li>
+<li>删除节点：removeChild()</li>
+</ul>
+</li>
+<li>DOM性能<ul>
+<li>避免频繁的DOM操作</li>
+<li>对DOM查询做缓存，get操作用变量缓存一下</li>
+<li>将频繁操作改为一次操作，通过document.createDocumentFragment() 创建一个文档片段，将高频操作插入到文档片段中，最后再把文档片段插入</li>
+</ul>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/JavaScript//" class="article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/06/30/[JSWebAPI]DOM/">展开全文 >></a>
         </p>
       
 
@@ -1103,98 +1198,9 @@
 
 
   
-    <article id="post-重温学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/28/重温学习/">&lt;重温JS&gt;数据类型及基本转换</a>
-    </h1>
-  
-
-        
-        <a href="/2020/07/28/重温学习/" class="archive-article-date">
-  	<time datetime="2020-07-28T08:40:39.655Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li><p>7 种语言类型<br>undefined 是一个变量，而并非是一个关键字。老的浏览器中会是，ES5 以后就不是了。函数内部，对象的属性现在也是可以赋值的。<br>if(typeof str === ‘undefined’){<br>// 如果直接用 str === undefined, str 未声明的话可能会报错 not defined<br>}<br>String 用于表示文本数据。String 有最大长度是 2^53 - 1，字符串的 UTF16 编码，charAt、charCodeAt、length 等方法针对的都是 UTF16 编码，其实一个 utf16 单元代表一个字符，这俩数量是对应的，0-65536（U+0000 - U+FFFF）的码点被称为基本字符区域（BMP）<br>Number 2^64-2^53+3<br>NaN，占用了 9007199254740990，这原本是符合 IEEE 规则的数字；Infinity，无穷大；-Infinity，负无穷大。<br>还有 +0 -0，1/x 是 Infinity 还是 -Infinity<br>双精度浮点数，有效的检测范围-0x1fffffffffffff 至 0x1fffffffffffff，浮点数运算精度的问题<br>比较浮点数的准确方法是：与 JS 提供的最小精度比较 Math.abs(0.1 + 0.2 - 0.3) &lt;= Number.EPSILON</p>
-<p>Symbol，非字符串 key 的集合， 可以用于迭代器，Symbol.iterator 需要有 next，next 返回一个对象包括 value 和 done</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var o = new Object</span><br><span class="line"></span><br><span class="line">o[Symbol.iterator] = function() &#123;</span><br><span class="line">    var v = 0</span><br><span class="line">    return &#123;</span><br><span class="line">        next: function() &#123;</span><br><span class="line">            return &#123; value: v++, done: v &gt; 10 &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">for(var v of o)</span><br><span class="line">    console.log(v); // 0 1 2 3 ... 9</span><br></pre></td></tr></table></figure>
-
-<p>StringToNumber，字符串转换为数组支持进制转换，支持科学计数法，即用 Number()转换。不建议使用 parseInt，用的时候最好传入第二个参数。parseFloat 则直接把原字符串作为十进制来解析，它不会引入任何的其他进制。都会忽略字符串前后的空格</p>
-<ul>
-<li>Number<br>进行十进制的转换，若字符串中带有非数字，都会变成 NaN，数字会正常转换若 0 开头则会被忽略。如果是对象，则先调用对象的 valueOf()方法，如果为 NaN，则再调用 toString()</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Number(&apos;&apos;) 0</span><br><span class="line">Number(true) 1</span><br><span class="line">Number(null) 0</span><br><span class="line">Number(undefined) NaN</span><br><span class="line">Number(&apos;123aaa&apos;) NaN</span><br><span class="line">Number([]) 0 -&gt; Number(&apos;&apos;)</span><br><span class="line">+string</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>parseInt(string, radix)<br>如果字符串以数字开头，则会忽略掉后续的非数字进行类型转换，否则返回 NaN，即找到字符串中的数字进行转换，若没有则为 NaN。以’0x’开头的十六进制也会转换，浮点数是向下取整，科学计数法也是不会正常转换的<br>radix 不填或填 0 的时候默认为 10,取值范围为 2 ～ 36,radix 超出指定范围返回 NaN，若转换的数字大于 radio，也返回 NaN。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">parseInt(&apos;123aaa&apos;) // 123</span><br><span class="line">parseInt([]) // NaN</span><br><span class="line">[&apos;1&apos;, &apos;2&apos;, &apos;3&apos;].map(parseInt) -&gt; [&apos;1&apos;, &apos;2&apos;, &apos;3&apos;].map((elem, index) =&gt; parseInt(elem, index)) // [1, NaN, NaN]</span><br><span class="line">[&apos;10&apos;,&apos;10&apos;,&apos;10&apos;,&apos;10&apos;,&apos;10&apos;].map(parseInt) // [10, NaN, 2, 3, 4]</span><br><span class="line">[&apos;1.1&apos;, &apos;2&apos;, &apos;0.3&apos;].map(parseInt) // [1, NaN, 0]</span><br></pre></td></tr></table></figure>
-
-<p>数组的 toString(),会返回一个字符串的拼接；valueOf 还是返回数组。</p>
-<p>NumberToString，正常。</p>
-<h6 id="装箱"><a href="#装箱" class="headerlink" title="装箱"></a>装箱</h6><p>装箱，是指讲基本数据类型转化为对象，会频繁产生临时对象，在一些性能要求高的情况下，尽量避免。<br>.运算符提供了装箱操作，所以基本类型通过.可以临时创建一个对象来调用对象的方法。<br>Object.prototype.toString.call() 是可以准确识别对象对应的基本类型的方法，它比 instanceof(constructor) 更加准确，因为 JS 中没有方法可以更改私有的 class 属性。call 本身会产生装箱操作，所以需要配合 typeof 来区分基本类型还是对象类型。</p>
-<h6 id="拆箱"><a href="#拆箱" class="headerlink" title="拆箱"></a>拆箱</h6><p>拆箱是把对象转换成基本数据类型。toPrimitive<br>对象到 Number，String 的转换都遵循“先拆箱再转换”的原则。把对象-&gt;基本类型-&gt;对应的 String/Number</p>
-<p>通过调用 valueOf()，toString()，没有则报错 TypeError。ES6 以后可以用 Symbol.toPrimitive 自定义转换覆盖以前的 valueOf()，toString()。</p>
-<p>通过 new Number()声明的类型和直接用 Number()声明的类型不同，object 与 number 的区别。<br>toString()还可以传入进制进行计算。valueOf 返回数字</p>
-<p>toFixed(), toPrecision(num)向上取整, toExponential()科学计数法</p>
-<p>String,chartAt(index),chartCodeAt(index)</p>
-<p>PS: 实现一个 parseInt()，Number()</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/07/28/重温学习/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/6/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/6/">Next &raquo;</a>
     </nav>
   
 
@@ -1281,15 +1287,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">css</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">flex</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1333,11 +1339,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1349,15 +1355,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tree</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Binary tree</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1373,6 +1379,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">closure</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">moment.js</a>
               </li>
              
@@ -1382,10 +1392,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">closure</a>
               </li>
              
               <li class="article-tag-list-item">

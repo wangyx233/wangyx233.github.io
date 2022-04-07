@@ -130,6 +130,129 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-[浏览器]从输入URL到页面展示发生了什么" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/02/16/[浏览器]从输入URL到页面展示发生了什么/">【浏览器】从输入URL到页面展示发生了什么？</a>
+    </h1>
+  
+
+        
+        <a href="/2022/02/16/[浏览器]从输入URL到页面展示发生了什么/" class="archive-article-date">
+  	<time datetime="2022-02-16T02:04:47.724Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>前置知识：目前浏览器都有哪些进程？</p>
+</blockquote>
+<ul>
+<li>浏览器主进程</li>
+<li>渲染进程：默认情况下，Chrome 会为每个 Tab 标签创建一个渲染进程。出于安全考虑，渲染进程都是运行在沙箱模式下。排版引擎 Blink 和 JavaScript 引擎 V8 都是运行在该进程中。</li>
+<li>网络进程</li>
+<li>GPU 进程</li>
+<li>插件进程</li>
+</ul>
+<blockquote>
+<p>1 个浏览器（Browser）主进程、1 个 GPU 进程、1 个网络（NetWork）进程、多个渲染进程和多个插件进程</p>
+</blockquote>
+<p>多进程模型提升了浏览器的稳定性、流畅性和安全性。但同样不可避免地带来了一些问题，更高的资源占用，更复杂的体系架构。<br>为了解决这些问题，在 2016 年，Chrome 官方团队使用“面向服务的架构”（Services Oriented Architecture，简称 SOA）的思想设计了新的 Chrome 架构。原来的各种模块会被重构成独立的服务（Service），每个服务（Service）都可以在独立的进程中运行，访问服务（Service）必须使用定义好的接口，通过 IPC 来通信，从而构建一个更内聚、松耦合、易于维护和扩展的系统。<br>浏览器的主进程，渲染进程，插件进程。其他的变成基本服务，比如，网络进程、GPU 进程、Audio 进程、Video 进程、文件进程、Profile 进程、UI 进程、设备进程…内存不够的系统中，会把相关的进程都合并进主进程。</p>
+<ol>
+<li>用户输入 url 并回车</li>
+<li>浏览器进程检查 url，组装协议，构成完整的 url</li>
+<li>浏览器进程通过进程间通信（IPC）把 url 请求发送给网络进程</li>
+<li>网络进程接收到 url 请求后检查本地缓存是否缓存了该请求资源，如果有则将该资源返回给浏览器进程</li>
+<li>如果没有，网络进程向 web 服务器发起 http 请求（网络请求），请求流程如下：</li>
+</ol>
+<ul>
+<li>进行 DNS 解析，获取服务器 ip 地址，端口（端口是输入的，没输入 http 80，https 443)，如果请求协议是 HTTPS，那么还需要建立 TLS 连接</li>
+<li>利用 ip 地址和服务器建立 tcp 连接</li>
+<li>构建请求头信息</li>
+<li>发送请求头信息</li>
+<li>服务器响应后，网络进程接收响应头和响应信息，并解析响应内容</li>
+</ul>
+<ol start="6">
+<li>网络进程解析响应流程；</li>
+</ol>
+<ul>
+<li>检查状态码，如果是 301/302，则需要重定向，从 Location 自动中读取地址，重新进行第 4 步 （301/302 跳转也会读取本地缓存），如果是 200，则继续处理请求。</li>
+<li>200 响应处理：检查响应类型 Content-Type，如果是字节流类型(application/octet-stream)，则将该请求提交给下载管理器，该导航流程结束，不再进行后续的渲染，如果是 html 则通知浏览器进程准备渲染进程准备进行渲染。</li>
+</ul>
+<ol start="7">
+<li>准备渲染进程</li>
+</ol>
+<ul>
+<li>浏览器进程检查当前 url 是否和之前打开的渲染进程根域名是否相同，如果相同，则复用原来的进程，如果不同，则开启新的渲染进程(process-per-site-instance)</li>
+</ul>
+<ol start="8">
+<li>传输数据、更新状态。</li>
+</ol>
+<ul>
+<li>渲染进程准备好后，浏览器向渲染进程发起“提交文档”的消息，渲染进程接收到消息和网络进程建立传输数据的“管道”</li>
+<li>渲染进程接收完数据后，向浏览器发送“确认提交”</li>
+<li>浏览器进程接收到确认消息后更新浏览器界面状态：安全、地址栏 url、前进后退的历史状态、更新 web 页面</li>
+</ul>
+<p>总体来说，分为网络请求和渲染两大部分，即导航流程和渲染流程。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/浏览器//" class="article-tag-list-link color4">浏览器</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/02/16/[浏览器]从输入URL到页面展示发生了什么/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-[JS基础]执行" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1253,127 +1376,9 @@
 
 
   
-    <article id="post-[人生]购房" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/30/[人生]购房/">【生活】如果有购房需求</a>
-    </h1>
-  
-
-        
-        <a href="/2021/06/30/[人生]购房/" class="archive-article-date">
-  	<time datetime="2021-06-30T02:45:57.328Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>房产经纪人-一度觉得自己可以成为</p>
-</blockquote>
-<h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1><p>不论二手还是新房都有一些共通之处，最终要的是要多学，多看，多比较</p>
-<blockquote>
-<p>平时买个几块钱的菜都要比来比去，怎么到了几十上百万的🏡的时候就比买白菜还随意呢？</p>
-</blockquote>
-<ul>
-<li><p>现在资讯无比发达，所以在下手之前可以通过各种大v，公众号，或者直播了解一些房产的基本信息。</p>
-<h2 id="外部因素"><a href="#外部因素" class="headerlink" title="外部因素"></a>外部因素</h2><ol>
-<li>学区属性是否刚需</li>
-<li>交通地铁</li>
-<li>邻居</li>
-<li>车位</li>
-<li>流通性</li>
-<li>…</li>
-</ol>
-<h2 id="内部因素"><a href="#内部因素" class="headerlink" title="内部因素"></a>内部因素</h2><ol>
-<li>楼层，楼高</li>
-<li>采光，遮挡</li>
-<li>隔音，噪音，是否临街</li>
-<li>下水，独立下水</li>
-<li>供暖，物业</li>
-<li>窗户</li>
-<li>…</li>
-</ol>
-</li>
-<li><p>可以多实地看几套二手房，看房又不💰，实地感受一下各种因素的影响，以及自己的接受度</p>
-</li>
-<li><p>二手房尤其要注意🏡的流通性，大概率5-8年会换房，所以中介费，还有税费要注意</p>
-</li>
-<li><p>新房封顶以后才能批贷，这点要注意。</p>
-</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">购房</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/生活//" class="article-tag-list-link color3">生活</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/30/[人生]购房/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 
@@ -1460,15 +1465,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">css</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">flex</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1512,11 +1517,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1528,15 +1533,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tree</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Binary tree</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1552,6 +1557,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">closure</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">moment.js</a>
               </li>
              
@@ -1561,10 +1570,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">closure</a>
               </li>
              
               <li class="article-tag-list-item">

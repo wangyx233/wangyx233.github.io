@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wangyx233.github.io/"/>
-  <updated>2022-04-07T01:58:48.814Z</updated>
+  <updated>2022-04-07T06:35:33.771Z</updated>
   <id>https://wangyx233.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【浏览器】Chrome v100了，版本号你还好嘛</title>
+    <link href="https://wangyx233.github.io/2022/04/07/%5B%E6%B5%8F%E8%A7%88%E5%99%A8%5D%E7%89%88%E6%9C%AC%E5%8F%B7/"/>
+    <id>https://wangyx233.github.io/2022/04/07/[浏览器]版本号/</id>
+    <published>2022-04-07T06:35:33.770Z</published>
+    <updated>2022-04-07T06:35:33.771Z</updated>
+    
+    <content type="html"><![CDATA[<p>今日重启电脑，突然发现 chrome 又又又又更新啦，正式迈入 100 大关。有一些重大的改变，比如图标更大更亮了，推荐用 User-Agent Client Hints API 代替 User-Agent 字符串，还有一些屏幕 screen 窗口的 API 等等。<br>但是突然想起了版本号比较这个问题：</p><blockquote><p>‘100’ &gt; ‘99’ true or false ???</p></blockquote><p>这个问题就要上升到两字符串比较大小，两边都是 string 类型，不会进行类型转换，而是会根据<code>第一个不同字符的 ASCII 码值</code>进行比较。<br>所以 <code>&#39;100&#39; &gt; &#39;99&#39; -&gt; false</code> 啦，变成数字比较正常。再延伸一下像这样的版本号，可以怎样对比呢？</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">version1: 1.0.1</span><br><span class="line">version2: 1.1</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var compareVersion = function (version1, version2) &#123;</span><br><span class="line">  const v1 = version1.split(&apos;.&apos;)</span><br><span class="line">  const v2 = version2.split(&apos;.&apos;)</span><br><span class="line">  const max = Math.max(v1.length, v2.length)</span><br><span class="line">  for (let i = 0; i &lt; max; i++) &#123;</span><br><span class="line">    let x = 0,</span><br><span class="line">      y = 0</span><br><span class="line">    if (i &lt; v1.length) x = +v1[i]</span><br><span class="line">    if (i &lt; v2.length) y = +v2[i]</span><br><span class="line">    if (x &gt; y) return 1</span><br><span class="line">    if (x &lt; y) return -1</span><br><span class="line">  &#125;</span><br><span class="line">  return 0</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;今日重启电脑，突然发现 chrome 又又又又更新啦，正式迈入 100 大关。有一些重大的改变，比如图标更大更亮了，推荐用 User-Agent Client Hints API 代替 User-Agent 字符串，还有一些屏幕 screen 窗口的 API 等等。&lt;br&gt;
+      
+    
+    </summary>
+    
+      <category term="浏览器" scheme="https://wangyx233.github.io/categories/%E6%B5%8F%E8%A7%88%E5%99%A8/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>【React】React 18来辣</title>
@@ -619,6 +642,36 @@
   </entry>
   
   <entry>
+    <title>【WebAPI】BOM</title>
+    <link href="https://wangyx233.github.io/2021/06/30/%5BWebAPI%5DBOM/"/>
+    <id>https://wangyx233.github.io/2021/06/30/[WebAPI]BOM/</id>
+    <published>2021-06-30T02:45:57.327Z</published>
+    <updated>2021-07-13T03:21:58.455Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>BOM -&gt; Browser Object Model</p></blockquote><ul><li>如何识别浏览器的类型</li><li>分别拆解url各部分</li></ul><h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><ul><li>navigator</li><li>screen</li><li>location</li><li>history<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// 1. navigator</span><br><span class="line">const ua = navigator.userAgent;</span><br><span class="line"></span><br><span class="line">// 2. screen</span><br><span class="line">const width = screen.width;</span><br><span class="line">const height = screen.height;</span><br><span class="line"></span><br><span class="line">// 3. location</span><br><span class="line">location.href</span><br><span class="line">location.protocol</span><br><span class="line">location.pathname</span><br><span class="line">location.hash</span><br><span class="line">location.search</span><br><span class="line">location.host</span><br><span class="line"></span><br><span class="line">// 4. history</span><br><span class="line">history.back();</span><br><span class="line">history.forwards();</span><br></pre></td></tr></table></figure></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;BOM -&amp;gt; Browser Object Model&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;如何识别浏览器的类型&lt;/li&gt;
+&lt;li&gt;分别拆解url各部分&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;知识点&quot;&gt;&lt;a href=&quot;#知
+      
+    
+    </summary>
+    
+      <category term="JavaScript" scheme="https://wangyx233.github.io/categories/JavaScript/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>【生活】如果有保险需求</title>
     <link href="https://wangyx233.github.io/2021/06/30/%5B%E4%BA%BA%E7%94%9F%5D%E5%AE%B6%E5%BA%AD%E4%BF%9D%E9%99%A9%E9%85%8D%E7%BD%AE/"/>
     <id>https://wangyx233.github.io/2021/06/30/[人生]家庭保险配置/</id>
@@ -647,36 +700,6 @@
     
     
       <category term="保险" scheme="https://wangyx233.github.io/tags/%E4%BF%9D%E9%99%A9/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【WebAPI】BOM</title>
-    <link href="https://wangyx233.github.io/2021/06/30/%5BWebAPI%5DBOM/"/>
-    <id>https://wangyx233.github.io/2021/06/30/[WebAPI]BOM/</id>
-    <published>2021-06-30T02:45:57.327Z</published>
-    <updated>2021-07-13T03:21:58.455Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>BOM -&gt; Browser Object Model</p></blockquote><ul><li>如何识别浏览器的类型</li><li>分别拆解url各部分</li></ul><h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><ul><li>navigator</li><li>screen</li><li>location</li><li>history<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// 1. navigator</span><br><span class="line">const ua = navigator.userAgent;</span><br><span class="line"></span><br><span class="line">// 2. screen</span><br><span class="line">const width = screen.width;</span><br><span class="line">const height = screen.height;</span><br><span class="line"></span><br><span class="line">// 3. location</span><br><span class="line">location.href</span><br><span class="line">location.protocol</span><br><span class="line">location.pathname</span><br><span class="line">location.hash</span><br><span class="line">location.search</span><br><span class="line">location.host</span><br><span class="line"></span><br><span class="line">// 4. history</span><br><span class="line">history.back();</span><br><span class="line">history.forwards();</span><br></pre></td></tr></table></figure></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;blockquote&gt;
-&lt;p&gt;BOM -&amp;gt; Browser Object Model&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;如何识别浏览器的类型&lt;/li&gt;
-&lt;li&gt;分别拆解url各部分&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&quot;知识点&quot;&gt;&lt;a href=&quot;#知
-      
-    
-    </summary>
-    
-      <category term="JavaScript" scheme="https://wangyx233.github.io/categories/JavaScript/"/>
-    
     
   </entry>
   
@@ -798,6 +821,33 @@
   </entry>
   
   <entry>
+    <title>【React】前端路由-React Router</title>
+    <link href="https://wangyx233.github.io/2021/06/30/%5BReact%5D%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%94%B1/"/>
+    <id>https://wangyx233.github.io/2021/06/30/[React]前端路由/</id>
+    <published>2021-06-30T02:45:57.323Z</published>
+    <updated>2021-07-13T03:21:58.447Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="What"><a href="#What" class="headerlink" title="What"></a>What</h1><ul><li>切换Hash</li><li>切换Path<br>HTML5的History API中的 pushState、replaceState，还需要在服务端配置historyApiFallback<br>路由守卫<h1 id="How"><a href="#How" class="headerlink" title="How"></a>How</h1></li></ul><ol><li>路由器：BrowserRouter 和 HashRouter</li></ol><ul><li>BrowserRouter 是使用 HTML 5 的 history API 来控制路由跳转的。</li><li>HashRouter 是通过 URL 的 hash 属性来控制路由跳转的。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">window.location.hash</span><br><span class="line">// 监听hash变化，点击浏览器的前进后退会触发</span><br><span class="line">window.addEventListener(&apos;hashchange&apos;, function(event)&#123;</span><br><span class="line">    // 根据 hash 的变化更新内容</span><br><span class="line">&#125;,false)</span><br><span class="line">window.history.forward()  // 前进到下一页</span><br><span class="line">window.history.back() // 后退到上一页</span><br><span class="line">window.history.go(2)</span><br><span class="line">history.pushState(data[,title][,url]); // 向浏览历史中追加一条记录</span><br><span class="line">history.replaceState(data[,title][,url]); // 修改（替换）当前页在浏览历史中的信息</span><br><span class="line">window.addEventListener(&apos;popstate&apos;, function(e) &#123;</span><br><span class="line">  console.log(e)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li></ul><blockquote><p>go、forward 和 back 等方法的调用确实会触发 popstate，但是pushState 和 replaceState 不会。不过这一点问题不大，我们可以通过自定义事件和全局事件总线来手动触发事件。</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;What&quot;&gt;&lt;a href=&quot;#What&quot; class=&quot;headerlink&quot; title=&quot;What&quot;&gt;&lt;/a&gt;What&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;切换Hash&lt;/li&gt;
+&lt;li&gt;切换Path&lt;br&gt;HTML5的History API中的 pushState、
+      
+    
+    </summary>
+    
+      <category term="React" scheme="https://wangyx233.github.io/categories/React/"/>
+    
+    
+      <category term="React" scheme="https://wangyx233.github.io/tags/React/"/>
+    
+  </entry>
+  
+  <entry>
     <title>【React】事件系统</title>
     <link href="https://wangyx233.github.io/2021/06/30/%5BReact%5D%E4%BA%8B%E4%BB%B6/"/>
     <id>https://wangyx233.github.io/2021/06/30/[React]事件/</id>
@@ -816,33 +866,6 @@
 &lt;li&gt;事件冒泡&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h1 
-      
-    
-    </summary>
-    
-      <category term="React" scheme="https://wangyx233.github.io/categories/React/"/>
-    
-    
-      <category term="React" scheme="https://wangyx233.github.io/tags/React/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【React】前端路由-React Router</title>
-    <link href="https://wangyx233.github.io/2021/06/30/%5BReact%5D%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%94%B1/"/>
-    <id>https://wangyx233.github.io/2021/06/30/[React]前端路由/</id>
-    <published>2021-06-30T02:45:57.323Z</published>
-    <updated>2021-07-13T03:21:58.447Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="What"><a href="#What" class="headerlink" title="What"></a>What</h1><ul><li>切换Hash</li><li>切换Path<br>HTML5的History API中的 pushState、replaceState，还需要在服务端配置historyApiFallback<br>路由守卫<h1 id="How"><a href="#How" class="headerlink" title="How"></a>How</h1></li></ul><ol><li>路由器：BrowserRouter 和 HashRouter</li></ol><ul><li>BrowserRouter 是使用 HTML 5 的 history API 来控制路由跳转的。</li><li>HashRouter 是通过 URL 的 hash 属性来控制路由跳转的。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">window.location.hash</span><br><span class="line">// 监听hash变化，点击浏览器的前进后退会触发</span><br><span class="line">window.addEventListener(&apos;hashchange&apos;, function(event)&#123;</span><br><span class="line">    // 根据 hash 的变化更新内容</span><br><span class="line">&#125;,false)</span><br><span class="line">window.history.forward()  // 前进到下一页</span><br><span class="line">window.history.back() // 后退到上一页</span><br><span class="line">window.history.go(2)</span><br><span class="line">history.pushState(data[,title][,url]); // 向浏览历史中追加一条记录</span><br><span class="line">history.replaceState(data[,title][,url]); // 修改（替换）当前页在浏览历史中的信息</span><br><span class="line">window.addEventListener(&apos;popstate&apos;, function(e) &#123;</span><br><span class="line">  console.log(e)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li></ul><blockquote><p>go、forward 和 back 等方法的调用确实会触发 popstate，但是pushState 和 replaceState 不会。不过这一点问题不大，我们可以通过自定义事件和全局事件总线来手动触发事件。</p></blockquote>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;What&quot;&gt;&lt;a href=&quot;#What&quot; class=&quot;headerlink&quot; title=&quot;What&quot;&gt;&lt;/a&gt;What&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;切换Hash&lt;/li&gt;
-&lt;li&gt;切换Path&lt;br&gt;HTML5的History API中的 pushState、
       
     
     </summary>
@@ -1039,6 +1062,31 @@
   </entry>
   
   <entry>
+    <title>【JS基础】变量类型与比较</title>
+    <link href="https://wangyx233.github.io/2021/06/30/%5BJS%E5%9F%BA%E7%A1%80%5D%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B%E4%B8%8E%E6%AF%94%E8%BE%83/"/>
+    <id>https://wangyx233.github.io/2021/06/30/[JS基础]变量类型与比较/</id>
+    <published>2021-06-30T02:45:57.319Z</published>
+    <updated>2021-07-13T03:21:58.416Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h1><ol><li>typeof 能判断什么类型？</li><li>=== vs == 有什么不同？</li><li>值类型与引用类型有什么区别？</li><li>手写深拷贝？</li></ol><a id="more"></a><h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><h2 id="值类型-引用类型"><a href="#值类型-引用类型" class="headerlink" title="值类型 | 引用类型"></a>值类型 | 引用类型</h2><blockquote><p>值类型包括，string，number，boolean，undefined，symbol 值类型是存储在栈中的，存的是值本身</p></blockquote><blockquote><p>常见的引用类型包括，object，array，null(特殊的引用类型，只向空地址)，function(特殊的引用类型，也可以独立为函数类型)  引用类型则是在栈中存变量以及变量指向的内存地址，实际的值是由内存地址指向存在堆中的，普通的浅拷贝，复制的是栈中的内容（考虑到存储，性能）</p></blockquote><h2 id="typeof"><a href="#typeof" class="headerlink" title="typeof"></a>typeof</h2><ul><li>能区分是值类型还是引用类型，并且能够区分具体的值类型，但是无法细化区分引用类型</li><li>能识别出function类型</li></ul><h2 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h2><p>递归实现，function内容</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">https://codepen.io/yx233/pen/oNzKvbg</span><br><span class="line"></span><br><span class="line">function deepClone(obj) &#123;</span><br><span class="line">  if(typeof obj !== &apos;object&apos; || obj == null) return obj;</span><br><span class="line">  let res = obj instanceof Array ? [] : &#123;&#125;;</span><br><span class="line">  for(let key in obj) &#123;</span><br><span class="line">    if(obj.hasOwnProperty(key)) res[key] = deepClone(obj[key]);</span><br><span class="line">  &#125;</span><br><span class="line">  return res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h2><ul><li>字符串拼接，和字符串的加法</li><li>==，类型转换，null == undefined // true, 除了 == null(=== null || === undefined)，其他情况用===判断</li><li>if，逻辑判断，判断的是truely变量 !!a === true，falsely变量 !!b === false。 &amp;&amp; || 返回终止前的值<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">👇为falsely变量，除此以外为truely变量</span><br><span class="line">!!0 === false</span><br><span class="line">!!null === false</span><br><span class="line">!!undefined === false</span><br><span class="line">!!NaN === false</span><br><span class="line">!!&apos;&apos; === false</span><br><span class="line">!!false === false</span><br></pre></td></tr></table></figure></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;思考&quot;&gt;&lt;a href=&quot;#思考&quot; class=&quot;headerlink&quot; title=&quot;思考&quot;&gt;&lt;/a&gt;思考&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;typeof 能判断什么类型？&lt;/li&gt;
+&lt;li&gt;=== vs == 有什么不同？&lt;/li&gt;
+&lt;li&gt;值类型与引用类型有什么区别？&lt;/li&gt;
+&lt;li&gt;手写深拷贝？&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+      <category term="JavaScript" scheme="https://wangyx233.github.io/categories/JavaScript/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>【JS基础】原型与原型链</title>
     <link href="https://wangyx233.github.io/2021/06/30/%5BJS%E5%9F%BA%E7%A1%80%5D%E5%8E%9F%E5%9E%8B%E4%B8%8E%E5%8E%9F%E5%9E%8B%E9%93%BE/"/>
     <id>https://wangyx233.github.io/2021/06/30/[JS基础]原型与原型链/</id>
@@ -1062,21 +1110,20 @@
   </entry>
   
   <entry>
-    <title>【JS基础】变量类型与比较</title>
-    <link href="https://wangyx233.github.io/2021/06/30/%5BJS%E5%9F%BA%E7%A1%80%5D%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B%E4%B8%8E%E6%AF%94%E8%BE%83/"/>
-    <id>https://wangyx233.github.io/2021/06/30/[JS基础]变量类型与比较/</id>
-    <published>2021-06-30T02:45:57.319Z</published>
-    <updated>2021-07-13T03:21:58.416Z</updated>
+    <title>【JS基础】作用域和闭包</title>
+    <link href="https://wangyx233.github.io/2021/06/30/%5BJS%E5%9F%BA%E7%A1%80%5D%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/"/>
+    <id>https://wangyx233.github.io/2021/06/30/[JS基础]作用域和闭包/</id>
+    <published>2021-06-30T02:45:57.318Z</published>
+    <updated>2022-02-16T05:45:08.537Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h1><ol><li>typeof 能判断什么类型？</li><li>=== vs == 有什么不同？</li><li>值类型与引用类型有什么区别？</li><li>手写深拷贝？</li></ol><a id="more"></a><h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><h2 id="值类型-引用类型"><a href="#值类型-引用类型" class="headerlink" title="值类型 | 引用类型"></a>值类型 | 引用类型</h2><blockquote><p>值类型包括，string，number，boolean，undefined，symbol 值类型是存储在栈中的，存的是值本身</p></blockquote><blockquote><p>常见的引用类型包括，object，array，null(特殊的引用类型，只向空地址)，function(特殊的引用类型，也可以独立为函数类型)  引用类型则是在栈中存变量以及变量指向的内存地址，实际的值是由内存地址指向存在堆中的，普通的浅拷贝，复制的是栈中的内容（考虑到存储，性能）</p></blockquote><h2 id="typeof"><a href="#typeof" class="headerlink" title="typeof"></a>typeof</h2><ul><li>能区分是值类型还是引用类型，并且能够区分具体的值类型，但是无法细化区分引用类型</li><li>能识别出function类型</li></ul><h2 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h2><p>递归实现，function内容</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">https://codepen.io/yx233/pen/oNzKvbg</span><br><span class="line"></span><br><span class="line">function deepClone(obj) &#123;</span><br><span class="line">  if(typeof obj !== &apos;object&apos; || obj == null) return obj;</span><br><span class="line">  let res = obj instanceof Array ? [] : &#123;&#125;;</span><br><span class="line">  for(let key in obj) &#123;</span><br><span class="line">    if(obj.hasOwnProperty(key)) res[key] = deepClone(obj[key]);</span><br><span class="line">  &#125;</span><br><span class="line">  return res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h2><ul><li>字符串拼接，和字符串的加法</li><li>==，类型转换，null == undefined // true, 除了 == null(=== null || === undefined)，其他情况用===判断</li><li>if，逻辑判断，判断的是truely变量 !!a === true，falsely变量 !!b === false。 &amp;&amp; || 返回终止前的值<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">👇为falsely变量，除此以外为truely变量</span><br><span class="line">!!0 === false</span><br><span class="line">!!null === false</span><br><span class="line">!!undefined === false</span><br><span class="line">!!NaN === false</span><br><span class="line">!!&apos;&apos; === false</span><br><span class="line">!!false === false</span><br></pre></td></tr></table></figure></li></ul>]]></content>
+    <content type="html"><![CDATA[<h1 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h1><ol><li>this 的不同应用场景，以及取值</li><li>手写 bind 函数</li><li>闭包的场景</li></ol><a id="more"></a><h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><ol><li>作用域，一个变量的合法使用范围</li></ol><ul><li>全局作用域</li><li>函数作用域</li><li>块级作用域（ES6）TDZ（Temporal Dead Zone）<blockquote><p>自由变量，一个变量在当前作用域没有定义却被使用了，需要沿着作用域一层一层向上查找，找到为止，如果全局作用域都没有找到，那就是 xxxx is not defined 咯</p></blockquote></li></ul><ol start="2"><li>闭包：作用域应用的特殊情况</li></ol><ul><li>函数作为参数被传递</li><li>函数作为返回值被返回<blockquote><p>自由变量的查找是在函数定义的地方，向上级作用域查找，而不是在函数执行的地方查找！</p></blockquote></li></ul><ol start="3"><li>this，函数执行的时候确认的</li></ol><ul><li>普通函数，setTimeout 话看执行时刻</li><li>call apply bind: call,apply 原函数直接调用，bind 会返回一个新的函数</li><li>对象方法</li><li>class</li><li>箭头函数：取上级作用域的 this</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">const obj = &#123;</span><br><span class="line">    name: &apos;xxx&apos;,</span><br><span class="line">    sayHi() &#123;</span><br><span class="line">        console.log(this)</span><br><span class="line">    &#125;,</span><br><span class="line">    wait() &#123;</span><br><span class="line">        setTimeout(function() &#123;</span><br><span class="line">            console.log(this)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    waitTwo() &#123;</span><br><span class="line">        setTimeout(()=&gt; &#123;</span><br><span class="line">            console.log(this)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h1 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h1><ul><li>手写 bind 函数</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Function.prototype.bind1 = function () &#123;</span><br><span class="line">    // 获取参数</span><br><span class="line">    const args = Array.prototype.slice.call(arguments);</span><br><span class="line">    const _this = args.shift();</span><br><span class="line">    const self = this;</span><br><span class="line">    return function () &#123;</span><br><span class="line">        return self.apply(_this, args);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
       &lt;h1 id=&quot;思考&quot;&gt;&lt;a href=&quot;#思考&quot; class=&quot;headerlink&quot; title=&quot;思考&quot;&gt;&lt;/a&gt;思考&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;typeof 能判断什么类型？&lt;/li&gt;
-&lt;li&gt;=== vs == 有什么不同？&lt;/li&gt;
-&lt;li&gt;值类型与引用类型有什么区别？&lt;/li&gt;
-&lt;li&gt;手写深拷贝？&lt;/li&gt;
+&lt;li&gt;this 的不同应用场景，以及取值&lt;/li&gt;
+&lt;li&gt;手写 bind 函数&lt;/li&gt;
+&lt;li&gt;闭包的场景&lt;/li&gt;
 &lt;/ol&gt;
     
     </summary>
@@ -1115,21 +1162,24 @@
   </entry>
   
   <entry>
-    <title>【JS基础】作用域和闭包</title>
-    <link href="https://wangyx233.github.io/2021/06/30/%5BJS%E5%9F%BA%E7%A1%80%5D%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/"/>
-    <id>https://wangyx233.github.io/2021/06/30/[JS基础]作用域和闭包/</id>
-    <published>2021-06-30T02:45:57.318Z</published>
-    <updated>2022-02-16T05:45:08.537Z</updated>
+    <title>【WebAPI】存储</title>
+    <link href="https://wangyx233.github.io/2021/06/30/%5BJSWebAPI%5Dcookie/"/>
+    <id>https://wangyx233.github.io/2021/06/30/[JSWebAPI]cookie/</id>
+    <published>2021-06-30T02:45:57.317Z</published>
+    <updated>2021-07-13T03:21:58.364Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h1><ol><li>this 的不同应用场景，以及取值</li><li>手写 bind 函数</li><li>闭包的场景</li></ol><a id="more"></a><h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><ol><li>作用域，一个变量的合法使用范围</li></ol><ul><li>全局作用域</li><li>函数作用域</li><li>块级作用域（ES6）TDZ（Temporal Dead Zone）<blockquote><p>自由变量，一个变量在当前作用域没有定义却被使用了，需要沿着作用域一层一层向上查找，找到为止，如果全局作用域都没有找到，那就是 xxxx is not defined 咯</p></blockquote></li></ul><ol start="2"><li>闭包：作用域应用的特殊情况</li></ol><ul><li>函数作为参数被传递</li><li>函数作为返回值被返回<blockquote><p>自由变量的查找是在函数定义的地方，向上级作用域查找，而不是在函数执行的地方查找！</p></blockquote></li></ul><ol start="3"><li>this，函数执行的时候确认的</li></ol><ul><li>普通函数，setTimeout 话看执行时刻</li><li>call apply bind: call,apply 原函数直接调用，bind 会返回一个新的函数</li><li>对象方法</li><li>class</li><li>箭头函数：取上级作用域的 this</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">const obj = &#123;</span><br><span class="line">    name: &apos;xxx&apos;,</span><br><span class="line">    sayHi() &#123;</span><br><span class="line">        console.log(this)</span><br><span class="line">    &#125;,</span><br><span class="line">    wait() &#123;</span><br><span class="line">        setTimeout(function() &#123;</span><br><span class="line">            console.log(this)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    waitTwo() &#123;</span><br><span class="line">        setTimeout(()=&gt; &#123;</span><br><span class="line">            console.log(this)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h1 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h1><ul><li>手写 bind 函数</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Function.prototype.bind1 = function () &#123;</span><br><span class="line">    // 获取参数</span><br><span class="line">    const args = Array.prototype.slice.call(arguments);</span><br><span class="line">    const _this = args.shift();</span><br><span class="line">    const self = this;</span><br><span class="line">    return function () &#123;</span><br><span class="line">        return self.apply(_this, args);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<ul><li>介绍cookie、localStorage、sessionStorage区别</li></ul><h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><ol><li><p>cookie</p><ul><li>通过;分割的字符串，每一部分都是key=value的形式</li><li>http请求的一部分，用于浏览器和服务端通讯的</li><li>document.cookie修改，默认每次追加或者修改一个key/value</li><li>限制：最大4KB，每次http请求都需要发送到服务端，api太简陋</li></ul></li><li><p>localStorage、sessionStorage</p><ul><li>HTML5专门为存储设计的，最大可存储5M / pre host</li><li>API：getItem() setItem() 存储的为字符串的形式，所以其他格式的数据要注意</li><li>和http请求没关系</li><li>localStorage 永久存储，除非手动或者代码删除；sessionStorage只存在于当前会话，页面关闭清空</li></ul></li></ol>]]></content>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;思考&quot;&gt;&lt;a href=&quot;#思考&quot; class=&quot;headerlink&quot; title=&quot;思考&quot;&gt;&lt;/a&gt;思考&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;this 的不同应用场景，以及取值&lt;/li&gt;
-&lt;li&gt;手写 bind 函数&lt;/li&gt;
-&lt;li&gt;闭包的场景&lt;/li&gt;
-&lt;/ol&gt;
+      
+      
+        &lt;ul&gt;
+&lt;li&gt;介绍cookie、localStorage、sessionStorage区别&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;知识点&quot;&gt;&lt;a href=&quot;#知识点&quot; class=&quot;headerlink&quot; title=&quot;知识点&quot;&gt;&lt;/a&gt;知识点&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;&lt;
+      
     
     </summary>
     
@@ -1159,33 +1209,6 @@
 &lt;li&gt;DOM常用的API&lt;/li&gt;
 &lt;li&gt;attr和property的区别&lt;/li&gt;
 &lt;li&gt;如何一
-      
-    
-    </summary>
-    
-      <category term="JavaScript" scheme="https://wangyx233.github.io/categories/JavaScript/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>【WebAPI】存储</title>
-    <link href="https://wangyx233.github.io/2021/06/30/%5BJSWebAPI%5Dcookie/"/>
-    <id>https://wangyx233.github.io/2021/06/30/[JSWebAPI]cookie/</id>
-    <published>2021-06-30T02:45:57.317Z</published>
-    <updated>2021-07-13T03:21:58.364Z</updated>
-    
-    <content type="html"><![CDATA[<ul><li>介绍cookie、localStorage、sessionStorage区别</li></ul><h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><ol><li><p>cookie</p><ul><li>通过;分割的字符串，每一部分都是key=value的形式</li><li>http请求的一部分，用于浏览器和服务端通讯的</li><li>document.cookie修改，默认每次追加或者修改一个key/value</li><li>限制：最大4KB，每次http请求都需要发送到服务端，api太简陋</li></ul></li><li><p>localStorage、sessionStorage</p><ul><li>HTML5专门为存储设计的，最大可存储5M / pre host</li><li>API：getItem() setItem() 存储的为字符串的形式，所以其他格式的数据要注意</li><li>和http请求没关系</li><li>localStorage 永久存储，除非手动或者代码删除；sessionStorage只存在于当前会话，页面关闭清空</li></ul></li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;ul&gt;
-&lt;li&gt;介绍cookie、localStorage、sessionStorage区别&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&quot;知识点&quot;&gt;&lt;a href=&quot;#知识点&quot; class=&quot;headerlink&quot; title=&quot;知识点&quot;&gt;&lt;/a&gt;知识点&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;&lt;
       
     
     </summary>
