@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wangyx233.github.io/"/>
-  <updated>2022-04-06T08:56:48.267Z</updated>
+  <updated>2022-04-07T01:58:48.814Z</updated>
   <id>https://wangyx233.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【React】React 18来辣</title>
+    <link href="https://wangyx233.github.io/2022/04/07/%5BReact%5DReact18%E6%9D%A5%E5%95%A6/"/>
+    <id>https://wangyx233.github.io/2022/04/07/[React]React18来啦/</id>
+    <published>2022-04-07T01:58:48.813Z</published>
+    <updated>2022-04-07T01:58:48.814Z</updated>
+    
+    <content type="html"><![CDATA[<p>铛铛铛，React18正式发布辣</p><blockquote><p>前置知识： Concurrent(并发)</p></blockquote><h3 id="Concurrent"><a href="#Concurrent" class="headerlink" title="Concurrent"></a>Concurrent</h3><blockquote><p>渲染是可中断的。（以前React中update是同步渲染，一旦update开启，在任务完成前都是不可中断的。</p></blockquote><p>在Concurrent模式下，update开始了可以中断，结果是可以继续，也可以选择遗弃。</p><ul><li>可中断。任务是有优先级，优先级高的比如用户交互，输入，点击…fiber的链表结构，指向改变。</li><li>可被遗弃。比如，一个操作过程，中间的可能切走，不重要或者过期了，所以可以被遗弃，只关注最后的展示。</li><li>状态复用。OffScreen，比如页面回退了，又重新进入了；或者即将要渲染的UI进行缓存准备。</li></ul><blockquote><p>总结: 并不是API之类的新特性，而是新特性的基础，包括Suspense、transitions等。 </p></blockquote><h3 id="新特性"><a href="#新特性" class="headerlink" title="新特性"></a>新特性</h3><h4 id="createRoot"><a href="#createRoot" class="headerlink" title="createRoot"></a>createRoot</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const root = createRoot(document.getElementById(&apos;root&apos;))</span><br><span class="line">root.render(&lt;App /&gt;)</span><br><span class="line">root.render(&lt;App2 /&gt;)</span><br></pre></td></tr></table></figure><h4 id="自动批量处理-Automatic-Batching"><a href="#自动批量处理-Automatic-Batching" class="headerlink" title="自动批量处理 Automatic Batching"></a>自动批量处理 Automatic Batching</h4><blockquote><p>setState是同步还是异步呀，可以实现同步嘛，怎么实现，异步的原理是什么？</p></blockquote><p>18之前：都可以，同步：setTimeout，或者原生事件里同步。异步：批量处理，合成事件里，把多次的render合并起来，关键是依赖合成事件。<br>18之后，同步可用flushSync。就不要用setTimeout，也是异步了，why？不是依靠合成事件，而是自动批量处理。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">flushSync(() =&gt; &#123;</span><br><span class="line">  // state 变化  </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><h4 id="Suspense"><a href="#Suspense" class="headerlink" title="Suspense"></a>Suspense</h4><p>加载等待，类似loading</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;Suspense fallback=&#123;&lt;Spin /&gt;&#125;&gt;</span><br><span class="line">  &lt;Component /&gt;</span><br><span class="line">&lt;/Suspense&gt;</span><br></pre></td></tr></table></figure><p>…_(¦3」∠)_下回再战…</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;铛铛铛，React18正式发布辣&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;前置知识： Concurrent(并发)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;Concurrent&quot;&gt;&lt;a href=&quot;#Concurrent&quot; class=&quot;headerlink&quot; 
+      
+    
+    </summary>
+    
+      <category term="React" scheme="https://wangyx233.github.io/categories/React/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>【业务】下载导出那些事</title>
@@ -592,6 +619,36 @@
   </entry>
   
   <entry>
+    <title>【WebAPI】BOM</title>
+    <link href="https://wangyx233.github.io/2021/06/30/%5BWebAPI%5DBOM/"/>
+    <id>https://wangyx233.github.io/2021/06/30/[WebAPI]BOM/</id>
+    <published>2021-06-30T02:45:57.327Z</published>
+    <updated>2021-07-13T03:21:58.455Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>BOM -&gt; Browser Object Model</p></blockquote><ul><li>如何识别浏览器的类型</li><li>分别拆解url各部分</li></ul><h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><ul><li>navigator</li><li>screen</li><li>location</li><li>history<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// 1. navigator</span><br><span class="line">const ua = navigator.userAgent;</span><br><span class="line"></span><br><span class="line">// 2. screen</span><br><span class="line">const width = screen.width;</span><br><span class="line">const height = screen.height;</span><br><span class="line"></span><br><span class="line">// 3. location</span><br><span class="line">location.href</span><br><span class="line">location.protocol</span><br><span class="line">location.pathname</span><br><span class="line">location.hash</span><br><span class="line">location.search</span><br><span class="line">location.host</span><br><span class="line"></span><br><span class="line">// 4. history</span><br><span class="line">history.back();</span><br><span class="line">history.forwards();</span><br></pre></td></tr></table></figure></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;BOM -&amp;gt; Browser Object Model&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;如何识别浏览器的类型&lt;/li&gt;
+&lt;li&gt;分别拆解url各部分&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;知识点&quot;&gt;&lt;a href=&quot;#知
+      
+    
+    </summary>
+    
+      <category term="JavaScript" scheme="https://wangyx233.github.io/categories/JavaScript/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>【生活】如果有保险需求</title>
     <link href="https://wangyx233.github.io/2021/06/30/%5B%E4%BA%BA%E7%94%9F%5D%E5%AE%B6%E5%BA%AD%E4%BF%9D%E9%99%A9%E9%85%8D%E7%BD%AE/"/>
     <id>https://wangyx233.github.io/2021/06/30/[人生]家庭保险配置/</id>
@@ -624,61 +681,6 @@
   </entry>
   
   <entry>
-    <title>【WebAPI】BOM</title>
-    <link href="https://wangyx233.github.io/2021/06/30/%5BWebAPI%5DBOM/"/>
-    <id>https://wangyx233.github.io/2021/06/30/[WebAPI]BOM/</id>
-    <published>2021-06-30T02:45:57.327Z</published>
-    <updated>2021-07-13T03:21:58.455Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>BOM -&gt; Browser Object Model</p></blockquote><ul><li>如何识别浏览器的类型</li><li>分别拆解url各部分</li></ul><h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><ul><li>navigator</li><li>screen</li><li>location</li><li>history<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// 1. navigator</span><br><span class="line">const ua = navigator.userAgent;</span><br><span class="line"></span><br><span class="line">// 2. screen</span><br><span class="line">const width = screen.width;</span><br><span class="line">const height = screen.height;</span><br><span class="line"></span><br><span class="line">// 3. location</span><br><span class="line">location.href</span><br><span class="line">location.protocol</span><br><span class="line">location.pathname</span><br><span class="line">location.hash</span><br><span class="line">location.search</span><br><span class="line">location.host</span><br><span class="line"></span><br><span class="line">// 4. history</span><br><span class="line">history.back();</span><br><span class="line">history.forwards();</span><br></pre></td></tr></table></figure></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;blockquote&gt;
-&lt;p&gt;BOM -&amp;gt; Browser Object Model&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;如何识别浏览器的类型&lt;/li&gt;
-&lt;li&gt;分别拆解url各部分&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&quot;知识点&quot;&gt;&lt;a href=&quot;#知
-      
-    
-    </summary>
-    
-      <category term="JavaScript" scheme="https://wangyx233.github.io/categories/JavaScript/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>【React】Virtual DOM</title>
-    <link href="https://wangyx233.github.io/2021/06/30/%5BReact%5D%E8%99%9A%E6%8B%9FDOM/"/>
-    <id>https://wangyx233.github.io/2021/06/30/[React]虚拟DOM/</id>
-    <published>2021-06-30T02:45:57.326Z</published>
-    <updated>2021-07-13T03:21:58.358Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="What？"><a href="#What？" class="headerlink" title="What？"></a>What？</h1><p>Virtual DOM本质上是JS 和 DOM 之间的一个映射缓存，是能够描述DOM结构及其属性的JS对象。</p><ul><li>虚拟DOM是JS对象</li><li>虚拟DOM是对真实DOM的描述</li></ul><p>挂载阶段，根据JSX的描述，构建出虚拟DOM，然后通过ReactDOM.render实现虚拟DOM到真实DOM的映射<br>更新阶段，页面的变化在作用于真实DOM之前，会先作用于虚拟DOM</p><h1 id="Why？"><a href="#Why？" class="headerlink" title="Why？"></a>Why？</h1><ul><li>jQuery解决DOM API 不好使的问题。还解决浏览器兼容，链式API调用，插件扩展</li><li>模板引擎，只关心数据，不关心DOM细节。操作真实DOM的范围过大、频率过高，但思想是数据驱动视图</li><li>虚拟DOM的点不在性能。虚拟DOM有没有借鉴模板引擎无法考证，但是思想上有一定的递进关系。JSX不是模板，而是JS的一个体验像模板的扩展语法糖，然后增加了个虚拟DOM的缓存层。</li></ul><blockquote><p>差量更新。即当DOM操作比较频繁时，会将前后两次的DOM树变化进行对比diff，定位到需要更新的部分，生成一个“补丁集”，把“补丁”patch打在需要更新的那部分真实DOM上，就可以实现差量更新<br>批量更新。batch函数处理，把短时间内的多次DOM操作合成一个次更新，即把收集的多个补丁集暂存到队列中，再讲最终结果交给渲染函数，实现DOM的集中化批量更新。</p></blockquote><ol><li>研发体验/研发效率。虚拟DOM思想是数据驱动视图，前端声明式编程。</li><li>性能不是卖点。性能还不错，性能量化不能一概而论只看一个指标，得看实际情况。DOM操作量级有关</li><li>价值？跨平台，一次编码多次应用。虚拟DOM是对实际渲染内容的一次抽象</li><li>规避xss攻击</li></ol><p>缺点：</p><ol><li>内存占用高，虚拟DOM，object</li><li>无法进行极致优化。如Google Earth</li></ol><h1 id="How"><a href="#How" class="headerlink" title="How?"></a>How?</h1><h2 id="调和Reconciliation-和-Diff算法"><a href="#调和Reconciliation-和-Diff算法" class="headerlink" title="调和Reconciliation 和 Diff算法"></a>调和Reconciliation 和 Diff算法</h2><blockquote><p>调和是将虚拟DOM映射到真实DOM的过程。Diff算法只是其中的一个小部分，深度优先遍历</p></blockquote><ol><li><p>React 15为代表的“栈调和”<br>传统的递归比较两棵树结构的不同算法复杂度是O(n^3)，这个复杂度显然不能令人接受，所以React中做了什么呢，将复杂度转换成O(n)</p><ul><li>Diff算法性能突破的关键点是“分层比较”<br>分层比较其实是分层递归比较，所以“同层级操作”是主流，只针对相同层级的节点进行比较，如果是跨层级的节点操作，其实是对应这销毁和重建的过程，尽量保持DOM节点的稳定性。</li><li>类型一致的节点才有继续Diff的必要<br>根据主要“矛盾”类型不一致的节点，直接放弃比较，原地替换旧的节点。</li><li>key属性的设置，可以尽可能重用同一层级内的节点<br>key主要解决的是同一层级下节点的重用问题。设置key的元素可以避免不必要的销毁和重建，只是调整顺序排列。<blockquote><p>注：作为一个节点的唯一标识，使用key之前，保证key的唯一和稳定。<br>大致过程可以描述为树对比、组件对比、元素对比<br>总结：栈调和机制下的Diff算法，其实是树的深度优先遍历过程。<br>这个过程是同步的过程，不可被打断。Stack Reconciler 需要的时间越长，意味着JS线程将霸占主线程的时间越长。进而导致会出现渲染卡死、交互无响应的现象。</p></blockquote></li></ul></li><li><p>React 16以来的“Fiber调和”<br>Fiber：纤程，对渲染过程进行更加精细的控制。是Fiber树结构的节点单位，也就是React 16下的“虚拟DOM”,并且Fiber节点保存了组件需要更新的状态和副作用。</p></li></ol><ul><li>可中断</li><li>可恢复</li><li>优先级</li></ul><h1 id="Better？"><a href="#Better？" class="headerlink" title="Better？"></a>Better？</h1><ol><li>避免跨层级节点移动</li><li>设置唯一的key，尽量减少组件层级</li><li>设置shouldComponentUpdate 或者 React.pureComponet 减少 diff 次数</li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;What？&quot;&gt;&lt;a href=&quot;#What？&quot; class=&quot;headerlink&quot; title=&quot;What？&quot;&gt;&lt;/a&gt;What？&lt;/h1&gt;&lt;p&gt;Virtual DOM本质上是JS 和 DOM 之间的一个映射缓存，是能够描述DOM结构及其属性的JS对象。&lt;/p&gt;
-      
-    
-    </summary>
-    
-      <category term="React" scheme="https://wangyx233.github.io/categories/React/"/>
-    
-    
-      <category term="React" scheme="https://wangyx233.github.io/tags/React/"/>
-    
-  </entry>
-  
-  <entry>
     <title>【React】生命周期</title>
     <link href="https://wangyx233.github.io/2021/06/30/%5BReact%5D%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/"/>
     <id>https://wangyx233.github.io/2021/06/30/[React]生命周期/</id>
@@ -701,6 +703,31 @@
 &lt;li&gt;Unmounting 阶段：组件的卸载。 组件被移除了，或者设置了 key，在 render 过程中发现 key 改变了&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&quot;React-16&quot;&gt;&lt;a href=&quot;#React-16&quot; class=&quot;headerlink&quot; title=&quot;React 16&quot;&gt;&lt;/a&gt;React 16&lt;/h2&gt;&lt;h3 id=&quot;React-16-4&quot;&gt;&lt;a href=&quot;#React-16-4&quot; class=&quot;headerlink&quot; title=&quot;React 16.4&quot;&gt;&lt;/a&gt;React 16.4&lt;/h3&gt;&lt;img src=&quot;/gallery/react16life.png&quot;&gt;
+    
+    </summary>
+    
+      <category term="React" scheme="https://wangyx233.github.io/categories/React/"/>
+    
+    
+      <category term="React" scheme="https://wangyx233.github.io/tags/React/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【React】Virtual DOM</title>
+    <link href="https://wangyx233.github.io/2021/06/30/%5BReact%5D%E8%99%9A%E6%8B%9FDOM/"/>
+    <id>https://wangyx233.github.io/2021/06/30/[React]虚拟DOM/</id>
+    <published>2021-06-30T02:45:57.326Z</published>
+    <updated>2021-07-13T03:21:58.358Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="What？"><a href="#What？" class="headerlink" title="What？"></a>What？</h1><p>Virtual DOM本质上是JS 和 DOM 之间的一个映射缓存，是能够描述DOM结构及其属性的JS对象。</p><ul><li>虚拟DOM是JS对象</li><li>虚拟DOM是对真实DOM的描述</li></ul><p>挂载阶段，根据JSX的描述，构建出虚拟DOM，然后通过ReactDOM.render实现虚拟DOM到真实DOM的映射<br>更新阶段，页面的变化在作用于真实DOM之前，会先作用于虚拟DOM</p><h1 id="Why？"><a href="#Why？" class="headerlink" title="Why？"></a>Why？</h1><ul><li>jQuery解决DOM API 不好使的问题。还解决浏览器兼容，链式API调用，插件扩展</li><li>模板引擎，只关心数据，不关心DOM细节。操作真实DOM的范围过大、频率过高，但思想是数据驱动视图</li><li>虚拟DOM的点不在性能。虚拟DOM有没有借鉴模板引擎无法考证，但是思想上有一定的递进关系。JSX不是模板，而是JS的一个体验像模板的扩展语法糖，然后增加了个虚拟DOM的缓存层。</li></ul><blockquote><p>差量更新。即当DOM操作比较频繁时，会将前后两次的DOM树变化进行对比diff，定位到需要更新的部分，生成一个“补丁集”，把“补丁”patch打在需要更新的那部分真实DOM上，就可以实现差量更新<br>批量更新。batch函数处理，把短时间内的多次DOM操作合成一个次更新，即把收集的多个补丁集暂存到队列中，再讲最终结果交给渲染函数，实现DOM的集中化批量更新。</p></blockquote><ol><li>研发体验/研发效率。虚拟DOM思想是数据驱动视图，前端声明式编程。</li><li>性能不是卖点。性能还不错，性能量化不能一概而论只看一个指标，得看实际情况。DOM操作量级有关</li><li>价值？跨平台，一次编码多次应用。虚拟DOM是对实际渲染内容的一次抽象</li><li>规避xss攻击</li></ol><p>缺点：</p><ol><li>内存占用高，虚拟DOM，object</li><li>无法进行极致优化。如Google Earth</li></ol><h1 id="How"><a href="#How" class="headerlink" title="How?"></a>How?</h1><h2 id="调和Reconciliation-和-Diff算法"><a href="#调和Reconciliation-和-Diff算法" class="headerlink" title="调和Reconciliation 和 Diff算法"></a>调和Reconciliation 和 Diff算法</h2><blockquote><p>调和是将虚拟DOM映射到真实DOM的过程。Diff算法只是其中的一个小部分，深度优先遍历</p></blockquote><ol><li><p>React 15为代表的“栈调和”<br>传统的递归比较两棵树结构的不同算法复杂度是O(n^3)，这个复杂度显然不能令人接受，所以React中做了什么呢，将复杂度转换成O(n)</p><ul><li>Diff算法性能突破的关键点是“分层比较”<br>分层比较其实是分层递归比较，所以“同层级操作”是主流，只针对相同层级的节点进行比较，如果是跨层级的节点操作，其实是对应这销毁和重建的过程，尽量保持DOM节点的稳定性。</li><li>类型一致的节点才有继续Diff的必要<br>根据主要“矛盾”类型不一致的节点，直接放弃比较，原地替换旧的节点。</li><li>key属性的设置，可以尽可能重用同一层级内的节点<br>key主要解决的是同一层级下节点的重用问题。设置key的元素可以避免不必要的销毁和重建，只是调整顺序排列。<blockquote><p>注：作为一个节点的唯一标识，使用key之前，保证key的唯一和稳定。<br>大致过程可以描述为树对比、组件对比、元素对比<br>总结：栈调和机制下的Diff算法，其实是树的深度优先遍历过程。<br>这个过程是同步的过程，不可被打断。Stack Reconciler 需要的时间越长，意味着JS线程将霸占主线程的时间越长。进而导致会出现渲染卡死、交互无响应的现象。</p></blockquote></li></ul></li><li><p>React 16以来的“Fiber调和”<br>Fiber：纤程，对渲染过程进行更加精细的控制。是Fiber树结构的节点单位，也就是React 16下的“虚拟DOM”,并且Fiber节点保存了组件需要更新的状态和副作用。</p></li></ol><ul><li>可中断</li><li>可恢复</li><li>优先级</li></ul><h1 id="Better？"><a href="#Better？" class="headerlink" title="Better？"></a>Better？</h1><ol><li>避免跨层级节点移动</li><li>设置唯一的key，尽量减少组件层级</li><li>设置shouldComponentUpdate 或者 React.pureComponet 减少 diff 次数</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;What？&quot;&gt;&lt;a href=&quot;#What？&quot; class=&quot;headerlink&quot; title=&quot;What？&quot;&gt;&lt;/a&gt;What？&lt;/h1&gt;&lt;p&gt;Virtual DOM本质上是JS 和 DOM 之间的一个映射缓存，是能够描述DOM结构及其属性的JS对象。&lt;/p&gt;
+      
     
     </summary>
     
@@ -771,36 +798,6 @@
   </entry>
   
   <entry>
-    <title>【React】性能优化</title>
-    <link href="https://wangyx233.github.io/2021/06/30/%5BReact%5D%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
-    <id>https://wangyx233.github.io/2021/06/30/[React]性能优化/</id>
-    <published>2021-06-30T02:45:57.323Z</published>
-    <updated>2021-07-13T03:21:58.397Z</updated>
-    
-    <content type="html"><![CDATA[<ul><li>善用 shouldComponentUpdate</li><li>PureComponent  + Immutable.js</li><li>函数组件的性能优化：React.memo 和 useMemo</li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;ul&gt;
-&lt;li&gt;善用 shouldComponentUpdate&lt;/li&gt;
-&lt;li&gt;PureComponent  + Immutable.js&lt;/li&gt;
-&lt;li&gt;函数组件的性能优化：React.memo 和 useMemo&lt;/li&gt;
-&lt;/ul&gt;
-
-      
-    
-    </summary>
-    
-      <category term="React" scheme="https://wangyx233.github.io/categories/React/"/>
-    
-    
-      <category term="React" scheme="https://wangyx233.github.io/tags/React/"/>
-    
-  </entry>
-  
-  <entry>
     <title>【React】前端路由-React Router</title>
     <link href="https://wangyx233.github.io/2021/06/30/%5BReact%5D%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%94%B1/"/>
     <id>https://wangyx233.github.io/2021/06/30/[React]前端路由/</id>
@@ -858,19 +855,25 @@
   </entry>
   
   <entry>
-    <title>【React】setState 同步 or 异步？</title>
-    <link href="https://wangyx233.github.io/2021/06/30/%5BReact%5DsetState/"/>
-    <id>https://wangyx233.github.io/2021/06/30/[React]setState/</id>
-    <published>2021-06-30T02:45:57.322Z</published>
-    <updated>2021-07-13T03:21:58.385Z</updated>
+    <title>【React】性能优化</title>
+    <link href="https://wangyx233.github.io/2021/06/30/%5BReact%5D%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
+    <id>https://wangyx233.github.io/2021/06/30/[React]性能优化/</id>
+    <published>2021-06-30T02:45:57.323Z</published>
+    <updated>2021-07-13T03:21:58.397Z</updated>
     
-    <content type="html"><![CDATA[<blockquote><p>在React管控下的setState是异步，而脱离React管控的则表现为同步。</p></blockquote><a id="more"></a><h1 id="异步？"><a href="#异步？" class="headerlink" title="异步？"></a>异步？</h1><p>在React自己的生命周期和合成事件中，可以拿到控制权，将状态放入队列，控制执行节奏。即isBatchingUpdates -&gt; true，进入dirtyComponents，false则循环更新dirtyComponents里的所有组件。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line">// 函数分发</span><br><span class="line">ReactComponent.prototype.setState = function (partialState, callback) &#123;</span><br><span class="line">  this.updater.enqueueSetState(this, partialState);</span><br><span class="line">  if (callback) &#123;</span><br><span class="line">    this.updater.enqueueCallback(this, callback, &apos;setState&apos;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">// 将新的state放到组件的状态队列中，并且用enqueueUpdate来处理要更新的实例</span><br><span class="line">enqueueSetState: function (publicInstance, partialState) &#123;</span><br><span class="line">  // 根据 this 拿到对应的组件实例</span><br><span class="line">  var internalInstance = getInternalInstanceReadyForUpdate(publicInstance, &apos;setState&apos;);</span><br><span class="line">  // 这个 queue 对应的就是一个组件实例的 state 数组</span><br><span class="line">  var queue = internalInstance._pendingStateQueue || (internalInstance._pendingStateQueue = []);</span><br><span class="line">  queue.push(partialState);</span><br><span class="line">  //  enqueueUpdate 用来处理当前的组件实例</span><br><span class="line">  enqueueUpdate(internalInstance);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// batchingStrategy用于批量更新的对象</span><br><span class="line">function enqueueUpdate(component) &#123;</span><br><span class="line">  ensureInjected();</span><br><span class="line">  // 注意这一句是问题的关键，isBatchingUpdates标识着当前是否处于批量创建/更新组件的阶段</span><br><span class="line">  if (!batchingStrategy.isBatchingUpdates) &#123;</span><br><span class="line">    // 若当前没有处于批量创建/更新组件的阶段，则立即更新组件</span><br><span class="line">    batchingStrategy.batchedUpdates(enqueueUpdate, component);</span><br><span class="line">    return;</span><br><span class="line">  &#125;</span><br><span class="line">  // 否则，先把组件塞入 dirtyComponents 队列里，让它“再等等”</span><br><span class="line">  dirtyComponents.push(component);</span><br><span class="line">  if (component._updateBatchNumber == null) &#123;</span><br><span class="line">    component._updateBatchNumber = updateBatchNumber + 1;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var ReactDefaultBatchingStrategy = &#123;</span><br><span class="line">  // 全局唯一的锁标识</span><br><span class="line">  isBatchingUpdates: false, // 当前未进行任何批量操作</span><br><span class="line">  // 发起更新动作的方法</span><br><span class="line">  batchedUpdates: function(callback, a, b, c, d, e) &#123;</span><br><span class="line">    // 缓存锁变量</span><br><span class="line">    var alreadyBatchingStrategy = ReactDefaultBatchingStrategy.isBatchingUpdates</span><br><span class="line">    // 把锁“锁上”</span><br><span class="line">    ReactDefaultBatchingStrategy.isBatchingUpdates = true // 现在正处于批量操作中，需要更新的组件暂时进入DirtyComp</span><br><span class="line">    if (alreadyBatchingStrategy) &#123;</span><br><span class="line">      callback(a, b, c, d, e)</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      // 启动事务，将 callback 放进事务里执行</span><br><span class="line">      transaction.perform(callback, null, a, b, c, d, e)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 事务通过wrapper进行封装。一个wrapper包含一对initialize和close方法</span><br><span class="line">var RESET_BATCHED_UPDATES = &#123;</span><br><span class="line">  initialize: emptyFunction,</span><br><span class="line">  close: function () &#123;</span><br><span class="line">    ReactDefaultBatchingStrategy.isBatchingUpdates = false;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">// FLUSH_BATCHED_UPDATES在close阶段，会循环遍历所有的dirtyComponents，调用updateComponent刷新组件</span><br><span class="line">var FLUSH_BATCHED_UPDATES = &#123;</span><br><span class="line">  initialize: emptyFunction,</span><br><span class="line">  close: ReactUpdates.flushBatchedUpdates.bind(ReactUpdates)</span><br><span class="line">&#125;;</span><br><span class="line">var TRANSACTION_WRAPPERS = [FLUSH_BATCHED_UPDATES, RESET_BATCHED_UPDATES];</span><br></pre></td></tr></table></figure><blockquote><p>说明：一个事务是将要执行的method使用wrapper封装起来，再通过Transaction提供的perform方法执行。在执行perform之前，先执行所有wrapper的initialize，perform（即method执行后）再执行所有的close方法。<br>总结：<br>isBatchingUpdates，这个变量在React的生命周期钩子函数及合成事件执行前，已经被改为true，所以这时调用setState不会立即生效。当函数执行完毕后，事务的close方法会再把isBatchingUpdates改为false</p></blockquote><p>为什么要异步？</p><ul><li>避免重复的re-render</li><li>批量更新，setState会在一个队列中，相同的会做合并，只针对最新的state做一次更新<br>减小频繁re-render</li></ul><h1 id="同步？"><a href="#同步？" class="headerlink" title="同步？"></a>同步？</h1><p>在React管控下的setState一定是异步的，发生了同步的行为，是有其他操作帮助setState脱离了React的管控。<br>在 addEventListener 、setTimeout、setInterval 会同步更新</p><h1 id="Why？"><a href="#Why？" class="headerlink" title="Why？"></a>Why？</h1><p>React 15为例，</p><ol><li>批量更新 - batchingStrategy(锁管理器，锁：isBatchingUpdates)</li><li>事务 Transaction 机制，Transaction创建一个黑盒，该黑盒能封装任何的方法。</li><li>保持内部一致性，props的更新（props的更新来自于父组件state的改变）</li><li>支持异步渲染，启用并发更新</li></ol><blockquote><p>PS: React 17之前是通过isBatchingUpdates判断，之后是lanes 算法的优先级来区分</p></blockquote><h1 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h1><ol><li><p>合成事件 -&gt; 事件委托<br>React 17 版本之前，事件监听是在document上，DOM事件触发后冒泡到document，React找到对应的组件，造出一个合成事件，并按组件数模拟一遍事件冒泡。<br>React 17 版本，事件委托不在挂载document上，而是挂在DOM容器上，即ReactDom.Render调用的节点。</p></li><li><p>看看输出什么？</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class Test extends React.Component &#123;</span><br><span class="line">  state  = &#123;</span><br><span class="line">      count: 0</span><br><span class="line">  &#125;;</span><br><span class="line">  componentDidMount() &#123;</span><br><span class="line">    this.setState(&#123;count: this.state.count + 1&#125;);</span><br><span class="line">    console.log(this.state.count); // 0</span><br><span class="line">    this.setState(&#123;count: this.state.count + 1&#125;);</span><br><span class="line">    console.log(this.state.count); // 0</span><br><span class="line">    setTimeout(() =&gt; &#123;</span><br><span class="line">      this.setState(&#123;count: this.state.count + 1&#125;);</span><br><span class="line">      console.log(this.state.count); // 2</span><br><span class="line">      this.setState(&#123;count: this.state.count + 1&#125;);</span><br><span class="line">      console.log(this.state.count); // 3</span><br><span class="line">    &#125;, 0);</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return null;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li></ol>]]></content>
+    <content type="html"><![CDATA[<ul><li>善用 shouldComponentUpdate</li><li>PureComponent  + Immutable.js</li><li>函数组件的性能优化：React.memo 和 useMemo</li></ul>]]></content>
     
     <summary type="html">
     
-      &lt;blockquote&gt;
-&lt;p&gt;在React管控下的setState是异步，而脱离React管控的则表现为同步。&lt;/p&gt;
-&lt;/blockquote&gt;
+      
+      
+        &lt;ul&gt;
+&lt;li&gt;善用 shouldComponentUpdate&lt;/li&gt;
+&lt;li&gt;PureComponent  + Immutable.js&lt;/li&gt;
+&lt;li&gt;函数组件的性能优化：React.memo 和 useMemo&lt;/li&gt;
+&lt;/ul&gt;
+
+      
     
     </summary>
     
@@ -907,21 +910,19 @@
   </entry>
   
   <entry>
-    <title>【React】React-Hooks</title>
-    <link href="https://wangyx233.github.io/2021/06/30/%5BReact%5DReact-Hooks/"/>
-    <id>https://wangyx233.github.io/2021/06/30/[React]React-Hooks/</id>
-    <published>2021-06-30T02:45:57.321Z</published>
-    <updated>2022-03-10T08:51:49.028Z</updated>
+    <title>【React】setState 同步 or 异步？</title>
+    <link href="https://wangyx233.github.io/2021/06/30/%5BReact%5DsetState/"/>
+    <id>https://wangyx233.github.io/2021/06/30/[React]setState/</id>
+    <published>2021-06-30T02:45:57.322Z</published>
+    <updated>2021-07-13T03:21:58.385Z</updated>
     
-    <content type="html"><![CDATA[<p>React-Hooks 自 React 16.8 以来才真正被推而广之</p><h1 id="What-amp-Why"><a href="#What-amp-Why" class="headerlink" title="What &amp; Why"></a>What &amp; Why</h1><h2 id="类组件-Class-Component-vs-函数-无状态组件"><a href="#类组件-Class-Component-vs-函数-无状态组件" class="headerlink" title="类组件 Class Component vs 函数/无状态组件"></a>类组件 Class Component vs 函数/无状态组件</h2><blockquote><p>所谓类组件，就是基于 ES6 Class 这种写法，通过继承 React.Component 得来的 React 组件<br>函数组件/无状态组件，在没有 Hooks 加持的条件加，函数组件无法维护自己的 state</p></blockquote><p>二者并没有优劣，只是根据不同的场景采用不同的形式。</p><blockquote><p>区别：函数组件会捕获 render 内部的状态。面向对象与函数式的不同。this 调用的区别<br>注：对于函数组件，props 会保持渲染结果符合预期。更利于逻辑拆分与重用组件<br>为了回归 UI = render(data)的本质，所以需要补齐函数组件所缺乏的的类组件的能力，React Hooks 应运而生。即一套能够使函数组件更强大、更灵活的“钩子”<br>ex.</p></blockquote><ul><li>useState() 为函数组件引入了 state，const [state, setState] = useState(initialState)</li><li>useEffect() 允许函数执行副作用操作，即弥补了生命周期的缺失，比如 componentDidMount、componentDidUpdate 和 componentWillUnmount。操作 DOM、订阅事件、调用外部 API。<br>useEffect(callBack, [])，返回的函数成为“清除函数 ”</li><li>callback 是否有 return,决定是否在卸载阶段执行。有 return 则会在挂载执行 return 之前的内容，卸载阶段执行 return 的函数。即 useEffect 回调中返回了一个函数，那它会被作为清除函数处理。</li><li>[],判断是否每次页面渲染后都执行。如果 []不为空，React 会在每次渲染前对比前后两次的渲染，查看数组内部是否有变量发生了更新。注意引用类型的比较可能因为变化导致判断结果不同。</li><li>useLayoutEffect() 同 useEffect 都是用来处理副作用的，底层函数签名也是一致的，都是 mountEffectImpl，在使用上也没有什么区别。但 useEffect 是异步调用的，useLayoutEffect 则是在 DOM 变更后同步调用，主要避免页面闪烁、调整样式、处理 DOM，但正是由于同步操作，所以避免在 useLayoutEffect 中做计算量大耗时的任务，以免出现阻塞。<br>Hooks 开发需要抛弃生命周期的思考模式，以 effects 的角度重新思考</li></ul><h2 id="所以-Why"><a href="#所以-Why" class="headerlink" title="所以 Why?"></a>所以 Why?</h2><p>优势：</p><ul><li>告别难以理解的 Class，this 和生命周期，降低学习成本。不必用实践层面的约束解决设计层面的问题</li><li>解决业务逻辑难以拆分的问题。更好的进行逻辑拆分，避免重复冗余的代码。</li><li>使状态逻辑复用变得简单可行。状态复用 HOC（高阶组件）</li></ul><p>局限：</p><ul><li>函数补齐能力还需继续完善，声明周期还有未纳入 Hooks 中的</li><li>复杂的，耦合和自由。有严格的规则约束</li><li>常量声明</li></ul><h2 id="原则"><a href="#原则" class="headerlink" title="原则"></a>原则</h2><ol><li>只在 React 函数中调用 Hook</li><li>不要在循环，条件和嵌套中用 Hook。why？<br>eslint-plugin-react-hooks</li></ol><p>以 setState 为例，</p><ul><li>mountState，初始化 hook，将 hook 相关的所有信息都收敛在一个 hook 对象里，hook 对象之间以单向链表的形式相互串联。</li><li>updateState，按顺序去遍历之前构造好的链表，然后取相应的数据进行渲染。重点：按“顺序”去修改！</li></ul><p>PS:<br>心智模型：引用唐纳德·诺曼，是指用户头脑中对一个产品应该具有的概念和行为的知识。这个知识可能来源于用户以前使用类似产品的沉淀，或者用户根据使用该产品要达到的目标而对产品概念和行为的一种期望。</p><h1 id="Q-amp-A-如何设计-React-的组件？"><a href="#Q-amp-A-如何设计-React-的组件？" class="headerlink" title="Q&amp;A: 如何设计 React 的组件？"></a>Q&amp;A: 如何设计 React 的组件？</h1><blockquote><p>展示组件的复用性更强，灵巧组件则更专注与业务本身</p></blockquote><ul><li>展示组件： 无状态组件，只做展示，独立运行</li></ul><ol><li>代理组件</li><li>样式组件</li><li>布局组件</li></ol><ul><li>灵巧组件： 有状态组件，主要进行业务逻辑和数据状态处理</li></ul><ol><li>容器组件</li><li>高阶组件</li></ol><ul><li>逻辑复用</li><li>链式调用</li><li>渲染劫持</li><li>缺陷：丢失静态函数，refs 属性不能透传</li></ul>]]></content>
+    <content type="html"><![CDATA[<blockquote><p>在React管控下的setState是异步，而脱离React管控的则表现为同步。</p></blockquote><a id="more"></a><h1 id="异步？"><a href="#异步？" class="headerlink" title="异步？"></a>异步？</h1><p>在React自己的生命周期和合成事件中，可以拿到控制权，将状态放入队列，控制执行节奏。即isBatchingUpdates -&gt; true，进入dirtyComponents，false则循环更新dirtyComponents里的所有组件。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line">// 函数分发</span><br><span class="line">ReactComponent.prototype.setState = function (partialState, callback) &#123;</span><br><span class="line">  this.updater.enqueueSetState(this, partialState);</span><br><span class="line">  if (callback) &#123;</span><br><span class="line">    this.updater.enqueueCallback(this, callback, &apos;setState&apos;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">// 将新的state放到组件的状态队列中，并且用enqueueUpdate来处理要更新的实例</span><br><span class="line">enqueueSetState: function (publicInstance, partialState) &#123;</span><br><span class="line">  // 根据 this 拿到对应的组件实例</span><br><span class="line">  var internalInstance = getInternalInstanceReadyForUpdate(publicInstance, &apos;setState&apos;);</span><br><span class="line">  // 这个 queue 对应的就是一个组件实例的 state 数组</span><br><span class="line">  var queue = internalInstance._pendingStateQueue || (internalInstance._pendingStateQueue = []);</span><br><span class="line">  queue.push(partialState);</span><br><span class="line">  //  enqueueUpdate 用来处理当前的组件实例</span><br><span class="line">  enqueueUpdate(internalInstance);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// batchingStrategy用于批量更新的对象</span><br><span class="line">function enqueueUpdate(component) &#123;</span><br><span class="line">  ensureInjected();</span><br><span class="line">  // 注意这一句是问题的关键，isBatchingUpdates标识着当前是否处于批量创建/更新组件的阶段</span><br><span class="line">  if (!batchingStrategy.isBatchingUpdates) &#123;</span><br><span class="line">    // 若当前没有处于批量创建/更新组件的阶段，则立即更新组件</span><br><span class="line">    batchingStrategy.batchedUpdates(enqueueUpdate, component);</span><br><span class="line">    return;</span><br><span class="line">  &#125;</span><br><span class="line">  // 否则，先把组件塞入 dirtyComponents 队列里，让它“再等等”</span><br><span class="line">  dirtyComponents.push(component);</span><br><span class="line">  if (component._updateBatchNumber == null) &#123;</span><br><span class="line">    component._updateBatchNumber = updateBatchNumber + 1;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var ReactDefaultBatchingStrategy = &#123;</span><br><span class="line">  // 全局唯一的锁标识</span><br><span class="line">  isBatchingUpdates: false, // 当前未进行任何批量操作</span><br><span class="line">  // 发起更新动作的方法</span><br><span class="line">  batchedUpdates: function(callback, a, b, c, d, e) &#123;</span><br><span class="line">    // 缓存锁变量</span><br><span class="line">    var alreadyBatchingStrategy = ReactDefaultBatchingStrategy.isBatchingUpdates</span><br><span class="line">    // 把锁“锁上”</span><br><span class="line">    ReactDefaultBatchingStrategy.isBatchingUpdates = true // 现在正处于批量操作中，需要更新的组件暂时进入DirtyComp</span><br><span class="line">    if (alreadyBatchingStrategy) &#123;</span><br><span class="line">      callback(a, b, c, d, e)</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      // 启动事务，将 callback 放进事务里执行</span><br><span class="line">      transaction.perform(callback, null, a, b, c, d, e)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 事务通过wrapper进行封装。一个wrapper包含一对initialize和close方法</span><br><span class="line">var RESET_BATCHED_UPDATES = &#123;</span><br><span class="line">  initialize: emptyFunction,</span><br><span class="line">  close: function () &#123;</span><br><span class="line">    ReactDefaultBatchingStrategy.isBatchingUpdates = false;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">// FLUSH_BATCHED_UPDATES在close阶段，会循环遍历所有的dirtyComponents，调用updateComponent刷新组件</span><br><span class="line">var FLUSH_BATCHED_UPDATES = &#123;</span><br><span class="line">  initialize: emptyFunction,</span><br><span class="line">  close: ReactUpdates.flushBatchedUpdates.bind(ReactUpdates)</span><br><span class="line">&#125;;</span><br><span class="line">var TRANSACTION_WRAPPERS = [FLUSH_BATCHED_UPDATES, RESET_BATCHED_UPDATES];</span><br></pre></td></tr></table></figure><blockquote><p>说明：一个事务是将要执行的method使用wrapper封装起来，再通过Transaction提供的perform方法执行。在执行perform之前，先执行所有wrapper的initialize，perform（即method执行后）再执行所有的close方法。<br>总结：<br>isBatchingUpdates，这个变量在React的生命周期钩子函数及合成事件执行前，已经被改为true，所以这时调用setState不会立即生效。当函数执行完毕后，事务的close方法会再把isBatchingUpdates改为false</p></blockquote><p>为什么要异步？</p><ul><li>避免重复的re-render</li><li>批量更新，setState会在一个队列中，相同的会做合并，只针对最新的state做一次更新<br>减小频繁re-render</li></ul><h1 id="同步？"><a href="#同步？" class="headerlink" title="同步？"></a>同步？</h1><p>在React管控下的setState一定是异步的，发生了同步的行为，是有其他操作帮助setState脱离了React的管控。<br>在 addEventListener 、setTimeout、setInterval 会同步更新</p><h1 id="Why？"><a href="#Why？" class="headerlink" title="Why？"></a>Why？</h1><p>React 15为例，</p><ol><li>批量更新 - batchingStrategy(锁管理器，锁：isBatchingUpdates)</li><li>事务 Transaction 机制，Transaction创建一个黑盒，该黑盒能封装任何的方法。</li><li>保持内部一致性，props的更新（props的更新来自于父组件state的改变）</li><li>支持异步渲染，启用并发更新</li></ol><blockquote><p>PS: React 17之前是通过isBatchingUpdates判断，之后是lanes 算法的优先级来区分</p></blockquote><h1 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h1><ol><li><p>合成事件 -&gt; 事件委托<br>React 17 版本之前，事件监听是在document上，DOM事件触发后冒泡到document，React找到对应的组件，造出一个合成事件，并按组件数模拟一遍事件冒泡。<br>React 17 版本，事件委托不在挂载document上，而是挂在DOM容器上，即ReactDom.Render调用的节点。</p></li><li><p>看看输出什么？</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class Test extends React.Component &#123;</span><br><span class="line">  state  = &#123;</span><br><span class="line">      count: 0</span><br><span class="line">  &#125;;</span><br><span class="line">  componentDidMount() &#123;</span><br><span class="line">    this.setState(&#123;count: this.state.count + 1&#125;);</span><br><span class="line">    console.log(this.state.count); // 0</span><br><span class="line">    this.setState(&#123;count: this.state.count + 1&#125;);</span><br><span class="line">    console.log(this.state.count); // 0</span><br><span class="line">    setTimeout(() =&gt; &#123;</span><br><span class="line">      this.setState(&#123;count: this.state.count + 1&#125;);</span><br><span class="line">      console.log(this.state.count); // 2</span><br><span class="line">      this.setState(&#123;count: this.state.count + 1&#125;);</span><br><span class="line">      console.log(this.state.count); // 3</span><br><span class="line">    &#125;, 0);</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return null;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li></ol>]]></content>
     
     <summary type="html">
     
-      
-      
-        &lt;p&gt;React-Hooks 自 React 16.8 以来才真正被推而广之&lt;/p&gt;
-&lt;h1 id=&quot;What-amp-Why&quot;&gt;&lt;a href=&quot;#What-amp-Why&quot; class=&quot;headerlink&quot; title=&quot;What &amp;amp; Why&quot;&gt;&lt;/a&gt;What 
-      
+      &lt;blockquote&gt;
+&lt;p&gt;在React管控下的setState是异步，而脱离React管控的则表现为同步。&lt;/p&gt;
+&lt;/blockquote&gt;
     
     </summary>
     
@@ -959,30 +960,28 @@
   </entry>
   
   <entry>
-    <title>【JS基础】异步</title>
-    <link href="https://wangyx233.github.io/2021/06/30/%5BJS%E5%9F%BA%E7%A1%80%5D%E5%BC%82%E6%AD%A5/"/>
-    <id>https://wangyx233.github.io/2021/06/30/[JS基础]异步/</id>
-    <published>2021-06-30T02:45:57.320Z</published>
-    <updated>2021-07-13T03:21:58.460Z</updated>
+    <title>【React】React-Hooks</title>
+    <link href="https://wangyx233.github.io/2021/06/30/%5BReact%5DReact-Hooks/"/>
+    <id>https://wangyx233.github.io/2021/06/30/[React]React-Hooks/</id>
+    <published>2021-06-30T02:45:57.321Z</published>
+    <updated>2022-03-10T08:51:49.028Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h1><ul><li>同步和异步的区别</li><li>手写Promise</li><li>前端异步的场景</li><li>event loop（事件循环）的机制，画图</li><li>async/await</li><li>Promise的三种状态，then，catch的连接</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">console.log(1)</span><br><span class="line">setTimeout(() =&gt; &#123;</span><br><span class="line">    console.log(2)</span><br><span class="line">&#125;, 1000);</span><br><span class="line">console.log(3)</span><br><span class="line">setTimeout(() =&gt; &#123;</span><br><span class="line">    console.log(4)</span><br><span class="line">&#125;, 0);</span><br><span class="line">console.log(5)</span><br></pre></td></tr></table></figure><a id="more"></a><h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><p>why?<br>遇到等待（请求，定时任务）不能卡住<br>单线程-&gt;异步<br>JS是单线程，异步不会阻塞代码的执行，同步会阻塞代码的执行</p><p>why Promise?</p><ul><li>编码习惯，回调</li><li>callback hell -&gt; 管道串联</li></ul><ol><li>event loop 事件循环</li></ol><ul><li>同步代码在call stack一步一步执行</li><li>遇到异步代码先记录下来</li><li>等到“时机成熟”，把异步函数放到call queue中</li><li>如果call stack 为空（即同步代码执行完）Event Loop开始工作</li><li>轮询查找call queue，如果有则移到call stack 执行</li><li>然后继续查找</li></ul><p>由于JS是单线程的，异步(setTimeout, ajax)，DOM事件也都是基于event loop</p><ol start="2"><li>Promise<ul><li>三种状态，变化是不可逆的，只能从pending变化。且状态的改变和是否执行 resolve，reject有关<ul><li>pending</li><li>resolved</li><li>rejected</li></ul></li><li>状态的变化和表现<ul><li>pending状态，不会触发then和catch</li><li>resolved状态，会触发后续的then回调</li><li>rejected状态，会触发后续的catch回调<blockquote><p>resolved状态和rejected状态可以直接触发，如Promise.resolve()，Promise.reject()</p></blockquote></li></ul></li><li>then，catch链式调用对状态的影响 <ul><li>then 返回一个Promise，如果有报错状态为rejected，正常则状态为resolved</li><li>catch 正常状态返回resolved，里面有报错则返回rejected</li></ul></li></ul></li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">Promise.resolve().then(() =&gt; &#123;</span><br><span class="line">    console.log(1) // 1</span><br><span class="line">&#125;).catch(() =&gt; &#123;</span><br><span class="line">    console.log(2)</span><br><span class="line">&#125;).then(() =&gt; &#123;</span><br><span class="line">    console.log(3) //3</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">Promise.resolve().then(() =&gt; &#123;</span><br><span class="line">    console.log(1) // 1</span><br><span class="line">    throw new Error(&apos;err1&apos;)</span><br><span class="line">&#125;).catch(() =&gt; &#123;</span><br><span class="line">    console.log(2) // 2</span><br><span class="line">&#125;).then(() =&gt; &#123;</span><br><span class="line">    console.log(3) //3</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">Promise.resolve().then(() =&gt; &#123;</span><br><span class="line">    console.log(1) // 1</span><br><span class="line">    throw new Error(&apos;err1&apos;)</span><br><span class="line">&#125;).catch(() =&gt; &#123;</span><br><span class="line">    console.log(2) // 2</span><br><span class="line">&#125;).catch(() =&gt; &#123;</span><br><span class="line">    console.log(3)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><ol start="3"><li>async/await</li></ol><ul><li>callback hell</li><li>Promise 回调函数</li><li>async/await同步的语法</li></ul>]]></content>
+    <content type="html"><![CDATA[<p>React-Hooks 自 React 16.8 以来才真正被推而广之</p><h1 id="What-amp-Why"><a href="#What-amp-Why" class="headerlink" title="What &amp; Why"></a>What &amp; Why</h1><h2 id="类组件-Class-Component-vs-函数-无状态组件"><a href="#类组件-Class-Component-vs-函数-无状态组件" class="headerlink" title="类组件 Class Component vs 函数/无状态组件"></a>类组件 Class Component vs 函数/无状态组件</h2><blockquote><p>所谓类组件，就是基于 ES6 Class 这种写法，通过继承 React.Component 得来的 React 组件<br>函数组件/无状态组件，在没有 Hooks 加持的条件加，函数组件无法维护自己的 state</p></blockquote><p>二者并没有优劣，只是根据不同的场景采用不同的形式。</p><blockquote><p>区别：函数组件会捕获 render 内部的状态。面向对象与函数式的不同。this 调用的区别<br>注：对于函数组件，props 会保持渲染结果符合预期。更利于逻辑拆分与重用组件<br>为了回归 UI = render(data)的本质，所以需要补齐函数组件所缺乏的的类组件的能力，React Hooks 应运而生。即一套能够使函数组件更强大、更灵活的“钩子”<br>ex.</p></blockquote><ul><li>useState() 为函数组件引入了 state，const [state, setState] = useState(initialState)</li><li>useEffect() 允许函数执行副作用操作，即弥补了生命周期的缺失，比如 componentDidMount、componentDidUpdate 和 componentWillUnmount。操作 DOM、订阅事件、调用外部 API。<br>useEffect(callBack, [])，返回的函数成为“清除函数 ”</li><li>callback 是否有 return,决定是否在卸载阶段执行。有 return 则会在挂载执行 return 之前的内容，卸载阶段执行 return 的函数。即 useEffect 回调中返回了一个函数，那它会被作为清除函数处理。</li><li>[],判断是否每次页面渲染后都执行。如果 []不为空，React 会在每次渲染前对比前后两次的渲染，查看数组内部是否有变量发生了更新。注意引用类型的比较可能因为变化导致判断结果不同。</li><li>useLayoutEffect() 同 useEffect 都是用来处理副作用的，底层函数签名也是一致的，都是 mountEffectImpl，在使用上也没有什么区别。但 useEffect 是异步调用的，useLayoutEffect 则是在 DOM 变更后同步调用，主要避免页面闪烁、调整样式、处理 DOM，但正是由于同步操作，所以避免在 useLayoutEffect 中做计算量大耗时的任务，以免出现阻塞。<br>Hooks 开发需要抛弃生命周期的思考模式，以 effects 的角度重新思考</li></ul><h2 id="所以-Why"><a href="#所以-Why" class="headerlink" title="所以 Why?"></a>所以 Why?</h2><p>优势：</p><ul><li>告别难以理解的 Class，this 和生命周期，降低学习成本。不必用实践层面的约束解决设计层面的问题</li><li>解决业务逻辑难以拆分的问题。更好的进行逻辑拆分，避免重复冗余的代码。</li><li>使状态逻辑复用变得简单可行。状态复用 HOC（高阶组件）</li></ul><p>局限：</p><ul><li>函数补齐能力还需继续完善，声明周期还有未纳入 Hooks 中的</li><li>复杂的，耦合和自由。有严格的规则约束</li><li>常量声明</li></ul><h2 id="原则"><a href="#原则" class="headerlink" title="原则"></a>原则</h2><ol><li>只在 React 函数中调用 Hook</li><li>不要在循环，条件和嵌套中用 Hook。why？<br>eslint-plugin-react-hooks</li></ol><p>以 setState 为例，</p><ul><li>mountState，初始化 hook，将 hook 相关的所有信息都收敛在一个 hook 对象里，hook 对象之间以单向链表的形式相互串联。</li><li>updateState，按顺序去遍历之前构造好的链表，然后取相应的数据进行渲染。重点：按“顺序”去修改！</li></ul><p>PS:<br>心智模型：引用唐纳德·诺曼，是指用户头脑中对一个产品应该具有的概念和行为的知识。这个知识可能来源于用户以前使用类似产品的沉淀，或者用户根据使用该产品要达到的目标而对产品概念和行为的一种期望。</p><h1 id="Q-amp-A-如何设计-React-的组件？"><a href="#Q-amp-A-如何设计-React-的组件？" class="headerlink" title="Q&amp;A: 如何设计 React 的组件？"></a>Q&amp;A: 如何设计 React 的组件？</h1><blockquote><p>展示组件的复用性更强，灵巧组件则更专注与业务本身</p></blockquote><ul><li>展示组件： 无状态组件，只做展示，独立运行</li></ul><ol><li>代理组件</li><li>样式组件</li><li>布局组件</li></ol><ul><li>灵巧组件： 有状态组件，主要进行业务逻辑和数据状态处理</li></ul><ol><li>容器组件</li><li>高阶组件</li></ol><ul><li>逻辑复用</li><li>链式调用</li><li>渲染劫持</li><li>缺陷：丢失静态函数，refs 属性不能透传</li></ul>]]></content>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;思考&quot;&gt;&lt;a href=&quot;#思考&quot; class=&quot;headerlink&quot; title=&quot;思考&quot;&gt;&lt;/a&gt;思考&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;同步和异步的区别&lt;/li&gt;
-&lt;li&gt;手写Promise&lt;/li&gt;
-&lt;li&gt;前端异步的场景&lt;/li&gt;
-&lt;li&gt;event loop（事件循环）的机制，画图&lt;/li&gt;
-&lt;li&gt;async/await&lt;/li&gt;
-&lt;li&gt;Promise的三种状态，then，catch的连接&lt;/li&gt;
-&lt;/ul&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;console.log(1)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;setTimeout(() =&amp;gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    console.log(2)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;, 1000);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;console.log(3)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;setTimeout(() =&amp;gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    console.log(4)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;, 0);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;console.log(5)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+      
+      
+        &lt;p&gt;React-Hooks 自 React 16.8 以来才真正被推而广之&lt;/p&gt;
+&lt;h1 id=&quot;What-amp-Why&quot;&gt;&lt;a href=&quot;#What-amp-Why&quot; class=&quot;headerlink&quot; title=&quot;What &amp;amp; Why&quot;&gt;&lt;/a&gt;What 
+      
     
     </summary>
     
-      <category term="JavaScript" scheme="https://wangyx233.github.io/categories/JavaScript/"/>
+      <category term="React" scheme="https://wangyx233.github.io/categories/React/"/>
     
+    
+      <category term="React" scheme="https://wangyx233.github.io/tags/React/"/>
     
   </entry>
   
@@ -1003,6 +1002,34 @@
 &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;showName()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;console.log(myname)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var myname = &amp;apos;xxx&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;function showName() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  console.log(&amp;apos;函数showName被执行&amp;apos;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;// 编译&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;var myname;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;function showName() &amp;#123; //函数定义放到堆中，变量环境中showName指向该函数&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  console.log(&amp;apos;函数showName被执行&amp;apos;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;// 执行&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;showName()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;console.log(myname)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;myname = &amp;apos;xxx&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 
 &lt;h3 id=&quot;QA-代码中相同的变量和函数如何处理？&quot;&gt;&lt;a href=&quot;#QA-代码中相同的变量和函数如何处理？&quot; class=&quot;headerlink&quot; title=&quot;QA 代码中相同的变量和函数如何处理？&quot;&gt;&lt;/a&gt;QA 代码中相同的变量和函数如何处理？&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;function showName() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    console.log(&amp;apos;aaa&amp;apos;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;showName();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;function showName() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    console.log(&amp;apos;bbb&amp;apos;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;showName();&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+      <category term="JavaScript" scheme="https://wangyx233.github.io/categories/JavaScript/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>【JS基础】异步</title>
+    <link href="https://wangyx233.github.io/2021/06/30/%5BJS%E5%9F%BA%E7%A1%80%5D%E5%BC%82%E6%AD%A5/"/>
+    <id>https://wangyx233.github.io/2021/06/30/[JS基础]异步/</id>
+    <published>2021-06-30T02:45:57.320Z</published>
+    <updated>2021-07-13T03:21:58.460Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h1><ul><li>同步和异步的区别</li><li>手写Promise</li><li>前端异步的场景</li><li>event loop（事件循环）的机制，画图</li><li>async/await</li><li>Promise的三种状态，then，catch的连接</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">console.log(1)</span><br><span class="line">setTimeout(() =&gt; &#123;</span><br><span class="line">    console.log(2)</span><br><span class="line">&#125;, 1000);</span><br><span class="line">console.log(3)</span><br><span class="line">setTimeout(() =&gt; &#123;</span><br><span class="line">    console.log(4)</span><br><span class="line">&#125;, 0);</span><br><span class="line">console.log(5)</span><br></pre></td></tr></table></figure><a id="more"></a><h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><p>why?<br>遇到等待（请求，定时任务）不能卡住<br>单线程-&gt;异步<br>JS是单线程，异步不会阻塞代码的执行，同步会阻塞代码的执行</p><p>why Promise?</p><ul><li>编码习惯，回调</li><li>callback hell -&gt; 管道串联</li></ul><ol><li>event loop 事件循环</li></ol><ul><li>同步代码在call stack一步一步执行</li><li>遇到异步代码先记录下来</li><li>等到“时机成熟”，把异步函数放到call queue中</li><li>如果call stack 为空（即同步代码执行完）Event Loop开始工作</li><li>轮询查找call queue，如果有则移到call stack 执行</li><li>然后继续查找</li></ul><p>由于JS是单线程的，异步(setTimeout, ajax)，DOM事件也都是基于event loop</p><ol start="2"><li>Promise<ul><li>三种状态，变化是不可逆的，只能从pending变化。且状态的改变和是否执行 resolve，reject有关<ul><li>pending</li><li>resolved</li><li>rejected</li></ul></li><li>状态的变化和表现<ul><li>pending状态，不会触发then和catch</li><li>resolved状态，会触发后续的then回调</li><li>rejected状态，会触发后续的catch回调<blockquote><p>resolved状态和rejected状态可以直接触发，如Promise.resolve()，Promise.reject()</p></blockquote></li></ul></li><li>then，catch链式调用对状态的影响 <ul><li>then 返回一个Promise，如果有报错状态为rejected，正常则状态为resolved</li><li>catch 正常状态返回resolved，里面有报错则返回rejected</li></ul></li></ul></li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">Promise.resolve().then(() =&gt; &#123;</span><br><span class="line">    console.log(1) // 1</span><br><span class="line">&#125;).catch(() =&gt; &#123;</span><br><span class="line">    console.log(2)</span><br><span class="line">&#125;).then(() =&gt; &#123;</span><br><span class="line">    console.log(3) //3</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">Promise.resolve().then(() =&gt; &#123;</span><br><span class="line">    console.log(1) // 1</span><br><span class="line">    throw new Error(&apos;err1&apos;)</span><br><span class="line">&#125;).catch(() =&gt; &#123;</span><br><span class="line">    console.log(2) // 2</span><br><span class="line">&#125;).then(() =&gt; &#123;</span><br><span class="line">    console.log(3) //3</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">Promise.resolve().then(() =&gt; &#123;</span><br><span class="line">    console.log(1) // 1</span><br><span class="line">    throw new Error(&apos;err1&apos;)</span><br><span class="line">&#125;).catch(() =&gt; &#123;</span><br><span class="line">    console.log(2) // 2</span><br><span class="line">&#125;).catch(() =&gt; &#123;</span><br><span class="line">    console.log(3)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><ol start="3"><li>async/await</li></ol><ul><li>callback hell</li><li>Promise 回调函数</li><li>async/await同步的语法</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;思考&quot;&gt;&lt;a href=&quot;#思考&quot; class=&quot;headerlink&quot; title=&quot;思考&quot;&gt;&lt;/a&gt;思考&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;同步和异步的区别&lt;/li&gt;
+&lt;li&gt;手写Promise&lt;/li&gt;
+&lt;li&gt;前端异步的场景&lt;/li&gt;
+&lt;li&gt;event loop（事件循环）的机制，画图&lt;/li&gt;
+&lt;li&gt;async/await&lt;/li&gt;
+&lt;li&gt;Promise的三种状态，then，catch的连接&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;console.log(1)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;setTimeout(() =&amp;gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    console.log(2)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;, 1000);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;console.log(3)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;setTimeout(() =&amp;gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    console.log(4)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;, 0);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;console.log(5)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
     
     </summary>
     
@@ -1112,6 +1139,33 @@
   </entry>
   
   <entry>
+    <title>【WebAPI】存储</title>
+    <link href="https://wangyx233.github.io/2021/06/30/%5BJSWebAPI%5Dcookie/"/>
+    <id>https://wangyx233.github.io/2021/06/30/[JSWebAPI]cookie/</id>
+    <published>2021-06-30T02:45:57.317Z</published>
+    <updated>2021-07-13T03:21:58.364Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>介绍cookie、localStorage、sessionStorage区别</li></ul><h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><ol><li><p>cookie</p><ul><li>通过;分割的字符串，每一部分都是key=value的形式</li><li>http请求的一部分，用于浏览器和服务端通讯的</li><li>document.cookie修改，默认每次追加或者修改一个key/value</li><li>限制：最大4KB，每次http请求都需要发送到服务端，api太简陋</li></ul></li><li><p>localStorage、sessionStorage</p><ul><li>HTML5专门为存储设计的，最大可存储5M / pre host</li><li>API：getItem() setItem() 存储的为字符串的形式，所以其他格式的数据要注意</li><li>和http请求没关系</li><li>localStorage 永久存储，除非手动或者代码删除；sessionStorage只存在于当前会话，页面关闭清空</li></ul></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ul&gt;
+&lt;li&gt;介绍cookie、localStorage、sessionStorage区别&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;知识点&quot;&gt;&lt;a href=&quot;#知识点&quot; class=&quot;headerlink&quot; title=&quot;知识点&quot;&gt;&lt;/a&gt;知识点&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;&lt;
+      
+    
+    </summary>
+    
+      <category term="JavaScript" scheme="https://wangyx233.github.io/categories/JavaScript/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>【WebAPI】DOM</title>
     <link href="https://wangyx233.github.io/2021/06/30/%5BJSWebAPI%5DDOM/"/>
     <id>https://wangyx233.github.io/2021/06/30/[JSWebAPI]DOM/</id>
@@ -1132,33 +1186,6 @@
 &lt;li&gt;DOM常用的API&lt;/li&gt;
 &lt;li&gt;attr和property的区别&lt;/li&gt;
 &lt;li&gt;如何一
-      
-    
-    </summary>
-    
-      <category term="JavaScript" scheme="https://wangyx233.github.io/categories/JavaScript/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>【WebAPI】存储</title>
-    <link href="https://wangyx233.github.io/2021/06/30/%5BJSWebAPI%5Dcookie/"/>
-    <id>https://wangyx233.github.io/2021/06/30/[JSWebAPI]cookie/</id>
-    <published>2021-06-30T02:45:57.317Z</published>
-    <updated>2021-07-13T03:21:58.364Z</updated>
-    
-    <content type="html"><![CDATA[<ul><li>介绍cookie、localStorage、sessionStorage区别</li></ul><h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><ol><li><p>cookie</p><ul><li>通过;分割的字符串，每一部分都是key=value的形式</li><li>http请求的一部分，用于浏览器和服务端通讯的</li><li>document.cookie修改，默认每次追加或者修改一个key/value</li><li>限制：最大4KB，每次http请求都需要发送到服务端，api太简陋</li></ul></li><li><p>localStorage、sessionStorage</p><ul><li>HTML5专门为存储设计的，最大可存储5M / pre host</li><li>API：getItem() setItem() 存储的为字符串的形式，所以其他格式的数据要注意</li><li>和http请求没关系</li><li>localStorage 永久存储，除非手动或者代码删除；sessionStorage只存在于当前会话，页面关闭清空</li></ul></li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;ul&gt;
-&lt;li&gt;介绍cookie、localStorage、sessionStorage区别&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&quot;知识点&quot;&gt;&lt;a href=&quot;#知识点&quot; class=&quot;headerlink&quot; title=&quot;知识点&quot;&gt;&lt;/a&gt;知识点&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;&lt;
       
     
     </summary>

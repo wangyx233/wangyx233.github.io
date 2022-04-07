@@ -130,6 +130,107 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-[React]React18来啦" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/04/07/[React]React18来啦/">【React】React 18来辣</a>
+    </h1>
+  
+
+        
+        <a href="/2022/04/07/[React]React18来啦/" class="archive-article-date">
+  	<time datetime="2022-04-07T01:58:48.813Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-04-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>铛铛铛，React18正式发布辣</p>
+<blockquote>
+<p>前置知识： Concurrent(并发)</p>
+</blockquote>
+<h3 id="Concurrent"><a href="#Concurrent" class="headerlink" title="Concurrent"></a>Concurrent</h3><blockquote>
+<p>渲染是可中断的。（以前React中update是同步渲染，一旦update开启，在任务完成前都是不可中断的。</p>
+</blockquote>
+<p>在Concurrent模式下，update开始了可以中断，结果是可以继续，也可以选择遗弃。</p>
+<ul>
+<li>可中断。任务是有优先级，优先级高的比如用户交互，输入，点击…fiber的链表结构，指向改变。</li>
+<li>可被遗弃。比如，一个操作过程，中间的可能切走，不重要或者过期了，所以可以被遗弃，只关注最后的展示。</li>
+<li>状态复用。OffScreen，比如页面回退了，又重新进入了；或者即将要渲染的UI进行缓存准备。</li>
+</ul>
+<blockquote>
+<p>总结: 并不是API之类的新特性，而是新特性的基础，包括Suspense、transitions等。 </p>
+</blockquote>
+<h3 id="新特性"><a href="#新特性" class="headerlink" title="新特性"></a>新特性</h3><h4 id="createRoot"><a href="#createRoot" class="headerlink" title="createRoot"></a>createRoot</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const root = createRoot(document.getElementById(&apos;root&apos;))</span><br><span class="line">root.render(&lt;App /&gt;)</span><br><span class="line">root.render(&lt;App2 /&gt;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="自动批量处理-Automatic-Batching"><a href="#自动批量处理-Automatic-Batching" class="headerlink" title="自动批量处理 Automatic Batching"></a>自动批量处理 Automatic Batching</h4><blockquote>
+<p>setState是同步还是异步呀，可以实现同步嘛，怎么实现，异步的原理是什么？</p>
+</blockquote>
+<p>18之前：都可以，同步：setTimeout，或者原生事件里同步。异步：批量处理，合成事件里，把多次的render合并起来，关键是依赖合成事件。<br>18之后，同步可用flushSync。就不要用setTimeout，也是异步了，why？不是依靠合成事件，而是自动批量处理。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">flushSync(() =&gt; &#123;</span><br><span class="line">  // state 变化  </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="Suspense"><a href="#Suspense" class="headerlink" title="Suspense"></a>Suspense</h4><p>加载等待，类似loading</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;Suspense fallback=&#123;&lt;Spin /&gt;&#125;&gt;</span><br><span class="line">  &lt;Component /&gt;</span><br><span class="line">&lt;/Suspense&gt;</span><br></pre></td></tr></table></figure>
+
+<p>…_(¦3」∠)_下回再战…</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/React//" class="article-tag-list-link color1">React</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/04/07/[React]React18来啦/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-[业务]导出那些事" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1041,107 +1142,6 @@
 
 
   
-    <article id="post-[JS基础]执行" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/02/15/[JS基础]执行/">【JS基础】执行</a>
-    </h1>
-  
-
-        
-        <a href="/2022/02/15/[JS基础]执行/" class="archive-article-date">
-  	<time datetime="2022-02-15T06:26:06.772Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>JavaScript 执行主要分为两个阶段：</p>
-<ul>
-<li>代码预编译阶段</li>
-<li>代码执行阶段</li>
-</ul>
-<p>代码预编译阶段</p>
-<ul>
-<li>预编译阶段进行变量声明</li>
-<li>预编译阶段变量声明进行提升，但是值为 undefined</li>
-<li>预编译阶段所有非表达式的函数声明进行提升</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">foo(10)</span><br><span class="line">function foo (num) &#123;</span><br><span class="line">    console.log(foo)</span><br><span class="line">    foo = num;</span><br><span class="line">    console.log(foo)</span><br><span class="line">    var foo</span><br><span class="line">&#125;</span><br><span class="line">console.log(foo)</span><br><span class="line">foo = 1</span><br><span class="line">console.log(foo)</span><br><span class="line">// undefined</span><br><span class="line">// 10</span><br><span class="line">// 1</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>作用域在预编译阶段确定，但是作用域链是在执行上下文的创建阶段完全生成的。执行上下文包括了：变量对象、作用域链以及 this 的指向</p>
-</blockquote>
-<p>预编译阶段创建变量对象(Variable Object, VO)，在执行阶段，变量对象转换为激活对象(Active Object)，即完成 VO -&gt; AO</p>
-<blockquote>
-<p>正常来讲，在函数执行完毕并出栈时，函数内局部变量在下一个垃圾回收节点会被回收，该函数对应的执行上下文将会被销毁，这也正是我们在外界无法访问函数内定义的变量的原因。也就是说，只有在函数执行时，相关函数可以访问该变量，该变量在预编译阶段进行创建，在执行阶段进行激活，在函数执行完毕后，相关上下文被销毁。</p>
-</blockquote>
-<blockquote>
-<p>闭包： 函数嵌套函数时，内层函数引用了外层函数作用域下的变量，并且内层函数在全局环境下可访问，就形成了闭包。</p>
-</blockquote>
-<p>浏览器的垃圾清除</p>
-<ul>
-<li>标记清除</li>
-<li>引用计数</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/JavaScript//" class="article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/02/15/[JS基础]执行/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1235,19 +1235,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CSS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">React</a>
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">购房</a>
+                <a href="javascript:void(0)" class="js-tag color1">React</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1275,11 +1271,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color1">CI/CD</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1295,27 +1295,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">search</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">投资</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">moment.js</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Date</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1327,11 +1311,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
+                <a href="javascript:void(0)" class="js-tag color5">moment.js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Date</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">closure</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1343,11 +1339,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">search</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">安全</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">CI/CD</a>
+                <a href="javascript:void(0)" class="js-tag color3">购房</a>
               </li>
              
               <li class="article-tag-list-item">
