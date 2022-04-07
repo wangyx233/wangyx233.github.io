@@ -568,29 +568,6 @@
   </entry>
   
   <entry>
-    <title>【工程化】Webpack</title>
-    <link href="https://wangyx233.github.io/2021/06/30/%5B%E5%B7%A5%E7%A8%8B%E5%8C%96%5DWebpack/"/>
-    <id>https://wangyx233.github.io/2021/06/30/[工程化]Webpack/</id>
-    <published>2021-06-30T02:45:57.328Z</published>
-    <updated>2021-07-13T03:21:58.452Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="历史"><a href="#历史" class="headerlink" title="历史"></a>历史</h1><h2 id="为什么需要"><a href="#为什么需要" class="headerlink" title="为什么需要"></a>为什么需要</h2><ol><li>转换ES6</li><li>转换JSX</li><li>压缩混淆</li><li>CSS预处理器</li><li>图片压缩<br>…</li></ol><p>gulp 任务打包器，文件流的概念，每一步构建的结果不会存本地磁盘，而是存在内存里，可以加快打包速度。</p><p>webpack vs gulp 社区生态丰富，配置灵活，插件化扩展，官方更新迭代快；module builder vs task runner</p><h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>配置文件，默认：webpack.config.js<br>可以使用 webpack –config xxx 指定配置文件</p><p>webpack<br>webpack-cli</p><h3 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h3><ol><li>entry：模块依赖打包的入口，单页应用为字符串，多页应用为{key: value}</li><li>output：将编译的文件输出到磁盘，通过filename [xxx]区别多入口多输出，输出的文件名称，为entry设置的key名</li><li>loaders！webpack开箱即用的只有js和json两种类型，所以需要通过loaders去支持其他文件类型并转成有效的模块，并且可以加到依赖图里<br>loaders其实是个函数，接受源文件为参数，返回转换的结果。链式调用的，从右向左执行<br>比如：</li></ol><ul><li>babel-loader</li><li>css-loader</li><li>less-loader</li><li>file-loader</li></ul><ol start="4"><li>plugins，增强webpack的功能，对打包文件的优化，资源的管理，环境变量的注入。作用于整个构建过程</li></ol><ul><li>CommonsChunkPlugin</li><li>HtmlWebpackPlugin</li><li>UglifyjsWebpackPlugin</li></ul><ol start="5"><li>mode: 指定打包的环境，production，development</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">const path = require(&apos;path&apos;);</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">    entry: &#123;</span><br><span class="line">        app: &apos;xxx&apos;,</span><br><span class="line">        admin: &apos;sss&apos;</span><br><span class="line">    &#125;,</span><br><span class="line">    output: &#123;</span><br><span class="line">        filename: &apos;[xxx].js&apos;,</span><br><span class="line">        path: &apos;&apos;</span><br><span class="line">    &#125;</span><br><span class="line">    mode: &apos;production&apos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><ol start="6"><li><p>文件监听的原理分析<br>轮询地判断文件最后编辑时间是否变化，某个文件发生了变化，并不会立刻告诉监听者，而是先缓存起来，等aggregateTimeout</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">watchOptions: &#123;</span><br><span class="line">    ignored: /node_modules/,</span><br><span class="line">    aggregateTimeout: 300, // 监听到变化后，多长时间后再去执行</span><br><span class="line">    poll: 1000 // 1s询问多少次</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li><p>热更新<br>webpack compile<br>HMR Server   -&gt; HMR Runtime，会被注入到浏览器的bundle.js里面，浏览器里的bundle.js 就可以建立连接websocket，更新变化<br>Bundle Server -&gt; 浏览器访问 localhost</p></li></ol><ul><li>两个阶段，启动阶段 文件系统 -&gt; webpack compile -&gt; Bundle Server</li><li>变更阶段，文件系统 -&gt; webpack compile -&gt; HMR Server -&gt; HMR Runtime （json形式）</li></ul><ol start="8"><li>文件指纹 - 打包后输出的文件名后缀<br>怎样生成的？</li></ol><ul><li>hash，和整个项目的构建有关，只要项目文件有修改，整个项目构建的hash就会更改</li><li>chunkhash，和webpack打包的chunk有关，不同的entry会生成不同的chunkhash</li><li>contenthash，根据文件内容来生成hash，文件内容不变，则contenthash不变</li></ul><p>ps. file-loader 里面的hash也是指contenthash的意思。style-loader是将css代码插入到head中,MiniCssExtractPlugin是将css文件提取出独立的文件，二者互斥</p><ol start="9"><li>清理构建目录 - clean-webpack-plugin</li><li>css</li></ol><ul><li>属性前缀 - autoprefixer，postcss-loader</li><li>px rem 相互转换 rem: font-size of the root element。px2rem-loader</li></ul><ol start="10"><li><p>静态资源内联，raw-loader。读取文件的内容，然后把文件的内容插入到对应的位置</p></li><li><p>多页面打包，MPA - 借助 glob</p><blockquote><p>glob.sync(path.join(__dirname, ‘./src/*/index.js’))<br>动态获取entry以及HtmlWebpackPlugin</p></blockquote></li><li><p>source-map定位到源代码，开发环境中用，线上环境关闭<br>cheap-source-map , inline-source-map，eval 不会有单独的map文件</p></li><li><p>提取公共资源</p></li></ol><ul><li>HtmlWebpackExternalsPlugin，放cdn的地址</li><li>SplitChunkPlugin</li></ul><ol start="14"><li>Tree Shaking<br>设置mode: production,是默认开启的</li></ol><ul><li>原理：DCE（Dead Code  Elimination）<br>代码不可到达的，不能执行；执行结果不会使用；代码只写不用</li><li>利用ES6模块的特点，只能作为模块顶部的语句出现；import的模块名只能是字符串常量；import binding是不可变的</li><li>uglify阶段删除无用代码</li><li>具有副作用的代码，tree shaking会失效</li></ul><p>副作用：一个函数会、或者可能会对函数外部变量产生影响的行为</p><ol start="15"><li><p>Scope hoisting<br>问题：</p><ul><li>大量函数闭包包裹代码，导致体积增大</li><li>运行代码时创建的函数作用域多，内存开销大</li></ul><p>模块转换，一个闭包包裹；import被转换成__webpack_require</p></li><li><p>代码分割，动态import，通过JSONP实现</p></li></ol><ul><li>抽离相同代码到一个共享块</li><li>脚本懒加载，初始下载的代码更小 </li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;历史&quot;&gt;&lt;a href=&quot;#历史&quot; class=&quot;headerlink&quot; title=&quot;历史&quot;&gt;&lt;/a&gt;历史&lt;/h1&gt;&lt;h2 id=&quot;为什么需要&quot;&gt;&lt;a href=&quot;#为什么需要&quot; class=&quot;headerlink&quot; title=&quot;为什么需要&quot;&gt;&lt;/a&gt;为什么需
-      
-    
-    </summary>
-    
-      <category term="Webpack" scheme="https://wangyx233.github.io/categories/Webpack/"/>
-    
-    
-  </entry>
-  
-  <entry>
     <title>【生活】如果有购房需求</title>
     <link href="https://wangyx233.github.io/2021/06/30/%5B%E4%BA%BA%E7%94%9F%5D%E8%B4%AD%E6%88%BF/"/>
     <id>https://wangyx233.github.io/2021/06/30/[人生]购房/</id>
@@ -619,31 +596,24 @@
   </entry>
   
   <entry>
-    <title>【WebAPI】BOM</title>
-    <link href="https://wangyx233.github.io/2021/06/30/%5BWebAPI%5DBOM/"/>
-    <id>https://wangyx233.github.io/2021/06/30/[WebAPI]BOM/</id>
-    <published>2021-06-30T02:45:57.327Z</published>
-    <updated>2021-07-13T03:21:58.455Z</updated>
+    <title>【工程化】Webpack</title>
+    <link href="https://wangyx233.github.io/2021/06/30/%5B%E5%B7%A5%E7%A8%8B%E5%8C%96%5DWebpack/"/>
+    <id>https://wangyx233.github.io/2021/06/30/[工程化]Webpack/</id>
+    <published>2021-06-30T02:45:57.328Z</published>
+    <updated>2021-07-13T03:21:58.452Z</updated>
     
-    <content type="html"><![CDATA[<blockquote><p>BOM -&gt; Browser Object Model</p></blockquote><ul><li>如何识别浏览器的类型</li><li>分别拆解url各部分</li></ul><h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><ul><li>navigator</li><li>screen</li><li>location</li><li>history<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// 1. navigator</span><br><span class="line">const ua = navigator.userAgent;</span><br><span class="line"></span><br><span class="line">// 2. screen</span><br><span class="line">const width = screen.width;</span><br><span class="line">const height = screen.height;</span><br><span class="line"></span><br><span class="line">// 3. location</span><br><span class="line">location.href</span><br><span class="line">location.protocol</span><br><span class="line">location.pathname</span><br><span class="line">location.hash</span><br><span class="line">location.search</span><br><span class="line">location.host</span><br><span class="line"></span><br><span class="line">// 4. history</span><br><span class="line">history.back();</span><br><span class="line">history.forwards();</span><br></pre></td></tr></table></figure></li></ul>]]></content>
+    <content type="html"><![CDATA[<h1 id="历史"><a href="#历史" class="headerlink" title="历史"></a>历史</h1><h2 id="为什么需要"><a href="#为什么需要" class="headerlink" title="为什么需要"></a>为什么需要</h2><ol><li>转换ES6</li><li>转换JSX</li><li>压缩混淆</li><li>CSS预处理器</li><li>图片压缩<br>…</li></ol><p>gulp 任务打包器，文件流的概念，每一步构建的结果不会存本地磁盘，而是存在内存里，可以加快打包速度。</p><p>webpack vs gulp 社区生态丰富，配置灵活，插件化扩展，官方更新迭代快；module builder vs task runner</p><h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>配置文件，默认：webpack.config.js<br>可以使用 webpack –config xxx 指定配置文件</p><p>webpack<br>webpack-cli</p><h3 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h3><ol><li>entry：模块依赖打包的入口，单页应用为字符串，多页应用为{key: value}</li><li>output：将编译的文件输出到磁盘，通过filename [xxx]区别多入口多输出，输出的文件名称，为entry设置的key名</li><li>loaders！webpack开箱即用的只有js和json两种类型，所以需要通过loaders去支持其他文件类型并转成有效的模块，并且可以加到依赖图里<br>loaders其实是个函数，接受源文件为参数，返回转换的结果。链式调用的，从右向左执行<br>比如：</li></ol><ul><li>babel-loader</li><li>css-loader</li><li>less-loader</li><li>file-loader</li></ul><ol start="4"><li>plugins，增强webpack的功能，对打包文件的优化，资源的管理，环境变量的注入。作用于整个构建过程</li></ol><ul><li>CommonsChunkPlugin</li><li>HtmlWebpackPlugin</li><li>UglifyjsWebpackPlugin</li></ul><ol start="5"><li>mode: 指定打包的环境，production，development</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">const path = require(&apos;path&apos;);</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">    entry: &#123;</span><br><span class="line">        app: &apos;xxx&apos;,</span><br><span class="line">        admin: &apos;sss&apos;</span><br><span class="line">    &#125;,</span><br><span class="line">    output: &#123;</span><br><span class="line">        filename: &apos;[xxx].js&apos;,</span><br><span class="line">        path: &apos;&apos;</span><br><span class="line">    &#125;</span><br><span class="line">    mode: &apos;production&apos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><ol start="6"><li><p>文件监听的原理分析<br>轮询地判断文件最后编辑时间是否变化，某个文件发生了变化，并不会立刻告诉监听者，而是先缓存起来，等aggregateTimeout</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">watchOptions: &#123;</span><br><span class="line">    ignored: /node_modules/,</span><br><span class="line">    aggregateTimeout: 300, // 监听到变化后，多长时间后再去执行</span><br><span class="line">    poll: 1000 // 1s询问多少次</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li><p>热更新<br>webpack compile<br>HMR Server   -&gt; HMR Runtime，会被注入到浏览器的bundle.js里面，浏览器里的bundle.js 就可以建立连接websocket，更新变化<br>Bundle Server -&gt; 浏览器访问 localhost</p></li></ol><ul><li>两个阶段，启动阶段 文件系统 -&gt; webpack compile -&gt; Bundle Server</li><li>变更阶段，文件系统 -&gt; webpack compile -&gt; HMR Server -&gt; HMR Runtime （json形式）</li></ul><ol start="8"><li>文件指纹 - 打包后输出的文件名后缀<br>怎样生成的？</li></ol><ul><li>hash，和整个项目的构建有关，只要项目文件有修改，整个项目构建的hash就会更改</li><li>chunkhash，和webpack打包的chunk有关，不同的entry会生成不同的chunkhash</li><li>contenthash，根据文件内容来生成hash，文件内容不变，则contenthash不变</li></ul><p>ps. file-loader 里面的hash也是指contenthash的意思。style-loader是将css代码插入到head中,MiniCssExtractPlugin是将css文件提取出独立的文件，二者互斥</p><ol start="9"><li>清理构建目录 - clean-webpack-plugin</li><li>css</li></ol><ul><li>属性前缀 - autoprefixer，postcss-loader</li><li>px rem 相互转换 rem: font-size of the root element。px2rem-loader</li></ul><ol start="10"><li><p>静态资源内联，raw-loader。读取文件的内容，然后把文件的内容插入到对应的位置</p></li><li><p>多页面打包，MPA - 借助 glob</p><blockquote><p>glob.sync(path.join(__dirname, ‘./src/*/index.js’))<br>动态获取entry以及HtmlWebpackPlugin</p></blockquote></li><li><p>source-map定位到源代码，开发环境中用，线上环境关闭<br>cheap-source-map , inline-source-map，eval 不会有单独的map文件</p></li><li><p>提取公共资源</p></li></ol><ul><li>HtmlWebpackExternalsPlugin，放cdn的地址</li><li>SplitChunkPlugin</li></ul><ol start="14"><li>Tree Shaking<br>设置mode: production,是默认开启的</li></ol><ul><li>原理：DCE（Dead Code  Elimination）<br>代码不可到达的，不能执行；执行结果不会使用；代码只写不用</li><li>利用ES6模块的特点，只能作为模块顶部的语句出现；import的模块名只能是字符串常量；import binding是不可变的</li><li>uglify阶段删除无用代码</li><li>具有副作用的代码，tree shaking会失效</li></ul><p>副作用：一个函数会、或者可能会对函数外部变量产生影响的行为</p><ol start="15"><li><p>Scope hoisting<br>问题：</p><ul><li>大量函数闭包包裹代码，导致体积增大</li><li>运行代码时创建的函数作用域多，内存开销大</li></ul><p>模块转换，一个闭包包裹；import被转换成__webpack_require</p></li><li><p>代码分割，动态import，通过JSONP实现</p></li></ol><ul><li>抽离相同代码到一个共享块</li><li>脚本懒加载，初始下载的代码更小 </li></ul>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;blockquote&gt;
-&lt;p&gt;BOM -&amp;gt; Browser Object Model&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;如何识别浏览器的类型&lt;/li&gt;
-&lt;li&gt;分别拆解url各部分&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&quot;知识点&quot;&gt;&lt;a href=&quot;#知
+        &lt;h1 id=&quot;历史&quot;&gt;&lt;a href=&quot;#历史&quot; class=&quot;headerlink&quot; title=&quot;历史&quot;&gt;&lt;/a&gt;历史&lt;/h1&gt;&lt;h2 id=&quot;为什么需要&quot;&gt;&lt;a href=&quot;#为什么需要&quot; class=&quot;headerlink&quot; title=&quot;为什么需要&quot;&gt;&lt;/a&gt;为什么需
       
     
     </summary>
     
-      <category term="JavaScript" scheme="https://wangyx233.github.io/categories/JavaScript/"/>
+      <category term="Webpack" scheme="https://wangyx233.github.io/categories/Webpack/"/>
     
     
   </entry>
@@ -681,6 +651,61 @@
   </entry>
   
   <entry>
+    <title>【WebAPI】BOM</title>
+    <link href="https://wangyx233.github.io/2021/06/30/%5BWebAPI%5DBOM/"/>
+    <id>https://wangyx233.github.io/2021/06/30/[WebAPI]BOM/</id>
+    <published>2021-06-30T02:45:57.327Z</published>
+    <updated>2021-07-13T03:21:58.455Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>BOM -&gt; Browser Object Model</p></blockquote><ul><li>如何识别浏览器的类型</li><li>分别拆解url各部分</li></ul><h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><ul><li>navigator</li><li>screen</li><li>location</li><li>history<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// 1. navigator</span><br><span class="line">const ua = navigator.userAgent;</span><br><span class="line"></span><br><span class="line">// 2. screen</span><br><span class="line">const width = screen.width;</span><br><span class="line">const height = screen.height;</span><br><span class="line"></span><br><span class="line">// 3. location</span><br><span class="line">location.href</span><br><span class="line">location.protocol</span><br><span class="line">location.pathname</span><br><span class="line">location.hash</span><br><span class="line">location.search</span><br><span class="line">location.host</span><br><span class="line"></span><br><span class="line">// 4. history</span><br><span class="line">history.back();</span><br><span class="line">history.forwards();</span><br></pre></td></tr></table></figure></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;BOM -&amp;gt; Browser Object Model&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;如何识别浏览器的类型&lt;/li&gt;
+&lt;li&gt;分别拆解url各部分&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;知识点&quot;&gt;&lt;a href=&quot;#知
+      
+    
+    </summary>
+    
+      <category term="JavaScript" scheme="https://wangyx233.github.io/categories/JavaScript/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>【React】Virtual DOM</title>
+    <link href="https://wangyx233.github.io/2021/06/30/%5BReact%5D%E8%99%9A%E6%8B%9FDOM/"/>
+    <id>https://wangyx233.github.io/2021/06/30/[React]虚拟DOM/</id>
+    <published>2021-06-30T02:45:57.326Z</published>
+    <updated>2021-07-13T03:21:58.358Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="What？"><a href="#What？" class="headerlink" title="What？"></a>What？</h1><p>Virtual DOM本质上是JS 和 DOM 之间的一个映射缓存，是能够描述DOM结构及其属性的JS对象。</p><ul><li>虚拟DOM是JS对象</li><li>虚拟DOM是对真实DOM的描述</li></ul><p>挂载阶段，根据JSX的描述，构建出虚拟DOM，然后通过ReactDOM.render实现虚拟DOM到真实DOM的映射<br>更新阶段，页面的变化在作用于真实DOM之前，会先作用于虚拟DOM</p><h1 id="Why？"><a href="#Why？" class="headerlink" title="Why？"></a>Why？</h1><ul><li>jQuery解决DOM API 不好使的问题。还解决浏览器兼容，链式API调用，插件扩展</li><li>模板引擎，只关心数据，不关心DOM细节。操作真实DOM的范围过大、频率过高，但思想是数据驱动视图</li><li>虚拟DOM的点不在性能。虚拟DOM有没有借鉴模板引擎无法考证，但是思想上有一定的递进关系。JSX不是模板，而是JS的一个体验像模板的扩展语法糖，然后增加了个虚拟DOM的缓存层。</li></ul><blockquote><p>差量更新。即当DOM操作比较频繁时，会将前后两次的DOM树变化进行对比diff，定位到需要更新的部分，生成一个“补丁集”，把“补丁”patch打在需要更新的那部分真实DOM上，就可以实现差量更新<br>批量更新。batch函数处理，把短时间内的多次DOM操作合成一个次更新，即把收集的多个补丁集暂存到队列中，再讲最终结果交给渲染函数，实现DOM的集中化批量更新。</p></blockquote><ol><li>研发体验/研发效率。虚拟DOM思想是数据驱动视图，前端声明式编程。</li><li>性能不是卖点。性能还不错，性能量化不能一概而论只看一个指标，得看实际情况。DOM操作量级有关</li><li>价值？跨平台，一次编码多次应用。虚拟DOM是对实际渲染内容的一次抽象</li><li>规避xss攻击</li></ol><p>缺点：</p><ol><li>内存占用高，虚拟DOM，object</li><li>无法进行极致优化。如Google Earth</li></ol><h1 id="How"><a href="#How" class="headerlink" title="How?"></a>How?</h1><h2 id="调和Reconciliation-和-Diff算法"><a href="#调和Reconciliation-和-Diff算法" class="headerlink" title="调和Reconciliation 和 Diff算法"></a>调和Reconciliation 和 Diff算法</h2><blockquote><p>调和是将虚拟DOM映射到真实DOM的过程。Diff算法只是其中的一个小部分，深度优先遍历</p></blockquote><ol><li><p>React 15为代表的“栈调和”<br>传统的递归比较两棵树结构的不同算法复杂度是O(n^3)，这个复杂度显然不能令人接受，所以React中做了什么呢，将复杂度转换成O(n)</p><ul><li>Diff算法性能突破的关键点是“分层比较”<br>分层比较其实是分层递归比较，所以“同层级操作”是主流，只针对相同层级的节点进行比较，如果是跨层级的节点操作，其实是对应这销毁和重建的过程，尽量保持DOM节点的稳定性。</li><li>类型一致的节点才有继续Diff的必要<br>根据主要“矛盾”类型不一致的节点，直接放弃比较，原地替换旧的节点。</li><li>key属性的设置，可以尽可能重用同一层级内的节点<br>key主要解决的是同一层级下节点的重用问题。设置key的元素可以避免不必要的销毁和重建，只是调整顺序排列。<blockquote><p>注：作为一个节点的唯一标识，使用key之前，保证key的唯一和稳定。<br>大致过程可以描述为树对比、组件对比、元素对比<br>总结：栈调和机制下的Diff算法，其实是树的深度优先遍历过程。<br>这个过程是同步的过程，不可被打断。Stack Reconciler 需要的时间越长，意味着JS线程将霸占主线程的时间越长。进而导致会出现渲染卡死、交互无响应的现象。</p></blockquote></li></ul></li><li><p>React 16以来的“Fiber调和”<br>Fiber：纤程，对渲染过程进行更加精细的控制。是Fiber树结构的节点单位，也就是React 16下的“虚拟DOM”,并且Fiber节点保存了组件需要更新的状态和副作用。</p></li></ol><ul><li>可中断</li><li>可恢复</li><li>优先级</li></ul><h1 id="Better？"><a href="#Better？" class="headerlink" title="Better？"></a>Better？</h1><ol><li>避免跨层级节点移动</li><li>设置唯一的key，尽量减少组件层级</li><li>设置shouldComponentUpdate 或者 React.pureComponet 减少 diff 次数</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;What？&quot;&gt;&lt;a href=&quot;#What？&quot; class=&quot;headerlink&quot; title=&quot;What？&quot;&gt;&lt;/a&gt;What？&lt;/h1&gt;&lt;p&gt;Virtual DOM本质上是JS 和 DOM 之间的一个映射缓存，是能够描述DOM结构及其属性的JS对象。&lt;/p&gt;
+      
+    
+    </summary>
+    
+      <category term="React" scheme="https://wangyx233.github.io/categories/React/"/>
+    
+    
+      <category term="React" scheme="https://wangyx233.github.io/tags/React/"/>
+    
+  </entry>
+  
+  <entry>
     <title>【React】生命周期</title>
     <link href="https://wangyx233.github.io/2021/06/30/%5BReact%5D%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/"/>
     <id>https://wangyx233.github.io/2021/06/30/[React]生命周期/</id>
@@ -703,31 +728,6 @@
 &lt;li&gt;Unmounting 阶段：组件的卸载。 组件被移除了，或者设置了 key，在 render 过程中发现 key 改变了&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&quot;React-16&quot;&gt;&lt;a href=&quot;#React-16&quot; class=&quot;headerlink&quot; title=&quot;React 16&quot;&gt;&lt;/a&gt;React 16&lt;/h2&gt;&lt;h3 id=&quot;React-16-4&quot;&gt;&lt;a href=&quot;#React-16-4&quot; class=&quot;headerlink&quot; title=&quot;React 16.4&quot;&gt;&lt;/a&gt;React 16.4&lt;/h3&gt;&lt;img src=&quot;/gallery/react16life.png&quot;&gt;
-    
-    </summary>
-    
-      <category term="React" scheme="https://wangyx233.github.io/categories/React/"/>
-    
-    
-      <category term="React" scheme="https://wangyx233.github.io/tags/React/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【React】Virtual DOM</title>
-    <link href="https://wangyx233.github.io/2021/06/30/%5BReact%5D%E8%99%9A%E6%8B%9FDOM/"/>
-    <id>https://wangyx233.github.io/2021/06/30/[React]虚拟DOM/</id>
-    <published>2021-06-30T02:45:57.326Z</published>
-    <updated>2021-07-13T03:21:58.358Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="What？"><a href="#What？" class="headerlink" title="What？"></a>What？</h1><p>Virtual DOM本质上是JS 和 DOM 之间的一个映射缓存，是能够描述DOM结构及其属性的JS对象。</p><ul><li>虚拟DOM是JS对象</li><li>虚拟DOM是对真实DOM的描述</li></ul><p>挂载阶段，根据JSX的描述，构建出虚拟DOM，然后通过ReactDOM.render实现虚拟DOM到真实DOM的映射<br>更新阶段，页面的变化在作用于真实DOM之前，会先作用于虚拟DOM</p><h1 id="Why？"><a href="#Why？" class="headerlink" title="Why？"></a>Why？</h1><ul><li>jQuery解决DOM API 不好使的问题。还解决浏览器兼容，链式API调用，插件扩展</li><li>模板引擎，只关心数据，不关心DOM细节。操作真实DOM的范围过大、频率过高，但思想是数据驱动视图</li><li>虚拟DOM的点不在性能。虚拟DOM有没有借鉴模板引擎无法考证，但是思想上有一定的递进关系。JSX不是模板，而是JS的一个体验像模板的扩展语法糖，然后增加了个虚拟DOM的缓存层。</li></ul><blockquote><p>差量更新。即当DOM操作比较频繁时，会将前后两次的DOM树变化进行对比diff，定位到需要更新的部分，生成一个“补丁集”，把“补丁”patch打在需要更新的那部分真实DOM上，就可以实现差量更新<br>批量更新。batch函数处理，把短时间内的多次DOM操作合成一个次更新，即把收集的多个补丁集暂存到队列中，再讲最终结果交给渲染函数，实现DOM的集中化批量更新。</p></blockquote><ol><li>研发体验/研发效率。虚拟DOM思想是数据驱动视图，前端声明式编程。</li><li>性能不是卖点。性能还不错，性能量化不能一概而论只看一个指标，得看实际情况。DOM操作量级有关</li><li>价值？跨平台，一次编码多次应用。虚拟DOM是对实际渲染内容的一次抽象</li><li>规避xss攻击</li></ol><p>缺点：</p><ol><li>内存占用高，虚拟DOM，object</li><li>无法进行极致优化。如Google Earth</li></ol><h1 id="How"><a href="#How" class="headerlink" title="How?"></a>How?</h1><h2 id="调和Reconciliation-和-Diff算法"><a href="#调和Reconciliation-和-Diff算法" class="headerlink" title="调和Reconciliation 和 Diff算法"></a>调和Reconciliation 和 Diff算法</h2><blockquote><p>调和是将虚拟DOM映射到真实DOM的过程。Diff算法只是其中的一个小部分，深度优先遍历</p></blockquote><ol><li><p>React 15为代表的“栈调和”<br>传统的递归比较两棵树结构的不同算法复杂度是O(n^3)，这个复杂度显然不能令人接受，所以React中做了什么呢，将复杂度转换成O(n)</p><ul><li>Diff算法性能突破的关键点是“分层比较”<br>分层比较其实是分层递归比较，所以“同层级操作”是主流，只针对相同层级的节点进行比较，如果是跨层级的节点操作，其实是对应这销毁和重建的过程，尽量保持DOM节点的稳定性。</li><li>类型一致的节点才有继续Diff的必要<br>根据主要“矛盾”类型不一致的节点，直接放弃比较，原地替换旧的节点。</li><li>key属性的设置，可以尽可能重用同一层级内的节点<br>key主要解决的是同一层级下节点的重用问题。设置key的元素可以避免不必要的销毁和重建，只是调整顺序排列。<blockquote><p>注：作为一个节点的唯一标识，使用key之前，保证key的唯一和稳定。<br>大致过程可以描述为树对比、组件对比、元素对比<br>总结：栈调和机制下的Diff算法，其实是树的深度优先遍历过程。<br>这个过程是同步的过程，不可被打断。Stack Reconciler 需要的时间越长，意味着JS线程将霸占主线程的时间越长。进而导致会出现渲染卡死、交互无响应的现象。</p></blockquote></li></ul></li><li><p>React 16以来的“Fiber调和”<br>Fiber：纤程，对渲染过程进行更加精细的控制。是Fiber树结构的节点单位，也就是React 16下的“虚拟DOM”,并且Fiber节点保存了组件需要更新的状态和副作用。</p></li></ol><ul><li>可中断</li><li>可恢复</li><li>优先级</li></ul><h1 id="Better？"><a href="#Better？" class="headerlink" title="Better？"></a>Better？</h1><ol><li>避免跨层级节点移动</li><li>设置唯一的key，尽量减少组件层级</li><li>设置shouldComponentUpdate 或者 React.pureComponet 减少 diff 次数</li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;What？&quot;&gt;&lt;a href=&quot;#What？&quot; class=&quot;headerlink&quot; title=&quot;What？&quot;&gt;&lt;/a&gt;What？&lt;/h1&gt;&lt;p&gt;Virtual DOM本质上是JS 和 DOM 之间的一个映射缓存，是能够描述DOM结构及其属性的JS对象。&lt;/p&gt;
-      
     
     </summary>
     
@@ -798,33 +798,6 @@
   </entry>
   
   <entry>
-    <title>【React】前端路由-React Router</title>
-    <link href="https://wangyx233.github.io/2021/06/30/%5BReact%5D%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%94%B1/"/>
-    <id>https://wangyx233.github.io/2021/06/30/[React]前端路由/</id>
-    <published>2021-06-30T02:45:57.323Z</published>
-    <updated>2021-07-13T03:21:58.447Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="What"><a href="#What" class="headerlink" title="What"></a>What</h1><ul><li>切换Hash</li><li>切换Path<br>HTML5的History API中的 pushState、replaceState，还需要在服务端配置historyApiFallback<br>路由守卫<h1 id="How"><a href="#How" class="headerlink" title="How"></a>How</h1></li></ul><ol><li>路由器：BrowserRouter 和 HashRouter</li></ol><ul><li>BrowserRouter 是使用 HTML 5 的 history API 来控制路由跳转的。</li><li>HashRouter 是通过 URL 的 hash 属性来控制路由跳转的。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">window.location.hash</span><br><span class="line">// 监听hash变化，点击浏览器的前进后退会触发</span><br><span class="line">window.addEventListener(&apos;hashchange&apos;, function(event)&#123;</span><br><span class="line">    // 根据 hash 的变化更新内容</span><br><span class="line">&#125;,false)</span><br><span class="line">window.history.forward()  // 前进到下一页</span><br><span class="line">window.history.back() // 后退到上一页</span><br><span class="line">window.history.go(2)</span><br><span class="line">history.pushState(data[,title][,url]); // 向浏览历史中追加一条记录</span><br><span class="line">history.replaceState(data[,title][,url]); // 修改（替换）当前页在浏览历史中的信息</span><br><span class="line">window.addEventListener(&apos;popstate&apos;, function(e) &#123;</span><br><span class="line">  console.log(e)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li></ul><blockquote><p>go、forward 和 back 等方法的调用确实会触发 popstate，但是pushState 和 replaceState 不会。不过这一点问题不大，我们可以通过自定义事件和全局事件总线来手动触发事件。</p></blockquote>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;What&quot;&gt;&lt;a href=&quot;#What&quot; class=&quot;headerlink&quot; title=&quot;What&quot;&gt;&lt;/a&gt;What&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;切换Hash&lt;/li&gt;
-&lt;li&gt;切换Path&lt;br&gt;HTML5的History API中的 pushState、
-      
-    
-    </summary>
-    
-      <category term="React" scheme="https://wangyx233.github.io/categories/React/"/>
-    
-    
-      <category term="React" scheme="https://wangyx233.github.io/tags/React/"/>
-    
-  </entry>
-  
-  <entry>
     <title>【React】事件系统</title>
     <link href="https://wangyx233.github.io/2021/06/30/%5BReact%5D%E4%BA%8B%E4%BB%B6/"/>
     <id>https://wangyx233.github.io/2021/06/30/[React]事件/</id>
@@ -843,6 +816,33 @@
 &lt;li&gt;事件冒泡&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h1 
+      
+    
+    </summary>
+    
+      <category term="React" scheme="https://wangyx233.github.io/categories/React/"/>
+    
+    
+      <category term="React" scheme="https://wangyx233.github.io/tags/React/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【React】前端路由-React Router</title>
+    <link href="https://wangyx233.github.io/2021/06/30/%5BReact%5D%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%94%B1/"/>
+    <id>https://wangyx233.github.io/2021/06/30/[React]前端路由/</id>
+    <published>2021-06-30T02:45:57.323Z</published>
+    <updated>2021-07-13T03:21:58.447Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="What"><a href="#What" class="headerlink" title="What"></a>What</h1><ul><li>切换Hash</li><li>切换Path<br>HTML5的History API中的 pushState、replaceState，还需要在服务端配置historyApiFallback<br>路由守卫<h1 id="How"><a href="#How" class="headerlink" title="How"></a>How</h1></li></ul><ol><li>路由器：BrowserRouter 和 HashRouter</li></ol><ul><li>BrowserRouter 是使用 HTML 5 的 history API 来控制路由跳转的。</li><li>HashRouter 是通过 URL 的 hash 属性来控制路由跳转的。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">window.location.hash</span><br><span class="line">// 监听hash变化，点击浏览器的前进后退会触发</span><br><span class="line">window.addEventListener(&apos;hashchange&apos;, function(event)&#123;</span><br><span class="line">    // 根据 hash 的变化更新内容</span><br><span class="line">&#125;,false)</span><br><span class="line">window.history.forward()  // 前进到下一页</span><br><span class="line">window.history.back() // 后退到上一页</span><br><span class="line">window.history.go(2)</span><br><span class="line">history.pushState(data[,title][,url]); // 向浏览历史中追加一条记录</span><br><span class="line">history.replaceState(data[,title][,url]); // 修改（替换）当前页在浏览历史中的信息</span><br><span class="line">window.addEventListener(&apos;popstate&apos;, function(e) &#123;</span><br><span class="line">  console.log(e)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li></ul><blockquote><p>go、forward 和 back 等方法的调用确实会触发 popstate，但是pushState 和 replaceState 不会。不过这一点问题不大，我们可以通过自定义事件和全局事件总线来手动触发事件。</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;What&quot;&gt;&lt;a href=&quot;#What&quot; class=&quot;headerlink&quot; title=&quot;What&quot;&gt;&lt;/a&gt;What&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;切换Hash&lt;/li&gt;
+&lt;li&gt;切换Path&lt;br&gt;HTML5的History API中的 pushState、
       
     
     </summary>
@@ -885,6 +885,30 @@
   </entry>
   
   <entry>
+    <title>【React】setState 同步 or 异步？</title>
+    <link href="https://wangyx233.github.io/2021/06/30/%5BReact%5DsetState/"/>
+    <id>https://wangyx233.github.io/2021/06/30/[React]setState/</id>
+    <published>2021-06-30T02:45:57.322Z</published>
+    <updated>2021-07-13T03:21:58.385Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>在React管控下的setState是异步，而脱离React管控的则表现为同步。</p></blockquote><a id="more"></a><h1 id="异步？"><a href="#异步？" class="headerlink" title="异步？"></a>异步？</h1><p>在React自己的生命周期和合成事件中，可以拿到控制权，将状态放入队列，控制执行节奏。即isBatchingUpdates -&gt; true，进入dirtyComponents，false则循环更新dirtyComponents里的所有组件。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line">// 函数分发</span><br><span class="line">ReactComponent.prototype.setState = function (partialState, callback) &#123;</span><br><span class="line">  this.updater.enqueueSetState(this, partialState);</span><br><span class="line">  if (callback) &#123;</span><br><span class="line">    this.updater.enqueueCallback(this, callback, &apos;setState&apos;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">// 将新的state放到组件的状态队列中，并且用enqueueUpdate来处理要更新的实例</span><br><span class="line">enqueueSetState: function (publicInstance, partialState) &#123;</span><br><span class="line">  // 根据 this 拿到对应的组件实例</span><br><span class="line">  var internalInstance = getInternalInstanceReadyForUpdate(publicInstance, &apos;setState&apos;);</span><br><span class="line">  // 这个 queue 对应的就是一个组件实例的 state 数组</span><br><span class="line">  var queue = internalInstance._pendingStateQueue || (internalInstance._pendingStateQueue = []);</span><br><span class="line">  queue.push(partialState);</span><br><span class="line">  //  enqueueUpdate 用来处理当前的组件实例</span><br><span class="line">  enqueueUpdate(internalInstance);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// batchingStrategy用于批量更新的对象</span><br><span class="line">function enqueueUpdate(component) &#123;</span><br><span class="line">  ensureInjected();</span><br><span class="line">  // 注意这一句是问题的关键，isBatchingUpdates标识着当前是否处于批量创建/更新组件的阶段</span><br><span class="line">  if (!batchingStrategy.isBatchingUpdates) &#123;</span><br><span class="line">    // 若当前没有处于批量创建/更新组件的阶段，则立即更新组件</span><br><span class="line">    batchingStrategy.batchedUpdates(enqueueUpdate, component);</span><br><span class="line">    return;</span><br><span class="line">  &#125;</span><br><span class="line">  // 否则，先把组件塞入 dirtyComponents 队列里，让它“再等等”</span><br><span class="line">  dirtyComponents.push(component);</span><br><span class="line">  if (component._updateBatchNumber == null) &#123;</span><br><span class="line">    component._updateBatchNumber = updateBatchNumber + 1;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var ReactDefaultBatchingStrategy = &#123;</span><br><span class="line">  // 全局唯一的锁标识</span><br><span class="line">  isBatchingUpdates: false, // 当前未进行任何批量操作</span><br><span class="line">  // 发起更新动作的方法</span><br><span class="line">  batchedUpdates: function(callback, a, b, c, d, e) &#123;</span><br><span class="line">    // 缓存锁变量</span><br><span class="line">    var alreadyBatchingStrategy = ReactDefaultBatchingStrategy.isBatchingUpdates</span><br><span class="line">    // 把锁“锁上”</span><br><span class="line">    ReactDefaultBatchingStrategy.isBatchingUpdates = true // 现在正处于批量操作中，需要更新的组件暂时进入DirtyComp</span><br><span class="line">    if (alreadyBatchingStrategy) &#123;</span><br><span class="line">      callback(a, b, c, d, e)</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      // 启动事务，将 callback 放进事务里执行</span><br><span class="line">      transaction.perform(callback, null, a, b, c, d, e)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 事务通过wrapper进行封装。一个wrapper包含一对initialize和close方法</span><br><span class="line">var RESET_BATCHED_UPDATES = &#123;</span><br><span class="line">  initialize: emptyFunction,</span><br><span class="line">  close: function () &#123;</span><br><span class="line">    ReactDefaultBatchingStrategy.isBatchingUpdates = false;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">// FLUSH_BATCHED_UPDATES在close阶段，会循环遍历所有的dirtyComponents，调用updateComponent刷新组件</span><br><span class="line">var FLUSH_BATCHED_UPDATES = &#123;</span><br><span class="line">  initialize: emptyFunction,</span><br><span class="line">  close: ReactUpdates.flushBatchedUpdates.bind(ReactUpdates)</span><br><span class="line">&#125;;</span><br><span class="line">var TRANSACTION_WRAPPERS = [FLUSH_BATCHED_UPDATES, RESET_BATCHED_UPDATES];</span><br></pre></td></tr></table></figure><blockquote><p>说明：一个事务是将要执行的method使用wrapper封装起来，再通过Transaction提供的perform方法执行。在执行perform之前，先执行所有wrapper的initialize，perform（即method执行后）再执行所有的close方法。<br>总结：<br>isBatchingUpdates，这个变量在React的生命周期钩子函数及合成事件执行前，已经被改为true，所以这时调用setState不会立即生效。当函数执行完毕后，事务的close方法会再把isBatchingUpdates改为false</p></blockquote><p>为什么要异步？</p><ul><li>避免重复的re-render</li><li>批量更新，setState会在一个队列中，相同的会做合并，只针对最新的state做一次更新<br>减小频繁re-render</li></ul><h1 id="同步？"><a href="#同步？" class="headerlink" title="同步？"></a>同步？</h1><p>在React管控下的setState一定是异步的，发生了同步的行为，是有其他操作帮助setState脱离了React的管控。<br>在 addEventListener 、setTimeout、setInterval 会同步更新</p><h1 id="Why？"><a href="#Why？" class="headerlink" title="Why？"></a>Why？</h1><p>React 15为例，</p><ol><li>批量更新 - batchingStrategy(锁管理器，锁：isBatchingUpdates)</li><li>事务 Transaction 机制，Transaction创建一个黑盒，该黑盒能封装任何的方法。</li><li>保持内部一致性，props的更新（props的更新来自于父组件state的改变）</li><li>支持异步渲染，启用并发更新</li></ol><blockquote><p>PS: React 17之前是通过isBatchingUpdates判断，之后是lanes 算法的优先级来区分</p></blockquote><h1 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h1><ol><li><p>合成事件 -&gt; 事件委托<br>React 17 版本之前，事件监听是在document上，DOM事件触发后冒泡到document，React找到对应的组件，造出一个合成事件，并按组件数模拟一遍事件冒泡。<br>React 17 版本，事件委托不在挂载document上，而是挂在DOM容器上，即ReactDom.Render调用的节点。</p></li><li><p>看看输出什么？</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class Test extends React.Component &#123;</span><br><span class="line">  state  = &#123;</span><br><span class="line">      count: 0</span><br><span class="line">  &#125;;</span><br><span class="line">  componentDidMount() &#123;</span><br><span class="line">    this.setState(&#123;count: this.state.count + 1&#125;);</span><br><span class="line">    console.log(this.state.count); // 0</span><br><span class="line">    this.setState(&#123;count: this.state.count + 1&#125;);</span><br><span class="line">    console.log(this.state.count); // 0</span><br><span class="line">    setTimeout(() =&gt; &#123;</span><br><span class="line">      this.setState(&#123;count: this.state.count + 1&#125;);</span><br><span class="line">      console.log(this.state.count); // 2</span><br><span class="line">      this.setState(&#123;count: this.state.count + 1&#125;);</span><br><span class="line">      console.log(this.state.count); // 3</span><br><span class="line">    &#125;, 0);</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return null;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;在React管控下的setState是异步，而脱离React管控的则表现为同步。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="React" scheme="https://wangyx233.github.io/categories/React/"/>
+    
+    
+      <category term="React" scheme="https://wangyx233.github.io/tags/React/"/>
+    
+  </entry>
+  
+  <entry>
     <title>【React】ReactDom.render</title>
     <link href="https://wangyx233.github.io/2021/06/30/%5BReact%5DReactDOM.render/"/>
     <id>https://wangyx233.github.io/2021/06/30/[React]ReactDOM.render/</id>
@@ -899,30 +923,6 @@
       
         &lt;h1 id=&quot;ReactDom-render-调用栈逻辑&quot;&gt;&lt;a href=&quot;#ReactDom-render-调用栈逻辑&quot; class=&quot;headerlink&quot; title=&quot;ReactDom.render 调用栈逻辑&quot;&gt;&lt;/a&gt;ReactDom.render 调用栈逻辑&lt;/
       
-    
-    </summary>
-    
-      <category term="React" scheme="https://wangyx233.github.io/categories/React/"/>
-    
-    
-      <category term="React" scheme="https://wangyx233.github.io/tags/React/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【React】setState 同步 or 异步？</title>
-    <link href="https://wangyx233.github.io/2021/06/30/%5BReact%5DsetState/"/>
-    <id>https://wangyx233.github.io/2021/06/30/[React]setState/</id>
-    <published>2021-06-30T02:45:57.322Z</published>
-    <updated>2021-07-13T03:21:58.385Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>在React管控下的setState是异步，而脱离React管控的则表现为同步。</p></blockquote><a id="more"></a><h1 id="异步？"><a href="#异步？" class="headerlink" title="异步？"></a>异步？</h1><p>在React自己的生命周期和合成事件中，可以拿到控制权，将状态放入队列，控制执行节奏。即isBatchingUpdates -&gt; true，进入dirtyComponents，false则循环更新dirtyComponents里的所有组件。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line">// 函数分发</span><br><span class="line">ReactComponent.prototype.setState = function (partialState, callback) &#123;</span><br><span class="line">  this.updater.enqueueSetState(this, partialState);</span><br><span class="line">  if (callback) &#123;</span><br><span class="line">    this.updater.enqueueCallback(this, callback, &apos;setState&apos;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">// 将新的state放到组件的状态队列中，并且用enqueueUpdate来处理要更新的实例</span><br><span class="line">enqueueSetState: function (publicInstance, partialState) &#123;</span><br><span class="line">  // 根据 this 拿到对应的组件实例</span><br><span class="line">  var internalInstance = getInternalInstanceReadyForUpdate(publicInstance, &apos;setState&apos;);</span><br><span class="line">  // 这个 queue 对应的就是一个组件实例的 state 数组</span><br><span class="line">  var queue = internalInstance._pendingStateQueue || (internalInstance._pendingStateQueue = []);</span><br><span class="line">  queue.push(partialState);</span><br><span class="line">  //  enqueueUpdate 用来处理当前的组件实例</span><br><span class="line">  enqueueUpdate(internalInstance);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// batchingStrategy用于批量更新的对象</span><br><span class="line">function enqueueUpdate(component) &#123;</span><br><span class="line">  ensureInjected();</span><br><span class="line">  // 注意这一句是问题的关键，isBatchingUpdates标识着当前是否处于批量创建/更新组件的阶段</span><br><span class="line">  if (!batchingStrategy.isBatchingUpdates) &#123;</span><br><span class="line">    // 若当前没有处于批量创建/更新组件的阶段，则立即更新组件</span><br><span class="line">    batchingStrategy.batchedUpdates(enqueueUpdate, component);</span><br><span class="line">    return;</span><br><span class="line">  &#125;</span><br><span class="line">  // 否则，先把组件塞入 dirtyComponents 队列里，让它“再等等”</span><br><span class="line">  dirtyComponents.push(component);</span><br><span class="line">  if (component._updateBatchNumber == null) &#123;</span><br><span class="line">    component._updateBatchNumber = updateBatchNumber + 1;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var ReactDefaultBatchingStrategy = &#123;</span><br><span class="line">  // 全局唯一的锁标识</span><br><span class="line">  isBatchingUpdates: false, // 当前未进行任何批量操作</span><br><span class="line">  // 发起更新动作的方法</span><br><span class="line">  batchedUpdates: function(callback, a, b, c, d, e) &#123;</span><br><span class="line">    // 缓存锁变量</span><br><span class="line">    var alreadyBatchingStrategy = ReactDefaultBatchingStrategy.isBatchingUpdates</span><br><span class="line">    // 把锁“锁上”</span><br><span class="line">    ReactDefaultBatchingStrategy.isBatchingUpdates = true // 现在正处于批量操作中，需要更新的组件暂时进入DirtyComp</span><br><span class="line">    if (alreadyBatchingStrategy) &#123;</span><br><span class="line">      callback(a, b, c, d, e)</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      // 启动事务，将 callback 放进事务里执行</span><br><span class="line">      transaction.perform(callback, null, a, b, c, d, e)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 事务通过wrapper进行封装。一个wrapper包含一对initialize和close方法</span><br><span class="line">var RESET_BATCHED_UPDATES = &#123;</span><br><span class="line">  initialize: emptyFunction,</span><br><span class="line">  close: function () &#123;</span><br><span class="line">    ReactDefaultBatchingStrategy.isBatchingUpdates = false;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">// FLUSH_BATCHED_UPDATES在close阶段，会循环遍历所有的dirtyComponents，调用updateComponent刷新组件</span><br><span class="line">var FLUSH_BATCHED_UPDATES = &#123;</span><br><span class="line">  initialize: emptyFunction,</span><br><span class="line">  close: ReactUpdates.flushBatchedUpdates.bind(ReactUpdates)</span><br><span class="line">&#125;;</span><br><span class="line">var TRANSACTION_WRAPPERS = [FLUSH_BATCHED_UPDATES, RESET_BATCHED_UPDATES];</span><br></pre></td></tr></table></figure><blockquote><p>说明：一个事务是将要执行的method使用wrapper封装起来，再通过Transaction提供的perform方法执行。在执行perform之前，先执行所有wrapper的initialize，perform（即method执行后）再执行所有的close方法。<br>总结：<br>isBatchingUpdates，这个变量在React的生命周期钩子函数及合成事件执行前，已经被改为true，所以这时调用setState不会立即生效。当函数执行完毕后，事务的close方法会再把isBatchingUpdates改为false</p></blockquote><p>为什么要异步？</p><ul><li>避免重复的re-render</li><li>批量更新，setState会在一个队列中，相同的会做合并，只针对最新的state做一次更新<br>减小频繁re-render</li></ul><h1 id="同步？"><a href="#同步？" class="headerlink" title="同步？"></a>同步？</h1><p>在React管控下的setState一定是异步的，发生了同步的行为，是有其他操作帮助setState脱离了React的管控。<br>在 addEventListener 、setTimeout、setInterval 会同步更新</p><h1 id="Why？"><a href="#Why？" class="headerlink" title="Why？"></a>Why？</h1><p>React 15为例，</p><ol><li>批量更新 - batchingStrategy(锁管理器，锁：isBatchingUpdates)</li><li>事务 Transaction 机制，Transaction创建一个黑盒，该黑盒能封装任何的方法。</li><li>保持内部一致性，props的更新（props的更新来自于父组件state的改变）</li><li>支持异步渲染，启用并发更新</li></ol><blockquote><p>PS: React 17之前是通过isBatchingUpdates判断，之后是lanes 算法的优先级来区分</p></blockquote><h1 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h1><ol><li><p>合成事件 -&gt; 事件委托<br>React 17 版本之前，事件监听是在document上，DOM事件触发后冒泡到document，React找到对应的组件，造出一个合成事件，并按组件数模拟一遍事件冒泡。<br>React 17 版本，事件委托不在挂载document上，而是挂在DOM容器上，即ReactDom.Render调用的节点。</p></li><li><p>看看输出什么？</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class Test extends React.Component &#123;</span><br><span class="line">  state  = &#123;</span><br><span class="line">      count: 0</span><br><span class="line">  &#125;;</span><br><span class="line">  componentDidMount() &#123;</span><br><span class="line">    this.setState(&#123;count: this.state.count + 1&#125;);</span><br><span class="line">    console.log(this.state.count); // 0</span><br><span class="line">    this.setState(&#123;count: this.state.count + 1&#125;);</span><br><span class="line">    console.log(this.state.count); // 0</span><br><span class="line">    setTimeout(() =&gt; &#123;</span><br><span class="line">      this.setState(&#123;count: this.state.count + 1&#125;);</span><br><span class="line">      console.log(this.state.count); // 2</span><br><span class="line">      this.setState(&#123;count: this.state.count + 1&#125;);</span><br><span class="line">      console.log(this.state.count); // 3</span><br><span class="line">    &#125;, 0);</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return null;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li></ol>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;在React管控下的setState是异步，而脱离React管控的则表现为同步。&lt;/p&gt;
-&lt;/blockquote&gt;
     
     </summary>
     
@@ -1139,6 +1139,36 @@
   </entry>
   
   <entry>
+    <title>【WebAPI】DOM</title>
+    <link href="https://wangyx233.github.io/2021/06/30/%5BJSWebAPI%5DDOM/"/>
+    <id>https://wangyx233.github.io/2021/06/30/[JSWebAPI]DOM/</id>
+    <published>2021-06-30T02:45:57.317Z</published>
+    <updated>2021-07-13T03:21:58.426Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>DOM -&gt; Document Object Model</p></blockquote><ul><li>DOM数据结构</li><li>DOM常用的API</li><li>attr和property的区别</li><li>如何一次插入多个DOM节点</li></ul><h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><ul><li>DOM 本质</li><li>DOM 节点操作</li><li>DOM 结构操作</li><li>DOM 性能</li></ul><ol><li>DOM本质：从HTML解析出来的一棵树</li><li>DOM节点<ul><li>节点获取的常见API</li><li>通过js修改页面渲染结构：节点property，直接通过属性修改，如：dom.style.width = xxxx,dom.className = ‘xxx’</li><li>修改的是标签的属性：节点attribute，通过getAttibute(‘style’, ‘font-size:16px’),setAttribute()<blockquote><p>property： 修改JS对象属性，不会体现在html中；attribute：修改html属性，改变html结构。都有可能引起DOM重新渲染，可以先优先用property</p></blockquote></li></ul></li><li>DOM结构<ul><li>新增/插入节点，createElement()，appendChild()未存在的节点直接创建，已存在的移动。</li><li>删除节点：removeChild()</li></ul></li><li>DOM性能<ul><li>避免频繁的DOM操作</li><li>对DOM查询做缓存，get操作用变量缓存一下</li><li>将频繁操作改为一次操作，通过document.createDocumentFragment() 创建一个文档片段，将高频操作插入到文档片段中，最后再把文档片段插入</li></ul></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;DOM -&amp;gt; Document Object Model&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;DOM数据结构&lt;/li&gt;
+&lt;li&gt;DOM常用的API&lt;/li&gt;
+&lt;li&gt;attr和property的区别&lt;/li&gt;
+&lt;li&gt;如何一
+      
+    
+    </summary>
+    
+      <category term="JavaScript" scheme="https://wangyx233.github.io/categories/JavaScript/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>【WebAPI】存储</title>
     <link href="https://wangyx233.github.io/2021/06/30/%5BJSWebAPI%5Dcookie/"/>
     <id>https://wangyx233.github.io/2021/06/30/[JSWebAPI]cookie/</id>
@@ -1166,26 +1196,24 @@
   </entry>
   
   <entry>
-    <title>【WebAPI】DOM</title>
-    <link href="https://wangyx233.github.io/2021/06/30/%5BJSWebAPI%5DDOM/"/>
-    <id>https://wangyx233.github.io/2021/06/30/[JSWebAPI]DOM/</id>
-    <published>2021-06-30T02:45:57.317Z</published>
-    <updated>2021-07-13T03:21:58.426Z</updated>
+    <title>【WebAPI】AJAX</title>
+    <link href="https://wangyx233.github.io/2021/06/30/%5BJSWebAPI%5DAJAX/"/>
+    <id>https://wangyx233.github.io/2021/06/30/[JSWebAPI]AJAX/</id>
+    <published>2021-06-30T02:45:57.316Z</published>
+    <updated>2021-07-13T03:21:58.446Z</updated>
     
-    <content type="html"><![CDATA[<blockquote><p>DOM -&gt; Document Object Model</p></blockquote><ul><li>DOM数据结构</li><li>DOM常用的API</li><li>attr和property的区别</li><li>如何一次插入多个DOM节点</li></ul><h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><ul><li>DOM 本质</li><li>DOM 节点操作</li><li>DOM 结构操作</li><li>DOM 性能</li></ul><ol><li>DOM本质：从HTML解析出来的一棵树</li><li>DOM节点<ul><li>节点获取的常见API</li><li>通过js修改页面渲染结构：节点property，直接通过属性修改，如：dom.style.width = xxxx,dom.className = ‘xxx’</li><li>修改的是标签的属性：节点attribute，通过getAttibute(‘style’, ‘font-size:16px’),setAttribute()<blockquote><p>property： 修改JS对象属性，不会体现在html中；attribute：修改html属性，改变html结构。都有可能引起DOM重新渲染，可以先优先用property</p></blockquote></li></ul></li><li>DOM结构<ul><li>新增/插入节点，createElement()，appendChild()未存在的节点直接创建，已存在的移动。</li><li>删除节点：removeChild()</li></ul></li><li>DOM性能<ul><li>避免频繁的DOM操作</li><li>对DOM查询做缓存，get操作用变量缓存一下</li><li>将频繁操作改为一次操作，通过document.createDocumentFragment() 创建一个文档片段，将高频操作插入到文档片段中，最后再把文档片段插入</li></ul></li></ol>]]></content>
+    <content type="html"><![CDATA[<ul><li>手写一个简易的ajax</li><li>跨域</li></ul><h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><ul><li>XMLHttpRequest</li><li>状态码</li><li>跨域： 同源策略，跨域解决方案</li></ul><h2 id="1-XMLHttpRequest"><a href="#1-XMLHttpRequest" class="headerlink" title="1. XMLHttpRequest"></a>1. XMLHttpRequest</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">const xhr = new XMLHttpRequest();</span><br><span class="line">xhr.open(&apos;method&apos;, &apos;url&apos;, &apos;true/false&apos;); // 是否是异步</span><br><span class="line">xhr.onreadystatechange = function () &#123;</span><br><span class="line">    if(xhr.readyState === 4) &#123;</span><br><span class="line">        if(xhr.status === 200) &#123;</span><br><span class="line">            console.log(JSON.parse(xhr.responseText))</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">xhr.send(null)</span><br><span class="line">// post</span><br><span class="line">xhr.send(JSON.stringify(&#123;&#125;))</span><br></pre></td></tr></table></figure><p>可以改成promise的情况</p><ul><li><p>xhr.readyState</p><ul><li>0 (未初始化)没有调用send()方法</li><li>1 (载入)已调用send()，正在发送请求</li><li>2 (载入完成)send()方法执行完成，已经接收到全部响应内容</li><li>3 (交互)正在解析响应内容</li><li>4 (完成)响应内容解析完成，可在客户端调用</li></ul></li><li><p>xhr.status http状态码</p><ul><li>2xx 成功处理请求</li><li>3xx 重定向，浏览器直接跳转 301：永久重定向 302：临时重定向 304：资源未改变，用缓存</li><li>4xx 客户端请求错误，404：not found 403：客户端没有权限</li><li>5xx 服务端错误</li></ul></li></ul><h2 id="2-跨域"><a href="#2-跨域" class="headerlink" title="2. 跨域"></a>2. 跨域</h2><ul><li><p>什么是跨域 同源策略</p></li><li><p>JSONP</p></li><li><p>CORS</p><h3 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h3><blockquote><p>同源：协议，域名，端口三者一致。 Ajax请求时， <strong>浏览器</strong>要求当前页面和server必须同源。CSP安全<br>加载图片css，js可无视同源策略</p></blockquote></li><li><p>img src=’跨域的图片地址’，可用于统计埋点</p></li><li><p>link href=’跨域的css地址’ ，可以使用CDN</p></li><li><p>script src=’跨域的js地址’，可以使用CDN，实现JSONP<br>所有的跨域，都必须经过server端的允许和配合</p><h3 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h3></li><li><p>script可以实现跨域</p></li><li><p>server端可以动态拼接数据返回</p><h3 id="CORS-服务器端设置-http-header"><a href="#CORS-服务器端设置-http-header" class="headerlink" title="CORS - 服务器端设置 http header"></a>CORS - 服务器端设置 http header</h3><ul><li>Access-Control-Allow-Origin</li><li>Access-Control-Allow-Headers</li><li>Access-Control-Allow-Methods</li></ul></li></ul>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;blockquote&gt;
-&lt;p&gt;DOM -&amp;gt; Document Object Model&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;DOM数据结构&lt;/li&gt;
-&lt;li&gt;DOM常用的API&lt;/li&gt;
-&lt;li&gt;attr和property的区别&lt;/li&gt;
-&lt;li&gt;如何一
+        &lt;ul&gt;
+&lt;li&gt;手写一个简易的ajax&lt;/li&gt;
+&lt;li&gt;跨域&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;知识点&quot;&gt;&lt;a href=&quot;#知识点&quot; class=&quot;headerlink&quot; title=&quot;知识点&quot;&gt;&lt;/a&gt;知识点&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;XMLHttpRequest&lt;/
       
     
     </summary>
@@ -1226,34 +1254,6 @@
     </summary>
     
       <category term="HTML" scheme="https://wangyx233.github.io/categories/HTML/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>【WebAPI】AJAX</title>
-    <link href="https://wangyx233.github.io/2021/06/30/%5BJSWebAPI%5DAJAX/"/>
-    <id>https://wangyx233.github.io/2021/06/30/[JSWebAPI]AJAX/</id>
-    <published>2021-06-30T02:45:57.316Z</published>
-    <updated>2021-07-13T03:21:58.446Z</updated>
-    
-    <content type="html"><![CDATA[<ul><li>手写一个简易的ajax</li><li>跨域</li></ul><h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><ul><li>XMLHttpRequest</li><li>状态码</li><li>跨域： 同源策略，跨域解决方案</li></ul><h2 id="1-XMLHttpRequest"><a href="#1-XMLHttpRequest" class="headerlink" title="1. XMLHttpRequest"></a>1. XMLHttpRequest</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">const xhr = new XMLHttpRequest();</span><br><span class="line">xhr.open(&apos;method&apos;, &apos;url&apos;, &apos;true/false&apos;); // 是否是异步</span><br><span class="line">xhr.onreadystatechange = function () &#123;</span><br><span class="line">    if(xhr.readyState === 4) &#123;</span><br><span class="line">        if(xhr.status === 200) &#123;</span><br><span class="line">            console.log(JSON.parse(xhr.responseText))</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">xhr.send(null)</span><br><span class="line">// post</span><br><span class="line">xhr.send(JSON.stringify(&#123;&#125;))</span><br></pre></td></tr></table></figure><p>可以改成promise的情况</p><ul><li><p>xhr.readyState</p><ul><li>0 (未初始化)没有调用send()方法</li><li>1 (载入)已调用send()，正在发送请求</li><li>2 (载入完成)send()方法执行完成，已经接收到全部响应内容</li><li>3 (交互)正在解析响应内容</li><li>4 (完成)响应内容解析完成，可在客户端调用</li></ul></li><li><p>xhr.status http状态码</p><ul><li>2xx 成功处理请求</li><li>3xx 重定向，浏览器直接跳转 301：永久重定向 302：临时重定向 304：资源未改变，用缓存</li><li>4xx 客户端请求错误，404：not found 403：客户端没有权限</li><li>5xx 服务端错误</li></ul></li></ul><h2 id="2-跨域"><a href="#2-跨域" class="headerlink" title="2. 跨域"></a>2. 跨域</h2><ul><li><p>什么是跨域 同源策略</p></li><li><p>JSONP</p></li><li><p>CORS</p><h3 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h3><blockquote><p>同源：协议，域名，端口三者一致。 Ajax请求时， <strong>浏览器</strong>要求当前页面和server必须同源。CSP安全<br>加载图片css，js可无视同源策略</p></blockquote></li><li><p>img src=’跨域的图片地址’，可用于统计埋点</p></li><li><p>link href=’跨域的css地址’ ，可以使用CDN</p></li><li><p>script src=’跨域的js地址’，可以使用CDN，实现JSONP<br>所有的跨域，都必须经过server端的允许和配合</p><h3 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h3></li><li><p>script可以实现跨域</p></li><li><p>server端可以动态拼接数据返回</p><h3 id="CORS-服务器端设置-http-header"><a href="#CORS-服务器端设置-http-header" class="headerlink" title="CORS - 服务器端设置 http header"></a>CORS - 服务器端设置 http header</h3><ul><li>Access-Control-Allow-Origin</li><li>Access-Control-Allow-Headers</li><li>Access-Control-Allow-Methods</li></ul></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;ul&gt;
-&lt;li&gt;手写一个简易的ajax&lt;/li&gt;
-&lt;li&gt;跨域&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&quot;知识点&quot;&gt;&lt;a href=&quot;#知识点&quot; class=&quot;headerlink&quot; title=&quot;知识点&quot;&gt;&lt;/a&gt;知识点&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;XMLHttpRequest&lt;/
-      
-    
-    </summary>
-    
-      <category term="JavaScript" scheme="https://wangyx233.github.io/categories/JavaScript/"/>
     
     
   </entry>
