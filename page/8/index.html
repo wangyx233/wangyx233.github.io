@@ -130,6 +130,86 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-css_secret" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/29/css_secret/">CSS Secrets</a>
+    </h1>
+  
+
+        
+        <a href="/2019/08/29/css_secret/" class="archive-article-date">
+  	<time datetime="2019-08-29T03:23:05.438Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>回顾元素获取</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function $$(selector, context) &#123;</span><br><span class="line">  context = context || document;</span><br><span class="line">  var elements = context.querySelectorAll(selector);</span><br><span class="line">  return Array.prototype.slice.call(elements);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>11.20 总结：</p>
+<p>浏览器新特性总么办，加前缀是个失败的尝试。<br>可以通过工具加前缀。不过新特性的使用任重而道远。<br>web 标准是浏览器相关厂商，以及委员会的人共同探讨维护的。</p>
+<p>一、CSS 编写注意技巧：</p>
+<ol>
+<li>减少重复的代码，<br>注意 style 之间的依赖关系，如 em，rem，字体和行高等。具体如何计算相互依赖关系，需要根据实际情况。<br>代码量少，和代码容易维护不是一个概念。<br>currentcolor<br>inherit</li>
+<li>相信眼睛而不紧紧关注数字。<br>比如 垂直居中看着并不居中，圆形看着小，padding 上下左右不一致。</li>
+<li>响应式布局 rwd。一直说响应式布局，但是 media query 不能是最好的解决方法，只能是最后的解决方法。<br>每个媒体查询都会增加成本。每次修改 css 的时候都可能改一遍，复杂性高，经不起折腾。表现的是断点式的表现<br>可以先从减少代码重复来入手。<br>写相对大小 依赖关系。宽度不写具体的 px，用百分比的形式，或者和视口相关的表示如 vh。善用 max-width，min-width。替换元素 img，iframe，vedio 等也要设置 max-width： 100%；<br>推荐弹性布局，或者 inine-block。<br>背景图片要完整地平铺，background-size:cover</li>
+<li>合理使用简写。对于可展开的属性。如，border，background，要贯彻减少代码重复的原则，合理使用简写或者展开。</li>
+</ol>
+<p>例子： background: url(tr.png) no-repeat top right / 2em 2em, url(br.png) no-repeat bottom right / 2em 2em,<br>url(bl.png) no-repeat bottom left / 2em 2em;<br>其中， / 是为了避免歧义。</p>
+<ol start="5">
+<li><p>是否使用预处理器，如 less，sass 等。<br>建议在项目开始用 css，无法维护时用预处理器。因为要编译就需要时间，文件体积也会变大，还会有自身的 bug，学习成本。<br>如： 原生高级的例子。<br>ul { –accent-color: purple; }<br>ol { –accent-color: rebeccapurple; } li { background: var(–accent-color); }</p>
+<p>11.21 总结：<br>背景与边框<br>rgba，hsla 0 红 120 绿 240 蓝 h 色调 s 饱和度 l 亮度 a 透明度</p>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/08/29/css_secret/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-原型回顾" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -791,95 +871,6 @@
 
 
   
-    <article id="post-hexo部署github的问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/11/hexo部署github的问题/">hexo部署github的问题</a>
-    </h1>
-  
-
-        
-        <a href="/2017/04/11/hexo部署github的问题/" class="archive-article-date">
-  	<time datetime="2017-04-11T12:03:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="用hexo搭建博客，配置直接部署到github的方法："><a href="#用hexo搭建博客，配置直接部署到github的方法：" class="headerlink" title="用hexo搭建博客，配置直接部署到github的方法："></a>用hexo搭建博客，配置直接部署到github的方法：</h5><p>1.安装 hexo-deployer-git插件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-
-<p>2.在hexo根目录的_config.yml中进行deploy的配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">    type: git</span><br><span class="line">    repo: [github repository url] //eg:git@github.com:xxx.git or https://github.com/xxx.git</span><br><span class="line">    branch: master //branch name</span><br><span class="line">    message: &quot;Blog updated: &#123;&#123; now（&apos;YYYY-MM-DD&apos;）&#125;&#125;&quot; //commit message</span><br><span class="line">Ps:注意缩进和空格</span><br></pre></td></tr></table></figure>
-
-<p>3.通过hexo deploy（即hexo d）命令进行部署，在此之前需要进行hexo generate（即hexo g）编译。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo-deployer-git插件的作用是生成.deploy_git文件，</span><br><span class="line">并且把hexo g编译后的public中的文件复制到.deploy_git文件夹下，</span><br><span class="line">然后进行git操作，推到远端github仓库。</span><br></pre></td></tr></table></figure>
-
-<h3 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h3>
-        
-          <a class="article-more-a" href="/2017/04/11/hexo部署github的问题/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">github</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/04/11/hexo部署github的问题/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/7/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/9/">Next &raquo;</a>
@@ -981,11 +972,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">React</a>
+                <a href="javascript:void(0)" class="js-tag color1">CI/CD</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">CI/CD</a>
+                <a href="javascript:void(0)" class="js-tag color1">React</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -994,6 +985,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">购房</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1013,19 +1012,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1046,10 +1037,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">投资</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1086,6 +1073,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">安全</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">投资</a>
               </li>
              
               <li class="article-tag-list-item">

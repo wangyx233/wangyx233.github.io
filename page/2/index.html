@@ -130,6 +130,105 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-[JS基础]手写小试" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/02/16/[JS基础]手写小试/">&lt;JS基础&gt;手写小试</a>
+    </h1>
+  
+
+        
+        <a href="/2022/02/16/[JS基础]手写小试/" class="archive-article-date">
+  	<time datetime="2022-02-16T06:44:26.879Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="一、数组扁平化"><a href="#一、数组扁平化" class="headerlink" title="一、数组扁平化"></a>一、数组扁平化</h4><p>如何将一个多维数组变成一个一维数组，如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const arr = [1, [2, [3, [4, [5]]]]]</span><br><span class="line">// =&gt; [1,2,3,4,5]</span><br></pre></td></tr></table></figure>
+
+<p>看到数组扁平，第一想到的是 concat()，然后是递归，依次实现一番。</p>
+<p>(1) 递归</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function flat(arr, depth = 1) &#123;</span><br><span class="line">  let res = []</span><br><span class="line">  arr.forEach((elem) =&gt; &#123;</span><br><span class="line">    if(!Array.isArray(elem) || !depth)&#123;</span><br><span class="line">      res.push(elem)</span><br><span class="line">    &#125;else &#123;</span><br><span class="line">      res = res.concat(flat(elem, depth - 1))</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  return res</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>(2) reduce()配合 concat()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function flat(arr, depth = 1) &#123;</span><br><span class="line">  return depth ? arr.reduce((temp, elem) =&gt; (temp.concat(Array.isArray(elem) ? flat(elem, depth - 1) : elem)) , []) : arr</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>(3) 内置 API，一顿操作，竟然忽略了 Js Array 的内置 api–flat()，按指定深度递归遍历数组，将所有元素与遍历的子数组中的元素合并为一个新数组返回。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var newArray = arr.flat([depth])</span><br><span class="line">const res = arr.flat(Infinity);</span><br></pre></td></tr></table></figure>
+
+<p>(4) 正则，另辟蹊径</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const res1 = JSON.stringify(arr).replace(/\[|\]/g, &apos;&apos;).split(&apos;,&apos;); // 原来数字变成了字符串</span><br><span class="line">const res2 = JSON.parse(`[$&#123;JSON.stringify(arr).replace(/\[|\]/g, &apos;&apos;)&#125;]`);</span><br></pre></td></tr></table></figure>
+
+<p>(5) 迭代</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function flat(arr, depth = 1) &#123;</span><br><span class="line">  while(arr.some(elem =&gt; Array.isArray(elem)) &amp;&amp; depth) &#123;</span><br><span class="line">    arr = [].concat(...arr)</span><br><span class="line">    depth--</span><br><span class="line">  &#125;</span><br><span class="line">  return arr</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="二、数组去重"><a href="#二、数组去重" class="headerlink" title="二、数组去重"></a>二、数组去重</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const arr = [1, 17, &apos;1&apos;, 17, true, true, false, false, &apos;true&apos;, &apos;a&apos;, &#123;&#125;, &#123;&#125;];</span><br><span class="line">// =&gt; [1, &apos;1&apos;, 17, true, false, &apos;true&apos;, &apos;a&apos;, &#123;&#125;, &#123;&#125;]</span><br></pre></td></tr></table></figure>
+
+<p>看到数组去重，首先想到的是维护一个 object 用于记录出现过的值然后去掉重复，然后想到 filter 也可以实现类似的</p>
+<p>(1) object 方法，普通 object 的 key 都会转换成 String 类型，所以可以借助 ES6 的 Map;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const uniq = (arr) =&gt; &#123;</span><br><span class="line">  const map = new Map();</span><br><span class="line">  const res = [];</span><br><span class="line">  for (let i = 0; i &lt; arr.length; i++) &#123;</span><br><span class="line">    if (!map.has(arr[i])) &#123;</span><br><span class="line">      map.set(arr[i], true);</span><br><span class="line">      res.push(arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>(2) filter，过滤得到首次出现的元素。判断元素是否出现过还可以使用 arr.indexOf(elem) === -1 或者 arr.includes(elem)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const res = arr.filter((elem, index) =&gt; arr.indexOf(elem) === index);</span><br></pre></td></tr></table></figure>
+
+<p>(3) ES6 的 Set 数据结构，特性是每个元素都是唯一的，没有重复的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const res = [...new Set(arr)];</span><br><span class="line">[...new Set(&apos;ababbc&apos;)].join(&apos;&apos;); // &apos;abc&apos;</span><br></pre></td></tr></table></figure>
+
+<h4 id="三、深拷贝"><a href="#三、深拷贝" class="headerlink" title="三、深拷贝"></a>三、深拷贝</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function cloneDeep(data, exist = new Map()) &#123;</span><br><span class="line">  if(typeof data !== &apos;object&apos; || data === null) return data</span><br><span class="line">  if(data instanceof Date) return new Date(data)</span><br><span class="line">  if(data instanceof RegExp) return new RegExp(data)</span><br><span class="line">  if(exist.has(data)) return exist.get(data)</span><br><span class="line">  let result = Array.isArray(data) ? [] : &#123;&#125;</span><br><span class="line">  exist.set(data, result)</span><br><span class="line">  const keys = [...Object.keys(data), ...Object.getOwnPropertySymbols(data)]</span><br><span class="line">  keys.forEach(key =&gt; &#123;</span><br><span class="line">    result[key] = cloneDeep(data[key], exist)</span><br><span class="line">  &#125;)</span><br><span class="line">  return result</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>// 两个有序数组[1,3,5]和[2,4,6]，写一个 mergeArr(a,b)合并两个数组，最终得到一个有序数组</p>
+<p>_.get()</p>
+<p>假设你正在爬楼梯。需要 n 阶你才能到达楼顶。</p>
+<p>每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/02/16/[JS基础]手写小试/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-[浏览器]从输入URL到页面展示发生了什么" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1205,177 +1304,6 @@
 
 
   
-    <article id="post-[开发]工具" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/30/[开发]工具/">【必备】开发环境 &amp; 运行环境</a>
-    </h1>
-  
-
-        
-        <a href="/2021/06/30/[开发]工具/" class="archive-article-date">
-  	<time datetime="2021-06-30T02:45:57.329Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h1><ul>
-<li>git</li>
-<li>调试工具</li>
-<li>抓包</li>
-<li>webpack babel</li>
-<li>linux</li>
-</ul>
-<h2 id="git"><a href="#git" class="headerlink" title="git"></a>git</h2><p>git show commit-id</p>
-<p>~/.ssh</p>
-<h2 id="抓包"><a href="#抓包" class="headerlink" title="抓包"></a>抓包</h2><ul>
-<li>同一个局域网下</li>
-<li>手机配电脑的代理</li>
-<li>设置ssh代理proxy</li>
-<li>重定向map</li>
-</ul>
-<h2 id="webpack-amp-babel"><a href="#webpack-amp-babel" class="headerlink" title="webpack &amp; babel"></a>webpack &amp; babel</h2><ol>
-<li>ES6模块化<ul>
-<li>export {aaa,bbb,ccc}; import {aaa,bbb,ccc} from ‘xxx’ </li>
-<li>export default {aaa}; import a from ‘xxx’</li>
-</ul>
-</li>
-<li>ES6语法</li>
-<li>压缩，整合代码，配置</li>
-</ol>
-<h2 id="常用linux命令"><a href="#常用linux命令" class="headerlink" title="常用linux命令"></a>常用linux命令</h2><pre><code>- ls -a
-- mv old new 修改文件名
-- cp name copyname
-- cat head tail
-- grep 查找
-- vimtutor</code></pre><h1 id="运行环境"><a href="#运行环境" class="headerlink" title="运行环境"></a>运行环境</h1><ul>
-<li>页面加载过程</li>
-<li>性能优化</li>
-<li>安全</li>
-</ul>
-<h2 id="页面加载过程"><a href="#页面加载过程" class="headerlink" title="页面加载过程"></a>页面加载过程</h2><ul>
-<li>从输入url到渲染出页面的整个过程</li>
-<li>window.onload vs DOMContentLoaded</li>
-</ul>
-<ol>
-<li>加载资源形式</li>
-<li>加载过程<ul>
-<li>DNS解析：域名-&gt;IP地址</li>
-<li>浏览器根据IP地址向服务器发起http请求</li>
-<li>服务器处理请求，并返回给浏览器</li>
-</ul>
-</li>
-<li>渲染过程<ul>
-<li>DOM树</li>
-<li>CSSOM</li>
-<li>DOM + CSSOM -&gt; Render Tree</li>
-<li>根据Render Tree渲染页面</li>
-<li>遇到 script 则暂停渲染，优先加载js文件，执行js 代码</li>
-<li>直到渲染完</li>
-</ul>
-</li>
-</ol>
-<p>css文件为什么要放在head中？避免重复渲染<br>js为什么要放在body最后？不阻塞加载</p>
-<p>load // 页面全部加载完，整个资源加载完，比如img，视频，iframe都加载完<br>DOMContentLoaded // DOM渲染完即可执行<br>window.load</p>
-<h2 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h2><h3 id="原则"><a href="#原则" class="headerlink" title="原则"></a>原则</h3><ul>
-<li>减少CPU计算量，减少网络加载耗时</li>
-<li>多使用缓存 - 空间换时间（Chrome浏览器，简洁，每个标签页一个进程）</li>
-</ul>
-<h3 id="从何入手"><a href="#从何入手" class="headerlink" title="从何入手"></a>从何入手</h3><ul>
-<li>加载更快<ol>
-<li>减少资源体积：压缩代码（JS，CSS，图片…）服务器端gzip，三分之一</li>
-<li>减少访问次数：合并代码，SSR服务端渲染，缓存(文件内容不变，hash不变)</li>
-<li>使用更快的网络，CDN</li>
-</ol>
-</li>
-<li>渲染更快<ol>
-<li>css放在head，js放在body最后</li>
-<li>尽早的执行js，用DOMContentLoaded</li>
-<li>懒加载，图片懒加载</li>
-<li>对DOM查询进行缓存</li>
-<li>频繁DOM操作合并一起</li>
-<li>节流 throttle、防抖 debounce</li>
-</ol>
-</li>
-</ul>
-<h3 id="防抖-debounce"><a href="#防抖-debounce" class="headerlink" title="防抖 debounce"></a>防抖 debounce</h3><blockquote>
-<p>两个事件之间的时间间隔超过time才会执行，没超过间隔的任务都会取消。即在事件结束和暂停的时候触发，间断理解</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function debounce(fn, delay = 500) &#123;</span><br><span class="line">    let timer = null;</span><br><span class="line">    return function () &#123;</span><br><span class="line">        if (timer) clearTimeout(timer);</span><br><span class="line">        timer = setTimeout(() =&gt; &#123;</span><br><span class="line">            fn.apply(this, arguments);</span><br><span class="line">            timer = null;</span><br><span class="line">        &#125;, delay);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="节流-throttle"><a href="#节流-throttle" class="headerlink" title="节流 throttle"></a>节流 throttle</h3><blockquote>
-<p>无论触发速率多快，都保持一个频率触发。比如，拖拽时间，无论拖拽的多快都会每隔100ms触发一次。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function throttle(fn, delay = 100) &#123;</span><br><span class="line">    let timer = null;</span><br><span class="line">    return function () &#123;</span><br><span class="line">        if (timer) return;</span><br><span class="line">        timer = setTimeout(() =&gt; &#123;</span><br><span class="line">            fn.apply(this, arguments);</span><br><span class="line">            timer = null;</span><br><span class="line">        &#125;, delay);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">工具</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/工具//" class="article-tag-list-link color3">工具</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/30/[开发]工具/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -1477,11 +1405,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">React</a>
+                <a href="javascript:void(0)" class="js-tag color1">CI/CD</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">CI/CD</a>
+                <a href="javascript:void(0)" class="js-tag color1">React</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1490,6 +1418,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">购房</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1509,19 +1445,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1542,10 +1470,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">投资</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1582,6 +1506,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">安全</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">投资</a>
               </li>
              
               <li class="article-tag-list-item">

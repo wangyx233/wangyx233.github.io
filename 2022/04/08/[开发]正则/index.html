@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://wangyx233.github.io">
-  <title>Tag: tree | Hexo</title>
+  <title>【开发】正则 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://wangyx233.github.io/tags/tree/index.html">
+  <meta name="description" content="正则表达式真的属于是常看常新，不看就忘。。。🤦🏻‍♀️ JS 中使用正则，有两种方式：  字面量，如： /abc/， g 全局，i 忽略大小写，m 多行搜索 构造函数，如：new RegExp(&amp;#39;abc&amp;#39;, &amp;#39;g&amp;#39;)  基本概念：  元字符：在正则表达式中有特殊含义的非字母字符，如*,+,?,$,^,.,|,\,(,),{,},[,] 字符集合：[abc]字符">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【开发】正则">
+<meta property="og:url" content="https://wangyx233.github.io/2022/04/08/[开发]正则/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="正则表达式真的属于是常看常新，不看就忘。。。🤦🏻‍♀️ JS 中使用正则，有两种方式：  字面量，如： /abc/， g 全局，i 忽略大小写，m 多行搜索 构造函数，如：new RegExp(&amp;#39;abc&amp;#39;, &amp;#39;g&amp;#39;)  基本概念：  元字符：在正则表达式中有特殊含义的非字母字符，如*,+,?,$,^,.,|,\,(,),{,},[,] 字符集合：[abc]字符">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2022-04-08T09:10:06.878Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="【开发】正则">
+<meta name="twitter:description" content="正则表达式真的属于是常看常新，不看就忘。。。🤦🏻‍♀️ JS 中使用正则，有两种方式：  字面量，如： /abc/， g 全局，i 忽略大小写，m 多行搜索 构造函数，如：new RegExp(&amp;#39;abc&amp;#39;, &amp;#39;g&amp;#39;)  基本概念：  元字符：在正则表达式中有特殊含义的非字母字符，如*,+,?,$,^,.,|,\,(,),{,},[,] 字符集合：[abc]字符">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -128,68 +132,218 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-[开发]正则" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/20/[算法基础]树/" class="archive-article-date">
-  	<time datetime="2020-04-20T06:05:28.236Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-20</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/20/[算法基础]树/">&lt;Algorithm&gt;树</a>
+    <h1 class="article-title" itemprop="name">
+      【开发】正则
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
+        
+        <a href="/2022/04/08/[开发]正则/" class="archive-article-date">
+  	<time datetime="2022-04-08T09:10:06.876Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-04-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>正则表达式真的属于是常看常新，不看就忘。。。🤦🏻‍♀️</p>
+<p>JS 中使用正则，有两种方式：</p>
+<ul>
+<li>字面量，如： <code>/abc/</code>， g 全局，i 忽略大小写，m 多行搜索</li>
+<li>构造函数，如：<code>new RegExp(&#39;abc&#39;, &#39;g&#39;)</code></li>
+</ul>
+<p>基本概念：</p>
+<ul>
+<li>元字符：在正则表达式中有特殊含义的非字母字符，如<code>*,+,?,$,^,.,|,\,(,),{,},[,]</code></li>
+<li>字符集合：<code>[abc]</code>字符 a 或 b 或 c 归为一类，会匹配 a 或者 b 或者 c。在<code>[^abc]</code> 即 <code>[^ ]</code>是取反的意思，除了 a,b,c 之外</li>
+<li>范围类：<code>[0-9A-Z]</code>，如果想匹配<code>-</code>，比如：<code>[0-9-]</code> 会匹配<code>1-</code></li>
+<li>预定义类：比如<code>. \d \D \w \W \s \S</code> d-&gt; digit，s-&gt;space，w-&gt; word。大写就是取反咯 <code>. -&gt; [^\r\n]</code></li>
+<li>边界：<code>^ $ \b \B</code> ，<code>\b</code> 是单词边界</li>
+<li>量词：<code>? + * {n} {n,m} {n, }</code></li>
+<li>贪婪模式：正则表达式默认是贪婪模式，即每次匹配都尽可能匹配多的字符，比如<code>/\d{2,5}/ /\d{2,5}?/</code></li>
+<li>或：<code>|</code></li>
+<li>分组：<code>()</code> 作为一个整体，如：<code>(test){3}</code> 匹配 test 3 次</li>
+<li>捕获：<code>()</code> 包含的表达式所匹配到的字符串会被（分组捕获），<code>$1 $2 $3...</code> 每次捕获的结果。如果要忽略某个分组捕获的结果<code>(?:)</code></li>
+<li>ES2018(ES9) 中已经支持后瞻和命名分组。😯 <code>exp(?=assert)</code> 正向前瞻 <code>exp(?!assert)</code> 负向前瞻</li>
+</ul>
+<p>RegExp 的方法：</p>
+<ul>
+<li>test，返回 true / false</li>
+<li>exec，返回匹配的值</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const reg = /\d(\w)\d/</span><br><span class="line">const str = &apos;1a2b3c&apos;</span><br><span class="line">reg.test(str)</span><br><span class="line">reg.exec(str)</span><br></pre></td></tr></table></figure>
+
+<p>String 支持的方法：</p>
+<ul>
+<li>replace</li>
+<li>match</li>
+<li>search</li>
+<li>split</li>
+</ul>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢啦<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/gallery/wxm.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Algorithm</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">tree</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Binary tree</a>
+        			<a href="/categories/开发//" class="article-tag-list-link color3">开发</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKElEQVR42u3aQW7DMAwEwPz/0ynQU4Eg7S7lALU0OgWoLWt0YEVSj0c8nt8jeebnk69vvT6T//WCgYGBcVvG89fx7pnXhSbz5Guo58TAwDiA8XuQbWHrc+Zrw8DAwEieebf0PPgmAR0DAwMjZ7TLapNkDAwMjJUkdvaZZDvyA+gFuTgGBsYNGVcFxE/8/mB/AwMD4yaMZznyGdp0d2lVGBgYWzNWSl3vimvJNYs2JY7SYwwMjE0Z1wbHtkiXbETScsDAwNibMSuN5YvLg3i7TRgYGOcwrrpmkRT982ZAnSRjYGAcxkgmXQ+XK02CKOBiYGBsxJilnW3qm29Kfp7FwMA4h5Gnl20Izkv8SaD/49iKgYGxNWM9yLap6fpmFUdDDAyMrRkrv/N0dPZWEXAxMDC2Y+Qhsm1htuW8Nm3GwMDYm7ESOturXe2mFEdDDAyMgxltc7ENmrMk+YPpKwYGxr9ktItbX8TsikZUsMPAwDiSkQTKPER+IhzXd0YwMDBuyMiLZbMgeG26+8edEQwMjAMYbbhsr4K1yXBxcMTAwNiakbyw0lxMPjZLbjEwMM5hPMsx26ek/bnyDAYGxt6M9kA2K5nlUTE5OA7/e2BgYNyckU+9clic9Rzz62gYGBgnMGYFsjaVnTVE68sWGBgYBzPWU9n8Msew6IaBgYFRYvL52xYpBgbGmYxZEpt/Jg/Ew1QWAwNja8ZVjYHZ4XKlzPdoBwYGxv0YX1RgrWP9nbC4AAAAAElFTkSuQmCC" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2022/04/07/[浏览器]版本号/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">【浏览器】Chrome v100了，版本号你还好嘛</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    目录，不存在的…
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -212,9 +366,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

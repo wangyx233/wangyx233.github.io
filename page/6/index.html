@@ -130,6 +130,101 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-[Linux]自动化部署从入门到放弃" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/25/[Linux]自动化部署从入门到放弃/">&lt;Linux&gt;自动化部署从入门到放弃</a>
+    </h1>
+  
+
+        
+        <a href="/2020/09/25/[Linux]自动化部署从入门到放弃/" class="archive-article-date">
+  	<time datetime="2020-09-25T07:15:54.448Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>node 安装，全局使用</li>
+<li>yarn 安装</li>
+<li>nginx 配置</li>
+<li>vue 打包配置</li>
+<li>github action</li>
+</ul>
+<h4 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h4><ul>
+<li><p>查看服务器绑定域名，查 dns 用服务器 IP 反向解析域名 &gt; dig -x ip | nslookup</p>
+</li>
+<li><p>WEB 服务器“一键”装机</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install git -y</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ wget -c xxxxxxx</span><br><span class="line">$ tar -xvf xxxxxxx</span><br><span class="line"></span><br><span class="line">// 修改 ~/.profile</span><br><span class="line"></span><br><span class="line"># Nodejs</span><br><span class="line"></span><br><span class="line">VERSION=v12.18.4</span><br><span class="line">DISTRO=linux-x64</span><br><span class="line">export PATH=/usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin:\$PATH</span><br><span class="line"></span><br><span class="line">. ~/.profile</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -o- -L https://yarnpkg.com/install.sh | bash</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>查找文件 find . -name ‘xxx’</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">CI/CD</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/09/25/[Linux]自动化部署从入门到放弃/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-重温学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -928,99 +1023,6 @@
 
 
   
-    <article id="post-[算法基础]时间&amp;空间复杂度" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/12/[算法基础]时间&空间复杂度/">时间&amp;空间复杂度</a>
-    </h1>
-  
-
-        
-        <a href="/2020/05/12/[算法基础]时间&空间复杂度/" class="archive-article-date">
-  	<time datetime="2020-05-12T14:14:17.326Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h5><p>用 Big O 表示，用来表示程度运行时间维度上的趋势。所以 O 表示忽略掉不重要的部分，留下的关键关系。<br>常见的时间复杂度有：</p>
-<ul>
-<li>常数 O(1)</li>
-<li>对数 O(logn)</li>
-<li>线性 O(n)</li>
-<li>n 的次方 O(n^2…)</li>
-<li>指数 O(k^n)</li>
-<li>阶乘 O(n!)<br>一般通过看随着 n 的改变，代码要运行多少次。n 比较小的话，其实时间复杂度都差不多，关注时间复杂度的情况一般对数据量较大时，程序的效率问题。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 比如：普通递归计算斐波那契，理解递归总共执行了多少次，善用缓存，避免重复计算。或者循环</span><br><span class="line">const fib = (n) =&gt; &#123;</span><br><span class="line">  if (n &lt; 2) return n;</span><br><span class="line">  return fib(n - 1) + fib(n - 2);</span><br><span class="line">&#125;</span><br><span class="line">// O(2^k)</span><br></pre></td></tr></table></figure>
-
-<h6 id="主定理"><a href="#主定理" class="headerlink" title="主定理"></a>主定理</h6><p>用于进行递归程序的时间复杂度计算，一般常见的算法有：</p>
-<ul>
-<li>二分查找 O(logn)</li>
-<li>二叉树遍历 O(n)</li>
-<li>有序二维数据查找 O(n)</li>
-<li>归并排序 O(nlogn)</li>
-</ul>
-<p>二叉树的前中后序遍历，图遍历，搜索算法 DFS,BFS，时间复杂度都是 O(n)，因为有且只经过了每个节点一次，所以是和节点数成线性相关的。</p>
-<h5 id="空间复杂度"><a href="#空间复杂度" class="headerlink" title="空间复杂度"></a>空间复杂度</h5><p>如果是数组，那就是数组的长度，O(n)。二维数组，O(n^2)。<br>如果是递归的，那就是递归的深度，如果递归里面又开了数组，则是两者的最大值。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Algorithm</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/12/[算法基础]时间&空间复杂度/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/5/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/7/">Next &raquo;</a>
@@ -1122,11 +1124,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">React</a>
+                <a href="javascript:void(0)" class="js-tag color1">CI/CD</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">CI/CD</a>
+                <a href="javascript:void(0)" class="js-tag color1">React</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1135,6 +1137,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">购房</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1154,19 +1164,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1187,10 +1189,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">投资</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1227,6 +1225,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">安全</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">投资</a>
               </li>
              
               <li class="article-tag-list-item">

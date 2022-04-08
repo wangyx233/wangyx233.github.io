@@ -130,6 +130,113 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-[开发]正则" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/04/08/[开发]正则/">【开发】正则</a>
+    </h1>
+  
+
+        
+        <a href="/2022/04/08/[开发]正则/" class="archive-article-date">
+  	<time datetime="2022-04-08T09:10:06.876Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-04-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>正则表达式真的属于是常看常新，不看就忘。。。🤦🏻‍♀️</p>
+<p>JS 中使用正则，有两种方式：</p>
+<ul>
+<li>字面量，如： <code>/abc/</code>， g 全局，i 忽略大小写，m 多行搜索</li>
+<li>构造函数，如：<code>new RegExp(&#39;abc&#39;, &#39;g&#39;)</code></li>
+</ul>
+<p>基本概念：</p>
+<ul>
+<li>元字符：在正则表达式中有特殊含义的非字母字符，如<code>*,+,?,$,^,.,|,\,(,),{,},[,]</code></li>
+<li>字符集合：<code>[abc]</code>字符 a 或 b 或 c 归为一类，会匹配 a 或者 b 或者 c。在<code>[^abc]</code> 即 <code>[^ ]</code>是取反的意思，除了 a,b,c 之外</li>
+<li>范围类：<code>[0-9A-Z]</code>，如果想匹配<code>-</code>，比如：<code>[0-9-]</code> 会匹配<code>1-</code></li>
+<li>预定义类：比如<code>. \d \D \w \W \s \S</code> d-&gt; digit，s-&gt;space，w-&gt; word。大写就是取反咯 <code>. -&gt; [^\r\n]</code></li>
+<li>边界：<code>^ $ \b \B</code> ，<code>\b</code> 是单词边界</li>
+<li>量词：<code>? + * {n} {n,m} {n, }</code></li>
+<li>贪婪模式：正则表达式默认是贪婪模式，即每次匹配都尽可能匹配多的字符，比如<code>/\d{2,5}/ /\d{2,5}?/</code></li>
+<li>或：<code>|</code></li>
+<li>分组：<code>()</code> 作为一个整体，如：<code>(test){3}</code> 匹配 test 3 次</li>
+<li>捕获：<code>()</code> 包含的表达式所匹配到的字符串会被（分组捕获），<code>$1 $2 $3...</code> 每次捕获的结果。如果要忽略某个分组捕获的结果<code>(?:)</code></li>
+<li>ES2018(ES9) 中已经支持后瞻和命名分组。😯 <code>exp(?=assert)</code> 正向前瞻 <code>exp(?!assert)</code> 负向前瞻</li>
+</ul>
+<p>RegExp 的方法：</p>
+<ul>
+<li>test，返回 true / false</li>
+<li>exec，返回匹配的值</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const reg = /\d(\w)\d/</span><br><span class="line">const str = &apos;1a2b3c&apos;</span><br><span class="line">reg.test(str)</span><br><span class="line">reg.exec(str)</span><br></pre></td></tr></table></figure>
+
+<p>String 支持的方法：</p>
+<ul>
+<li>replace</li>
+<li>match</li>
+<li>search</li>
+<li>split</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/开发//" class="article-tag-list-link color3">开发</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/04/08/[开发]正则/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-[浏览器]版本号" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1002,105 +1109,6 @@
 
 
   
-    <article id="post-[JS基础]手写小试" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/02/16/[JS基础]手写小试/">&lt;JS基础&gt;手写小试</a>
-    </h1>
-  
-
-        
-        <a href="/2022/02/16/[JS基础]手写小试/" class="archive-article-date">
-  	<time datetime="2022-02-16T06:44:26.879Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="一、数组扁平化"><a href="#一、数组扁平化" class="headerlink" title="一、数组扁平化"></a>一、数组扁平化</h4><p>如何将一个多维数组变成一个一维数组，如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const arr = [1, [2, [3, [4, [5]]]]]</span><br><span class="line">// =&gt; [1,2,3,4,5]</span><br></pre></td></tr></table></figure>
-
-<p>看到数组扁平，第一想到的是 concat()，然后是递归，依次实现一番。</p>
-<p>(1) 递归</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function flat(arr, depth = 1) &#123;</span><br><span class="line">  let res = []</span><br><span class="line">  arr.forEach((elem) =&gt; &#123;</span><br><span class="line">    if(!Array.isArray(elem) || !depth)&#123;</span><br><span class="line">      res.push(elem)</span><br><span class="line">    &#125;else &#123;</span><br><span class="line">      res = res.concat(flat(elem, depth - 1))</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  return res</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>(2) reduce()配合 concat()</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function flat(arr, depth = 1) &#123;</span><br><span class="line">  return depth ? arr.reduce((temp, elem) =&gt; (temp.concat(Array.isArray(elem) ? flat(elem, depth - 1) : elem)) , []) : arr</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>(3) 内置 API，一顿操作，竟然忽略了 Js Array 的内置 api–flat()，按指定深度递归遍历数组，将所有元素与遍历的子数组中的元素合并为一个新数组返回。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var newArray = arr.flat([depth])</span><br><span class="line">const res = arr.flat(Infinity);</span><br></pre></td></tr></table></figure>
-
-<p>(4) 正则，另辟蹊径</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const res1 = JSON.stringify(arr).replace(/\[|\]/g, &apos;&apos;).split(&apos;,&apos;); // 原来数字变成了字符串</span><br><span class="line">const res2 = JSON.parse(`[$&#123;JSON.stringify(arr).replace(/\[|\]/g, &apos;&apos;)&#125;]`);</span><br></pre></td></tr></table></figure>
-
-<p>(5) 迭代</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function flat(arr, depth = 1) &#123;</span><br><span class="line">  while(arr.some(elem =&gt; Array.isArray(elem)) &amp;&amp; depth) &#123;</span><br><span class="line">    arr = [].concat(...arr)</span><br><span class="line">    depth--</span><br><span class="line">  &#125;</span><br><span class="line">  return arr</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="二、数组去重"><a href="#二、数组去重" class="headerlink" title="二、数组去重"></a>二、数组去重</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const arr = [1, 17, &apos;1&apos;, 17, true, true, false, false, &apos;true&apos;, &apos;a&apos;, &#123;&#125;, &#123;&#125;];</span><br><span class="line">// =&gt; [1, &apos;1&apos;, 17, true, false, &apos;true&apos;, &apos;a&apos;, &#123;&#125;, &#123;&#125;]</span><br></pre></td></tr></table></figure>
-
-<p>看到数组去重，首先想到的是维护一个 object 用于记录出现过的值然后去掉重复，然后想到 filter 也可以实现类似的</p>
-<p>(1) object 方法，普通 object 的 key 都会转换成 String 类型，所以可以借助 ES6 的 Map;</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const uniq = (arr) =&gt; &#123;</span><br><span class="line">  const map = new Map();</span><br><span class="line">  const res = [];</span><br><span class="line">  for (let i = 0; i &lt; arr.length; i++) &#123;</span><br><span class="line">    if (!map.has(arr[i])) &#123;</span><br><span class="line">      map.set(arr[i], true);</span><br><span class="line">      res.push(arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>(2) filter，过滤得到首次出现的元素。判断元素是否出现过还可以使用 arr.indexOf(elem) === -1 或者 arr.includes(elem)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const res = arr.filter((elem, index) =&gt; arr.indexOf(elem) === index);</span><br></pre></td></tr></table></figure>
-
-<p>(3) ES6 的 Set 数据结构，特性是每个元素都是唯一的，没有重复的值</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const res = [...new Set(arr)];</span><br><span class="line">[...new Set(&apos;ababbc&apos;)].join(&apos;&apos;); // &apos;abc&apos;</span><br></pre></td></tr></table></figure>
-
-<h4 id="三、深拷贝"><a href="#三、深拷贝" class="headerlink" title="三、深拷贝"></a>三、深拷贝</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function cloneDeep(data, exist = new Map()) &#123;</span><br><span class="line">  if(typeof data !== &apos;object&apos; || data === null) return data</span><br><span class="line">  if(data instanceof Date) return new Date(data)</span><br><span class="line">  if(data instanceof RegExp) return new RegExp(data)</span><br><span class="line">  if(exist.has(data)) return exist.get(data)</span><br><span class="line">  let result = Array.isArray(data) ? [] : &#123;&#125;</span><br><span class="line">  exist.set(data, result)</span><br><span class="line">  const keys = [...Object.keys(data), ...Object.getOwnPropertySymbols(data)]</span><br><span class="line">  keys.forEach(key =&gt; &#123;</span><br><span class="line">    result[key] = cloneDeep(data[key], exist)</span><br><span class="line">  &#125;)</span><br><span class="line">  return result</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>// 两个有序数组[1,3,5]和[2,4,6]，写一个 mergeArr(a,b)合并两个数组，最终得到一个有序数组</p>
-<p>_.get()</p>
-<p>假设你正在爬楼梯。需要 n 阶你才能到达楼顶。</p>
-<p>每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/02/16/[JS基础]手写小试/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1202,11 +1210,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">React</a>
+                <a href="javascript:void(0)" class="js-tag color1">CI/CD</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">CI/CD</a>
+                <a href="javascript:void(0)" class="js-tag color1">React</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1215,6 +1223,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">购房</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1234,19 +1250,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1267,10 +1275,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">投资</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1307,6 +1311,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">安全</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">投资</a>
               </li>
              
               <li class="article-tag-list-item">
