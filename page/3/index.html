@@ -130,6 +130,183 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-[版本管理]git的世界" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/06/30/[版本管理]git的世界/">【版本管理】gitの世界</a>
+    </h1>
+  
+
+        
+        <a href="/2021/06/30/[版本管理]git的世界/" class="archive-article-date">
+  	<time datetime="2021-06-30T02:45:57.330Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git --version</span><br><span class="line">git config --global user.name &apos;xxx&apos;</span><br><span class="line">git config --global user.email &apos;xxx&apos;</span><br><span class="line">git config --list</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>local</li>
+<li>global</li>
+<li>system</li>
+</ul>
+<h1 id="工作区-暂存区"><a href="#工作区-暂存区" class="headerlink" title="工作区/暂存区"></a>工作区/暂存区</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add -u // 已经被管理的文件 update</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>重命名，git的命令类比linux的系统命令，可直接git commit </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git rm xxx // 删除</span><br><span class="line">git mv old new</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>git log</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git log --oneline</span><br><span class="line">git log -n // 最近几次commit</span><br><span class="line">git log -all --graph// 所有分支</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>git branch</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git branch -v // 本地分支</span><br><span class="line">git branch -av</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>.git文件夹</p>
+</li>
+</ul>
+<ol>
+<li><p>HEAD 指向某个commit</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b branch </span><br><span class="line">git diff HEAD HEAD^^ / HEAD~n</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>config</p>
+</li>
+<li><p>refs</p>
+</li>
+</ol>
+<ul>
+<li>heads 分支</li>
+<li>tags 里程碑</li>
+</ul>
+<ol start="4">
+<li>objects<br>blob文件对象 tree commit三者之间的关系<br>只要文件的内容相同，在git里就是唯一的，和文件名没有关系<br>加入暂存区的内容，才会再objects里面有体现<br>commit -&gt; tree -&gt; blob<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git cat-file -t xxx 看文件的类型</span><br><span class="line">git cat-file -p xxx 看内容</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ul>
+<li><p>分离头指针 detached HEAD 没有经过某个分支做修改<br>git checkout commit-id 开发后切换分支易丢失，会提示创建新分支git branch name commit-id<br>在分支上做变更</p>
+</li>
+<li><p>branch 清理</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git branch -v</span><br><span class="line">git branch -d</span><br><span class="line">git branch -D</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>修改commit message</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git commit --amend // 最近一次commit</span><br><span class="line">git rebase -i   // 变基要修改的父commit，在为同步到远端，合并commit也可以实现</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>diff</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git diff --cached //暂存区和HEAD的不同</span><br><span class="line">git diff // 工作区和暂存区的差异，不加参数是比较所有变动</span><br><span class="line">git diff -- filename filename filename </span><br><span class="line">git diff branch_name/commit-id/ branch_name/commit-id -- filename</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git reset HEAD // 暂存区恢复到工作区</span><br><span class="line">git reset HEAD -- filename</span><br><span class="line">git reset --hard/--soft commit-id</span><br><span class="line">git checkout -- filename // 工作区内容恢复到暂存区一样</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>stash</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git stash</span><br><span class="line">git stash list</span><br><span class="line">git stash pop // stash </span><br><span class="line">git stash apply // stash 列表内的信息还在</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>.gitignore</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xxx/ // xxx的文件夹会被忽略</span><br><span class="line">xxx // xxx的文件和文件夹都会忽略</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>备份</li>
+</ul>
+<ol>
+<li>哑协议：没有协议头 xxx/xx.git，看不到传输速度，速率没有智能协议高</li>
+<li>智能协议：带协议头 &gt; file:///xxx/xxx.git<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone --bare</span><br><span class="line">git remote add xxx.git</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ul>
+<li><p>远端操作，fast-forwards，解决冲突，集成的分支不要做变基，注意fast-forwards</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git fetch</span><br><span class="line">git merge</span><br><span class="line">git pull</span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>git vs svn</p>
+</li>
+</ul>
+<ol>
+<li>svn需要获取批准</li>
+<li>权限问题，效率</li>
+<li>可以托管代码，协同合作</li>
+</ol>
+<ul>
+<li><p>工作流</p>
+</li>
+<li><p>rerere</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git config --local rerere.enabled true</span><br><span class="line">git merge // 解决冲突</span><br><span class="line">git add</span><br><span class="line">git commit</span><br><span class="line">git reset</span><br><span class="line">git rebase</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/git//" class="article-tag-list-link color4">git</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/06/30/[版本管理]git的世界/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-[开发]工具" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -272,6 +449,124 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/06/30/[开发]工具/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-[人生]购房" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/06/30/[人生]购房/">【生活】如果有购房需求</a>
+    </h1>
+  
+
+        
+        <a href="/2021/06/30/[人生]购房/" class="archive-article-date">
+  	<time datetime="2021-06-30T02:45:57.328Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>房产经纪人-一度觉得自己可以成为</p>
+</blockquote>
+<h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1><p>不论二手还是新房都有一些共通之处，最终要的是要多学，多看，多比较</p>
+<blockquote>
+<p>平时买个几块钱的菜都要比来比去，怎么到了几十上百万的🏡的时候就比买白菜还随意呢？</p>
+</blockquote>
+<ul>
+<li><p>现在资讯无比发达，所以在下手之前可以通过各种大v，公众号，或者直播了解一些房产的基本信息。</p>
+<h2 id="外部因素"><a href="#外部因素" class="headerlink" title="外部因素"></a>外部因素</h2><ol>
+<li>学区属性是否刚需</li>
+<li>交通地铁</li>
+<li>邻居</li>
+<li>车位</li>
+<li>流通性</li>
+<li>…</li>
+</ol>
+<h2 id="内部因素"><a href="#内部因素" class="headerlink" title="内部因素"></a>内部因素</h2><ol>
+<li>楼层，楼高</li>
+<li>采光，遮挡</li>
+<li>隔音，噪音，是否临街</li>
+<li>下水，独立下水</li>
+<li>供暖，物业</li>
+<li>窗户</li>
+<li>…</li>
+</ol>
+</li>
+<li><p>可以多实地看几套二手房，看房又不💰，实地感受一下各种因素的影响，以及自己的接受度</p>
+</li>
+<li><p>二手房尤其要注意🏡的流通性，大概率5-8年会换房，所以中介费，还有税费要注意</p>
+</li>
+<li><p>新房封顶以后才能批贷，这点要注意。</p>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">购房</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/生活//" class="article-tag-list-link color3">生活</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/06/30/[人生]购房/">展开全文 >></a>
         </p>
       
 
@@ -450,124 +745,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/06/30/[工程化]Webpack/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-[人生]购房" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/30/[人生]购房/">【生活】如果有购房需求</a>
-    </h1>
-  
-
-        
-        <a href="/2021/06/30/[人生]购房/" class="archive-article-date">
-  	<time datetime="2021-06-30T02:45:57.328Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>房产经纪人-一度觉得自己可以成为</p>
-</blockquote>
-<h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1><p>不论二手还是新房都有一些共通之处，最终要的是要多学，多看，多比较</p>
-<blockquote>
-<p>平时买个几块钱的菜都要比来比去，怎么到了几十上百万的🏡的时候就比买白菜还随意呢？</p>
-</blockquote>
-<ul>
-<li><p>现在资讯无比发达，所以在下手之前可以通过各种大v，公众号，或者直播了解一些房产的基本信息。</p>
-<h2 id="外部因素"><a href="#外部因素" class="headerlink" title="外部因素"></a>外部因素</h2><ol>
-<li>学区属性是否刚需</li>
-<li>交通地铁</li>
-<li>邻居</li>
-<li>车位</li>
-<li>流通性</li>
-<li>…</li>
-</ol>
-<h2 id="内部因素"><a href="#内部因素" class="headerlink" title="内部因素"></a>内部因素</h2><ol>
-<li>楼层，楼高</li>
-<li>采光，遮挡</li>
-<li>隔音，噪音，是否临街</li>
-<li>下水，独立下水</li>
-<li>供暖，物业</li>
-<li>窗户</li>
-<li>…</li>
-</ol>
-</li>
-<li><p>可以多实地看几套二手房，看房又不💰，实地感受一下各种因素的影响，以及自己的接受度</p>
-</li>
-<li><p>二手房尤其要注意🏡的流通性，大概率5-8年会换房，所以中介费，还有税费要注意</p>
-</li>
-<li><p>新房封顶以后才能批贷，这点要注意。</p>
-</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">购房</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/生活//" class="article-tag-list-link color3">生活</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/30/[人生]购房/">展开全文 >></a>
         </p>
       
 
@@ -1247,107 +1424,6 @@
 
 
   
-    <article id="post-[React]事件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/30/[React]事件/">【React】事件系统</a>
-    </h1>
-  
-
-        
-        <a href="/2021/06/30/[React]事件/" class="archive-article-date">
-  	<time datetime="2021-06-30T02:45:57.323Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="DOM事件流"><a href="#DOM事件流" class="headerlink" title="DOM事件流"></a>DOM事件流</h1><ol>
-<li>事件捕获</li>
-<li>目标阶段</li>
-<li>事件冒泡</li>
-</ol>
-<h1 id="事件委托-事件代理"><a href="#事件委托-事件代理" class="headerlink" title="事件委托/事件代理"></a>事件委托/事件代理</h1><blockquote>
-<p>把多个子元素的同一类型的监听逻辑，合并到父元素上通过一个监听函数来管理的行为，就是事件委托。<br>e.target 这个属性，指的是触发事件的具体目标，记录着事件的源头。</p>
-</blockquote>
-<h1 id="React事件系统"><a href="#React事件系统" class="headerlink" title="React事件系统"></a>React事件系统</h1><h2 id="合成事件"><a href="#合成事件" class="headerlink" title="合成事件"></a>合成事件</h2><blockquote>
-<p>当事件在具体的DOM节点上被触发后，最终都会冒泡到document(或者ReactDOM.render绑定的元素)，document上所绑定的统一事件处理程序会将事件分发给具体的组件实例。</p>
-</blockquote>
-<p>合成事件是React自定义的事件对象，符合W3C规范，在底层抹平了不同浏览器的差异，在上层向开发者暴露统一的，稳定的，与DOM原生事件相同的事件接口。不必关注兼容问题，专注业务开发。<br>合成事件不是原生的事件，但是它保存了原生事件的引用，e.nativeEvent</p>
-<blockquote>
-<p>React 事件的命名采用小驼峰式（camelCase），而不是纯小写。使用 JSX 语法时你需要传入一个函数作为事件处理函数，而不是一个字符串。不能通过返回 false 的方式阻止默认行为。你必须显式的使用 preventDefault<br>比如：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">handleClick() &#123;</span><br><span class="line">  console.log(&apos;this is:&apos;, this);</span><br><span class="line">&#125;</span><br><span class="line">&lt;div onClick=&#123;()=&gt;this.handleClick()&#125;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">React</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/React//" class="article-tag-list-link color1">React</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/30/[React]事件/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
@@ -1441,10 +1517,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">flex</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CSS</a>
               </li>
              
@@ -1465,14 +1537,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">HTTPS</a>
               </li>
              
@@ -1489,11 +1553,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1505,11 +1573,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">tree</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Binary tree</a>
+                <a href="javascript:void(0)" class="js-tag color5">flex</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1517,15 +1581,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Promise</a>
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">setTimeout</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">closure</a>
+                <a href="javascript:void(0)" class="js-tag color3">投资</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1541,6 +1601,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">closure</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -1553,7 +1617,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">投资</a>
+                <a href="javascript:void(0)" class="js-tag color3">Promise</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">setTimeout</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">tree</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Binary tree</a>
               </li>
              
               <li class="article-tag-list-item">

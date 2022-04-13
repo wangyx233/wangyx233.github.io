@@ -130,6 +130,108 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-[算法基础]动态规划" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/01/[算法基础]动态规划/">&lt;算法基础&gt;动态规划</a>
+    </h1>
+  
+
+        
+        <a href="/2020/06/01/[算法基础]动态规划/" class="archive-article-date">
+  	<time datetime="2020-06-01T06:55:32.693Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="适用情况"><a href="#适用情况" class="headerlink" title="适用情况"></a>适用情况</h5><ol>
+<li>计数：how many xxx? 多少种方法可以 blabla</li>
+<li>求最大最小值：max，min…</li>
+<li>求存在性：博弈，是否能 blabla，先手能不能赢，存不存在策略。</li>
+</ol>
+<h5 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h5><ol>
+<li>确定状态。属于定海神针，相当于未知量，类似于 x,y,z。需要开一个数组</li>
+</ol>
+<ul>
+<li>最后一步，最后一个。比如：一共有 k 个硬币，不关心 k-1 前的状态。只要保证 k-1 是最少的达到目标的</li>
+<li>子问题。问题一样，规模变小</li>
+</ul>
+<p>递归的问题，会存在大量的重复计算，效率低下。所以如何优化呢？最容易想到的是加缓存，存一下中间计算值</p>
+<ol start="2">
+<li><p>转移方程。问题解决了一半</p>
+</li>
+<li><p>初始条件，边界情况：注意边界情况处理数组不要越界，初始条件是一开始就能定下来的比如 f[0]一般是最小的，关键是用转移方程算不出来的，手动定义值。</p>
+</li>
+<li><p>计算顺序。一般情况是从小到大。从上到下，从左到右。原则是，算等式左边的时候，等式右边已经能算出来，用到的状态已经算到了</p>
+</li>
+</ol>
+<p>消除冗余，加速计算。递归的另一种优化方式。</p>
+<p><strong>加法原理</strong></p>
+<ul>
+<li>无重复</li>
+<li>无遗漏</li>
+</ul>
+<h6 id="coin-change-最值"><a href="#coin-change-最值" class="headerlink" title="coin change 最值"></a>coin change 最值</h6><h6 id="unique-path-计数"><a href="#unique-path-计数" class="headerlink" title="unique path 计数"></a>unique path 计数</h6><h6 id="jump-game-存在性"><a href="#jump-game-存在性" class="headerlink" title="jump game 存在性"></a>jump game 存在性</h6><h5 id="常见的动态规划的类型"><a href="#常见的动态规划的类型" class="headerlink" title="常见的动态规划的类型"></a>常见的动态规划的类型</h5><ul>
+<li>坐标</li>
+<li>序列</li>
+<li>划分</li>
+<li>区间</li>
+<li>背包</li>
+<li>最长序列，最长上升子序列</li>
+<li>博弈</li>
+<li>综合</li>
+<li>打印路径</li>
+</ul>
+<h5 id="了解博弈"><a href="#了解博弈" class="headerlink" title="了解博弈"></a>了解博弈</h5><h6 id="巴什博奕-Bash-game"><a href="#巴什博奕-Bash-game" class="headerlink" title="巴什博奕 Bash game"></a>巴什博奕 Bash game</h6><p>A,B 玩报数的游戏，若先报到 30 的那个人会赢，每人每次最多报 2(max) 个数，最少报 1 个数，如何保持自己的不败之地。</p>
+<p>从简单的来思考，若报到 max + 1 即 3，则后面报数的一定会赢。就先看有多少个这个循环 30 / max + 1，若能整除则后者赢，若有余数则前者先报余数个数则必赢。每次都保证两人报的数是 1+max 个就是一个完整的循环。这是基于两人都是特别聪明的前提。<br>1+max 的倍数</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/01/[算法基础]动态规划/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-[算法基础]时间&amp;空间复杂度" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -919,89 +1021,6 @@
 
 
   
-    <article id="post-[CSS]Input Bottom Animation" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/16/[CSS]Input Bottom Animation/">Hover&amp;Focus Effects 简单动画示例</a>
-    </h1>
-  
-
-        
-        <a href="/2020/04/16/[CSS]Input Bottom Animation/" class="archive-article-date">
-  	<time datetime="2020-04-16T03:36:09.777Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>登录页进行账号输入时，为了让焦点聚集在当前输入框上可能会需要配合一些动画效果，或者是某个内容的重点提醒也会在 hover 时增加醒目动画。这些设计虽然很古老，也有用到的场合。<br>主要是借助 CSS3 的 transition 来做效果变换，示例如下：<a href="https://codepen.io/yx233/pen/YzywdJQ" target="_blank" rel="noopener">https://codepen.io/yx233/pen/YzywdJQ</a></p>
-<h5 id="普通元素-hover-effects"><a href="#普通元素-hover-effects" class="headerlink" title="普通元素 hover effects"></a>普通元素 hover effects</h5><ul>
-<li>简单的 border-color 变换。</li>
-<li>借助伪元素实现从左-&gt;右，或从中间向两边延伸的效果。</li>
-</ul>
-<h5 id="input-的-focus"><a href="#input-的-focus" class="headerlink" title="input 的 focus"></a>input 的 focus</h5><p>::after ::before 是指元素文档树内渲染前、后的内容，input 不支持。所以需要借助额外的兄弟元素进行效果实现。</p>
-<p>注：[:focus-within]是当一个元素或者元素的后代有[:focus]伪类时生效的一个选择器。对输入框获得焦点时，其前后左右的小图标，下滑动画等变换都有非常实用的效果。</p>
-<p>注意：登录框前有时会配合放一些小图标，如果用把 icon 当做 input 的 background-image，同时通过定位的方式定位，需要格外注意 Chrome 记住密码情况下的展示。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">input[name=&apos;user&apos;] &#123;</span><br><span class="line">  background-image: url(/login/user.svg);</span><br><span class="line">  background-position: 12px;</span><br><span class="line">  background-repeat: no-repeat;</span><br><span class="line">&#125;</span><br><span class="line">// 注意</span><br><span class="line">input:-webkit-autofill,</span><br><span class="line">input:-webkit-autofill:hover,</span><br><span class="line">input:-webkit-autofill:focus,</span><br><span class="line">input:-webkit-autofill:active &#123;</span><br><span class="line">  -webkit-transition: color 9999s linear, background-color 9999s linear;</span><br><span class="line">  -webkit-transition-delay: 9999s;</span><br><span class="line">  background-color: XXX;</span><br><span class="line">  color: XXX;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">css</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/16/[CSS]Input Bottom Animation/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/6/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/8/">Next &raquo;</a>
@@ -1095,10 +1114,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">flex</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CSS</a>
               </li>
              
@@ -1119,14 +1134,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">HTTPS</a>
               </li>
              
@@ -1143,11 +1150,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1159,11 +1170,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">tree</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Binary tree</a>
+                <a href="javascript:void(0)" class="js-tag color5">flex</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1171,15 +1178,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Promise</a>
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">setTimeout</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">closure</a>
+                <a href="javascript:void(0)" class="js-tag color3">投资</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1195,6 +1198,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">closure</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -1207,7 +1214,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">投资</a>
+                <a href="javascript:void(0)" class="js-tag color3">Promise</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">setTimeout</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">tree</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Binary tree</a>
               </li>
              
               <li class="article-tag-list-item">

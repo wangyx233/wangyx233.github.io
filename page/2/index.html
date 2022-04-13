@@ -130,6 +130,89 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-[CSS]flex copy" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/02/23/[CSS]flex copy/">【CSS】flex &amp; grid</a>
+    </h1>
+  
+
+        
+        <a href="/2022/02/23/[CSS]flex copy/" class="archive-article-date">
+  	<time datetime="2022-02-23T09:41:33.064Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>平时常用 flex 进行对齐和布局，习惯了 align-items 和 justify-content，也会遇到过宽度换行的情况。</p>
+<p>flex: 1 是什么？ 2 是什么？ 10px？有单位是 flex-basis 的值，无单位的话则为 flex-grow 的值</p>
+<blockquote>
+<p>即：一个无单位数(<number>): 它会被当作 flex:<number> 1 0;<br>注：省略值和默认值不同</number></number></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">/* 关键字值 */</span><br><span class="line">flex: initial; // 0 1 auto 根据自身宽高设置尺寸，会收缩但不会伸长。适合一侧宽度固定，另一侧宽度任意，display: flex; 默认值</span><br><span class="line">flex: auto; // 1 1 auto 根据自身宽高，会收缩会伸长；优先扩张，适合内容动态适配</span><br><span class="line">flex: none; // 0 0 auto 根据自身宽高设置尺寸，不会收缩也不会伸长；适合自身不变的</span><br><span class="line"></span><br><span class="line">flex-grow: 省略时1</span><br><span class="line">flex-shrink: 省略时1</span><br><span class="line">flex-basis: 省略时0</span><br><span class="line">flex: 1 -&gt; 1 1 0% // 优先缩小自己的体积，充分利用剩余空间，又不侵占其他元素的位置，适合等分</span><br><span class="line">flex: 10px -&gt; 1 1 10px</span><br></pre></td></tr></table></figure>
+
+<p>最近有使用 grid 布局</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">display: grid;</span><br><span class="line">grid-template-columns: repeat(3, 1fr);</span><br><span class="line">grid-template-rows: repeat(3, 1fr);</span><br><span class="line">grid-gap: 10px;</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/css//" class="article-tag-list-link color4">css</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/02/23/[CSS]flex copy/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-[JS基础]手写小试" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1127,183 +1210,6 @@
 
 
   
-    <article id="post-[版本管理]git的世界" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/30/[版本管理]git的世界/">【版本管理】gitの世界</a>
-    </h1>
-  
-
-        
-        <a href="/2021/06/30/[版本管理]git的世界/" class="archive-article-date">
-  	<time datetime="2021-06-30T02:45:57.330Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git --version</span><br><span class="line">git config --global user.name &apos;xxx&apos;</span><br><span class="line">git config --global user.email &apos;xxx&apos;</span><br><span class="line">git config --list</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>local</li>
-<li>global</li>
-<li>system</li>
-</ul>
-<h1 id="工作区-暂存区"><a href="#工作区-暂存区" class="headerlink" title="工作区/暂存区"></a>工作区/暂存区</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add -u // 已经被管理的文件 update</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>重命名，git的命令类比linux的系统命令，可直接git commit </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git rm xxx // 删除</span><br><span class="line">git mv old new</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>git log</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git log --oneline</span><br><span class="line">git log -n // 最近几次commit</span><br><span class="line">git log -all --graph// 所有分支</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>git branch</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git branch -v // 本地分支</span><br><span class="line">git branch -av</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>.git文件夹</p>
-</li>
-</ul>
-<ol>
-<li><p>HEAD 指向某个commit</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b branch </span><br><span class="line">git diff HEAD HEAD^^ / HEAD~n</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>config</p>
-</li>
-<li><p>refs</p>
-</li>
-</ol>
-<ul>
-<li>heads 分支</li>
-<li>tags 里程碑</li>
-</ul>
-<ol start="4">
-<li>objects<br>blob文件对象 tree commit三者之间的关系<br>只要文件的内容相同，在git里就是唯一的，和文件名没有关系<br>加入暂存区的内容，才会再objects里面有体现<br>commit -&gt; tree -&gt; blob<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git cat-file -t xxx 看文件的类型</span><br><span class="line">git cat-file -p xxx 看内容</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<ul>
-<li><p>分离头指针 detached HEAD 没有经过某个分支做修改<br>git checkout commit-id 开发后切换分支易丢失，会提示创建新分支git branch name commit-id<br>在分支上做变更</p>
-</li>
-<li><p>branch 清理</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git branch -v</span><br><span class="line">git branch -d</span><br><span class="line">git branch -D</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>修改commit message</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git commit --amend // 最近一次commit</span><br><span class="line">git rebase -i   // 变基要修改的父commit，在为同步到远端，合并commit也可以实现</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>diff</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git diff --cached //暂存区和HEAD的不同</span><br><span class="line">git diff // 工作区和暂存区的差异，不加参数是比较所有变动</span><br><span class="line">git diff -- filename filename filename </span><br><span class="line">git diff branch_name/commit-id/ branch_name/commit-id -- filename</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git reset HEAD // 暂存区恢复到工作区</span><br><span class="line">git reset HEAD -- filename</span><br><span class="line">git reset --hard/--soft commit-id</span><br><span class="line">git checkout -- filename // 工作区内容恢复到暂存区一样</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>stash</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git stash</span><br><span class="line">git stash list</span><br><span class="line">git stash pop // stash </span><br><span class="line">git stash apply // stash 列表内的信息还在</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>.gitignore</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xxx/ // xxx的文件夹会被忽略</span><br><span class="line">xxx // xxx的文件和文件夹都会忽略</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>备份</li>
-</ul>
-<ol>
-<li>哑协议：没有协议头 xxx/xx.git，看不到传输速度，速率没有智能协议高</li>
-<li>智能协议：带协议头 &gt; file:///xxx/xxx.git<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone --bare</span><br><span class="line">git remote add xxx.git</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<ul>
-<li><p>远端操作，fast-forwards，解决冲突，集成的分支不要做变基，注意fast-forwards</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git fetch</span><br><span class="line">git merge</span><br><span class="line">git pull</span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>git vs svn</p>
-</li>
-</ul>
-<ol>
-<li>svn需要获取批准</li>
-<li>权限问题，效率</li>
-<li>可以托管代码，协同合作</li>
-</ol>
-<ul>
-<li><p>工作流</p>
-</li>
-<li><p>rerere</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git config --local rerere.enabled true</span><br><span class="line">git merge // 解决冲突</span><br><span class="line">git add</span><br><span class="line">git commit</span><br><span class="line">git reset</span><br><span class="line">git rebase</span><br></pre></td></tr></table></figure></li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/git//" class="article-tag-list-link color4">git</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/30/[版本管理]git的世界/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -1397,10 +1303,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">flex</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CSS</a>
               </li>
              
@@ -1421,14 +1323,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">HTTPS</a>
               </li>
              
@@ -1445,11 +1339,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1461,11 +1359,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">tree</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Binary tree</a>
+                <a href="javascript:void(0)" class="js-tag color5">flex</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1473,15 +1367,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Promise</a>
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">setTimeout</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">closure</a>
+                <a href="javascript:void(0)" class="js-tag color3">投资</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1497,6 +1387,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">closure</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -1509,7 +1403,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">投资</a>
+                <a href="javascript:void(0)" class="js-tag color3">Promise</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">setTimeout</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">tree</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Binary tree</a>
               </li>
              
               <li class="article-tag-list-item">

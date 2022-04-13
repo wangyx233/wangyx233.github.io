@@ -130,6 +130,132 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-[JS基础]构造函数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/04/13/[JS基础]构造函数/">【JS基础】构造函数</a>
+    </h1>
+  
+
+        
+        <a href="/2022/04/13/[JS基础]构造函数/" class="archive-article-date">
+  	<time datetime="2022-04-13T06:21:49.588Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-04-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="what？"><a href="#what？" class="headerlink" title="what？"></a>what？</h3><blockquote>
+<p>当然是用来构造对象的函数啦~ 当然可以简单的这样理解</p>
+</blockquote>
+<p>构造函数（constructor），是专门用来生成实例对象的函数，描述实例对象的基本结构。为了与普通函数区别，构造函数名称的第一个字母通常大写，有自己的特征与用法。</p>
+<ul>
+<li>特点：<ol>
+<li>函数内部使用<code>this</code>关键字，代表要生成的对象实例</li>
+<li>生成对象的时候，要使用<code>new</code>命令</li>
+</ol>
+</li>
+</ul>
+<p>等等 <code>new</code> 是什么?</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const Person = function (name) &#123;</span><br><span class="line">  this.name = name</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const Amanda = new Person(&apos;Amanda&apos;)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>new 命令的作用其实是，执行构造函数，返回一个实例对象。使用<code>new</code>时，构造函数也可以接受参数。</p>
+</blockquote>
+<p>如果不使用<code>new</code>，直接调用构造函数会怎样？</p>
+<blockquote>
+<p>那构造函数只能像普通函数一样执行，不会返回实例对象，函数的默认返回是 undefined 呀。这时候<code>this</code>指向变成另一个话题啦</p>
+</blockquote>
+<p>如何保证构造函数必须与<code>new</code> 一起用呢？<br>如果没用<code>new</code>，则报错，或者直接返回一个实例对象</p>
+<ol>
+<li>构造函数内使用严格模式，<code>use strict</code>。这样的话，<code>this</code>不能指向全局，而是 undefined</li>
+<li>判断<code>this</code>不是实例，<code>return new Fun()</code></li>
+</ol>
+<blockquote>
+<p>这一顿操作<code>new</code>到底做了什么呢？</p>
+</blockquote>
+<ol>
+<li>创建一个空对象，作为要返回的对象实例</li>
+<li>将这个空对象的原型<code>__proto__</code>，指向构造函数的<code>prototype</code></li>
+<li>构造函数的<code>this</code>指向改为这个空对象(即这个空对象赋值给函数内部的<code>this</code>关键字)</li>
+<li>构造函数执行返回</li>
+</ol>
+<blockquote>
+<p>因此，构造函数之所以成为构造函数，是说这个函数的功能，是操作一个空对象，通过<code>this</code>，将其构造成需要的样子。</p>
+</blockquote>
+<p>如果构造函数内部有<code>return</code>，需要注意：</p>
+<ul>
+<li>如果<code>return</code>返回一个对象，则返回的实例对象是，该对象</li>
+<li>如果不是，则忽略<code>return</code>的内容，返回<code>this</code>对象</li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>实现一个<code>new</code>吧</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var myNew = (constructor, ...args) =&gt; &#123;</span><br><span class="line">  const obj = &#123;&#125;</span><br><span class="line">  obj.__proto__ = constructor.prototype //  Object.setPrototypeOf(obj, constructor.prototype)</span><br><span class="line">  const result = constructor.apply(obj, args)</span><br><span class="line">  return (typeof result === &apos;object&apos; &amp;&amp; result !== null) ? result : obj</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var myNew = (constructor, ...args) =&gt; &#123;</span><br><span class="line">  const obj = &#123;&#125;</span><br><span class="line">  obj.__proto__ = constructor.prototype //  Object.setPrototypeOf(obj, constructor.prototype)</span><br><span class="line">  const result = constructor.apply(obj, args)</span><br><span class="line">  return (typeof result === &apos;object&apos; &amp;&amp; result !== null) ? result : obj</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Object.create()方法创建一个新对象，使用现有的对象来提供新创建的对象的<code>__proto__</code></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var myNew = (constructor, ...args) =&gt; &#123;</span><br><span class="line">  const obj = Object.create(constructor.prototype)</span><br><span class="line">  const result = constructor.apply(obj, args)</span><br><span class="line">  return (typeof result === &apos;object&apos; &amp;&amp; result !== null) ? result : obj</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/JavaScript//" class="article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/04/13/[JS基础]构造函数/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-[开发]正则" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1026,89 +1152,6 @@
 
 
   
-    <article id="post-[CSS]flex copy" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/02/23/[CSS]flex copy/">【CSS】flex &amp; grid</a>
-    </h1>
-  
-
-        
-        <a href="/2022/02/23/[CSS]flex copy/" class="archive-article-date">
-  	<time datetime="2022-02-23T09:41:33.064Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>平时常用 flex 进行对齐和布局，习惯了 align-items 和 justify-content，也会遇到过宽度换行的情况。</p>
-<p>flex: 1 是什么？ 2 是什么？ 10px？有单位是 flex-basis 的值，无单位的话则为 flex-grow 的值</p>
-<blockquote>
-<p>即：一个无单位数(<number>): 它会被当作 flex:<number> 1 0;<br>注：省略值和默认值不同</number></number></p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">/* 关键字值 */</span><br><span class="line">flex: initial; // 0 1 auto 根据自身宽高设置尺寸，会收缩但不会伸长。适合一侧宽度固定，另一侧宽度任意，display: flex; 默认值</span><br><span class="line">flex: auto; // 1 1 auto 根据自身宽高，会收缩会伸长；优先扩张，适合内容动态适配</span><br><span class="line">flex: none; // 0 0 auto 根据自身宽高设置尺寸，不会收缩也不会伸长；适合自身不变的</span><br><span class="line"></span><br><span class="line">flex-grow: 省略时1</span><br><span class="line">flex-shrink: 省略时1</span><br><span class="line">flex-basis: 省略时0</span><br><span class="line">flex: 1 -&gt; 1 1 0% // 优先缩小自己的体积，充分利用剩余空间，又不侵占其他元素的位置，适合等分</span><br><span class="line">flex: 10px -&gt; 1 1 10px</span><br></pre></td></tr></table></figure>
-
-<p>最近有使用 grid 布局</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">display: grid;</span><br><span class="line">grid-template-columns: repeat(3, 1fr);</span><br><span class="line">grid-template-rows: repeat(3, 1fr);</span><br><span class="line">grid-gap: 10px;</span><br></pre></td></tr></table></figure>
-
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/css//" class="article-tag-list-link color4">css</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/02/23/[CSS]flex copy/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1202,10 +1245,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">flex</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CSS</a>
               </li>
              
@@ -1226,14 +1265,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">HTTPS</a>
               </li>
              
@@ -1250,11 +1281,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1266,11 +1301,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">tree</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Binary tree</a>
+                <a href="javascript:void(0)" class="js-tag color5">flex</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1278,15 +1309,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Promise</a>
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">setTimeout</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">closure</a>
+                <a href="javascript:void(0)" class="js-tag color3">投资</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1302,6 +1329,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">closure</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -1314,7 +1345,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">投资</a>
+                <a href="javascript:void(0)" class="js-tag color3">Promise</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">setTimeout</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">tree</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Binary tree</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -6,20 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://wangyx233.github.io">
-  <title>&lt;重温JS&gt;时间处理二三事 | Hexo</title>
+  <title>【JS基础】构造函数 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="const current = new Date();Date.parse(current); //turn to UTC,msDate.UTC(year, month - 1 )Date.now() // s+new Date(); .toString(),字符串；.valueOf(),数值 ms">
-<meta name="keywords" content="moment.js,Date">
+  <meta name="description" content="what？ 当然是用来构造对象的函数啦~ 当然可以简单的这样理解  构造函数（constructor），是专门用来生成实例对象的函数，描述实例对象的基本结构。为了与普通函数区别，构造函数名称的第一个字母通常大写，有自己的特征与用法。  特点： 函数内部使用this关键字，代表要生成的对象实例 生成对象的时候，要使用new命令    等等 new 是什么? 12345const Person = f">
 <meta property="og:type" content="article">
-<meta property="og:title" content="&lt;重温JS&gt;时间处理二三事">
-<meta property="og:url" content="https://wangyx233.github.io/2020/05/08/[重温JS]时间处理二三事/index.html">
+<meta property="og:title" content="【JS基础】构造函数">
+<meta property="og:url" content="https://wangyx233.github.io/2022/04/13/[JS基础]构造函数/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="const current = new Date();Date.parse(current); //turn to UTC,msDate.UTC(year, month - 1 )Date.now() // s+new Date(); .toString(),字符串；.valueOf(),数值 ms">
+<meta property="og:description" content="what？ 当然是用来构造对象的函数啦~ 当然可以简单的这样理解  构造函数（constructor），是专门用来生成实例对象的函数，描述实例对象的基本结构。为了与普通函数区别，构造函数名称的第一个字母通常大写，有自己的特征与用法。  特点： 函数内部使用this关键字，代表要生成的对象实例 生成对象的时候，要使用new命令    等等 new 是什么? 12345const Person = f">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-05-08T09:00:04.521Z">
+<meta property="og:updated_time" content="2022-04-13T06:21:49.592Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="&lt;重温JS&gt;时间处理二三事">
-<meta name="twitter:description" content="const current = new Date();Date.parse(current); //turn to UTC,msDate.UTC(year, month - 1 )Date.now() // s+new Date(); .toString(),字符串；.valueOf(),数值 ms">
+<meta name="twitter:title" content="【JS基础】构造函数">
+<meta name="twitter:description" content="what？ 当然是用来构造对象的函数啦~ 当然可以简单的这样理解  构造函数（constructor），是专门用来生成实例对象的函数，描述实例对象的基本结构。为了与普通函数区别，构造函数名称的第一个字母通常大写，有自己的特征与用法。  特点： 函数内部使用this关键字，代表要生成的对象实例 生成对象的时候，要使用new命令    等等 new 是什么? 12345const Person = f">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -133,28 +132,79 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-[重温JS]时间处理二三事" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-[JS基础]构造函数" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      &lt;重温JS&gt;时间处理二三事
+      【JS基础】构造函数
     </h1>
   
 
         
-        <a href="/2020/05/08/[重温JS]时间处理二三事/" class="archive-article-date">
-  	<time datetime="2020-05-08T08:48:01.658Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-08</time>
+        <a href="/2022/04/13/[JS基础]构造函数/" class="archive-article-date">
+  	<time datetime="2022-04-13T06:21:49.588Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-04-13</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>const current = new Date();<br>Date.parse(current); //turn to UTC,ms<br>Date.UTC(year, month - 1 )<br>Date.now() // s<br>+new Date();</p>
-<p>.toString(),字符串；.valueOf(),数值 ms</p>
+        <h3 id="what？"><a href="#what？" class="headerlink" title="what？"></a>what？</h3><blockquote>
+<p>当然是用来构造对象的函数啦~ 当然可以简单的这样理解</p>
+</blockquote>
+<p>构造函数（constructor），是专门用来生成实例对象的函数，描述实例对象的基本结构。为了与普通函数区别，构造函数名称的第一个字母通常大写，有自己的特征与用法。</p>
+<ul>
+<li>特点：<ol>
+<li>函数内部使用<code>this</code>关键字，代表要生成的对象实例</li>
+<li>生成对象的时候，要使用<code>new</code>命令</li>
+</ol>
+</li>
+</ul>
+<p>等等 <code>new</code> 是什么?</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const Person = function (name) &#123;</span><br><span class="line">  this.name = name</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const Amanda = new Person(&apos;Amanda&apos;)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>new 命令的作用其实是，执行构造函数，返回一个实例对象。使用<code>new</code>时，构造函数也可以接受参数。</p>
+</blockquote>
+<p>如果不使用<code>new</code>，直接调用构造函数会怎样？</p>
+<blockquote>
+<p>那构造函数只能像普通函数一样执行，不会返回实例对象，函数的默认返回是 undefined 呀。这时候<code>this</code>指向变成另一个话题啦</p>
+</blockquote>
+<p>如何保证构造函数必须与<code>new</code> 一起用呢？<br>如果没用<code>new</code>，则报错，或者直接返回一个实例对象</p>
+<ol>
+<li>构造函数内使用严格模式，<code>use strict</code>。这样的话，<code>this</code>不能指向全局，而是 undefined</li>
+<li>判断<code>this</code>不是实例，<code>return new Fun()</code></li>
+</ol>
+<blockquote>
+<p>这一顿操作<code>new</code>到底做了什么呢？</p>
+</blockquote>
+<ol>
+<li>创建一个空对象，作为要返回的对象实例</li>
+<li>将这个空对象的原型<code>__proto__</code>，指向构造函数的<code>prototype</code></li>
+<li>构造函数的<code>this</code>指向改为这个空对象(即这个空对象赋值给函数内部的<code>this</code>关键字)</li>
+<li>构造函数执行返回</li>
+</ol>
+<blockquote>
+<p>因此，构造函数之所以成为构造函数，是说这个函数的功能，是操作一个空对象，通过<code>this</code>，将其构造成需要的样子。</p>
+</blockquote>
+<p>如果构造函数内部有<code>return</code>，需要注意：</p>
+<ul>
+<li>如果<code>return</code>返回一个对象，则返回的实例对象是，该对象</li>
+<li>如果不是，则忽略<code>return</code>的内容，返回<code>this</code>对象</li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>实现一个<code>new</code>吧</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var myNew = (constructor, ...args) =&gt; &#123;</span><br><span class="line">  const obj = &#123;&#125;</span><br><span class="line">  obj.__proto__ = constructor.prototype //  Object.setPrototypeOf(obj, constructor.prototype)</span><br><span class="line">  const result = constructor.apply(obj, args)</span><br><span class="line">  return (typeof result === &apos;object&apos; &amp;&amp; result !== null) ? result : obj</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var myNew = (constructor, ...args) =&gt; &#123;</span><br><span class="line">  const obj = &#123;&#125;</span><br><span class="line">  obj.__proto__ = constructor.prototype //  Object.setPrototypeOf(obj, constructor.prototype)</span><br><span class="line">  const result = constructor.apply(obj, args)</span><br><span class="line">  return (typeof result === &apos;object&apos; &amp;&amp; result !== null) ? result : obj</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Object.create()方法创建一个新对象，使用现有的对象来提供新创建的对象的<code>__proto__</code></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var myNew = (constructor, ...args) =&gt; &#123;</span><br><span class="line">  const obj = Object.create(constructor.prototype)</span><br><span class="line">  const result = constructor.apply(obj, args)</span><br><span class="line">  return (typeof result === &apos;object&apos; &amp;&amp; result !== null) ? result : obj</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
       
 
@@ -189,22 +239,18 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">moment.js</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Date</a>
+        			<a href="/categories/JavaScript//" class="article-tag-list-link color1">JavaScript</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
 
       
 
@@ -254,7 +300,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACr0lEQVR42u3aQW4jMQwEwPz/08l1gcCTblIyvEDNyXDGY5UOFtPk11d8ff9zPd/z/Knfr1+98/zZwxceHh7eYunPj35G5vc/v59Tn+/Bw8PDu81LlpsfBu1x0n5Xvh48PDy8T+PlxXS0lHLj8PDw8P53Xhs6tEcLHh4e3qfx8gh1FkzUywq273DWgoeHhxfz8i7S57y+0t/Dw8PDW3fV2wOgHTtoQ956tXh4eHgXeLMlzhr8s2fmG/HyTjw8PLyjvLyQnY0ObMKO/TgCHh4e3g3erOGUl9pJad4eG/UgAh4eHt5l3qnCNy+7Z2MK+bGEh4eHd5aXDzPlx0ke3RZl8aZrh4eHh3eUl5e2yXbkm9UeIfn99emHh4eHV/Lapn4bJeyHAFYtOjw8PLwLvLbBnzeoNsg2OI6GrvDw8PAO8fI21ebAaMviGTs6K/Dw8PDWvPZgSO6csdutLyJgPDw8vAu8WcDaNv7rH/S4WM+fhoeHh7fnJS3/fCCgiFYXx88qZcHDw8M7ymuReVl8lpQHxHh4eHj3eO2IVdumygv0WeCLh4eH907epvHfhgWzllvbyXqZUuPh4eEd5dUDoGWJ/Lwp7SBXy8bDw8M7y9t0zGYF7qlviTYLDw8P7wLv1HjTqfGpTbD7csvw8PDwrvHy4YA8DsjDi3y5w9ABDw8P7wIvasYfinfz72rX+UdJjYeHh3eU1zbDcmp7CLXXH8/Bw8PDO8r7Lq82YJ0V7vVY1SZlwcPDwyt5mx/f2RHShhSboS48PDy8e7x3jkm1gUJ7MNSjA3h4eHgLXh5SzI6NpFB+3r6kgVf8GQ8PD++NvITaHid5TFw/Bw8PD+/DePsmWRsQ1yOteHh4eNd4s8J3Fj2cCjWSzcLDw8O7wWv/4c9/6DcRRvup1fAWHh4eXsr7ARjNnHGCIHumAAAAAElFTkSuQmCC" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACIUlEQVR42u3aQW7DMAwF0dz/0irQVYvC9nxSLRpqtAoCRebzghFFvV54rM/x83M6c30ZV7+9X781ZMiQ8baMdTuuHsDDJWzy3Ic1ZciQcQCDpM7aY2p4HpsMGTJkkDk86A5bhgwZMjijVtDylCpDhgwZnSKW4NPXwb/ZVovLkCHjDRn9UH7v8x/1N2TIkPGPGSscfDWSXvnR3kNUMmTIGM0gh/6doPeWxA+vQ4YMGUMZnUP8foOTUO9nfvvfkCFDxmgGbyV2Go3kcI2ndRkyZJzDIDvH9Pi+VoiSyxyonJYhQ8Y4Rr8N2VmHBErmy5Ah40xGuimMN3D4mI+sL0OGjNmM9Dg+veFQayoU2w8yZMgYyuDlKAmdp9r+BbXLU0MZMmSMY5CUmrYYg83c1ksbMmTImMpIA03fTZqOa20DGTJknMlIt4y8nZAWtyjRy5Ah4zBG//E8adaO54KWgAwZMsYxeMFZu5aRbhB5i0KGDBmzGbsKy9qD00tgDyvLkCFjKCMNLp3TKYmDAz4ZMmQcw0gfwFMqT7t863n5jyFDhoxxjPSRwXJb1+EtVRkyZMxjrHDUSlZ+aaw2R4YMGbMZfPAfbCtNcZEsQ4aMExi1AzK+6+xcIOONTxkyZJzAqF2b2LVOLaHLkCFDRv8iV21/ml5mlSFDhozadq0WLp8vQ4aMMxm8iK0lxFoZHEQiQ4aM0Yxa6Xi/dMrovw4ZMmQMZXwAMReEmuLO6FIAAAAASUVORK5CYII=" alt="微信分享二维码">
     </div>
 </div>
 
@@ -268,18 +314,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/05/08/[重温JS]正则从开始到结束/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          &lt;重温JS&gt;正则从开始到结束
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/05/08/[安全]从基本安全概念到Https/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">&lt;安全&gt;从基本安全概念到HTTPS发生了什么</div>
+    <a href="/2022/04/08/[开发]正则/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">【开发】正则</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -298,6 +335,19 @@
             </div>
         </div>
         
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#what？"><span class="toc-number">1.</span> <span class="toc-text">what？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-number">2.</span> <span class="toc-text">总结</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
         
     </div>
 </aside>
