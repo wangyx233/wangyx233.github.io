@@ -130,6 +130,187 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-[重温JS]闭包" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/02/[重温JS]闭包/">&lt;重温JS&gt;闭包，作用域</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/02/[重温JS]闭包/" class="archive-article-date">
+  	<time datetime="2020-07-02T08:39:03.139Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="执行上下文"><a href="#执行上下文" class="headerlink" title="执行上下文"></a>执行上下文</h5><p>闭包是带执行环境的函数，本质是个函数<br>立即执行函数表达式 IIFE，括号前要加;分隔;(function(){})(); 不然会被解析成上一行的函数调用；或者用 void function() {}()</p>
+<ul>
+<li>var</li>
+<li>let： for, if, switch, try/catch/finally…{}包裹的</li>
+<li>Realm： 9.0 标准提出的，主要应用于通过 iframe 等方式创造 window 环境</li>
+</ul>
+<h5 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h5><ul>
+<li>普通函数，用 function 定义的普通函数 function fun() {}</li>
+<li>箭头函数，const fun = () =&gt; { }</li>
+<li>在 class 中定义的函数，class a { fun() {} }</li>
+<li>生成器函数，function * fun (){}</li>
+<li>用 class 定义的类，实际也是函数 class Foo {constructor (){}}</li>
+<li>异步函数，async function fun() {}，const fun = async ()=&gt; {}， async function fun*() {}</li>
+</ul>
+<h6 id="this"><a href="#this" class="headerlink" title="this"></a>this</h6><p>同一个函数调用方式不同，this 也不同，普通函数的 this 由调用函数时使用的引用决定。箭头函数不论什么引用调用都不会影响它原来的 this，即外层函数调用的 this。<br>生成器函数、异步生成器函数和异步普通函数跟普通函数行为是一致的，异步箭头函数与箭头函数行为是一致的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">function showThis()&#123;</span><br><span class="line">    console.log(this);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var o = &#123;</span><br><span class="line">    showThis: showThis</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">showThis(); // global</span><br><span class="line">o.showThis(); // o</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">const showThis = () =&gt; &#123;</span><br><span class="line">    console.log(this);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var o = &#123;</span><br><span class="line">    showThis: showThis</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">showThis(); // global</span><br><span class="line">o.showThis(); // global</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class C &#123;</span><br><span class="line">    showThis() &#123;</span><br><span class="line">        console.log(this);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">var o = new C();</span><br><span class="line">var showThis = o.showThis;</span><br><span class="line"></span><br><span class="line">showThis(); // undefined</span><br><span class="line">o.showThis(); // o</span><br></pre></td></tr></table></figure>
+
+<p>切换上下文：函数保存定义时上下文的私有变量[[Environment]],当一个函数执行时，会创建一条新的执行环境记录，记录的外层词法环境（outer lexical environment）会被设置成函数的[[Environment]]</p>
+<h5 id="apply，call，bind-操作-this"><a href="#apply，call，bind-操作-this" class="headerlink" title="apply，call，bind 操作 this"></a>apply，call，bind 操作 this</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">var number = 5;</span><br><span class="line">var obj = &#123;</span><br><span class="line">    number: 3,</span><br><span class="line">    fn: (function () &#123;</span><br><span class="line">        var number;</span><br><span class="line">        this.number *= 2;</span><br><span class="line">        number = number * 2;</span><br><span class="line">        number = 3;</span><br><span class="line">        return function () &#123;</span><br><span class="line">            var num = this.number;</span><br><span class="line">            this.number *= 2;</span><br><span class="line">            console.log(num);</span><br><span class="line">            number *= 3;</span><br><span class="line">            console.log(number);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)()</span><br><span class="line">&#125;</span><br><span class="line">var myFun = obj.fn;</span><br><span class="line">myFun.call(null);</span><br><span class="line">obj.fn();</span><br><span class="line">console.log(window.number);</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">closure</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/02/[重温JS]闭包/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-[重温JS]JS中的异步" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/01/[重温JS]JS中的异步/">&lt;重温JS&gt;JS中的异步</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/01/[重温JS]JS中的异步/" class="archive-article-date">
+  	<time datetime="2020-07-01T09:38:25.955Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>一个 JavaScript 引擎会常驻内存中，自己发起的任务是微观任务，宿主环境分配的是宏观任务。<br>宏观任务 vs 微观任务，setTimeout 是宏观任务，ES5 之后 加入了 Promise 是 JS 引擎生成的微观任务。w<br>事件循环-&gt;宏观任务的队列，在每个宏观任务里有微观事件的队列。因此一个宏观任务中的微观任务执行后，再进行下一个宏观任务</p>
+<h5 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h5><p>是 JS 提供的一种标准化的异步处理方式，需要进行 io，等待或者其他操作的函数，不返回真实结果，而返回一个 Promise，在合适的时候再调用函数，等待这个 Promise 的实现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">new Promise((resolve,reject) =&gt; &#123;</span><br><span class="line">  resolve();</span><br><span class="line">  reject();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>执行顺序是查看有多少个宏观任务，每个宏观任务中有多少个微观任务，根据调用次数确定宏观任务中的微观任务，然后根据宏观任务的触发规则和调用次序再依次执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function sleep(duration) &#123;</span><br><span class="line">  return new Promise(function(resolve, reject) &#123;</span><br><span class="line">      console.log(&quot;b&quot;);</span><br><span class="line">      setTimeout(resolve,duration);</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  console.log(&quot;a&quot;);</span><br><span class="line">  sleep(5000).then(()=&gt;console.log(&quot;c&quot;));</span><br></pre></td></tr></table></figure>
+
+<h5 id="async-await"><a href="#async-await" class="headerlink" title="async/await"></a>async/await</h5><p>ES2016 新加入的特性。async 函数必定返回 Promise，异步函数，用 await 来等待一个 Promise</p>
+<p>我们现在要实现一个红绿灯，把一个圆形 div 按照绿色 3 秒，黄色 1 秒，红色 2 秒循环改变背景色</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Promise</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">setTimeout</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/01/[重温JS]JS中的异步/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-[算法基础]动态规划" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -848,179 +1029,6 @@
 
 
   
-    <article id="post-[重温JS]垃圾收集" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/24/[重温JS]垃圾收集/">&lt;JS Review&gt;垃圾收集</a>
-    </h1>
-  
-
-        
-        <a href="/2020/04/24/[重温JS]垃圾收集/" class="archive-article-date">
-  	<time datetime="2020-04-24T08:21:39.625Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>JS 中实现了自动垃圾回收机制，自动分配内存和释放内存。原理是：找到那些不再使用的变量，然后释放它所占的内存。然后按照固定的时间间隔执行。<br>垃圾收集器需要跟踪变量有没有用，对没有用的变量打上标记，以便后续的回收。标识变量的策略常用的有，标记清除，引用计数。</p>
-<ul>
-<li>标记清除 Mark and Sweep<br>进入环境标记。或者维护一个进入环境的列表，一个离开环境的列表。把环境中用到的或者被其他环境内引用的变量标记去掉，剩下还有标记的都是需要删除的变量。</li>
-<li>引用计数 Reference Count。可能会导致内存一直得不到释放，比如在函数内，两个对象相互调用</li>
-</ul>
-<p>解除引用 Dereferencing,一旦不再使用，最好将他们的值置位 null。主要是全局变量，全局对象等。因为局部变量都会在离开执行环境后，直接解除引用。解除引用，是让这个值脱离执行环境，而不是立即内存回收。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/24/[重温JS]垃圾收集/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-[算法基础]树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/20/[算法基础]树/">&lt;Algorithm&gt;树</a>
-    </h1>
-  
-
-        
-        <a href="/2020/04/20/[算法基础]树/" class="archive-article-date">
-  	<time datetime="2020-04-20T06:05:28.236Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h5><p>何为树？ 想象一下自然界的 🌲 形态，用术语表达即为：没有闭环的无向图。几个特征可以描述为：每个节点之间有且只有一条路径相连通；如果增加一条路径，图就会连通起来；所以边的数量为节点数-1。节点和路径可以理解为 🌲 的叉。<br>“高度”树的层数，“度”子节点的数量<br>所以二叉树，就是每个节点最多有两条边，即最多有左右两个节点的树。<br>满二叉树即为每个节点如果有子节点那左右节点都具备。如果有这个树有 n 层，那总节点数为 2 の n 次方 - 1，第 n 层的节点数为 2(n -1)。<br>完全二叉树，则是除了最后一层其他层的节点都填满，并且如果最后一层叶子节点如果是右节点，那这个叶子节点的左边必有节点。<br>二叉树的遍历方式：遍历的顺序为根节点在遍历中的顺序。</p>
-<ul>
-<li>前序遍历：根-左-右</li>
-<li>中序遍历：左-根-右</li>
-<li>后序遍历：左-右-根</li>
-</ul>
-<h5 id="优先队列-堆"><a href="#优先队列-堆" class="headerlink" title="优先队列-堆"></a>优先队列-堆</h5><p>理论说明：根节点和子节点之间的关系，以及结点数量。</p>
-<ol>
-<li>如何建堆，最大堆，最小堆。</li>
-<li>数据插入</li>
-<li>应用场景，堆排序，第 K 大的数</li>
-</ol>
-<p>时间复杂度</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Algorithm</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">tree</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Binary tree</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/20/[算法基础]树/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/6/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/8/">Next &raquo;</a>
@@ -1114,15 +1122,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">flex</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CSS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">CI/CD</a>
+                <a href="javascript:void(0)" class="js-tag color1">React</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">React</a>
+                <a href="javascript:void(0)" class="js-tag color1">CI/CD</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1131,6 +1143,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">购房</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1150,15 +1170,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1170,15 +1186,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">flex</a>
+                <a href="javascript:void(0)" class="js-tag color5">tree</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Binary tree</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1194,11 +1210,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
+                <a href="javascript:void(0)" class="js-tag color3">Promise</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">setTimeout</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">closure</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1211,22 +1235,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">安全</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Promise</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">setTimeout</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">tree</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Binary tree</a>
               </li>
              
               <li class="article-tag-list-item">

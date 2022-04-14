@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="正则表达式真的属于是常看常新，不看就忘。。。🤦🏻‍♀️ JS 中使用正则，有两种方式：  字面量，如： /abc/， g 全局，i 忽略大小写，m 多行搜索 构造函数，如：new RegExp(&amp;#39;abc&amp;#39;, &amp;#39;g&amp;#39;)  基本概念：  元字符：在正则表达式中有特殊含义的非字母字符，如*,+,?,$,^,.,|,\,(,),{,},[,] 字符集合：[abc]字符">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2022-04-08T09:10:06.878Z">
+<meta property="og:updated_time" content="2022-04-14T13:53:44.834Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【开发】正则">
 <meta name="twitter:description" content="正则表达式真的属于是常看常新，不看就忘。。。🤦🏻‍♀️ JS 中使用正则，有两种方式：  字面量，如： /abc/， g 全局，i 忽略大小写，m 多行搜索 构造函数，如：new RegExp(&amp;#39;abc&amp;#39;, &amp;#39;g&amp;#39;)  基本概念：  元字符：在正则表达式中有特殊含义的非字母字符，如*,+,?,$,^,.,|,\,(,),{,},[,] 字符集合：[abc]字符">
@@ -178,6 +178,14 @@
 <li>exec，返回匹配的值</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const reg = /\d(\w)\d/</span><br><span class="line">const str = &apos;1a2b3c&apos;</span><br><span class="line">reg.test(str)</span><br><span class="line">reg.exec(str)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注注注意呀：When a regex has the global flag set, As long as test() returns true, lastIndex will not reset—even when testing a different string!</p>
+</blockquote>
+<blockquote>
+<p>啥？ 每次<code>test</code>方法如果用了<code>g</code>，全局匹配，如果匹配的结果是<code>true</code>，<code>lastIndex</code> 会标识结尾的值。即使匹配一个不同的字符串也不会重置，除非结果是<code>false</code></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">const regex = /foo/g; // the &quot;global&quot; flag is set</span><br><span class="line"></span><br><span class="line">// regex.lastIndex is at 0</span><br><span class="line">regex.test(&apos;foo&apos;)     // true</span><br><span class="line"></span><br><span class="line">// regex.lastIndex is now at 3</span><br><span class="line">regex.test(&apos;foo&apos;)     // false</span><br><span class="line"></span><br><span class="line">// regex.lastIndex is at 0</span><br><span class="line">regex.test(&apos;barfoo&apos;)  // true</span><br><span class="line"></span><br><span class="line">// regex.lastIndex is at 6</span><br><span class="line">regex.test(&apos;foobar&apos;)  //false</span><br></pre></td></tr></table></figure>
 
 <p>String 支持的方法：</p>
 <ul>
@@ -441,15 +449,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">flex</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CSS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">CI/CD</a>
+                <a href="javascript:void(0)" class="js-tag color1">React</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">React</a>
+                <a href="javascript:void(0)" class="js-tag color1">CI/CD</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -458,6 +470,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">购房</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -477,15 +497,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -497,15 +513,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">flex</a>
+                <a href="javascript:void(0)" class="js-tag color5">tree</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Binary tree</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -521,11 +537,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
+                <a href="javascript:void(0)" class="js-tag color3">Promise</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">setTimeout</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">closure</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -538,22 +562,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">安全</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Promise</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">setTimeout</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">tree</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Binary tree</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -130,6 +130,209 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-[JS基础]数组乱序" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/03/10/[JS基础]数组乱序/">【JS基础】数组乱序</a>
+    </h1>
+  
+
+        
+        <a href="/2022/03/10/[JS基础]数组乱序/" class="archive-article-date">
+  	<time datetime="2022-03-10T08:50:45.924Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近在解决一个分布式高可用的问题，如何能够让多机的定时任务能够不重复执行，引入了 redis 的分布式锁。但一个任务列表如果都顺序遍历那每个任务的抢占可能不会那么随机，所以想让任务列表打乱顺序，就稍微了解了一下数组乱序的实现。</p>
+<blockquote>
+<p>（其实最后用的还是 lodash 的_.shuffle() 😯</p>
+</blockquote>
+<p>一、随机数？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[12,4,16,3].sort(function() &#123;</span><br><span class="line">    return .5 - Math.random();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>v8 在处理 sort 方法时，使用了插入排序和快排两种方案。当目标数组长度小于 10（不同版本有差别）时，使用插入排序；反之，使用快排。</p>
+<p>二、Fisher–Yates shuffle 洗牌算法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Array.prototype.shuffle = function() &#123;</span><br><span class="line">    let array = this;</span><br><span class="line">    let len = array.length,</span><br><span class="line">        temp, i;</span><br><span class="line">    while (len) &#123;</span><br><span class="line">        i = Math.floor(Math.random() * len--);</span><br><span class="line">        temp = array[len];</span><br><span class="line">        array[len] = array[i];</span><br><span class="line">        array[i] = temp;</span><br><span class="line">    &#125;</span><br><span class="line">    return array;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/JavaScript//" class="article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/03/10/[JS基础]数组乱序/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-[复盘]基础中的基础" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/03/04/[复盘]基础中的基础/">【JS基础】复盘</a>
+    </h1>
+  
+
+        
+        <a href="/2022/03/04/[复盘]基础中的基础/" class="archive-article-date">
+  	<time datetime="2022-03-04T07:12:21.369Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>基础知识要深刻，扎实，不要模棱两可，懂个大概</p>
+</blockquote>
+<h1 id="typeof"><a href="#typeof" class="headerlink" title="typeof"></a>typeof</h1><p>函数的默认返回值是 undefined 呀~</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function sayHi () &#123;</span><br><span class="line">  return (() =&gt; &#123;</span><br><span class="line">    console.log(1)</span><br><span class="line">  &#125;)()</span><br><span class="line">&#125;</span><br><span class="line">console.log(typeof sayHi())</span><br></pre></td></tr></table></figure>
+
+<h1 id="作用域-与-变量提升"><a href="#作用域-与-变量提升" class="headerlink" title="作用域 与 变量提升"></a>作用域 与 变量提升</h1><blockquote>
+<p>var 声明的变量会进行变量提升</p>
+</blockquote>
+<ul>
+<li>js 代码自上而下执行之前，浏览器首先会把当前上下文中所有带“var / function”关键字进行提前的声明和定义，解析到它们对应作用域开始的位置，这种预先处理的机制叫做变量提升，变量提升的意义在于创建变量前使用这个变量不报错。</li>
+<li>变量提升也可以称之为预解析。可以理解为这是词法解析的一个环节，语法解析发生在代码执行前</li>
+<li>JavaScript 仅提升声明，而不提升初始化</li>
+<li>函数和变量相比，会被优先提升。（函数声明式，函数提升是整个代码块（相当于申明和初始化都提升了）提升到它所在的作用域的最开始执行，函数字面量式，这种情况和变量提升是一样的）<blockquote>
+<h1 id="所以看一个变量的值，要结合作用域来判断"><a href="#所以看一个变量的值，要结合作用域来判断" class="headerlink" title="所以看一个变量的值，要结合作用域来判断"></a>所以看一个变量的值，要结合作用域来判断</h1></blockquote>
+</li>
+</ul>
+<h1 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">function sayHi() &#123;</span><br><span class="line">  console.log(name)</span><br><span class="line">  console.log(age)</span><br><span class="line">  var name = &apos;xxx&apos;</span><br><span class="line">  let age = 18</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var name = &apos;outer&apos;</span><br><span class="line">function sayHi() &#123;</span><br><span class="line">  console.log(name)</span><br><span class="line">  var name = &apos;eric&apos;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function sayHi(name) &#123;</span><br><span class="line">  console.log(name)</span><br><span class="line">  var name = &apos;eric&apos;</span><br><span class="line">&#125;</span><br><span class="line">sayHi(&apos;param&apos;)</span><br><span class="line"></span><br><span class="line">var name = &quot;world&quot;;</span><br><span class="line">(function()&#123;</span><br><span class="line">  if(typeof name === &quot;undefined&quot;) &#123;</span><br><span class="line">    var name = &quot;Jack&quot;;</span><br><span class="line">      console.log(&quot;Hello &quot; + name);</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    console.log(&quot;Hello &quot; + name);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;())</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">function sayHi() &#123;</span><br><span class="line">  console.log(name)</span><br><span class="line">  name = &apos;hi&apos;</span><br><span class="line">&#125;</span><br><span class="line">sayHi()</span><br><span class="line"></span><br><span class="line">// var a = 1</span><br><span class="line">function b() &#123;</span><br><span class="line">  console.log(a)</span><br><span class="line">  a = 2</span><br><span class="line">&#125;</span><br><span class="line">b()</span><br><span class="line">console.log(a)</span><br><span class="line"></span><br><span class="line">var foo=&#123;n:1&#125;;</span><br><span class="line">(function (foo) &#123;</span><br><span class="line">    console.log(foo.n);</span><br><span class="line">    foo.n = 3;</span><br><span class="line">    var foo = &#123;n:2&#125;;</span><br><span class="line">    console.log(foo.n);</span><br><span class="line">&#125;)(foo);</span><br><span class="line">console.log(foo.n);</span><br><span class="line"></span><br><span class="line">function f1(a)&#123; // a = 111，有默认值</span><br><span class="line">    console.log(a);</span><br><span class="line">    function a()&#123;&#125;</span><br><span class="line">    console.log(a);</span><br><span class="line">    var a = 1;</span><br><span class="line">    console.log(a);</span><br><span class="line">&#125;</span><br><span class="line">f1(2)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>函数的参数名是按值传递的，参数类型是引用类型的话，传递的是引用的地址。</p>
+</blockquote>
+<p>函数参数和变量的问题：</p>
+<ul>
+<li>函数有形参，形参会被添加到函数的作用域中，并且形参不会被重新定义。var 声明与形参同名的变量会被忽略，即参数的优先级高于变量的提升。</li>
+<li>ES6 的 let 和 const 会因为作用域内重复声明而报错。</li>
+<li>如果函数内声明一个和形参同名的函数，装载顺序为 函数参数 &gt; 函数声明，而在函数声明装载时，如果函数体内有个和参数名相同的函数声明，那么这个函数就会覆盖形参。</li>
+<li>有默认参数的，再传实参，参数值 会覆盖 函数声明。</li>
+</ul>
+<p>let：</p>
+<ul>
+<li>let 声明的变量的作用域是块级的；</li>
+<li>let 不能重复声明已存在的变量；</li>
+<li>let 有暂时性死区，不会被提升。</li>
+</ul>
+<h1 id="this"><a href="#this" class="headerlink" title="this"></a>this</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">const shape = &#123;</span><br><span class="line">  radius: 10,</span><br><span class="line">  diameter: function() &#123;</span><br><span class="line">    return this.radius * 2</span><br><span class="line">  &#125;,</span><br><span class="line">  perimeter: () =&gt; 2 * 3.14 * this.radius</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(shape.diameter())</span><br><span class="line">console.log(shape.perimeter())</span><br></pre></td></tr></table></figure>
+
+<p>undefined 的类型转换<br>如何判断是不是 NaN</p>
+<ul>
+<li>window.isNaN 会先把参数转化为数字类型,再判断是不是 NaN,所以像 string 类型的会是 true;</li>
+<li>而 Number.isNaN 会先判断参数是不是数字类型,不是就返回 false, 是数字类型再进入判断是不是 NaN</li>
+<li>利用 NaN 是 JavaScript 之中唯一不等于自身的值</li>
+<li>Object.is(+0, -0)，Object.is() 是 ES6 用来比较两个值是否严格相等</li>
+</ul>
+        
+          <a class="article-more-a" href="/2022/03/04/[复盘]基础中的基础/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/JavaScript//" class="article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/03/04/[复盘]基础中的基础/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-[CSS]flex copy" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -933,283 +1136,6 @@
 
 
   
-    <article id="post-[读书]小狗钱钱" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/30/[读书]小狗钱钱/">【读书】小狗钱钱</a>
-    </h1>
-  
-
-        
-        <a href="/2021/06/30/[读书]小狗钱钱/" class="archive-article-date">
-  	<time datetime="2021-06-30T02:45:57.333Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="如何实现梦想"><a href="#如何实现梦想" class="headerlink" title="如何实现梦想"></a>如何实现梦想</h2><ul>
-<li>要有自信！！！（建立自信，最好每天写成功日记）</li>
-<li>72小时法则：当你决定做一件事的时候，必须在72小时内开始行动，不然很有可能再也不会做（上升到本人，大概需要在72秒内就做吧🐶）</li>
-<li>不要抱怨</li>
-<li>一定要坚持！！！养成习惯</li>
-<li>幸运是充分准备加努力工作的结果</li>
-<li>利用碎片化时间，珍惜时间，不要等待。每天十分钟，可以带来真正的改变</li>
-<li>要勇敢</li>
-</ul>
-<h2 id="如何赚💰"><a href="#如何赚💰" class="headerlink" title="如何赚💰"></a>如何赚💰</h2>
-        
-          <a class="article-more-a" href="/2021/06/30/[读书]小狗钱钱/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">投资</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/生活//" class="article-tag-list-link color3">生活</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/30/[读书]小狗钱钱/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-[网络]http" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/30/[网络]http/">【网络】前端开发中的HTTP</a>
-    </h1>
-  
-
-        
-        <a href="/2021/06/30/[网络]http/" class="archive-article-date">
-  	<time datetime="2021-06-30T02:45:57.332Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><ul>
-<li>HTTP的缓存机制！！！<strong>重要</strong></li>
-<li>状态码</li>
-<li>headers</li>
-<li>Restful API</li>
-</ul>
-<h2 id="状态码"><a href="#状态码" class="headerlink" title="状态码"></a>状态码</h2><ol>
-<li>分类<ul>
-<li>1xx 服务器收到请求</li>
-<li>2xx 请求成功</li>
-<li>3xx 重定向</li>
-<li>4xx 客户端错误</li>
-<li>5xx 服务端错误</li>
-</ul>
-</li>
-<li>常见<ul>
-<li>200 成功</li>
-<li>301 永久重定向（配合location新地址，浏览器自动处理，下次会直接访问新的地址）</li>
-<li>302 临时重定向（配合location新地址，浏览器自动处理，下次还会访问旧的地址）短网址，百度之类的搜索引擎的链接，why？</li>
-<li>304 资源未修改，缓存 <strong>注</strong></li>
-<li>307 internal redirect</li>
-<li>403 没有权限</li>
-<li>404 not found</li>
-<li>500 服务器错误</li>
-<li>502</li>
-<li>504 网关超时，服务器内部</li>
-</ul>
-</li>
-<li>协议规范</li>
-</ol>
-<h2 id="Restful-API"><a href="#Restful-API" class="headerlink" title="Restful API"></a>Restful API</h2><blockquote>
-<p>API设计方法，把每个URL当做唯一的资源标识。<br>如何设计一个资源？</p>
-</blockquote>
-<ul>
-<li>尽量不用url参数，如：/api/list?page=2  -&gt; /api/list/2</li>
-<li>用method表示操作类型，POST,PATCH/PUT,DELETE,GET</li>
-</ul>
-<h2 id="HTTP-Headers"><a href="#HTTP-Headers" class="headerlink" title="HTTP Headers"></a>HTTP Headers</h2><ol>
-<li>常见的Request Headers<ul>
-<li>Accept 浏览器可以的数据格式</li>
-<li>Accept-Encoding 浏览器可支持的压缩算法，如：gzip</li>
-<li>Accept-Language 浏览器支持的语言</li>
-<li>Connection: keep-alive 保持TCP连接</li>
-<li>Cookie</li>
-<li>Host</li>
-<li>User-Agent </li>
-<li>Content-Type 发送数据格式，如：application/json</li>
-<li>Authorization token验证</li>
-</ul>
-</li>
-<li>常见的Response Headers<ul>
-<li>Content-Type 发送数据格式，如：application/json</li>
-<li>Content-Length 返回数据的大小，多少字节</li>
-<li>Content-Encoding 返回数据的压缩算法，如：gzip</li>
-<li>Set-Cookie 服务端改cookie</li>
-</ul>
-</li>
-<li>自定义headers</li>
-<li>用于缓存的headers</li>
-</ol>
-<h2 id="HTTP缓存机制"><a href="#HTTP缓存机制" class="headerlink" title="HTTP缓存机制"></a>HTTP缓存机制</h2><p>什么是缓存？为什么需要缓存？哪些资源可以被缓存-&gt;js/css/img静态资源和业务数据，html不能被缓存</p>
-<blockquote>
-<p>页面加载更快，网络请求慢，减少网络请求的体积和数量，也是不稳定的</p>
-</blockquote>
-<ol>
-<li>强制缓存<br>服务端控制什么资源可以缓存，通过Response Headers中的cache-control 控制过期时间<br>Cache-Control的值</li>
-</ol>
-<ul>
-<li>max-age=86400(秒)</li>
-<li>no-cache 不用强制缓存，去服务端处理</li>
-<li>no-store 不用强制缓存，也不用服务器缓存</li>
-<li>private 允许用户客户端做缓存</li>
-<li>public 允许中间如cdn<br>Expires也是做缓存过期控制的，已被Cache-Control代替，以Cache-Control为主</li>
-</ul>
-<ol start="2">
-<li>协商缓存(对比缓存)<br>服务端缓存策略，服务端来判断是否用缓存，即服务端判断客户端资源是否和服务端资源一样。如果一致则返回304，否则返回200和最新资源<br>注意：资源标识</li>
-</ol>
-<ul>
-<li>Response Headers里Last-Modified：资源最后修改时间(精确到秒级)，Etag资源的唯一标识(优先级高，资源被重复生成而内容不变)</li>
-<li>再次请求的时候，If-Modified-Since: Last-Modified时间(Request Headers里)</li>
-<li>Etag，If-None-Match: Etag的值(Request Headers里)<br>两者共存会优先使用Etag，Last-Modified只能精确到秒级</li>
-</ul>
-<p>整个缓存过程！</p>
-<h2 id="刷新页面"><a href="#刷新页面" class="headerlink" title="刷新页面"></a>刷新页面</h2><ol>
-<li>正常操作：浏览器url，跳转，前进后退等。<blockquote>
-<p>强制缓存有效，协商缓存有效 </p>
-</blockquote>
-</li>
-<li>手动刷新，F5，刷新按钮<blockquote>
-<p>强制缓存失效，协商缓存有效 </p>
-</blockquote>
-</li>
-<li>强制刷新<blockquote>
-<p>强制缓存失效，协商缓存失效</p>
-</blockquote>
-</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">HTTP</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/网络//" class="article-tag-list-link color3">网络</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/30/[网络]http/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -1303,15 +1229,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">flex</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CSS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">CI/CD</a>
+                <a href="javascript:void(0)" class="js-tag color1">React</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">React</a>
+                <a href="javascript:void(0)" class="js-tag color1">CI/CD</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1320,6 +1250,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">购房</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1339,15 +1277,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1359,15 +1293,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">flex</a>
+                <a href="javascript:void(0)" class="js-tag color5">tree</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Binary tree</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1383,11 +1317,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
+                <a href="javascript:void(0)" class="js-tag color3">Promise</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">setTimeout</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">closure</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1400,22 +1342,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">安全</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Promise</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">setTimeout</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">tree</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Binary tree</a>
               </li>
              
               <li class="article-tag-list-item">

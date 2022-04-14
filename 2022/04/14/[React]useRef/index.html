@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://wangyx233.github.io">
-  <title>原型回顾 | Hexo</title>
+  <title>【React】Hook系列 - useRef | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="快来快来看一看 123456789101112131415161718function Foo() &amp;#123;    Foo.a = function() &amp;#123;        console.log(1)    &amp;#125;    this.a = function() &amp;#123;        console.log(2)    &amp;#125;&amp;#125;Foo.prototype.a">
+  <meta name="description" content="平时用函数组件进行 React 开发，hooks 想必经常用，像最长用的  useState useEffect，传[] 只渲染一次，不传每次都渲染。异步的呀 useMemo useCallback  这里先主要说一下useRef，主要的关注点是： 1const ref = useRef(initValue)   返回一个可变的 ref 对象，该对象只有个 current 属性，初始值为传入的参数">
+<meta name="keywords" content="React">
 <meta property="og:type" content="article">
-<meta property="og:title" content="原型回顾">
-<meta property="og:url" content="https://wangyx233.github.io/2019/08/21/原型回顾/index.html">
+<meta property="og:title" content="【React】Hook系列 - useRef">
+<meta property="og:url" content="https://wangyx233.github.io/2022/04/14/[React]useRef/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="快来快来看一看 123456789101112131415161718function Foo() &amp;#123;    Foo.a = function() &amp;#123;        console.log(1)    &amp;#125;    this.a = function() &amp;#123;        console.log(2)    &amp;#125;&amp;#125;Foo.prototype.a">
+<meta property="og:description" content="平时用函数组件进行 React 开发，hooks 想必经常用，像最长用的  useState useEffect，传[] 只渲染一次，不传每次都渲染。异步的呀 useMemo useCallback  这里先主要说一下useRef，主要的关注点是： 1const ref = useRef(initValue)   返回一个可变的 ref 对象，该对象只有个 current 属性，初始值为传入的参数">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-21T11:46:51.709Z">
+<meta property="og:updated_time" content="2022-04-14T13:53:14.242Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="原型回顾">
-<meta name="twitter:description" content="快来快来看一看 123456789101112131415161718function Foo() &amp;#123;    Foo.a = function() &amp;#123;        console.log(1)    &amp;#125;    this.a = function() &amp;#123;        console.log(2)    &amp;#125;&amp;#125;Foo.prototype.a">
+<meta name="twitter:title" content="【React】Hook系列 - useRef">
+<meta name="twitter:description" content="平时用函数组件进行 React 开发，hooks 想必经常用，像最长用的  useState useEffect，传[] 只渲染一次，不传每次都渲染。异步的呀 useMemo useCallback  这里先主要说一下useRef，主要的关注点是： 1const ref = useRef(initValue)   返回一个可变的 ref 对象，该对象只有个 current 属性，初始值为传入的参数">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -132,28 +133,62 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-原型回顾" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-[React]useRef" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      原型回顾
+      【React】Hook系列 - useRef
     </h1>
   
 
         
-        <a href="/2019/08/21/原型回顾/" class="archive-article-date">
-  	<time datetime="2019-08-21T11:43:55.178Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-21</time>
+        <a href="/2022/04/14/[React]useRef/" class="archive-article-date">
+  	<time datetime="2022-04-14T13:53:14.234Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-04-14</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>快来快来看一看</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">function Foo() &#123;</span><br><span class="line">    Foo.a = function() &#123;</span><br><span class="line">        console.log(1)</span><br><span class="line">    &#125;</span><br><span class="line">    this.a = function() &#123;</span><br><span class="line">        console.log(2)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">Foo.prototype.a = function() &#123;</span><br><span class="line">    console.log(3)</span><br><span class="line">&#125;</span><br><span class="line">Foo.a = function() &#123;</span><br><span class="line">    console.log(4)</span><br><span class="line">&#125;</span><br><span class="line">Foo.a();</span><br><span class="line">let obj = new Foo();</span><br><span class="line">obj.a();</span><br><span class="line">Foo.a();</span><br></pre></td></tr></table></figure>
+        <p>平时用函数组件进行 React 开发，hooks 想必经常用，像最长用的</p>
+<ul>
+<li>useState</li>
+<li>useEffect，传[] 只渲染一次，不传每次都渲染。异步的呀</li>
+<li>useMemo</li>
+<li>useCallback</li>
+</ul>
+<p>这里先主要说一下<code>useRef</code>，主要的关注点是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const ref = useRef(initValue)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>返回一个可变的 ref 对象，该对象只有个 current 属性，初始值为传入的参数( initialValue )。</li>
+<li>返回的 ref 对象在组件的整个生命周期内保持不变，即引用不变。</li>
+<li>并且当更新 current 值时并不会进行 re-render</li>
+<li>一般会在<code>useEffect</code>，或者事件处理内使用</li>
+</ul>
+<blockquote>
+<p>总结来看，<code>useRef</code>定义的对象，不会导致组件重新渲染。并且它的<code>current</code>值可以突破闭包的限制，不会因为组件更新而重置。</p>
+</blockquote>
+<ul>
+<li>useRef vs createRef<blockquote>
+<p>createRef 每次会返回新的引用，即会随着组件的更新而重新创建</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="日常使用"><a href="#日常使用" class="headerlink" title="日常使用"></a>日常使用</h4><ol>
+<li>自定义一个保持之前值的 hook</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import &#123;useRef, useEffect&#125; from &apos;react&apos;</span><br><span class="line">export function usePrevious&lt;T&gt;(value: T): T | undefined &#123;</span><br><span class="line">  const ref = useRef&lt;T | undefined&gt;()</span><br><span class="line">  useEffect(() =&gt; &#123;</span><br><span class="line">    ref.current = value</span><br><span class="line">  &#125;, [value])</span><br><span class="line">  return ref.current</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>判断是不是第一次更新</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import &#123;useRef&#125; from &apos;react&apos;</span><br><span class="line">export function useIsFirstRender(): boolean &#123;</span><br><span class="line">  const ref = useRef&lt;boolean&gt;(true)</span><br><span class="line">  if(ref.current) &#123;</span><br><span class="line">    ref.current = false</span><br><span class="line">    return true</span><br><span class="line">  &#125;</span><br><span class="line">  return false</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
       
 
       
@@ -187,7 +222,29 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">React</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/React//" class="article-tag-list-link color1">React</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
 
@@ -237,7 +294,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKUlEQVR42u3aQW7DMAwEwPz/0y6Qc+wsSaeApdEpKBJbo8NWIvV6xeN4j7O/HCcj/+bZb28eGBgYj2Ukj8s/J09I3p7PDQMDYx/GdciePfp6QtWEvH7vlzljYGBgBJHX2/Ylm04MDAyMSeDmsGpwY2BgYPQOsdfbvmq8Tg7GGBgYuzGqjYH//PzD/gYGBsZDGMdgTEppvTbA6W8xMDCWZlwfJntBnB9Z8wscURBjYGAsyriOvPlEk7dU2w8f2BgYGEsz5tE52TJW4ztpZmBgYKzHyK8+TFqY1ZAtb14xMDA2YFQ3iL3lyJ9TXjgMDIylGUn78NdH1iTok4XGwMBYlZHHYr51y+M7X4Ivi4iBgbE0o9qYrBbxJ7BqQGNgYKzNKAdZceOYx2vvnioGBsbajCSJ89Jb0h7IS2zJMr3yfygYGBiPZfSuRNxb6J+0GTAwMPZhzEv8Ob56qaLQCsXAwNiA0WsP5IW2XvYXrn1gYGBszKgeXyeH3qQZEFUNMTAwFmX0LkwkhbA8jptnbgwMjC0ZeeBWJ3QEo7ffw8DAWJvRu1RRnXp+UeOupgUGBsYajKM4JhvBpDyX/AP48BwMDIylGb3Azb+Ttw2SIL7hLgkGBsZjGZOQzT/nG8FmAQ4DA2MDRvWQmTcaJyFe4GFgYGAMroJNWg6FpcHAwMC4nEp1Er04xsDAwKhG5LxUV71I8eXtGBgYSzPmly16zYDeMjWLcRgYGE9l/AGQXImHNMtVFgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMElEQVR42u3awY7CMAyE4b7/S3clTiux8c6MARHnz6kq0PbrwdiOr0te92P9Pn4+Ux8//7b+9HrHggEDxraMu1z1o69uWVPrV1OfX94XBgwYBzDcIKvcvr5mhl+ehwEDBgwhjdNDcJZowoABA4bO6KeMXxFwYcCAsSFDKWL7j9Upnl9Wi8OAAWNDRrYx8Jnjt+9vwIAB4+sZt7my37qh2X4qGDBgjGZkzX29JaeHbD3hMzJcGDBgjGDojTN3OzN7XP37f/xvwIABYyjDbce7RaY7HKZfAQYMGGcylKEKNxy7rX+9uLWzVBgwYIxgKGVkFkCzpNC+GgwYMEYz+oNfnXCcJYIwYMA4h5EFQT1pq8/YQxWrK8CAAWM0Q39c5dH15FL/1M5wYcCAMY5hNLPMG+ubDcrGp/G/AQMGjHGMbKoqK0HdItZt0sGAAWM2ozNI4RaceuqZjYvBgAFjHqM/SBG+rTJM2yMXMGDAGM3I2mGdLcl+KJeuBgMGjMMYepvsM2VwWMTCgAFjW4YbEPVRiYyhvyYYMGCcyXDDYmcLszMcBgMGjNMYWVs/G4zotNuyRh4MGDBmMG5z9d9NZ2thWdzCgAFjNOO1CVnWenMTx/DfAwYMGJszlCDbCb5Kc78z6gEDBoxzGHqQ7aeDWblr777CgAHjSIayMekGWZf0T2oIAwYMGOasWbaRkL1WGDBgnMDoBFA3UOp4o5SFAQPGaEardDRv79ae2QuFAQPGIMYPzpOOdO5d9cUAAAAASUVORK5CYII=" alt="微信分享二维码">
     </div>
 </div>
 
@@ -251,18 +308,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/08/29/css_secret/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          CSS Secrets
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/07/22/链表队列/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">链表</div>
+    <a href="/2022/04/14/[JS基础]Object对象/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">【JS基础】Object对象方法</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -281,6 +329,19 @@
             </div>
         </div>
         
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#日常使用"><span class="toc-number">1.</span> <span class="toc-text">日常使用</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
         
     </div>
 </aside>

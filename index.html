@@ -130,6 +130,291 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-[React]useRef" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/04/14/[React]useRef/">【React】Hook系列 - useRef</a>
+    </h1>
+  
+
+        
+        <a href="/2022/04/14/[React]useRef/" class="archive-article-date">
+  	<time datetime="2022-04-14T13:53:14.234Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-04-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>平时用函数组件进行 React 开发，hooks 想必经常用，像最长用的</p>
+<ul>
+<li>useState</li>
+<li>useEffect，传[] 只渲染一次，不传每次都渲染。异步的呀</li>
+<li>useMemo</li>
+<li>useCallback</li>
+</ul>
+<p>这里先主要说一下<code>useRef</code>，主要的关注点是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const ref = useRef(initValue)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>返回一个可变的 ref 对象，该对象只有个 current 属性，初始值为传入的参数( initialValue )。</li>
+<li>返回的 ref 对象在组件的整个生命周期内保持不变，即引用不变。</li>
+<li>并且当更新 current 值时并不会进行 re-render</li>
+<li>一般会在<code>useEffect</code>，或者事件处理内使用</li>
+</ul>
+<blockquote>
+<p>总结来看，<code>useRef</code>定义的对象，不会导致组件重新渲染。并且它的<code>current</code>值可以突破闭包的限制，不会因为组件更新而重置。</p>
+</blockquote>
+<ul>
+<li>useRef vs createRef<blockquote>
+<p>createRef 每次会返回新的引用，即会随着组件的更新而重新创建</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="日常使用"><a href="#日常使用" class="headerlink" title="日常使用"></a>日常使用</h4><ol>
+<li>自定义一个保持之前值的 hook</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import &#123;useRef, useEffect&#125; from &apos;react&apos;</span><br><span class="line">export function usePrevious&lt;T&gt;(value: T): T | undefined &#123;</span><br><span class="line">  const ref = useRef&lt;T | undefined&gt;()</span><br><span class="line">  useEffect(() =&gt; &#123;</span><br><span class="line">    ref.current = value</span><br><span class="line">  &#125;, [value])</span><br><span class="line">  return ref.current</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>判断是不是第一次更新</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import &#123;useRef&#125; from &apos;react&apos;</span><br><span class="line">export function useIsFirstRender(): boolean &#123;</span><br><span class="line">  const ref = useRef&lt;boolean&gt;(true)</span><br><span class="line">  if(ref.current) &#123;</span><br><span class="line">    ref.current = false</span><br><span class="line">    return true</span><br><span class="line">  &#125;</span><br><span class="line">  return false</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">React</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/React//" class="article-tag-list-link color1">React</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/04/14/[React]useRef/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-[JS基础]Object对象" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/04/14/[JS基础]Object对象/">【JS基础】Object对象方法</a>
+    </h1>
+  
+
+        
+        <a href="/2022/04/14/[JS基础]Object对象/" class="archive-article-date">
+  	<time datetime="2022-04-14T13:52:58.126Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-04-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>Object.getPrototypeOf()</li>
+</ul>
+<blockquote>
+<p>获得参数对象原型的方法呀。是该对象的<code>__proto__</code>指向</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Object.getPrototypeOf(&#123;&#125;) === Object.prototype // true</span><br><span class="line">Object.getPrototypeOf(Object.prototype) === null // true</span><br><span class="line">function f() &#123;&#125;</span><br><span class="line">Object.getPrototypeOf(f) === Function.prototype // true</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Object.setPrototypeOf()</li>
+</ul>
+<blockquote>
+<p>Object.setPrototypeOf(obj, proto)，更改该对象的<code>__proto__</code>指向</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var F = function () &#123;</span><br><span class="line">  this.foo = &apos;test&apos;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var f = new F();</span><br><span class="line">// 等同于</span><br><span class="line">var f = Object.setPrototypeOf(&#123;&#125;, F.prototype);</span><br><span class="line">F.call(f);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Object.create()</li>
+</ul>
+<blockquote>
+<p>从一个实例生成另一个实例对象</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">if (typeof Object.create !== &apos;function&apos;) &#123;</span><br><span class="line">  Object.create = function (obj) &#123;</span><br><span class="line">    function F() &#123;&#125;</span><br><span class="line">    F.prototype = obj;</span><br><span class="line">    return new F();</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这三种生成新对象的方法是等价的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var obj1 = Object.create(&#123;&#125;);</span><br><span class="line">var obj2 = Object.create(Object.prototype);</span><br><span class="line">var obj3 = new Object();</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var obj = Object.create(null);</span><br></pre></td></tr></table></figure>
+
+<p>obj 不具有 Object.prototype 上的属性和方法了。<br>Object.create 必须提供对象原型，参数为空或者不是对象都会报错。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">var obj = Object.create(&#123;&#125;, &#123;</span><br><span class="line">  p1: &#123;</span><br><span class="line">    value: 123,</span><br><span class="line">    enumerable: true,</span><br><span class="line">    configurable: true,</span><br><span class="line">    writable: true,</span><br><span class="line">  &#125;,</span><br><span class="line">  p2: &#123;</span><br><span class="line">    value: &apos;abc&apos;,</span><br><span class="line">    enumerable: true,</span><br><span class="line">    configurable: true,</span><br><span class="line">    writable: true,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// 等同于</span><br><span class="line">var obj = Object.create(&#123;&#125;);</span><br><span class="line">obj.p1 = 123;</span><br><span class="line">obj.p2 = &apos;abc&apos;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function A() &#123;&#125;</span><br><span class="line">var a = new A();</span><br><span class="line">var b = Object.create(a);</span><br><span class="line"></span><br><span class="line">b.constructor === A // true</span><br><span class="line">b instanceof A // true</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Object.prototype.isPrototypeOf()</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var o1 = &#123;&#125;;</span><br><span class="line">var o2 = Object.create(o1);</span><br><span class="line">var o3 = Object.create(o2);</span><br><span class="line"></span><br><span class="line">o2.isPrototypeOf(o3) // true</span><br><span class="line">o1.isPrototypeOf(o3) // true</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Object.prototype.isPrototypeOf(&#123;&#125;) // true</span><br><span class="line">Object.prototype.isPrototypeOf([]) // true</span><br><span class="line">Object.prototype.isPrototypeOf(/xyz/) // true</span><br><span class="line">Object.prototype.isPrototypeOf(Object.create(null)) // false</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var obj = new Object();</span><br><span class="line"></span><br><span class="line">obj.__proto__ === Object.prototype</span><br><span class="line">// true</span><br><span class="line">obj.__proto__ === obj.constructor.prototype</span><br><span class="line">// true</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>获取实例对象<code>obj</code>的原型对象有哪些方法？</p>
+</blockquote>
+<ol>
+<li>obj.<strong>proto</strong></li>
+<li>obj.constructor.prototype</li>
+<li>Object.getPrototypeOf(obj)</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var P = function () &#123;&#125;;</span><br><span class="line">var p = new P();</span><br><span class="line"></span><br><span class="line">var C = function () &#123;&#125;;</span><br><span class="line">C.prototype = p;</span><br><span class="line">var c = new C();</span><br><span class="line"></span><br><span class="line">c.constructor.prototype === p // false</span><br></pre></td></tr></table></figure>
+
+<p>所以，在改变原型对象时，一般要同时设置<code>constructor</code>属性。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">C.prototype = p;</span><br><span class="line">C.prototype.constructor = C;</span><br><span class="line"></span><br><span class="line">var c = new C();</span><br><span class="line">c.constructor.prototype === p // true</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Object.getOwnPropertyNames()</li>
+</ul>
+<blockquote>
+<p>对象本身包含的属性名，不包含继承的。可枚举、不可枚举的都包括<br>如果只想获取可枚举的 <code>Object.keys</code></p>
+</blockquote>
+<ul>
+<li><p><code>in</code></p>
+<blockquote>
+<p><code>in</code> 运算符返回一个布尔值，表示一个对象是否具有某个属性。它不区分该属性是对象自身的属性，还是继承的属性。常用于检查一个属性是否存在。</p>
+</blockquote>
+</li>
+<li><p>对象的拷贝<br>具有相同的原型，以及实例属性。</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function copyObject(orig) &#123;</span><br><span class="line">  return Object.create(</span><br><span class="line">    Object.getPrototypeOf(orig),</span><br><span class="line">    Object.getOwnPropertyDescriptors(orig)</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function copyObject(orig) &#123;</span><br><span class="line">  var copy = Object.create(Object.getPrototypeOf(orig));</span><br><span class="line">  copyOwnPropertiesFrom(copy, orig);</span><br><span class="line">  return copy;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function copyOwnPropertiesFrom(target, source) &#123;</span><br><span class="line">  Object</span><br><span class="line">    .getOwnPropertyNames(source)</span><br><span class="line">    .forEach(function (propKey) &#123;</span><br><span class="line">      var desc = Object.getOwnPropertyDescriptor(source, propKey);</span><br><span class="line">      Object.defineProperty(target, propKey, desc);</span><br><span class="line">    &#125;);</span><br><span class="line">  return target;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="prototype-对象"><a href="#prototype-对象" class="headerlink" title="prototype 对象"></a>prototype 对象</h3><blockquote>
+<p>拥有 constructor，指向改原型对象的构造函数<br>constructor 属性表示原型对象与构造函数之间的关联关系，如果修改了原型对象，一般会同时修改 constructor 属性，防止引用的时候出错。</p>
+</blockquote>
+<ul>
+<li>instanceof</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[] instanceof Array</span><br><span class="line">// 等同于</span><br><span class="line">Array.prototype.isPrototypeOf([])</span><br></pre></td></tr></table></figure>
+
+<p>instanceof 的原理是检查右边构造函数的 prototype 属性，是否在左边对象的原型链上。有一种特殊情况，就是左边对象的原型链上，只有 null 对象。这时，instanceof 判断会失真。</p>
+<blockquote>
+<p>PS: 判断是否是数组的方式</p>
+</blockquote>
+<ul>
+<li>Array.isArray()</li>
+<li>Object.prototype.toString.call()</li>
+<li>[].constructor.name // ‘Array’</li>
+<li>xxx instanceof Array</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/JavaScript//" class="article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/04/14/[JS基础]Object对象/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-[JS基础]构造函数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -302,6 +587,14 @@
 <li>exec，返回匹配的值</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const reg = /\d(\w)\d/</span><br><span class="line">const str = &apos;1a2b3c&apos;</span><br><span class="line">reg.test(str)</span><br><span class="line">reg.exec(str)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注注注意呀：When a regex has the global flag set, As long as test() returns true, lastIndex will not reset—even when testing a different string!</p>
+</blockquote>
+<blockquote>
+<p>啥？ 每次<code>test</code>方法如果用了<code>g</code>，全局匹配，如果匹配的结果是<code>true</code>，<code>lastIndex</code> 会标识结尾的值。即使匹配一个不同的字符串也不会重置，除非结果是<code>false</code></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">const regex = /foo/g; // the &quot;global&quot; flag is set</span><br><span class="line"></span><br><span class="line">// regex.lastIndex is at 0</span><br><span class="line">regex.test(&apos;foo&apos;)     // true</span><br><span class="line"></span><br><span class="line">// regex.lastIndex is now at 3</span><br><span class="line">regex.test(&apos;foo&apos;)     // false</span><br><span class="line"></span><br><span class="line">// regex.lastIndex is at 0</span><br><span class="line">regex.test(&apos;barfoo&apos;)  // true</span><br><span class="line"></span><br><span class="line">// regex.lastIndex is at 6</span><br><span class="line">regex.test(&apos;foobar&apos;)  //false</span><br></pre></td></tr></table></figure>
 
 <p>String 支持的方法：</p>
 <ul>
@@ -949,209 +1242,6 @@
 
 
   
-    <article id="post-[JS基础]数组乱序" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/03/10/[JS基础]数组乱序/">【JS基础】数组乱序</a>
-    </h1>
-  
-
-        
-        <a href="/2022/03/10/[JS基础]数组乱序/" class="archive-article-date">
-  	<time datetime="2022-03-10T08:50:45.924Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>最近在解决一个分布式高可用的问题，如何能够让多机的定时任务能够不重复执行，引入了 redis 的分布式锁。但一个任务列表如果都顺序遍历那每个任务的抢占可能不会那么随机，所以想让任务列表打乱顺序，就稍微了解了一下数组乱序的实现。</p>
-<blockquote>
-<p>（其实最后用的还是 lodash 的_.shuffle() 😯</p>
-</blockquote>
-<p>一、随机数？</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[12,4,16,3].sort(function() &#123;</span><br><span class="line">    return .5 - Math.random();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>v8 在处理 sort 方法时，使用了插入排序和快排两种方案。当目标数组长度小于 10（不同版本有差别）时，使用插入排序；反之，使用快排。</p>
-<p>二、Fisher–Yates shuffle 洗牌算法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Array.prototype.shuffle = function() &#123;</span><br><span class="line">    let array = this;</span><br><span class="line">    let len = array.length,</span><br><span class="line">        temp, i;</span><br><span class="line">    while (len) &#123;</span><br><span class="line">        i = Math.floor(Math.random() * len--);</span><br><span class="line">        temp = array[len];</span><br><span class="line">        array[len] = array[i];</span><br><span class="line">        array[i] = temp;</span><br><span class="line">    &#125;</span><br><span class="line">    return array;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/JavaScript//" class="article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/03/10/[JS基础]数组乱序/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-[复盘]基础中的基础" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/03/04/[复盘]基础中的基础/">【JS基础】复盘</a>
-    </h1>
-  
-
-        
-        <a href="/2022/03/04/[复盘]基础中的基础/" class="archive-article-date">
-  	<time datetime="2022-03-04T07:12:21.369Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>基础知识要深刻，扎实，不要模棱两可，懂个大概</p>
-</blockquote>
-<h1 id="typeof"><a href="#typeof" class="headerlink" title="typeof"></a>typeof</h1><p>函数的默认返回值是 undefined 呀~</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function sayHi () &#123;</span><br><span class="line">  return (() =&gt; &#123;</span><br><span class="line">    console.log(1)</span><br><span class="line">  &#125;)()</span><br><span class="line">&#125;</span><br><span class="line">console.log(typeof sayHi())</span><br></pre></td></tr></table></figure>
-
-<h1 id="作用域-与-变量提升"><a href="#作用域-与-变量提升" class="headerlink" title="作用域 与 变量提升"></a>作用域 与 变量提升</h1><blockquote>
-<p>var 声明的变量会进行变量提升</p>
-</blockquote>
-<ul>
-<li>js 代码自上而下执行之前，浏览器首先会把当前上下文中所有带“var / function”关键字进行提前的声明和定义，解析到它们对应作用域开始的位置，这种预先处理的机制叫做变量提升，变量提升的意义在于创建变量前使用这个变量不报错。</li>
-<li>变量提升也可以称之为预解析。可以理解为这是词法解析的一个环节，语法解析发生在代码执行前</li>
-<li>JavaScript 仅提升声明，而不提升初始化</li>
-<li>函数和变量相比，会被优先提升。（函数声明式，函数提升是整个代码块（相当于申明和初始化都提升了）提升到它所在的作用域的最开始执行，函数字面量式，这种情况和变量提升是一样的）<blockquote>
-<h1 id="所以看一个变量的值，要结合作用域来判断"><a href="#所以看一个变量的值，要结合作用域来判断" class="headerlink" title="所以看一个变量的值，要结合作用域来判断"></a>所以看一个变量的值，要结合作用域来判断</h1></blockquote>
-</li>
-</ul>
-<h1 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">function sayHi() &#123;</span><br><span class="line">  console.log(name)</span><br><span class="line">  console.log(age)</span><br><span class="line">  var name = &apos;xxx&apos;</span><br><span class="line">  let age = 18</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var name = &apos;outer&apos;</span><br><span class="line">function sayHi() &#123;</span><br><span class="line">  console.log(name)</span><br><span class="line">  var name = &apos;eric&apos;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function sayHi(name) &#123;</span><br><span class="line">  console.log(name)</span><br><span class="line">  var name = &apos;eric&apos;</span><br><span class="line">&#125;</span><br><span class="line">sayHi(&apos;param&apos;)</span><br><span class="line"></span><br><span class="line">var name = &quot;world&quot;;</span><br><span class="line">(function()&#123;</span><br><span class="line">  if(typeof name === &quot;undefined&quot;) &#123;</span><br><span class="line">    var name = &quot;Jack&quot;;</span><br><span class="line">      console.log(&quot;Hello &quot; + name);</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    console.log(&quot;Hello &quot; + name);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;())</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">function sayHi() &#123;</span><br><span class="line">  console.log(name)</span><br><span class="line">  name = &apos;hi&apos;</span><br><span class="line">&#125;</span><br><span class="line">sayHi()</span><br><span class="line"></span><br><span class="line">// var a = 1</span><br><span class="line">function b() &#123;</span><br><span class="line">  console.log(a)</span><br><span class="line">  a = 2</span><br><span class="line">&#125;</span><br><span class="line">b()</span><br><span class="line">console.log(a)</span><br><span class="line"></span><br><span class="line">var foo=&#123;n:1&#125;;</span><br><span class="line">(function (foo) &#123;</span><br><span class="line">    console.log(foo.n);</span><br><span class="line">    foo.n = 3;</span><br><span class="line">    var foo = &#123;n:2&#125;;</span><br><span class="line">    console.log(foo.n);</span><br><span class="line">&#125;)(foo);</span><br><span class="line">console.log(foo.n);</span><br><span class="line"></span><br><span class="line">function f1(a)&#123; // a = 111，有默认值</span><br><span class="line">    console.log(a);</span><br><span class="line">    function a()&#123;&#125;</span><br><span class="line">    console.log(a);</span><br><span class="line">    var a = 1;</span><br><span class="line">    console.log(a);</span><br><span class="line">&#125;</span><br><span class="line">f1(2)</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>函数的参数名是按值传递的，参数类型是引用类型的话，传递的是引用的地址。</p>
-</blockquote>
-<p>函数参数和变量的问题：</p>
-<ul>
-<li>函数有形参，形参会被添加到函数的作用域中，并且形参不会被重新定义。var 声明与形参同名的变量会被忽略，即参数的优先级高于变量的提升。</li>
-<li>ES6 的 let 和 const 会因为作用域内重复声明而报错。</li>
-<li>如果函数内声明一个和形参同名的函数，装载顺序为 函数参数 &gt; 函数声明，而在函数声明装载时，如果函数体内有个和参数名相同的函数声明，那么这个函数就会覆盖形参。</li>
-<li>有默认参数的，再传实参，参数值 会覆盖 函数声明。</li>
-</ul>
-<p>let：</p>
-<ul>
-<li>let 声明的变量的作用域是块级的；</li>
-<li>let 不能重复声明已存在的变量；</li>
-<li>let 有暂时性死区，不会被提升。</li>
-</ul>
-<h1 id="this"><a href="#this" class="headerlink" title="this"></a>this</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">const shape = &#123;</span><br><span class="line">  radius: 10,</span><br><span class="line">  diameter: function() &#123;</span><br><span class="line">    return this.radius * 2</span><br><span class="line">  &#125;,</span><br><span class="line">  perimeter: () =&gt; 2 * 3.14 * this.radius</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(shape.diameter())</span><br><span class="line">console.log(shape.perimeter())</span><br></pre></td></tr></table></figure>
-
-<p>undefined 的类型转换<br>如何判断是不是 NaN</p>
-<ul>
-<li>window.isNaN 会先把参数转化为数字类型,再判断是不是 NaN,所以像 string 类型的会是 true;</li>
-<li>而 Number.isNaN 会先判断参数是不是数字类型,不是就返回 false, 是数字类型再进入判断是不是 NaN</li>
-<li>利用 NaN 是 JavaScript 之中唯一不等于自身的值</li>
-<li>Object.is(+0, -0)，Object.is() 是 ES6 用来比较两个值是否严格相等</li>
-</ul>
-        
-          <a class="article-more-a" href="/2022/03/04/[复盘]基础中的基础/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/JavaScript//" class="article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/03/04/[复盘]基础中的基础/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1245,15 +1335,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">flex</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CSS</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">CI/CD</a>
+                <a href="javascript:void(0)" class="js-tag color1">React</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">React</a>
+                <a href="javascript:void(0)" class="js-tag color1">CI/CD</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1262,6 +1356,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">购房</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1281,15 +1383,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1301,15 +1399,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">flex</a>
+                <a href="javascript:void(0)" class="js-tag color5">tree</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Binary tree</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1325,11 +1423,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
+                <a href="javascript:void(0)" class="js-tag color3">Promise</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">setTimeout</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">closure</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1342,22 +1448,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">安全</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Promise</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">setTimeout</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">tree</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Binary tree</a>
               </li>
              
               <li class="article-tag-list-item">
