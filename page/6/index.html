@@ -130,6 +130,178 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-[CSS]梳理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/06/30/[CSS]梳理/">【CSS】梳理</a>
+    </h1>
+  
+
+        
+        <a href="/2021/06/30/[CSS]梳理/" class="archive-article-date">
+  	<time datetime="2021-06-30T02:45:57.315Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>布局</li>
+<li>定位</li>
+<li>图文样式</li>
+<li>响应式</li>
+<li>CSS3 flex 动画</li>
+</ul>
+<ol>
+<li>盒模型，宽度</li>
+<li>margin纵向重叠问题</li>
+<li>margin负值</li>
+<li>BFC理解应用！</li>
+<li>float布局 clearfix</li>
+<li>flex画骰子</li>
+<li>absolute relative</li>
+<li>居中对齐</li>
+<li>line-height 继承</li>
+<li>rem是什么</li>
+<li>如何实现响应式</li>
+<li>CSS3动画</li>
+</ol>
+<ol>
+<li><p>盒模型<br>offsetWidth<br>box-sizing: content-box; 默认值<br>box-sizing: border-box; </p>
+</li>
+<li><p>margin 纵向重叠：相邻元素的margin-top 和 margin-bottom会相互重叠。空内容的P标签也会重叠</p>
+</li>
+<li><p>margin 负值<br>margin-left，margin-top 向相反方向移动<br>margin-right，自身不受影响，右侧元素左移<br>margin-bottom，自身不受影响，下方的会上移<br>空的标签也会重叠</p>
+</li>
+<li><p>BFC</p>
+<blockquote>
+<p>块级格式化上下文。Block Format Content，是一个独立的渲染区域，内部元素的渲染不会影响边界以外的元素。<br>形成BFC的条件：</p>
+</blockquote>
+</li>
+</ol>
+<ul>
+<li>float 不是 none</li>
+<li>position是absolute或者fixed</li>
+<li>overflow不是visible</li>
+<li>display是flex或者inline-block</li>
+</ul>
+<p>常见应用：</p>
+<ul>
+<li>清除浮动</li>
+</ul>
+<ol start="5">
+<li>圣杯/双飞翼<br>圣杯：<br>三栏布局，两侧内容固定，中间内容宽度自适应</li>
+</ol>
+<ul>
+<li>使用float</li>
+<li>两侧使用margin负值，确定左右两块</li>
+<li>父元素使用padding</li>
+</ul>
+<p>双飞翼：main  left right 顺序</p>
+<ul>
+<li>使用float</li>
+<li>使用margin为左右留白，margin-left</li>
+</ul>
+<ol start="6">
+<li>手写clearfix</li>
+</ol>
+<p>.clearfix:after {<br>    content: ‘’;<br>    display: ‘table’;<br>    clear: both;<br>}</p>
+<ol start="7">
+<li><p>flex<br>三色的骰子<br>align-self</p>
+</li>
+<li><p>定位<br>absolute：最近一层的非static的<br>relative：自身定位<br>居中对齐的方式：</p>
+</li>
+</ol>
+<ul>
+<li>水平</li>
+</ul>
+<ol>
+<li>inline: text-align: center</li>
+<li>block: margin: auto</li>
+<li>absolute: left: 50% + margin-left: 负值</li>
+</ol>
+<ul>
+<li>垂直</li>
+</ul>
+<ol>
+<li><p>inline: line-height</p>
+</li>
+<li><p>absolute: top: 50% + margin-top: 负值 或者  top: 50%; left: 50%; transform: translate(-50%, -50%) 或者 top,right,bottom,left:0 + margin: auto</p>
+</li>
+<li><p>line-height 如何继承</p>
+</li>
+</ol>
+<ul>
+<li>如果是具体的数值，直接继承</li>
+<li>如果是数字比例，1，1.5，直接继承这个数值</li>
+<li>如果是百分比，则继承计算出的值，算出line-height的数值<br>和字体的乘积</li>
+</ul>
+<ol start="10">
+<li>响应式</li>
+</ol>
+<ul>
+<li>rem：相对根元素html的长度单位，em相对父元素的长度单位<br>html {<br>  font-size: 100px;<br>}<br>任何宽度的都可以使用这个rem，width，font-size等</li>
+<li>media-query 设置根元素的font-size，然后设置rem</li>
+<li>vw / vh 网页视口尺寸<br>window.screen.height //屏幕<br>window.innerHeight //视口 100vh 100vw vmax vmin 取vh vw的最大/小<br>document.body.clientHeight //body<br>rem的特性：阶梯型，不够精细</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/CSS//" class="article-tag-list-link color4">CSS</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/06/30/[CSS]梳理/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-[浏览器]浏览器原理初识" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -943,83 +1115,6 @@
 
 
   
-    <article id="post-[知识点回顾]" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/17/[知识点回顾]/">&lt;知识点回顾&gt;JS基础</a>
-    </h1>
-  
-
-        
-        <a href="/2020/07/17/[知识点回顾]/" class="archive-article-date">
-  	<time datetime="2020-07-17T02:59:42.854Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>DOM 事件<br>DOM 0 级， element.onClick = () =&gt; {};<br>DOM 2 级，element.addEventListener(name, function(){}, capture = false) 冒泡事件<br>事件模型分为捕获和冒泡，捕获是从 window 自上而下到目标元素，冒泡阶段是从目标元素自下而上向 window 传播。<br>事件委托 delegation，事件冒泡到父元素，所以子元素的事件可以委托到父元素统一处理多个子元素的事件。<br>优点是，不需要为每个子元素绑定事件，减少不必要的开销，提高性能等。且可动态处理事件。<br>阻止默认事件，event.preventDefault()<br>阻止冒泡，event.stopPropagation<br>event.target 事件触发的<br>event.currentTarget 事件监听的元素<br>自定义事件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var event = new Event(name) // 无法传达参数</span><br><span class="line">var event = new CustomEvent(name, params)</span><br><span class="line"></span><br><span class="line">elem.addEventListener(name, function()&#123;&#125;, false) // 监听事件</span><br><span class="line">elem.dispatchEvent(event) // 分发触发事件，而非浏览器触发的</span><br></pre></td></tr></table></figure>
-
-<p>观察者模式：事件<br>手写发布-订阅模式 EventEmitter</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/07/17/[知识点回顾]/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/5/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/7/">Next &raquo;</a>
@@ -1137,14 +1232,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">HTTPS</a>
               </li>
              
@@ -1161,11 +1248,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1193,19 +1284,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">moment.js</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Date</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Promise</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">setTimeout</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">moment.js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Date</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1222,6 +1313,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">

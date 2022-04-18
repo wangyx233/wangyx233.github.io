@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wangyx233.github.io/"/>
-  <updated>2022-04-14T13:53:14.242Z</updated>
+  <updated>2022-04-18T21:59:07.700Z</updated>
   <id>https://wangyx233.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【复盘】学了又好像没学过</title>
+    <link href="https://wangyx233.github.io/2022/04/19/%5B%E5%A4%8D%E7%9B%98%5Dthis/"/>
+    <id>https://wangyx233.github.io/2022/04/19/[复盘]this/</id>
+    <published>2022-04-18T21:59:07.700Z</published>
+    <updated>2022-04-18T21:59:07.700Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>基础不扎实啊，学了，又好像没学过 😭</p></blockquote><h3 id="THIS-指向"><a href="#THIS-指向" class="headerlink" title="THIS 指向"></a>THIS 指向</h3><blockquote><p><code>函数调用</code>时，根据<code>执行上下文</code>确定的。</p></blockquote><ol><li>简单调用，严格模式是 undefined，否则绑定在全局对象 window/globa。l。</li><li>显示调用 apply/call/bind，绑定到指定的参数对象上。</li><li>对象调用，绑定在该对象上<br>在执行函数时，如果函数中的 this 是被上一级的对象所调用，那么 this 指向的就是上一级的对象；否则指向全局环境。</li><li>构造函数 new 调用，绑定在新创建的对象上。<br>如果构造函数中显式返回一个值，且返回的是一个对象，那么 this 就指向这个返回的对象；如果返回的不是一个对象，那么 this 仍然指向实例{}。</li><li>箭头函数的 this，由外层（全局/函数）的上下文绑定的 this 决定。<br>箭头函数的绑定无法被修改，this 始终沿着作用域链向上找（定义时决定，而不是执行时决定）。</li></ol><p>说明：</p><ul><li>通过 call、apply、bind、new 对 this 绑定的情况称为显式绑定。</li><li>根据调用关系确定的 this 指向称为隐式绑定。</li><li>call、apply 的显式绑定一般来说优先级更高。</li><li>new 绑定的优先级比显式 bind 绑定更高。</li><li>const 声明的变量不会挂载到 window 全局对象当中，var 会。</li></ul><p>QA: 严格模式都有哪些情况？</p><ul><li><code>use strict</code></li><li><code>类表达式、类声明</code>中是强制严格模式的!!!</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">window.name = &apos;hello&apos;</span><br><span class="line">function A() &#123;</span><br><span class="line">  this.name = 123</span><br><span class="line">&#125;</span><br><span class="line">A.prototype.getName = function () &#123;</span><br><span class="line">  console.log(this)</span><br><span class="line">  return this.name + 1</span><br><span class="line">&#125;</span><br><span class="line">var a = new A()</span><br><span class="line">var funcA = a.getName</span><br><span class="line">funcA() // &apos;hello1&apos;</span><br><span class="line">a.getName() // 124</span><br><span class="line"></span><br><span class="line">window.name = &apos;hello&apos;</span><br><span class="line">class A &#123;</span><br><span class="line">  constructor() &#123;</span><br><span class="line">    this.name = 123</span><br><span class="line">  &#125;</span><br><span class="line">  getName = function() &#123; // Uncaught TypeError: Cannot read properties of undefined</span><br><span class="line">    console.log(this)</span><br><span class="line">    return this.name + 1</span><br><span class="line">  &#125;</span><br><span class="line">  getName = () =&gt; &#123; // 124</span><br><span class="line">    console.log(this)</span><br><span class="line">    return this.name + 1</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">var a = new A()</span><br><span class="line">var funcA = a.getName</span><br><span class="line">funcA()</span><br></pre></td></tr></table></figure><p>如果要改变<code>this</code>指向有什么方法呢？</p><ul><li>首先想到用<code>call</code>,<code>apply</code>,<code>bind</code>来修改</li><li>借助对象调用</li><li>箭头函数</li></ul><blockquote><p>实现一个 bind 方法</p></blockquote><ul><li>返回一个函数，this</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Function.prototype.bind = Function.prototype.bind || function (context, ...args) &#123;</span><br><span class="line">    if (typeof this !== &quot;function&quot;) throw new TypeError(&apos;need a function&apos;)</span><br><span class="line">    const fn = this;</span><br><span class="line">    return function (...args2) &#123;</span><br><span class="line">        return fn.apply(context, [...args, ...args2])</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>注：</p><ul><li>边界情况</li><li>bind 返回的函数如果作为构造函数，搭配 new 关键字出现的话，我们的绑定 this 就需要“被忽略”</li><li>apply 可以改为对象的隐式调用</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;基础不扎实啊，学了，又好像没学过 😭&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;THIS-指向&quot;&gt;&lt;a href=&quot;#THIS-指向&quot; class=&quot;headerlink&quot; title=&quot;THIS 指向&quot;&gt;&lt;/a&gt;THIS 指向&lt;/h3
+      
+    
+    </summary>
+    
+      <category term="JavaScript" scheme="https://wangyx233.github.io/categories/JavaScript/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>【React】Hook系列 - useRef</title>
@@ -703,6 +729,29 @@
   </entry>
   
   <entry>
+    <title>【工程化】Webpack</title>
+    <link href="https://wangyx233.github.io/2021/06/30/%5B%E5%B7%A5%E7%A8%8B%E5%8C%96%5DWebpack/"/>
+    <id>https://wangyx233.github.io/2021/06/30/[工程化]Webpack/</id>
+    <published>2021-06-30T02:45:57.328Z</published>
+    <updated>2021-07-13T03:21:58.452Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="历史"><a href="#历史" class="headerlink" title="历史"></a>历史</h1><h2 id="为什么需要"><a href="#为什么需要" class="headerlink" title="为什么需要"></a>为什么需要</h2><ol><li>转换ES6</li><li>转换JSX</li><li>压缩混淆</li><li>CSS预处理器</li><li>图片压缩<br>…</li></ol><p>gulp 任务打包器，文件流的概念，每一步构建的结果不会存本地磁盘，而是存在内存里，可以加快打包速度。</p><p>webpack vs gulp 社区生态丰富，配置灵活，插件化扩展，官方更新迭代快；module builder vs task runner</p><h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>配置文件，默认：webpack.config.js<br>可以使用 webpack –config xxx 指定配置文件</p><p>webpack<br>webpack-cli</p><h3 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h3><ol><li>entry：模块依赖打包的入口，单页应用为字符串，多页应用为{key: value}</li><li>output：将编译的文件输出到磁盘，通过filename [xxx]区别多入口多输出，输出的文件名称，为entry设置的key名</li><li>loaders！webpack开箱即用的只有js和json两种类型，所以需要通过loaders去支持其他文件类型并转成有效的模块，并且可以加到依赖图里<br>loaders其实是个函数，接受源文件为参数，返回转换的结果。链式调用的，从右向左执行<br>比如：</li></ol><ul><li>babel-loader</li><li>css-loader</li><li>less-loader</li><li>file-loader</li></ul><ol start="4"><li>plugins，增强webpack的功能，对打包文件的优化，资源的管理，环境变量的注入。作用于整个构建过程</li></ol><ul><li>CommonsChunkPlugin</li><li>HtmlWebpackPlugin</li><li>UglifyjsWebpackPlugin</li></ul><ol start="5"><li>mode: 指定打包的环境，production，development</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">const path = require(&apos;path&apos;);</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">    entry: &#123;</span><br><span class="line">        app: &apos;xxx&apos;,</span><br><span class="line">        admin: &apos;sss&apos;</span><br><span class="line">    &#125;,</span><br><span class="line">    output: &#123;</span><br><span class="line">        filename: &apos;[xxx].js&apos;,</span><br><span class="line">        path: &apos;&apos;</span><br><span class="line">    &#125;</span><br><span class="line">    mode: &apos;production&apos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><ol start="6"><li><p>文件监听的原理分析<br>轮询地判断文件最后编辑时间是否变化，某个文件发生了变化，并不会立刻告诉监听者，而是先缓存起来，等aggregateTimeout</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">watchOptions: &#123;</span><br><span class="line">    ignored: /node_modules/,</span><br><span class="line">    aggregateTimeout: 300, // 监听到变化后，多长时间后再去执行</span><br><span class="line">    poll: 1000 // 1s询问多少次</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li><p>热更新<br>webpack compile<br>HMR Server   -&gt; HMR Runtime，会被注入到浏览器的bundle.js里面，浏览器里的bundle.js 就可以建立连接websocket，更新变化<br>Bundle Server -&gt; 浏览器访问 localhost</p></li></ol><ul><li>两个阶段，启动阶段 文件系统 -&gt; webpack compile -&gt; Bundle Server</li><li>变更阶段，文件系统 -&gt; webpack compile -&gt; HMR Server -&gt; HMR Runtime （json形式）</li></ul><ol start="8"><li>文件指纹 - 打包后输出的文件名后缀<br>怎样生成的？</li></ol><ul><li>hash，和整个项目的构建有关，只要项目文件有修改，整个项目构建的hash就会更改</li><li>chunkhash，和webpack打包的chunk有关，不同的entry会生成不同的chunkhash</li><li>contenthash，根据文件内容来生成hash，文件内容不变，则contenthash不变</li></ul><p>ps. file-loader 里面的hash也是指contenthash的意思。style-loader是将css代码插入到head中,MiniCssExtractPlugin是将css文件提取出独立的文件，二者互斥</p><ol start="9"><li>清理构建目录 - clean-webpack-plugin</li><li>css</li></ol><ul><li>属性前缀 - autoprefixer，postcss-loader</li><li>px rem 相互转换 rem: font-size of the root element。px2rem-loader</li></ul><ol start="10"><li><p>静态资源内联，raw-loader。读取文件的内容，然后把文件的内容插入到对应的位置</p></li><li><p>多页面打包，MPA - 借助 glob</p><blockquote><p>glob.sync(path.join(__dirname, ‘./src/*/index.js’))<br>动态获取entry以及HtmlWebpackPlugin</p></blockquote></li><li><p>source-map定位到源代码，开发环境中用，线上环境关闭<br>cheap-source-map , inline-source-map，eval 不会有单独的map文件</p></li><li><p>提取公共资源</p></li></ol><ul><li>HtmlWebpackExternalsPlugin，放cdn的地址</li><li>SplitChunkPlugin</li></ul><ol start="14"><li>Tree Shaking<br>设置mode: production,是默认开启的</li></ol><ul><li>原理：DCE（Dead Code  Elimination）<br>代码不可到达的，不能执行；执行结果不会使用；代码只写不用</li><li>利用ES6模块的特点，只能作为模块顶部的语句出现；import的模块名只能是字符串常量；import binding是不可变的</li><li>uglify阶段删除无用代码</li><li>具有副作用的代码，tree shaking会失效</li></ul><p>副作用：一个函数会、或者可能会对函数外部变量产生影响的行为</p><ol start="15"><li><p>Scope hoisting<br>问题：</p><ul><li>大量函数闭包包裹代码，导致体积增大</li><li>运行代码时创建的函数作用域多，内存开销大</li></ul><p>模块转换，一个闭包包裹；import被转换成__webpack_require</p></li><li><p>代码分割，动态import，通过JSONP实现</p></li></ol><ul><li>抽离相同代码到一个共享块</li><li>脚本懒加载，初始下载的代码更小 </li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;历史&quot;&gt;&lt;a href=&quot;#历史&quot; class=&quot;headerlink&quot; title=&quot;历史&quot;&gt;&lt;/a&gt;历史&lt;/h1&gt;&lt;h2 id=&quot;为什么需要&quot;&gt;&lt;a href=&quot;#为什么需要&quot; class=&quot;headerlink&quot; title=&quot;为什么需要&quot;&gt;&lt;/a&gt;为什么需
+      
+    
+    </summary>
+    
+      <category term="Webpack" scheme="https://wangyx233.github.io/categories/Webpack/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>【生活】如果有购房需求</title>
     <link href="https://wangyx233.github.io/2021/06/30/%5B%E4%BA%BA%E7%94%9F%5D%E8%B4%AD%E6%88%BF/"/>
     <id>https://wangyx233.github.io/2021/06/30/[人生]购房/</id>
@@ -731,24 +780,31 @@
   </entry>
   
   <entry>
-    <title>【工程化】Webpack</title>
-    <link href="https://wangyx233.github.io/2021/06/30/%5B%E5%B7%A5%E7%A8%8B%E5%8C%96%5DWebpack/"/>
-    <id>https://wangyx233.github.io/2021/06/30/[工程化]Webpack/</id>
-    <published>2021-06-30T02:45:57.328Z</published>
-    <updated>2021-07-13T03:21:58.452Z</updated>
+    <title>【WebAPI】BOM</title>
+    <link href="https://wangyx233.github.io/2021/06/30/%5BWebAPI%5DBOM/"/>
+    <id>https://wangyx233.github.io/2021/06/30/[WebAPI]BOM/</id>
+    <published>2021-06-30T02:45:57.327Z</published>
+    <updated>2021-07-13T03:21:58.455Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="历史"><a href="#历史" class="headerlink" title="历史"></a>历史</h1><h2 id="为什么需要"><a href="#为什么需要" class="headerlink" title="为什么需要"></a>为什么需要</h2><ol><li>转换ES6</li><li>转换JSX</li><li>压缩混淆</li><li>CSS预处理器</li><li>图片压缩<br>…</li></ol><p>gulp 任务打包器，文件流的概念，每一步构建的结果不会存本地磁盘，而是存在内存里，可以加快打包速度。</p><p>webpack vs gulp 社区生态丰富，配置灵活，插件化扩展，官方更新迭代快；module builder vs task runner</p><h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>配置文件，默认：webpack.config.js<br>可以使用 webpack –config xxx 指定配置文件</p><p>webpack<br>webpack-cli</p><h3 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h3><ol><li>entry：模块依赖打包的入口，单页应用为字符串，多页应用为{key: value}</li><li>output：将编译的文件输出到磁盘，通过filename [xxx]区别多入口多输出，输出的文件名称，为entry设置的key名</li><li>loaders！webpack开箱即用的只有js和json两种类型，所以需要通过loaders去支持其他文件类型并转成有效的模块，并且可以加到依赖图里<br>loaders其实是个函数，接受源文件为参数，返回转换的结果。链式调用的，从右向左执行<br>比如：</li></ol><ul><li>babel-loader</li><li>css-loader</li><li>less-loader</li><li>file-loader</li></ul><ol start="4"><li>plugins，增强webpack的功能，对打包文件的优化，资源的管理，环境变量的注入。作用于整个构建过程</li></ol><ul><li>CommonsChunkPlugin</li><li>HtmlWebpackPlugin</li><li>UglifyjsWebpackPlugin</li></ul><ol start="5"><li>mode: 指定打包的环境，production，development</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">const path = require(&apos;path&apos;);</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">    entry: &#123;</span><br><span class="line">        app: &apos;xxx&apos;,</span><br><span class="line">        admin: &apos;sss&apos;</span><br><span class="line">    &#125;,</span><br><span class="line">    output: &#123;</span><br><span class="line">        filename: &apos;[xxx].js&apos;,</span><br><span class="line">        path: &apos;&apos;</span><br><span class="line">    &#125;</span><br><span class="line">    mode: &apos;production&apos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><ol start="6"><li><p>文件监听的原理分析<br>轮询地判断文件最后编辑时间是否变化，某个文件发生了变化，并不会立刻告诉监听者，而是先缓存起来，等aggregateTimeout</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">watchOptions: &#123;</span><br><span class="line">    ignored: /node_modules/,</span><br><span class="line">    aggregateTimeout: 300, // 监听到变化后，多长时间后再去执行</span><br><span class="line">    poll: 1000 // 1s询问多少次</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li><p>热更新<br>webpack compile<br>HMR Server   -&gt; HMR Runtime，会被注入到浏览器的bundle.js里面，浏览器里的bundle.js 就可以建立连接websocket，更新变化<br>Bundle Server -&gt; 浏览器访问 localhost</p></li></ol><ul><li>两个阶段，启动阶段 文件系统 -&gt; webpack compile -&gt; Bundle Server</li><li>变更阶段，文件系统 -&gt; webpack compile -&gt; HMR Server -&gt; HMR Runtime （json形式）</li></ul><ol start="8"><li>文件指纹 - 打包后输出的文件名后缀<br>怎样生成的？</li></ol><ul><li>hash，和整个项目的构建有关，只要项目文件有修改，整个项目构建的hash就会更改</li><li>chunkhash，和webpack打包的chunk有关，不同的entry会生成不同的chunkhash</li><li>contenthash，根据文件内容来生成hash，文件内容不变，则contenthash不变</li></ul><p>ps. file-loader 里面的hash也是指contenthash的意思。style-loader是将css代码插入到head中,MiniCssExtractPlugin是将css文件提取出独立的文件，二者互斥</p><ol start="9"><li>清理构建目录 - clean-webpack-plugin</li><li>css</li></ol><ul><li>属性前缀 - autoprefixer，postcss-loader</li><li>px rem 相互转换 rem: font-size of the root element。px2rem-loader</li></ul><ol start="10"><li><p>静态资源内联，raw-loader。读取文件的内容，然后把文件的内容插入到对应的位置</p></li><li><p>多页面打包，MPA - 借助 glob</p><blockquote><p>glob.sync(path.join(__dirname, ‘./src/*/index.js’))<br>动态获取entry以及HtmlWebpackPlugin</p></blockquote></li><li><p>source-map定位到源代码，开发环境中用，线上环境关闭<br>cheap-source-map , inline-source-map，eval 不会有单独的map文件</p></li><li><p>提取公共资源</p></li></ol><ul><li>HtmlWebpackExternalsPlugin，放cdn的地址</li><li>SplitChunkPlugin</li></ul><ol start="14"><li>Tree Shaking<br>设置mode: production,是默认开启的</li></ol><ul><li>原理：DCE（Dead Code  Elimination）<br>代码不可到达的，不能执行；执行结果不会使用；代码只写不用</li><li>利用ES6模块的特点，只能作为模块顶部的语句出现；import的模块名只能是字符串常量；import binding是不可变的</li><li>uglify阶段删除无用代码</li><li>具有副作用的代码，tree shaking会失效</li></ul><p>副作用：一个函数会、或者可能会对函数外部变量产生影响的行为</p><ol start="15"><li><p>Scope hoisting<br>问题：</p><ul><li>大量函数闭包包裹代码，导致体积增大</li><li>运行代码时创建的函数作用域多，内存开销大</li></ul><p>模块转换，一个闭包包裹；import被转换成__webpack_require</p></li><li><p>代码分割，动态import，通过JSONP实现</p></li></ol><ul><li>抽离相同代码到一个共享块</li><li>脚本懒加载，初始下载的代码更小 </li></ul>]]></content>
+    <content type="html"><![CDATA[<blockquote><p>BOM -&gt; Browser Object Model</p></blockquote><ul><li>如何识别浏览器的类型</li><li>分别拆解url各部分</li></ul><h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><ul><li>navigator</li><li>screen</li><li>location</li><li>history<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// 1. navigator</span><br><span class="line">const ua = navigator.userAgent;</span><br><span class="line"></span><br><span class="line">// 2. screen</span><br><span class="line">const width = screen.width;</span><br><span class="line">const height = screen.height;</span><br><span class="line"></span><br><span class="line">// 3. location</span><br><span class="line">location.href</span><br><span class="line">location.protocol</span><br><span class="line">location.pathname</span><br><span class="line">location.hash</span><br><span class="line">location.search</span><br><span class="line">location.host</span><br><span class="line"></span><br><span class="line">// 4. history</span><br><span class="line">history.back();</span><br><span class="line">history.forwards();</span><br></pre></td></tr></table></figure></li></ul>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h1 id=&quot;历史&quot;&gt;&lt;a href=&quot;#历史&quot; class=&quot;headerlink&quot; title=&quot;历史&quot;&gt;&lt;/a&gt;历史&lt;/h1&gt;&lt;h2 id=&quot;为什么需要&quot;&gt;&lt;a href=&quot;#为什么需要&quot; class=&quot;headerlink&quot; title=&quot;为什么需要&quot;&gt;&lt;/a&gt;为什么需
+        &lt;blockquote&gt;
+&lt;p&gt;BOM -&amp;gt; Browser Object Model&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;如何识别浏览器的类型&lt;/li&gt;
+&lt;li&gt;分别拆解url各部分&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;知识点&quot;&gt;&lt;a href=&quot;#知
       
     
     </summary>
     
-      <category term="Webpack" scheme="https://wangyx233.github.io/categories/Webpack/"/>
+      <category term="JavaScript" scheme="https://wangyx233.github.io/categories/JavaScript/"/>
     
     
   </entry>
@@ -782,36 +838,6 @@
     
     
       <category term="保险" scheme="https://wangyx233.github.io/tags/%E4%BF%9D%E9%99%A9/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【WebAPI】BOM</title>
-    <link href="https://wangyx233.github.io/2021/06/30/%5BWebAPI%5DBOM/"/>
-    <id>https://wangyx233.github.io/2021/06/30/[WebAPI]BOM/</id>
-    <published>2021-06-30T02:45:57.327Z</published>
-    <updated>2021-07-13T03:21:58.455Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>BOM -&gt; Browser Object Model</p></blockquote><ul><li>如何识别浏览器的类型</li><li>分别拆解url各部分</li></ul><h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><ul><li>navigator</li><li>screen</li><li>location</li><li>history<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// 1. navigator</span><br><span class="line">const ua = navigator.userAgent;</span><br><span class="line"></span><br><span class="line">// 2. screen</span><br><span class="line">const width = screen.width;</span><br><span class="line">const height = screen.height;</span><br><span class="line"></span><br><span class="line">// 3. location</span><br><span class="line">location.href</span><br><span class="line">location.protocol</span><br><span class="line">location.pathname</span><br><span class="line">location.hash</span><br><span class="line">location.search</span><br><span class="line">location.host</span><br><span class="line"></span><br><span class="line">// 4. history</span><br><span class="line">history.back();</span><br><span class="line">history.forwards();</span><br></pre></td></tr></table></figure></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;blockquote&gt;
-&lt;p&gt;BOM -&amp;gt; Browser Object Model&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;如何识别浏览器的类型&lt;/li&gt;
-&lt;li&gt;分别拆解url各部分&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&quot;知识点&quot;&gt;&lt;a href=&quot;#知
-      
-    
-    </summary>
-    
-      <category term="JavaScript" scheme="https://wangyx233.github.io/categories/JavaScript/"/>
-    
     
   </entry>
   
@@ -933,21 +959,24 @@
   </entry>
   
   <entry>
-    <title>【React】前端路由-React Router</title>
-    <link href="https://wangyx233.github.io/2021/06/30/%5BReact%5D%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%94%B1/"/>
-    <id>https://wangyx233.github.io/2021/06/30/[React]前端路由/</id>
+    <title>【React】事件系统</title>
+    <link href="https://wangyx233.github.io/2021/06/30/%5BReact%5D%E4%BA%8B%E4%BB%B6/"/>
+    <id>https://wangyx233.github.io/2021/06/30/[React]事件/</id>
     <published>2021-06-30T02:45:57.323Z</published>
-    <updated>2021-07-13T03:21:58.447Z</updated>
+    <updated>2021-07-13T03:21:58.377Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="What"><a href="#What" class="headerlink" title="What"></a>What</h1><ul><li>切换Hash</li><li>切换Path<br>HTML5的History API中的 pushState、replaceState，还需要在服务端配置historyApiFallback<br>路由守卫<h1 id="How"><a href="#How" class="headerlink" title="How"></a>How</h1></li></ul><ol><li>路由器：BrowserRouter 和 HashRouter</li></ol><ul><li>BrowserRouter 是使用 HTML 5 的 history API 来控制路由跳转的。</li><li>HashRouter 是通过 URL 的 hash 属性来控制路由跳转的。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">window.location.hash</span><br><span class="line">// 监听hash变化，点击浏览器的前进后退会触发</span><br><span class="line">window.addEventListener(&apos;hashchange&apos;, function(event)&#123;</span><br><span class="line">    // 根据 hash 的变化更新内容</span><br><span class="line">&#125;,false)</span><br><span class="line">window.history.forward()  // 前进到下一页</span><br><span class="line">window.history.back() // 后退到上一页</span><br><span class="line">window.history.go(2)</span><br><span class="line">history.pushState(data[,title][,url]); // 向浏览历史中追加一条记录</span><br><span class="line">history.replaceState(data[,title][,url]); // 修改（替换）当前页在浏览历史中的信息</span><br><span class="line">window.addEventListener(&apos;popstate&apos;, function(e) &#123;</span><br><span class="line">  console.log(e)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li></ul><blockquote><p>go、forward 和 back 等方法的调用确实会触发 popstate，但是pushState 和 replaceState 不会。不过这一点问题不大，我们可以通过自定义事件和全局事件总线来手动触发事件。</p></blockquote>]]></content>
+    <content type="html"><![CDATA[<h1 id="DOM事件流"><a href="#DOM事件流" class="headerlink" title="DOM事件流"></a>DOM事件流</h1><ol><li>事件捕获</li><li>目标阶段</li><li>事件冒泡</li></ol><h1 id="事件委托-事件代理"><a href="#事件委托-事件代理" class="headerlink" title="事件委托/事件代理"></a>事件委托/事件代理</h1><blockquote><p>把多个子元素的同一类型的监听逻辑，合并到父元素上通过一个监听函数来管理的行为，就是事件委托。<br>e.target 这个属性，指的是触发事件的具体目标，记录着事件的源头。</p></blockquote><h1 id="React事件系统"><a href="#React事件系统" class="headerlink" title="React事件系统"></a>React事件系统</h1><h2 id="合成事件"><a href="#合成事件" class="headerlink" title="合成事件"></a>合成事件</h2><blockquote><p>当事件在具体的DOM节点上被触发后，最终都会冒泡到document(或者ReactDOM.render绑定的元素)，document上所绑定的统一事件处理程序会将事件分发给具体的组件实例。</p></blockquote><p>合成事件是React自定义的事件对象，符合W3C规范，在底层抹平了不同浏览器的差异，在上层向开发者暴露统一的，稳定的，与DOM原生事件相同的事件接口。不必关注兼容问题，专注业务开发。<br>合成事件不是原生的事件，但是它保存了原生事件的引用，e.nativeEvent</p><blockquote><p>React 事件的命名采用小驼峰式（camelCase），而不是纯小写。使用 JSX 语法时你需要传入一个函数作为事件处理函数，而不是一个字符串。不能通过返回 false 的方式阻止默认行为。你必须显式的使用 preventDefault<br>比如：</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">handleClick() &#123;</span><br><span class="line">  console.log(&apos;this is:&apos;, this);</span><br><span class="line">&#125;</span><br><span class="line">&lt;div onClick=&#123;()=&gt;this.handleClick()&#125;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h1 id=&quot;What&quot;&gt;&lt;a href=&quot;#What&quot; class=&quot;headerlink&quot; title=&quot;What&quot;&gt;&lt;/a&gt;What&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;切换Hash&lt;/li&gt;
-&lt;li&gt;切换Path&lt;br&gt;HTML5的History API中的 pushState、
+        &lt;h1 id=&quot;DOM事件流&quot;&gt;&lt;a href=&quot;#DOM事件流&quot; class=&quot;headerlink&quot; title=&quot;DOM事件流&quot;&gt;&lt;/a&gt;DOM事件流&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;事件捕获&lt;/li&gt;
+&lt;li&gt;目标阶段&lt;/li&gt;
+&lt;li&gt;事件冒泡&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 
       
     
     </summary>
@@ -990,49 +1019,21 @@
   </entry>
   
   <entry>
-    <title>【React】事件系统</title>
-    <link href="https://wangyx233.github.io/2021/06/30/%5BReact%5D%E4%BA%8B%E4%BB%B6/"/>
-    <id>https://wangyx233.github.io/2021/06/30/[React]事件/</id>
+    <title>【React】前端路由-React Router</title>
+    <link href="https://wangyx233.github.io/2021/06/30/%5BReact%5D%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%94%B1/"/>
+    <id>https://wangyx233.github.io/2021/06/30/[React]前端路由/</id>
     <published>2021-06-30T02:45:57.323Z</published>
-    <updated>2021-07-13T03:21:58.377Z</updated>
+    <updated>2021-07-13T03:21:58.447Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="DOM事件流"><a href="#DOM事件流" class="headerlink" title="DOM事件流"></a>DOM事件流</h1><ol><li>事件捕获</li><li>目标阶段</li><li>事件冒泡</li></ol><h1 id="事件委托-事件代理"><a href="#事件委托-事件代理" class="headerlink" title="事件委托/事件代理"></a>事件委托/事件代理</h1><blockquote><p>把多个子元素的同一类型的监听逻辑，合并到父元素上通过一个监听函数来管理的行为，就是事件委托。<br>e.target 这个属性，指的是触发事件的具体目标，记录着事件的源头。</p></blockquote><h1 id="React事件系统"><a href="#React事件系统" class="headerlink" title="React事件系统"></a>React事件系统</h1><h2 id="合成事件"><a href="#合成事件" class="headerlink" title="合成事件"></a>合成事件</h2><blockquote><p>当事件在具体的DOM节点上被触发后，最终都会冒泡到document(或者ReactDOM.render绑定的元素)，document上所绑定的统一事件处理程序会将事件分发给具体的组件实例。</p></blockquote><p>合成事件是React自定义的事件对象，符合W3C规范，在底层抹平了不同浏览器的差异，在上层向开发者暴露统一的，稳定的，与DOM原生事件相同的事件接口。不必关注兼容问题，专注业务开发。<br>合成事件不是原生的事件，但是它保存了原生事件的引用，e.nativeEvent</p><blockquote><p>React 事件的命名采用小驼峰式（camelCase），而不是纯小写。使用 JSX 语法时你需要传入一个函数作为事件处理函数，而不是一个字符串。不能通过返回 false 的方式阻止默认行为。你必须显式的使用 preventDefault<br>比如：</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">handleClick() &#123;</span><br><span class="line">  console.log(&apos;this is:&apos;, this);</span><br><span class="line">&#125;</span><br><span class="line">&lt;div onClick=&#123;()=&gt;this.handleClick()&#125;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;DOM事件流&quot;&gt;&lt;a href=&quot;#DOM事件流&quot; class=&quot;headerlink&quot; title=&quot;DOM事件流&quot;&gt;&lt;/a&gt;DOM事件流&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;事件捕获&lt;/li&gt;
-&lt;li&gt;目标阶段&lt;/li&gt;
-&lt;li&gt;事件冒泡&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h1 
-      
-    
-    </summary>
-    
-      <category term="React" scheme="https://wangyx233.github.io/categories/React/"/>
-    
-    
-      <category term="React" scheme="https://wangyx233.github.io/tags/React/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【React】ReactDom.render</title>
-    <link href="https://wangyx233.github.io/2021/06/30/%5BReact%5DReactDOM.render/"/>
-    <id>https://wangyx233.github.io/2021/06/30/[React]ReactDOM.render/</id>
-    <published>2021-06-30T02:45:57.322Z</published>
-    <updated>2021-07-13T03:21:58.412Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="ReactDom-render-调用栈逻辑"><a href="#ReactDom-render-调用栈逻辑" class="headerlink" title="ReactDom.render 调用栈逻辑"></a>ReactDom.render 调用栈逻辑</h1><ul><li>scheduleUpdateOnFiber</li><li>commitRoot 正式渲染DOM</li></ul><ol><li>初始化阶段 - 完成Fiber🌲基本实体的构建</li><li>render阶段 - 深度优先搜索过程</li><li>commit阶段</li></ol>]]></content>
+    <content type="html"><![CDATA[<h1 id="What"><a href="#What" class="headerlink" title="What"></a>What</h1><ul><li>切换Hash</li><li>切换Path<br>HTML5的History API中的 pushState、replaceState，还需要在服务端配置historyApiFallback<br>路由守卫<h1 id="How"><a href="#How" class="headerlink" title="How"></a>How</h1></li></ul><ol><li>路由器：BrowserRouter 和 HashRouter</li></ol><ul><li>BrowserRouter 是使用 HTML 5 的 history API 来控制路由跳转的。</li><li>HashRouter 是通过 URL 的 hash 属性来控制路由跳转的。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">window.location.hash</span><br><span class="line">// 监听hash变化，点击浏览器的前进后退会触发</span><br><span class="line">window.addEventListener(&apos;hashchange&apos;, function(event)&#123;</span><br><span class="line">    // 根据 hash 的变化更新内容</span><br><span class="line">&#125;,false)</span><br><span class="line">window.history.forward()  // 前进到下一页</span><br><span class="line">window.history.back() // 后退到上一页</span><br><span class="line">window.history.go(2)</span><br><span class="line">history.pushState(data[,title][,url]); // 向浏览历史中追加一条记录</span><br><span class="line">history.replaceState(data[,title][,url]); // 修改（替换）当前页在浏览历史中的信息</span><br><span class="line">window.addEventListener(&apos;popstate&apos;, function(e) &#123;</span><br><span class="line">  console.log(e)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li></ul><blockquote><p>go、forward 和 back 等方法的调用确实会触发 popstate，但是pushState 和 replaceState 不会。不过这一点问题不大，我们可以通过自定义事件和全局事件总线来手动触发事件。</p></blockquote>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h1 id=&quot;ReactDom-render-调用栈逻辑&quot;&gt;&lt;a href=&quot;#ReactDom-render-调用栈逻辑&quot; class=&quot;headerlink&quot; title=&quot;ReactDom.render 调用栈逻辑&quot;&gt;&lt;/a&gt;ReactDom.render 调用栈逻辑&lt;/
+        &lt;h1 id=&quot;What&quot;&gt;&lt;a href=&quot;#What&quot; class=&quot;headerlink&quot; title=&quot;What&quot;&gt;&lt;/a&gt;What&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;切换Hash&lt;/li&gt;
+&lt;li&gt;切换Path&lt;br&gt;HTML5的History API中的 pushState、
       
     
     </summary>
@@ -1058,6 +1059,31 @@
       &lt;blockquote&gt;
 &lt;p&gt;在React管控下的setState是异步，而脱离React管控的则表现为同步。&lt;/p&gt;
 &lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="React" scheme="https://wangyx233.github.io/categories/React/"/>
+    
+    
+      <category term="React" scheme="https://wangyx233.github.io/tags/React/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【React】ReactDom.render</title>
+    <link href="https://wangyx233.github.io/2021/06/30/%5BReact%5DReactDOM.render/"/>
+    <id>https://wangyx233.github.io/2021/06/30/[React]ReactDOM.render/</id>
+    <published>2021-06-30T02:45:57.322Z</published>
+    <updated>2021-07-13T03:21:58.412Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="ReactDom-render-调用栈逻辑"><a href="#ReactDom-render-调用栈逻辑" class="headerlink" title="ReactDom.render 调用栈逻辑"></a>ReactDom.render 调用栈逻辑</h1><ul><li>scheduleUpdateOnFiber</li><li>commitRoot 正式渲染DOM</li></ul><ol><li>初始化阶段 - 完成Fiber🌲基本实体的构建</li><li>render阶段 - 深度优先搜索过程</li><li>commit阶段</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;ReactDom-render-调用栈逻辑&quot;&gt;&lt;a href=&quot;#ReactDom-render-调用栈逻辑&quot; class=&quot;headerlink&quot; title=&quot;ReactDom.render 调用栈逻辑&quot;&gt;&lt;/a&gt;ReactDom.render 调用栈逻辑&lt;/
+      
     
     </summary>
     
@@ -1174,29 +1200,6 @@
   </entry>
   
   <entry>
-    <title>【JS基础】原型与原型链</title>
-    <link href="https://wangyx233.github.io/2021/06/30/%5BJS%E5%9F%BA%E7%A1%80%5D%E5%8E%9F%E5%9E%8B%E4%B8%8E%E5%8E%9F%E5%9E%8B%E9%93%BE/"/>
-    <id>https://wangyx233.github.io/2021/06/30/[JS基础]原型与原型链/</id>
-    <published>2021-06-30T02:45:57.319Z</published>
-    <updated>2021-07-13T03:21:58.457Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h1><ol><li>如何判断一个变量是不是数组？</li><li>class的原型本质</li></ol><a id="more"></a><h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><h2 id="class"><a href="#class" class="headerlink" title="class"></a>class</h2><ul><li>constructor</li><li>属性</li><li>方法<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class Demo &#123;</span><br><span class="line">    constructor(content) &#123;</span><br><span class="line">        this.content = content;</span><br><span class="line">    &#125;</span><br><span class="line">    hello() &#123;</span><br><span class="line">        console.log(`hello $&#123;this.content&#125;`);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">const newDemo = new Demo(&apos;world&apos;);</span><br><span class="line">newDemo.hello();</span><br></pre></td></tr></table></figure></li></ul><h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><ul><li>extends</li><li>super</li><li>扩展/重写方法</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class SubDemo extends Demo&#123;</span><br><span class="line">    constructor(content, subcontent) &#123;</span><br><span class="line">        super(content);</span><br><span class="line">        this.subcontent = subcontent;</span><br><span class="line">    &#125;</span><br><span class="line">    show() &#123;</span><br><span class="line">        console.log(`hello $&#123;this.content&#125; $&#123;this.subcontent&#125;`);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">const sDemo = new SubDemo(&apos;world&apos;, &apos;hoho&apos;);</span><br><span class="line">sDemo.hello();</span><br><span class="line">sDemo.show();</span><br></pre></td></tr></table></figure><h2 id="类型判断-instanceof"><a href="#类型判断-instanceof" class="headerlink" title="类型判断 instanceof"></a>类型判断 instanceof</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sDemo instanceof SubDemo // true</span><br><span class="line">sDemo instanceof Demo // true</span><br><span class="line">sDemo instanceof Object // true</span><br><span class="line"></span><br><span class="line">[] instanceof Array // true</span><br><span class="line">[] instanceof Object // true</span><br></pre></td></tr></table></figure><h2 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">typeof Demo // &apos;function&apos;</span><br><span class="line">typeof SubDemo // &apos;function&apos;</span><br><span class="line"></span><br><span class="line">// 隐式原型，显示原型</span><br><span class="line">console.log(sDemo.__proto__)</span><br><span class="line">console.log(SubDemo.prototype)</span><br><span class="line">console.log(sDemo.__proto__ === SubDemo.prototype) // true</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">### 原型关系</span><br><span class="line"></span><br><span class="line">* 每个class都有显示原型prototype</span><br><span class="line">* 每个实例都有隐式原型__proto__</span><br><span class="line">* 实例的__proto__指向对应class的prototype</span><br><span class="line"></span><br><span class="line">### 基于原型的执行规则</span><br><span class="line"></span><br><span class="line">&gt; 实例获取属性和方法时，先从自身的属性和方法中寻找，如果找不到则自动到__proto__中查找</span><br><span class="line"></span><br><span class="line">## 原型链</span><br></pre></td></tr></table></figure><p>console.log(SubDemo.prototype.<strong>proto</strong>)<br>console.log(Demo.prototype === SubDemo.prototype.<strong>proto</strong>) // true</p><p>Demo.prototype.<strong>proto</strong> === Object.prototype<br>Object.prototype.<strong>proto</strong> === null</p><pre><code>&gt; 所以 variable instanceof 构造函数类型，即根据原型链看variable的隐式原型__proto__是不是在其判断的显示原型上{% img /gallery/prototype_demo.png %}## 实践-简易实现jQuery考虑插件/扩展项class jQuery {    constructor(selector) {}}- 插件，写在其显示原型上jQuery.prototype.plugin = () =&gt; {}- 扩展项，可在继承其基础上，再重写新的方法class myjQuery extends jQuery {    constructor(selector) {        super(selector)    }}</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;思考&quot;&gt;&lt;a href=&quot;#思考&quot; class=&quot;headerlink&quot; title=&quot;思考&quot;&gt;&lt;/a&gt;思考&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;如何判断一个变量是不是数组？&lt;/li&gt;
-&lt;li&gt;class的原型本质&lt;/li&gt;
-&lt;/ol&gt;
-    
-    </summary>
-    
-      <category term="JavaScript" scheme="https://wangyx233.github.io/categories/JavaScript/"/>
-    
-    
-  </entry>
-  
-  <entry>
     <title>【JS基础】变量类型与比较</title>
     <link href="https://wangyx233.github.io/2021/06/30/%5BJS%E5%9F%BA%E7%A1%80%5D%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B%E4%B8%8E%E6%AF%94%E8%BE%83/"/>
     <id>https://wangyx233.github.io/2021/06/30/[JS基础]变量类型与比较/</id>
@@ -1222,20 +1225,19 @@
   </entry>
   
   <entry>
-    <title>【JS基础】作用域和闭包</title>
-    <link href="https://wangyx233.github.io/2021/06/30/%5BJS%E5%9F%BA%E7%A1%80%5D%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/"/>
-    <id>https://wangyx233.github.io/2021/06/30/[JS基础]作用域和闭包/</id>
-    <published>2021-06-30T02:45:57.318Z</published>
-    <updated>2022-02-16T05:45:08.537Z</updated>
+    <title>【JS基础】原型与原型链</title>
+    <link href="https://wangyx233.github.io/2021/06/30/%5BJS%E5%9F%BA%E7%A1%80%5D%E5%8E%9F%E5%9E%8B%E4%B8%8E%E5%8E%9F%E5%9E%8B%E9%93%BE/"/>
+    <id>https://wangyx233.github.io/2021/06/30/[JS基础]原型与原型链/</id>
+    <published>2021-06-30T02:45:57.319Z</published>
+    <updated>2021-07-13T03:21:58.457Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h1><ol><li>this 的不同应用场景，以及取值</li><li>手写 bind 函数</li><li>闭包的场景</li></ol><a id="more"></a><h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><ol><li>作用域，一个变量的合法使用范围</li></ol><ul><li>全局作用域</li><li>函数作用域</li><li>块级作用域（ES6）TDZ（Temporal Dead Zone）<blockquote><p>自由变量，一个变量在当前作用域没有定义却被使用了，需要沿着作用域一层一层向上查找，找到为止，如果全局作用域都没有找到，那就是 xxxx is not defined 咯</p></blockquote></li></ul><ol start="2"><li>闭包：作用域应用的特殊情况</li></ol><ul><li>函数作为参数被传递</li><li>函数作为返回值被返回<blockquote><p>自由变量的查找是在函数定义的地方，向上级作用域查找，而不是在函数执行的地方查找！</p></blockquote></li></ul><ol start="3"><li>this，函数执行的时候确认的</li></ol><ul><li>普通函数，setTimeout 话看执行时刻</li><li>call apply bind: call,apply 原函数直接调用，bind 会返回一个新的函数</li><li>对象方法</li><li>class</li><li>箭头函数：取上级作用域的 this</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">const obj = &#123;</span><br><span class="line">    name: &apos;xxx&apos;,</span><br><span class="line">    sayHi() &#123;</span><br><span class="line">        console.log(this)</span><br><span class="line">    &#125;,</span><br><span class="line">    wait() &#123;</span><br><span class="line">        setTimeout(function() &#123;</span><br><span class="line">            console.log(this)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    waitTwo() &#123;</span><br><span class="line">        setTimeout(()=&gt; &#123;</span><br><span class="line">            console.log(this)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h1 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h1><ul><li>手写 bind 函数</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Function.prototype.bind1 = function () &#123;</span><br><span class="line">    // 获取参数</span><br><span class="line">    const args = Array.prototype.slice.call(arguments);</span><br><span class="line">    const _this = args.shift();</span><br><span class="line">    const self = this;</span><br><span class="line">    return function () &#123;</span><br><span class="line">        return self.apply(_this, args);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<h1 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h1><ol><li>如何判断一个变量是不是数组？</li><li>class的原型本质</li></ol><a id="more"></a><h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><h2 id="class"><a href="#class" class="headerlink" title="class"></a>class</h2><ul><li>constructor</li><li>属性</li><li>方法<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class Demo &#123;</span><br><span class="line">    constructor(content) &#123;</span><br><span class="line">        this.content = content;</span><br><span class="line">    &#125;</span><br><span class="line">    hello() &#123;</span><br><span class="line">        console.log(`hello $&#123;this.content&#125;`);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">const newDemo = new Demo(&apos;world&apos;);</span><br><span class="line">newDemo.hello();</span><br></pre></td></tr></table></figure></li></ul><h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><ul><li>extends</li><li>super</li><li>扩展/重写方法</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class SubDemo extends Demo&#123;</span><br><span class="line">    constructor(content, subcontent) &#123;</span><br><span class="line">        super(content);</span><br><span class="line">        this.subcontent = subcontent;</span><br><span class="line">    &#125;</span><br><span class="line">    show() &#123;</span><br><span class="line">        console.log(`hello $&#123;this.content&#125; $&#123;this.subcontent&#125;`);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">const sDemo = new SubDemo(&apos;world&apos;, &apos;hoho&apos;);</span><br><span class="line">sDemo.hello();</span><br><span class="line">sDemo.show();</span><br></pre></td></tr></table></figure><h2 id="类型判断-instanceof"><a href="#类型判断-instanceof" class="headerlink" title="类型判断 instanceof"></a>类型判断 instanceof</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sDemo instanceof SubDemo // true</span><br><span class="line">sDemo instanceof Demo // true</span><br><span class="line">sDemo instanceof Object // true</span><br><span class="line"></span><br><span class="line">[] instanceof Array // true</span><br><span class="line">[] instanceof Object // true</span><br></pre></td></tr></table></figure><h2 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">typeof Demo // &apos;function&apos;</span><br><span class="line">typeof SubDemo // &apos;function&apos;</span><br><span class="line"></span><br><span class="line">// 隐式原型，显示原型</span><br><span class="line">console.log(sDemo.__proto__)</span><br><span class="line">console.log(SubDemo.prototype)</span><br><span class="line">console.log(sDemo.__proto__ === SubDemo.prototype) // true</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">### 原型关系</span><br><span class="line"></span><br><span class="line">* 每个class都有显示原型prototype</span><br><span class="line">* 每个实例都有隐式原型__proto__</span><br><span class="line">* 实例的__proto__指向对应class的prototype</span><br><span class="line"></span><br><span class="line">### 基于原型的执行规则</span><br><span class="line"></span><br><span class="line">&gt; 实例获取属性和方法时，先从自身的属性和方法中寻找，如果找不到则自动到__proto__中查找</span><br><span class="line"></span><br><span class="line">## 原型链</span><br></pre></td></tr></table></figure><p>console.log(SubDemo.prototype.<strong>proto</strong>)<br>console.log(Demo.prototype === SubDemo.prototype.<strong>proto</strong>) // true</p><p>Demo.prototype.<strong>proto</strong> === Object.prototype<br>Object.prototype.<strong>proto</strong> === null</p><pre><code>&gt; 所以 variable instanceof 构造函数类型，即根据原型链看variable的隐式原型__proto__是不是在其判断的显示原型上{% img /gallery/prototype_demo.png %}## 实践-简易实现jQuery考虑插件/扩展项class jQuery {    constructor(selector) {}}- 插件，写在其显示原型上jQuery.prototype.plugin = () =&gt; {}- 扩展项，可在继承其基础上，再重写新的方法class myjQuery extends jQuery {    constructor(selector) {        super(selector)    }}</code></pre>]]></content>
     
     <summary type="html">
     
       &lt;h1 id=&quot;思考&quot;&gt;&lt;a href=&quot;#思考&quot; class=&quot;headerlink&quot; title=&quot;思考&quot;&gt;&lt;/a&gt;思考&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;this 的不同应用场景，以及取值&lt;/li&gt;
-&lt;li&gt;手写 bind 函数&lt;/li&gt;
-&lt;li&gt;闭包的场景&lt;/li&gt;
+&lt;li&gt;如何判断一个变量是不是数组？&lt;/li&gt;
+&lt;li&gt;class的原型本质&lt;/li&gt;
 &lt;/ol&gt;
     
     </summary>
@@ -1265,6 +1267,30 @@
 &lt;/ul&gt;
 &lt;h1 id=&quot;知识点&quot;&gt;&lt;a href=&quot;#知识点&quot; class=&quot;headerlink&quot; title=&quot;知识点&quot;&gt;&lt;/a&gt;知
       
+    
+    </summary>
+    
+      <category term="JavaScript" scheme="https://wangyx233.github.io/categories/JavaScript/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>【JS基础】作用域和闭包</title>
+    <link href="https://wangyx233.github.io/2021/06/30/%5BJS%E5%9F%BA%E7%A1%80%5D%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/"/>
+    <id>https://wangyx233.github.io/2021/06/30/[JS基础]作用域和闭包/</id>
+    <published>2021-06-30T02:45:57.318Z</published>
+    <updated>2022-02-16T05:45:08.537Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h1><ol><li>this 的不同应用场景，以及取值</li><li>手写 bind 函数</li><li>闭包的场景</li></ol><a id="more"></a><h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><ol><li>作用域，一个变量的合法使用范围</li></ol><ul><li>全局作用域</li><li>函数作用域</li><li>块级作用域（ES6）TDZ（Temporal Dead Zone）<blockquote><p>自由变量，一个变量在当前作用域没有定义却被使用了，需要沿着作用域一层一层向上查找，找到为止，如果全局作用域都没有找到，那就是 xxxx is not defined 咯</p></blockquote></li></ul><ol start="2"><li>闭包：作用域应用的特殊情况</li></ol><ul><li>函数作为参数被传递</li><li>函数作为返回值被返回<blockquote><p>自由变量的查找是在函数定义的地方，向上级作用域查找，而不是在函数执行的地方查找！</p></blockquote></li></ul><ol start="3"><li>this，函数执行的时候确认的</li></ol><ul><li>普通函数，setTimeout 话看执行时刻</li><li>call apply bind: call,apply 原函数直接调用，bind 会返回一个新的函数</li><li>对象方法</li><li>class</li><li>箭头函数：取上级作用域的 this</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">const obj = &#123;</span><br><span class="line">    name: &apos;xxx&apos;,</span><br><span class="line">    sayHi() &#123;</span><br><span class="line">        console.log(this)</span><br><span class="line">    &#125;,</span><br><span class="line">    wait() &#123;</span><br><span class="line">        setTimeout(function() &#123;</span><br><span class="line">            console.log(this)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    waitTwo() &#123;</span><br><span class="line">        setTimeout(()=&gt; &#123;</span><br><span class="line">            console.log(this)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h1 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h1><ul><li>手写 bind 函数</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Function.prototype.bind1 = function () &#123;</span><br><span class="line">    // 获取参数</span><br><span class="line">    const args = Array.prototype.slice.call(arguments);</span><br><span class="line">    const _this = args.shift();</span><br><span class="line">    const self = this;</span><br><span class="line">    return function () &#123;</span><br><span class="line">        return self.apply(_this, args);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;思考&quot;&gt;&lt;a href=&quot;#思考&quot; class=&quot;headerlink&quot; title=&quot;思考&quot;&gt;&lt;/a&gt;思考&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;this 的不同应用场景，以及取值&lt;/li&gt;
+&lt;li&gt;手写 bind 函数&lt;/li&gt;
+&lt;li&gt;闭包的场景&lt;/li&gt;
+&lt;/ol&gt;
     
     </summary>
     
@@ -1331,34 +1357,6 @@
   </entry>
   
   <entry>
-    <title>【WebAPI】AJAX</title>
-    <link href="https://wangyx233.github.io/2021/06/30/%5BJSWebAPI%5DAJAX/"/>
-    <id>https://wangyx233.github.io/2021/06/30/[JSWebAPI]AJAX/</id>
-    <published>2021-06-30T02:45:57.316Z</published>
-    <updated>2021-07-13T03:21:58.446Z</updated>
-    
-    <content type="html"><![CDATA[<ul><li>手写一个简易的ajax</li><li>跨域</li></ul><h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><ul><li>XMLHttpRequest</li><li>状态码</li><li>跨域： 同源策略，跨域解决方案</li></ul><h2 id="1-XMLHttpRequest"><a href="#1-XMLHttpRequest" class="headerlink" title="1. XMLHttpRequest"></a>1. XMLHttpRequest</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">const xhr = new XMLHttpRequest();</span><br><span class="line">xhr.open(&apos;method&apos;, &apos;url&apos;, &apos;true/false&apos;); // 是否是异步</span><br><span class="line">xhr.onreadystatechange = function () &#123;</span><br><span class="line">    if(xhr.readyState === 4) &#123;</span><br><span class="line">        if(xhr.status === 200) &#123;</span><br><span class="line">            console.log(JSON.parse(xhr.responseText))</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">xhr.send(null)</span><br><span class="line">// post</span><br><span class="line">xhr.send(JSON.stringify(&#123;&#125;))</span><br></pre></td></tr></table></figure><p>可以改成promise的情况</p><ul><li><p>xhr.readyState</p><ul><li>0 (未初始化)没有调用send()方法</li><li>1 (载入)已调用send()，正在发送请求</li><li>2 (载入完成)send()方法执行完成，已经接收到全部响应内容</li><li>3 (交互)正在解析响应内容</li><li>4 (完成)响应内容解析完成，可在客户端调用</li></ul></li><li><p>xhr.status http状态码</p><ul><li>2xx 成功处理请求</li><li>3xx 重定向，浏览器直接跳转 301：永久重定向 302：临时重定向 304：资源未改变，用缓存</li><li>4xx 客户端请求错误，404：not found 403：客户端没有权限</li><li>5xx 服务端错误</li></ul></li></ul><h2 id="2-跨域"><a href="#2-跨域" class="headerlink" title="2. 跨域"></a>2. 跨域</h2><ul><li><p>什么是跨域 同源策略</p></li><li><p>JSONP</p></li><li><p>CORS</p><h3 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h3><blockquote><p>同源：协议，域名，端口三者一致。 Ajax请求时， <strong>浏览器</strong>要求当前页面和server必须同源。CSP安全<br>加载图片css，js可无视同源策略</p></blockquote></li><li><p>img src=’跨域的图片地址’，可用于统计埋点</p></li><li><p>link href=’跨域的css地址’ ，可以使用CDN</p></li><li><p>script src=’跨域的js地址’，可以使用CDN，实现JSONP<br>所有的跨域，都必须经过server端的允许和配合</p><h3 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h3></li><li><p>script可以实现跨域</p></li><li><p>server端可以动态拼接数据返回</p><h3 id="CORS-服务器端设置-http-header"><a href="#CORS-服务器端设置-http-header" class="headerlink" title="CORS - 服务器端设置 http header"></a>CORS - 服务器端设置 http header</h3><ul><li>Access-Control-Allow-Origin</li><li>Access-Control-Allow-Headers</li><li>Access-Control-Allow-Methods</li></ul></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;ul&gt;
-&lt;li&gt;手写一个简易的ajax&lt;/li&gt;
-&lt;li&gt;跨域&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id=&quot;知识点&quot;&gt;&lt;a href=&quot;#知识点&quot; class=&quot;headerlink&quot; title=&quot;知识点&quot;&gt;&lt;/a&gt;知识点&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;XMLHttpRequest&lt;/
-      
-    
-    </summary>
-    
-      <category term="JavaScript" scheme="https://wangyx233.github.io/categories/JavaScript/"/>
-    
-    
-  </entry>
-  
-  <entry>
     <title>【HTML】查漏补缺</title>
     <link href="https://wangyx233.github.io/2021/06/30/%5BHTML%5D%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA/"/>
     <id>https://wangyx233.github.io/2021/06/30/[HTML]查漏补缺/</id>
@@ -1389,6 +1387,34 @@
     </summary>
     
       <category term="HTML" scheme="https://wangyx233.github.io/categories/HTML/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>【WebAPI】AJAX</title>
+    <link href="https://wangyx233.github.io/2021/06/30/%5BJSWebAPI%5DAJAX/"/>
+    <id>https://wangyx233.github.io/2021/06/30/[JSWebAPI]AJAX/</id>
+    <published>2021-06-30T02:45:57.316Z</published>
+    <updated>2021-07-13T03:21:58.446Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>手写一个简易的ajax</li><li>跨域</li></ul><h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><ul><li>XMLHttpRequest</li><li>状态码</li><li>跨域： 同源策略，跨域解决方案</li></ul><h2 id="1-XMLHttpRequest"><a href="#1-XMLHttpRequest" class="headerlink" title="1. XMLHttpRequest"></a>1. XMLHttpRequest</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">const xhr = new XMLHttpRequest();</span><br><span class="line">xhr.open(&apos;method&apos;, &apos;url&apos;, &apos;true/false&apos;); // 是否是异步</span><br><span class="line">xhr.onreadystatechange = function () &#123;</span><br><span class="line">    if(xhr.readyState === 4) &#123;</span><br><span class="line">        if(xhr.status === 200) &#123;</span><br><span class="line">            console.log(JSON.parse(xhr.responseText))</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">xhr.send(null)</span><br><span class="line">// post</span><br><span class="line">xhr.send(JSON.stringify(&#123;&#125;))</span><br></pre></td></tr></table></figure><p>可以改成promise的情况</p><ul><li><p>xhr.readyState</p><ul><li>0 (未初始化)没有调用send()方法</li><li>1 (载入)已调用send()，正在发送请求</li><li>2 (载入完成)send()方法执行完成，已经接收到全部响应内容</li><li>3 (交互)正在解析响应内容</li><li>4 (完成)响应内容解析完成，可在客户端调用</li></ul></li><li><p>xhr.status http状态码</p><ul><li>2xx 成功处理请求</li><li>3xx 重定向，浏览器直接跳转 301：永久重定向 302：临时重定向 304：资源未改变，用缓存</li><li>4xx 客户端请求错误，404：not found 403：客户端没有权限</li><li>5xx 服务端错误</li></ul></li></ul><h2 id="2-跨域"><a href="#2-跨域" class="headerlink" title="2. 跨域"></a>2. 跨域</h2><ul><li><p>什么是跨域 同源策略</p></li><li><p>JSONP</p></li><li><p>CORS</p><h3 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h3><blockquote><p>同源：协议，域名，端口三者一致。 Ajax请求时， <strong>浏览器</strong>要求当前页面和server必须同源。CSP安全<br>加载图片css，js可无视同源策略</p></blockquote></li><li><p>img src=’跨域的图片地址’，可用于统计埋点</p></li><li><p>link href=’跨域的css地址’ ，可以使用CDN</p></li><li><p>script src=’跨域的js地址’，可以使用CDN，实现JSONP<br>所有的跨域，都必须经过server端的允许和配合</p><h3 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h3></li><li><p>script可以实现跨域</p></li><li><p>server端可以动态拼接数据返回</p><h3 id="CORS-服务器端设置-http-header"><a href="#CORS-服务器端设置-http-header" class="headerlink" title="CORS - 服务器端设置 http header"></a>CORS - 服务器端设置 http header</h3><ul><li>Access-Control-Allow-Origin</li><li>Access-Control-Allow-Headers</li><li>Access-Control-Allow-Methods</li></ul></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ul&gt;
+&lt;li&gt;手写一个简易的ajax&lt;/li&gt;
+&lt;li&gt;跨域&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;知识点&quot;&gt;&lt;a href=&quot;#知识点&quot; class=&quot;headerlink&quot; title=&quot;知识点&quot;&gt;&lt;/a&gt;知识点&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;XMLHttpRequest&lt;/
+      
+    
+    </summary>
+    
+      <category term="JavaScript" scheme="https://wangyx233.github.io/categories/JavaScript/"/>
     
     
   </entry>

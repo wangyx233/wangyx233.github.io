@@ -130,6 +130,127 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-[复盘]this" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/04/19/[复盘]this/">【复盘】学了又好像没学过</a>
+    </h1>
+  
+
+        
+        <a href="/2022/04/19/[复盘]this/" class="archive-article-date">
+  	<time datetime="2022-04-18T21:59:07.700Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-04-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>基础不扎实啊，学了，又好像没学过 😭</p>
+</blockquote>
+<h3 id="THIS-指向"><a href="#THIS-指向" class="headerlink" title="THIS 指向"></a>THIS 指向</h3><blockquote>
+<p><code>函数调用</code>时，根据<code>执行上下文</code>确定的。</p>
+</blockquote>
+<ol>
+<li>简单调用，严格模式是 undefined，否则绑定在全局对象 window/globa。l。</li>
+<li>显示调用 apply/call/bind，绑定到指定的参数对象上。</li>
+<li>对象调用，绑定在该对象上<br>在执行函数时，如果函数中的 this 是被上一级的对象所调用，那么 this 指向的就是上一级的对象；否则指向全局环境。</li>
+<li>构造函数 new 调用，绑定在新创建的对象上。<br>如果构造函数中显式返回一个值，且返回的是一个对象，那么 this 就指向这个返回的对象；如果返回的不是一个对象，那么 this 仍然指向实例{}。</li>
+<li>箭头函数的 this，由外层（全局/函数）的上下文绑定的 this 决定。<br>箭头函数的绑定无法被修改，this 始终沿着作用域链向上找（定义时决定，而不是执行时决定）。</li>
+</ol>
+<p>说明：</p>
+<ul>
+<li>通过 call、apply、bind、new 对 this 绑定的情况称为显式绑定。</li>
+<li>根据调用关系确定的 this 指向称为隐式绑定。</li>
+<li>call、apply 的显式绑定一般来说优先级更高。</li>
+<li>new 绑定的优先级比显式 bind 绑定更高。</li>
+<li>const 声明的变量不会挂载到 window 全局对象当中，var 会。</li>
+</ul>
+<p>QA: 严格模式都有哪些情况？</p>
+<ul>
+<li><code>use strict</code></li>
+<li><code>类表达式、类声明</code>中是强制严格模式的!!!</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">window.name = &apos;hello&apos;</span><br><span class="line">function A() &#123;</span><br><span class="line">  this.name = 123</span><br><span class="line">&#125;</span><br><span class="line">A.prototype.getName = function () &#123;</span><br><span class="line">  console.log(this)</span><br><span class="line">  return this.name + 1</span><br><span class="line">&#125;</span><br><span class="line">var a = new A()</span><br><span class="line">var funcA = a.getName</span><br><span class="line">funcA() // &apos;hello1&apos;</span><br><span class="line">a.getName() // 124</span><br><span class="line"></span><br><span class="line">window.name = &apos;hello&apos;</span><br><span class="line">class A &#123;</span><br><span class="line">  constructor() &#123;</span><br><span class="line">    this.name = 123</span><br><span class="line">  &#125;</span><br><span class="line">  getName = function() &#123; // Uncaught TypeError: Cannot read properties of undefined</span><br><span class="line">    console.log(this)</span><br><span class="line">    return this.name + 1</span><br><span class="line">  &#125;</span><br><span class="line">  getName = () =&gt; &#123; // 124</span><br><span class="line">    console.log(this)</span><br><span class="line">    return this.name + 1</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">var a = new A()</span><br><span class="line">var funcA = a.getName</span><br><span class="line">funcA()</span><br></pre></td></tr></table></figure>
+
+<p>如果要改变<code>this</code>指向有什么方法呢？</p>
+<ul>
+<li>首先想到用<code>call</code>,<code>apply</code>,<code>bind</code>来修改</li>
+<li>借助对象调用</li>
+<li>箭头函数</li>
+</ul>
+<blockquote>
+<p>实现一个 bind 方法</p>
+</blockquote>
+<ul>
+<li>返回一个函数，this</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Function.prototype.bind = Function.prototype.bind || function (context, ...args) &#123;</span><br><span class="line">    if (typeof this !== &quot;function&quot;) throw new TypeError(&apos;need a function&apos;)</span><br><span class="line">    const fn = this;</span><br><span class="line">    return function (...args2) &#123;</span><br><span class="line">        return fn.apply(context, [...args, ...args2])</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注：</p>
+<ul>
+<li>边界情况</li>
+<li>bind 返回的函数如果作为构造函数，搭配 new 关键字出现的话，我们的绑定 this 就需要“被忽略”</li>
+<li>apply 可以改为对象的隐式调用</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/JavaScript//" class="article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/04/19/[复盘]this/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-[React]useRef" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1179,69 +1300,6 @@
 
 
   
-    <article id="post-碎碎念" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/03/16/碎碎念/">碎碎念</a>
-    </h1>
-  
-
-        
-        <a href="/2022/03/16/碎碎念/" class="archive-article-date">
-  	<time datetime="2022-03-16T03:28:05.125Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>害，还是加分号吧，减少 debug 的成本<br>来自解构赋值的怒吼。。。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/03/16/碎碎念/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1359,14 +1417,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">HTTPS</a>
               </li>
              
@@ -1383,11 +1433,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1415,19 +1469,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">moment.js</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Date</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Promise</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">setTimeout</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">moment.js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Date</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1444,6 +1498,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
