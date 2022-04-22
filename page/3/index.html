@@ -130,6 +130,114 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-安全了-HTTPS" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/06/30/安全了-HTTPS/">HTTPS</a>
+    </h1>
+  
+
+        
+        <a href="/2021/06/30/安全了-HTTPS/" class="archive-article-date">
+  	<time datetime="2021-06-30T02:45:57.335Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>HTTP 的明文传输带来的问题，可能在传输过程中信息被窃取或者篡改，伪造，容易发生中间人攻击。<br>HTTP -&gt; 安全层（SSL/TLS） -&gt; 传输层 -&gt; 网络层，其中安全层的作用是对发送的 HTTP 请求进行加密操作，以及对接收到的 HTTP 请求进行解密操作。</p>
+<p>对称加密，非对称加密的优缺点，得到一个对称加密和非对称加密搭配使用的方式。<br>传输过程中使用对称加密传输数据，而对称加密所需的密钥则通过非对称加密传输。搭配数字证书，数字证书是向浏览器方明确服务器方的身份，以及提供公钥。</p>
+<ol>
+<li>浏览器端向服务端发送请求，包含对称加密套件列表 + 非对称加密套件列表 + client_random</li>
+<li>服务端接到请求后，向浏览器端发送选择的，对称加密套件 + 非对称加密套件 + service_random + 数字证书</li>
+<li>浏览器端接到响应，先验证数字证书，然后 client_random + service_random 生成 pre_master，用公钥加密 pre_master，再加浏览器确认，发送到服务端</li>
+<li>服务端接到请求先用私钥解密，得到 pre_master，服务器发送确认</li>
+<li>开始 client_random + service_random + premaster 生成的 master secret 加密的数据进行传输。</li>
+</ol>
+<h4 id="数字证书是啥，有啥用？"><a href="#数字证书是啥，有啥用？" class="headerlink" title="数字证书是啥，有啥用？"></a>数字证书是啥，有啥用？</h4><p>为了验证服务器的身份呀，避免中间人攻击。所以这边的解决方法是通过第三方的认证机构(CA)生成一个数字证书来证明呀。</p>
+<p>如何生成？</p>
+<ul>
+<li>我们准备一套公钥和私钥，私钥自己留着。然后向 CA 机构提交，公钥、公司、站点等信息并等待认证，这个认证过程可能是收费的</li>
+<li>CA 通过线上、线下等多种渠道来验证我们所提供信息的真实性，如公司是否存在、企业是否合法、域名是否归属该企业等；</li>
+<li>如果信息审核通过，CA 会向我们签发认证的数字证书，包含了公钥、组织信息、CA 的信息、有效时间、证书序列号等，这些信息都是明文的，同时包含一个 CA 生成的签名</li>
+</ul>
+<p>首先 CA 使用 Hash 函数来计算我们提交的明文信息，并得出信息摘要；然后 CA 再使用它的私钥对信息摘要进行加密，加密后的密文就是 CA 颁给我们的数字签名。</p>
+<p>通常情况下，操作系统中会内置信任的顶级 CA 的证书信息（包含公钥），如果这个 CA 链中没有找到浏览器内置的顶级的 CA，证书也会被判定非法。</p>
+<p>内置 CA 对应的证书称为根证书，根证书是最权威的机构，它们自己为自己签名，我们把这称为自签名证书。</p>
+<p>如何验证？</p>
+<p>浏览器接收到数字证书之后，会对数字证书进行验证。首先浏览器读取证书中相关的明文信息，采用 CA 签名时相同的 Hash 函数来计算并得到信息摘要 A；然后再利用对应 CA 的公钥解密签名数据，得到信息摘要 B；对比信息摘要 A 和信息摘要 B，如果一致，则可以确认证书是合法的，即证明了这个服务器；同时浏览器还会验证证书相关的域名信息、有效时间等信息。</p>
+<blockquote>
+<p>PS: 没想到没修的信息安全的课，效果这么好，至今我还记得安全的基础概念（并不是因为老师很帅 🐶）</p>
+</blockquote>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">HTTPS</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/网络//" class="article-tag-list-link color3">网络</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/06/30/安全了-HTTPS/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-web安全" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1372,142 +1480,6 @@
 
 
   
-    <article id="post-[React]虚拟DOM" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/30/[React]虚拟DOM/">【React】Virtual DOM</a>
-    </h1>
-  
-
-        
-        <a href="/2021/06/30/[React]虚拟DOM/" class="archive-article-date">
-  	<time datetime="2021-06-30T02:45:57.326Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="What？"><a href="#What？" class="headerlink" title="What？"></a>What？</h1><p>Virtual DOM本质上是JS 和 DOM 之间的一个映射缓存，是能够描述DOM结构及其属性的JS对象。</p>
-<ul>
-<li>虚拟DOM是JS对象</li>
-<li>虚拟DOM是对真实DOM的描述</li>
-</ul>
-<p>挂载阶段，根据JSX的描述，构建出虚拟DOM，然后通过ReactDOM.render实现虚拟DOM到真实DOM的映射<br>更新阶段，页面的变化在作用于真实DOM之前，会先作用于虚拟DOM</p>
-<h1 id="Why？"><a href="#Why？" class="headerlink" title="Why？"></a>Why？</h1><ul>
-<li>jQuery解决DOM API 不好使的问题。还解决浏览器兼容，链式API调用，插件扩展</li>
-<li>模板引擎，只关心数据，不关心DOM细节。操作真实DOM的范围过大、频率过高，但思想是数据驱动视图</li>
-<li>虚拟DOM的点不在性能。虚拟DOM有没有借鉴模板引擎无法考证，但是思想上有一定的递进关系。JSX不是模板，而是JS的一个体验像模板的扩展语法糖，然后增加了个虚拟DOM的缓存层。</li>
-</ul>
-<blockquote>
-<p>差量更新。即当DOM操作比较频繁时，会将前后两次的DOM树变化进行对比diff，定位到需要更新的部分，生成一个“补丁集”，把“补丁”patch打在需要更新的那部分真实DOM上，就可以实现差量更新<br>批量更新。batch函数处理，把短时间内的多次DOM操作合成一个次更新，即把收集的多个补丁集暂存到队列中，再讲最终结果交给渲染函数，实现DOM的集中化批量更新。</p>
-</blockquote>
-<ol>
-<li>研发体验/研发效率。虚拟DOM思想是数据驱动视图，前端声明式编程。</li>
-<li>性能不是卖点。性能还不错，性能量化不能一概而论只看一个指标，得看实际情况。DOM操作量级有关</li>
-<li>价值？跨平台，一次编码多次应用。虚拟DOM是对实际渲染内容的一次抽象</li>
-<li>规避xss攻击</li>
-</ol>
-<p>缺点：</p>
-<ol>
-<li>内存占用高，虚拟DOM，object</li>
-<li>无法进行极致优化。如Google Earth</li>
-</ol>
-<h1 id="How"><a href="#How" class="headerlink" title="How?"></a>How?</h1><h2 id="调和Reconciliation-和-Diff算法"><a href="#调和Reconciliation-和-Diff算法" class="headerlink" title="调和Reconciliation 和 Diff算法"></a>调和Reconciliation 和 Diff算法</h2><blockquote>
-<p>调和是将虚拟DOM映射到真实DOM的过程。Diff算法只是其中的一个小部分，深度优先遍历</p>
-</blockquote>
-<ol>
-<li><p>React 15为代表的“栈调和”<br>传统的递归比较两棵树结构的不同算法复杂度是O(n^3)，这个复杂度显然不能令人接受，所以React中做了什么呢，将复杂度转换成O(n)</p>
-<ul>
-<li>Diff算法性能突破的关键点是“分层比较”<br>分层比较其实是分层递归比较，所以“同层级操作”是主流，只针对相同层级的节点进行比较，如果是跨层级的节点操作，其实是对应这销毁和重建的过程，尽量保持DOM节点的稳定性。</li>
-<li>类型一致的节点才有继续Diff的必要<br>根据主要“矛盾”类型不一致的节点，直接放弃比较，原地替换旧的节点。</li>
-<li>key属性的设置，可以尽可能重用同一层级内的节点<br>key主要解决的是同一层级下节点的重用问题。设置key的元素可以避免不必要的销毁和重建，只是调整顺序排列。<blockquote>
-<p>注：作为一个节点的唯一标识，使用key之前，保证key的唯一和稳定。<br>大致过程可以描述为树对比、组件对比、元素对比<br>总结：栈调和机制下的Diff算法，其实是树的深度优先遍历过程。<br>这个过程是同步的过程，不可被打断。Stack Reconciler 需要的时间越长，意味着JS线程将霸占主线程的时间越长。进而导致会出现渲染卡死、交互无响应的现象。</p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><p>React 16以来的“Fiber调和”<br>Fiber：纤程，对渲染过程进行更加精细的控制。是Fiber树结构的节点单位，也就是React 16下的“虚拟DOM”,并且Fiber节点保存了组件需要更新的状态和副作用。</p>
-</li>
-</ol>
-<ul>
-<li>可中断</li>
-<li>可恢复</li>
-<li>优先级</li>
-</ul>
-<h1 id="Better？"><a href="#Better？" class="headerlink" title="Better？"></a>Better？</h1><ol>
-<li>避免跨层级节点移动</li>
-<li>设置唯一的key，尽量减少组件层级</li>
-<li>设置shouldComponentUpdate 或者 React.pureComponet 减少 diff 次数</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">React</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/React//" class="article-tag-list-link color1">React</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/30/[React]虚拟DOM/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
@@ -1641,11 +1613,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1657,15 +1633,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">search</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tree</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Binary tree</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">search</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1685,14 +1661,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">moment.js</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Date</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">closure</a>
               </li>
              
@@ -1701,15 +1669,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">moment.js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Date</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">github</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="what？ 当然是用来构造对象的函数啦~ 当然可以简单的这样理解  构造函数（constructor），是专门用来生成实例对象的函数，描述实例对象的基本结构。为了与普通函数区别，构造函数名称的第一个字母通常大写，有自己的特征与用法。  特点： 函数内部使用this关键字，代表要生成的对象实例 生成对象的时候，要使用new命令    等等 new 是什么? 12345const Person = f">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2022-04-13T06:21:49.592Z">
+<meta property="og:updated_time" content="2022-04-22T15:27:06.623Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【JS基础】构造函数">
 <meta name="twitter:description" content="what？ 当然是用来构造对象的函数啦~ 当然可以简单的这样理解  构造函数（constructor），是专门用来生成实例对象的函数，描述实例对象的基本结构。为了与普通函数区别，构造函数名称的第一个字母通常大写，有自己的特征与用法。  特点： 函数内部使用this关键字，代表要生成的对象实例 生成对象的时候，要使用new命令    等等 new 是什么? 12345const Person = f">
@@ -196,8 +196,6 @@
 <li>如果不是，则忽略<code>return</code>的内容，返回<code>this</code>对象</li>
 </ul>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>实现一个<code>new</code>吧</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var myNew = (constructor, ...args) =&gt; &#123;</span><br><span class="line">  const obj = &#123;&#125;</span><br><span class="line">  obj.__proto__ = constructor.prototype //  Object.setPrototypeOf(obj, constructor.prototype)</span><br><span class="line">  const result = constructor.apply(obj, args)</span><br><span class="line">  return (typeof result === &apos;object&apos; &amp;&amp; result !== null) ? result : obj</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var myNew = (constructor, ...args) =&gt; &#123;</span><br><span class="line">  const obj = &#123;&#125;</span><br><span class="line">  obj.__proto__ = constructor.prototype //  Object.setPrototypeOf(obj, constructor.prototype)</span><br><span class="line">  const result = constructor.apply(obj, args)</span><br><span class="line">  return (typeof result === &apos;object&apos; &amp;&amp; result !== null) ? result : obj</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <blockquote>
@@ -500,11 +498,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -516,15 +518,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">search</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tree</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Binary tree</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">search</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -544,14 +546,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">moment.js</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Date</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">closure</a>
               </li>
              
@@ -560,15 +554,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">moment.js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Date</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">github</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">

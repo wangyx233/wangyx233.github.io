@@ -228,6 +228,142 @@
 
 
   
+    <article id="post-[React]虚拟DOM" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/06/30/[React]虚拟DOM/">【React】Virtual DOM</a>
+    </h1>
+  
+
+        
+        <a href="/2021/06/30/[React]虚拟DOM/" class="archive-article-date">
+  	<time datetime="2021-06-30T02:45:57.326Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="What？"><a href="#What？" class="headerlink" title="What？"></a>What？</h1><p>Virtual DOM本质上是JS 和 DOM 之间的一个映射缓存，是能够描述DOM结构及其属性的JS对象。</p>
+<ul>
+<li>虚拟DOM是JS对象</li>
+<li>虚拟DOM是对真实DOM的描述</li>
+</ul>
+<p>挂载阶段，根据JSX的描述，构建出虚拟DOM，然后通过ReactDOM.render实现虚拟DOM到真实DOM的映射<br>更新阶段，页面的变化在作用于真实DOM之前，会先作用于虚拟DOM</p>
+<h1 id="Why？"><a href="#Why？" class="headerlink" title="Why？"></a>Why？</h1><ul>
+<li>jQuery解决DOM API 不好使的问题。还解决浏览器兼容，链式API调用，插件扩展</li>
+<li>模板引擎，只关心数据，不关心DOM细节。操作真实DOM的范围过大、频率过高，但思想是数据驱动视图</li>
+<li>虚拟DOM的点不在性能。虚拟DOM有没有借鉴模板引擎无法考证，但是思想上有一定的递进关系。JSX不是模板，而是JS的一个体验像模板的扩展语法糖，然后增加了个虚拟DOM的缓存层。</li>
+</ul>
+<blockquote>
+<p>差量更新。即当DOM操作比较频繁时，会将前后两次的DOM树变化进行对比diff，定位到需要更新的部分，生成一个“补丁集”，把“补丁”patch打在需要更新的那部分真实DOM上，就可以实现差量更新<br>批量更新。batch函数处理，把短时间内的多次DOM操作合成一个次更新，即把收集的多个补丁集暂存到队列中，再讲最终结果交给渲染函数，实现DOM的集中化批量更新。</p>
+</blockquote>
+<ol>
+<li>研发体验/研发效率。虚拟DOM思想是数据驱动视图，前端声明式编程。</li>
+<li>性能不是卖点。性能还不错，性能量化不能一概而论只看一个指标，得看实际情况。DOM操作量级有关</li>
+<li>价值？跨平台，一次编码多次应用。虚拟DOM是对实际渲染内容的一次抽象</li>
+<li>规避xss攻击</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>内存占用高，虚拟DOM，object</li>
+<li>无法进行极致优化。如Google Earth</li>
+</ol>
+<h1 id="How"><a href="#How" class="headerlink" title="How?"></a>How?</h1><h2 id="调和Reconciliation-和-Diff算法"><a href="#调和Reconciliation-和-Diff算法" class="headerlink" title="调和Reconciliation 和 Diff算法"></a>调和Reconciliation 和 Diff算法</h2><blockquote>
+<p>调和是将虚拟DOM映射到真实DOM的过程。Diff算法只是其中的一个小部分，深度优先遍历</p>
+</blockquote>
+<ol>
+<li><p>React 15为代表的“栈调和”<br>传统的递归比较两棵树结构的不同算法复杂度是O(n^3)，这个复杂度显然不能令人接受，所以React中做了什么呢，将复杂度转换成O(n)</p>
+<ul>
+<li>Diff算法性能突破的关键点是“分层比较”<br>分层比较其实是分层递归比较，所以“同层级操作”是主流，只针对相同层级的节点进行比较，如果是跨层级的节点操作，其实是对应这销毁和重建的过程，尽量保持DOM节点的稳定性。</li>
+<li>类型一致的节点才有继续Diff的必要<br>根据主要“矛盾”类型不一致的节点，直接放弃比较，原地替换旧的节点。</li>
+<li>key属性的设置，可以尽可能重用同一层级内的节点<br>key主要解决的是同一层级下节点的重用问题。设置key的元素可以避免不必要的销毁和重建，只是调整顺序排列。<blockquote>
+<p>注：作为一个节点的唯一标识，使用key之前，保证key的唯一和稳定。<br>大致过程可以描述为树对比、组件对比、元素对比<br>总结：栈调和机制下的Diff算法，其实是树的深度优先遍历过程。<br>这个过程是同步的过程，不可被打断。Stack Reconciler 需要的时间越长，意味着JS线程将霸占主线程的时间越长。进而导致会出现渲染卡死、交互无响应的现象。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>React 16以来的“Fiber调和”<br>Fiber：纤程，对渲染过程进行更加精细的控制。是Fiber树结构的节点单位，也就是React 16下的“虚拟DOM”,并且Fiber节点保存了组件需要更新的状态和副作用。</p>
+</li>
+</ol>
+<ul>
+<li>可中断</li>
+<li>可恢复</li>
+<li>优先级</li>
+</ul>
+<h1 id="Better？"><a href="#Better？" class="headerlink" title="Better？"></a>Better？</h1><ol>
+<li>避免跨层级节点移动</li>
+<li>设置唯一的key，尽量减少组件层级</li>
+<li>设置shouldComponentUpdate 或者 React.pureComponet 减少 diff 次数</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">React</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/React//" class="article-tag-list-link color1">React</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/06/30/[React]虚拟DOM/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-[React]源码从入门到跑路" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -451,6 +587,106 @@
 
 
   
+    <article id="post-[React]前端路由" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/06/30/[React]前端路由/">【React】前端路由-React Router</a>
+    </h1>
+  
+
+        
+        <a href="/2021/06/30/[React]前端路由/" class="archive-article-date">
+  	<time datetime="2021-06-30T02:45:57.323Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="What"><a href="#What" class="headerlink" title="What"></a>What</h1><ul>
+<li>切换Hash</li>
+<li>切换Path<br>HTML5的History API中的 pushState、replaceState，还需要在服务端配置historyApiFallback<br>路由守卫<h1 id="How"><a href="#How" class="headerlink" title="How"></a>How</h1></li>
+</ul>
+<ol>
+<li>路由器：BrowserRouter 和 HashRouter</li>
+</ol>
+<ul>
+<li>BrowserRouter 是使用 HTML 5 的 history API 来控制路由跳转的。</li>
+<li>HashRouter 是通过 URL 的 hash 属性来控制路由跳转的。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">window.location.hash</span><br><span class="line">// 监听hash变化，点击浏览器的前进后退会触发</span><br><span class="line">window.addEventListener(&apos;hashchange&apos;, function(event)&#123;</span><br><span class="line">    // 根据 hash 的变化更新内容</span><br><span class="line">&#125;,false)</span><br><span class="line">window.history.forward()  // 前进到下一页</span><br><span class="line">window.history.back() // 后退到上一页</span><br><span class="line">window.history.go(2)</span><br><span class="line">history.pushState(data[,title][,url]); // 向浏览历史中追加一条记录</span><br><span class="line">history.replaceState(data[,title][,url]); // 修改（替换）当前页在浏览历史中的信息</span><br><span class="line">window.addEventListener(&apos;popstate&apos;, function(e) &#123;</span><br><span class="line">  console.log(e)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<blockquote>
+<p>go、forward 和 back 等方法的调用确实会触发 popstate，但是pushState 和 replaceState 不会。不过这一点问题不大，我们可以通过自定义事件和全局事件总线来手动触发事件。</p>
+</blockquote>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">React</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/React//" class="article-tag-list-link color1">React</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/06/30/[React]前端路由/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-[React]事件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -641,106 +877,6 @@
 
 
   
-    <article id="post-[React]前端路由" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/30/[React]前端路由/">【React】前端路由-React Router</a>
-    </h1>
-  
-
-        
-        <a href="/2021/06/30/[React]前端路由/" class="archive-article-date">
-  	<time datetime="2021-06-30T02:45:57.323Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="What"><a href="#What" class="headerlink" title="What"></a>What</h1><ul>
-<li>切换Hash</li>
-<li>切换Path<br>HTML5的History API中的 pushState、replaceState，还需要在服务端配置historyApiFallback<br>路由守卫<h1 id="How"><a href="#How" class="headerlink" title="How"></a>How</h1></li>
-</ul>
-<ol>
-<li>路由器：BrowserRouter 和 HashRouter</li>
-</ol>
-<ul>
-<li>BrowserRouter 是使用 HTML 5 的 history API 来控制路由跳转的。</li>
-<li>HashRouter 是通过 URL 的 hash 属性来控制路由跳转的。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">window.location.hash</span><br><span class="line">// 监听hash变化，点击浏览器的前进后退会触发</span><br><span class="line">window.addEventListener(&apos;hashchange&apos;, function(event)&#123;</span><br><span class="line">    // 根据 hash 的变化更新内容</span><br><span class="line">&#125;,false)</span><br><span class="line">window.history.forward()  // 前进到下一页</span><br><span class="line">window.history.back() // 后退到上一页</span><br><span class="line">window.history.go(2)</span><br><span class="line">history.pushState(data[,title][,url]); // 向浏览历史中追加一条记录</span><br><span class="line">history.replaceState(data[,title][,url]); // 修改（替换）当前页在浏览历史中的信息</span><br><span class="line">window.addEventListener(&apos;popstate&apos;, function(e) &#123;</span><br><span class="line">  console.log(e)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<blockquote>
-<p>go、forward 和 back 等方法的调用确实会触发 popstate，但是pushState 和 replaceState 不会。不过这一点问题不大，我们可以通过自定义事件和全局事件总线来手动触发事件。</p>
-</blockquote>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">React</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/React//" class="article-tag-list-link color1">React</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/30/[React]前端路由/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-[React]setState" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -894,97 +1030,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/06/30/[React]ReactDOM.render/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-[React]JSX" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/30/[React]JSX/">【React】Why JSX?</a>
-    </h1>
-  
-
-        
-        <a href="/2021/06/30/[React]JSX/" class="archive-article-date">
-  	<time datetime="2021-06-30T02:45:57.321Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h1><ul>
-<li>JSX 的本质是什么，它和 JS 之间到底是什么关系？</li>
-<li>为什么要用 JSX？不用会有什么后果？</li>
-<li>JSX 背后的功能模块是什么，这个功能模块都做了哪些事情？</li>
-</ul>
-        
-          <a class="article-more-a" href="/2021/06/30/[React]JSX/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">React</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/React//" class="article-tag-list-link color1">React</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/30/[React]JSX/">展开全文 >></a>
         </p>
       
 
@@ -1292,11 +1337,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1308,15 +1357,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">search</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tree</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Binary tree</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">search</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1336,14 +1385,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">moment.js</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Date</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">closure</a>
               </li>
              
@@ -1352,15 +1393,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">moment.js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Date</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">github</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">

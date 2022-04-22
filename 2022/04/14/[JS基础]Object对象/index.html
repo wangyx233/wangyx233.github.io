@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Object.getPrototypeOf()   获得参数对象原型的方法呀。是该对象的__proto__指向  1234Object.getPrototypeOf(&amp;#123;&amp;#125;) === Object.prototype // trueObject.getPrototypeOf(Object.prototype) === null // truefunction f() &amp;#123">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2022-04-14T13:52:58.126Z">
+<meta property="og:updated_time" content="2022-04-22T15:28:08.538Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【JS基础】Object对象方法">
 <meta name="twitter:description" content="Object.getPrototypeOf()   获得参数对象原型的方法呀。是该对象的__proto__指向  1234Object.getPrototypeOf(&amp;#123;&amp;#125;) === Object.prototype // trueObject.getPrototypeOf(Object.prototype) === null // truefunction f() &amp;#123">
@@ -228,7 +228,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function copyObject(orig) &#123;</span><br><span class="line">  var copy = Object.create(Object.getPrototypeOf(orig));</span><br><span class="line">  copyOwnPropertiesFrom(copy, orig);</span><br><span class="line">  return copy;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function copyOwnPropertiesFrom(target, source) &#123;</span><br><span class="line">  Object</span><br><span class="line">    .getOwnPropertyNames(source)</span><br><span class="line">    .forEach(function (propKey) &#123;</span><br><span class="line">      var desc = Object.getOwnPropertyDescriptor(source, propKey);</span><br><span class="line">      Object.defineProperty(target, propKey, desc);</span><br><span class="line">    &#125;);</span><br><span class="line">  return target;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="prototype-对象"><a href="#prototype-对象" class="headerlink" title="prototype 对象"></a>prototype 对象</h3><blockquote>
-<p>拥有 constructor，指向改原型对象的构造函数<br>constructor 属性表示原型对象与构造函数之间的关联关系，如果修改了原型对象，一般会同时修改 constructor 属性，防止引用的时候出错。</p>
+<p>拥有 constructor，指向该原型对象的构造函数<br>constructor 属性表示原型对象与构造函数之间的关联关系，如果修改了原型对象，一般会同时修改 constructor 属性，防止引用的时候出错。</p>
 </blockquote>
 <ul>
 <li>instanceof</li>
@@ -540,11 +540,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -556,15 +560,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">search</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">tree</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Binary tree</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">search</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -584,14 +588,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">moment.js</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Date</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">closure</a>
               </li>
              
@@ -600,15 +596,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">moment.js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Date</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">github</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
