@@ -130,6 +130,113 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-[业务]导出那些事" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/04/06/[业务]导出那些事/">【业务】下载导出那些事</a>
+    </h1>
+  
+
+        
+        <a href="/2022/04/06/[业务]导出那些事/" class="archive-article-date">
+  	<time datetime="2022-04-06T08:56:48.263Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-04-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>平时业务开发中，经常会遇到数据导出的需求，说到导出可以大体概括为两大种类：</p>
+<ul>
+<li>纯前端导出</li>
+<li>有后端参与导出</li>
+</ul>
+<h3 id="纯前端导出"><a href="#纯前端导出" class="headerlink" title="纯前端导出"></a>纯前端导出</h3><p>这个需求的情况主要是，根据页面上展示的列表数据进行导出，简单的实现方式是将数据拼接，生成一个 url 地址，借助 a 标签下载，如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// data的格式 [[&apos;tr1&apos;, &apos;tr2&apos;, &apos;tr3&apos;], [&apos;td1&apos;, &apos;td2&apos;, &apos;td3&apos;]]</span><br><span class="line">function getDownloadUrl(data, type) &#123;</span><br><span class="line">  const _utf = &quot;\uFEFF&quot;; // 防止Excel中文乱码</span><br><span class="line">  let csvData = &apos;&apos;</span><br><span class="line">  data.forEach(function (elem) &#123;</span><br><span class="line">    csvData += &quot;\&quot;&quot; + elem.join(&apos;&quot;,&quot;&apos;) + &quot;\&quot;\r\n&quot;;</span><br><span class="line">  &#125;)</span><br><span class="line">  let option = &#123;&#125;; // &#123; type: &apos;text/csv&apos;&#125;</span><br><span class="line">  if (type === &apos;xls&apos;) option = &#123;</span><br><span class="line">    type: &quot;application/vnd.ms-excel;charset=utf-8&quot;</span><br><span class="line">  &#125;</span><br><span class="line">  const csvBlob = new Blob([_utf + csvData], option)</span><br><span class="line">  return URL.createObjectURL(csvBlob);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>也可以借用 xlsx 和 file-saver 两个插件来实现。</p>
+<h3 id="后端参与导出"><a href="#后端参与导出" class="headerlink" title="后端参与导出"></a>后端参与导出</h3><p>有接口层参与的导出，接口层返回的数据可能分为两种，一种是直接返回下载资源的地址，另一种是返回二进制数据。</p>
+<ol>
+<li><p>返回一个资源地址<br>返回地址的话，可以借用<code>window.open(url)</code> 或者 <code>window.location.href = url</code> 进行下载。</p>
+</li>
+<li><p>返回二进制数据<br>这种方式是借助<code>Blob</code>将文件流转换为 Blob 二进制对象，利用<code>URL.createObjectUrl</code>生成 url 地址，利用<code>a</code>标签的<code>href, download</code>配合下载，示例如下：👇🏻</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">api.get(url, &#123;</span><br><span class="line">  responseType: &apos;blob&apos;,</span><br><span class="line">&#125;)</span><br><span class="line">.then((res) =&gt; &#123;</span><br><span class="line">  const &#123; data, headers &#125; = res</span><br><span class="line">  const blob = new Blob([data])</span><br><span class="line">  const url = URL.createObjectURL(blob)</span><br><span class="line">  const fileName = decodeURIComponent(</span><br><span class="line">    `$&#123;headers[&apos;content-disposition&apos;]&#125;`.split(&apos;;&apos;)[1].split(&apos;filename=&apos;)[1] // $&#123;headers[&apos;content-disposition&apos;]&#125;`.match(/filename=(.*);/)[1]</span><br><span class="line">  )</span><br><span class="line">  const a = document.createElement(&apos;a&apos;)</span><br><span class="line">  a.style.display = &apos;none&apos;</span><br><span class="line">  a.href = url</span><br><span class="line">  a.download = fileName</span><br><span class="line">  document.body.appendChild(a)</span><br><span class="line">  a.click()</span><br><span class="line">  document.body.removeChild(a)</span><br><span class="line">  URL.revokeObjectURL(url)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>注意：</p>
+<blockquote>
+<ol>
+<li>如果要获取 <code>Content-Disposition</code>，跨域的情况下需要接口层配合 <code>Access-Control-Expose-Headers: Content-Disposition</code>（前端获取到的 header 只有默认的 6 个基本字段：Cache-Control、Content-Language、Content-Type、Expires、Last-Modified、Pragma。）</li>
+<li>请求返回的 <code>Content-type: application/octet-stream</code></li>
+<li><code>responseType: &#39;blob&#39;</code> 设置返回数据的类型，默认是 json 类型</li>
+</ol>
+</blockquote>
+</li>
+</ol>
+<p>除了这两种方式以外，还可以通过导出接口进行参数拼接直接下载，如<code>window.location.href = &#39;导出接口地址&#39;?date=&#39;2022-04&#39;</code><br>问题：</p>
+<ul>
+<li>参数太多，可能会超过 url 长度限制，编码问题也需要注意(get 请求的)<br>HTTP 协议不对 URI 的长度作事先的限制，服务器必须能够处理任何他们提供资源的 URI，并且应该能够处理无限长度的 URIs，这种无效长度的 URL 可能会在客户端以基于 GET 方式的请求时产生。如果服务器不能处理太长的 URI 的时候，服务器应该返回 414 状态码（此状态码代表 Request-URI 太长）<br>不同的游览器对 URL 的长度限制是有所差异的。</li>
+<li>鉴权问题。如果 url 是需要拼接的话，需要在 querystring 中拼接 token 信息</li>
+<li>无法知道下载进度，下载用时</li>
+<li>浏览器可直接浏览的文件类型是不提供下载的，如 txt、png、jpg、gif 等</li>
+</ul>
+<h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><p>在开发中，我们的导出方式经历了从 window.open 到 blob 方式的替换，可以在当前页面下载，无需新开页面的过度，并且下载的过程可控。<br>当然导出方式可以根据实际开发需求自行选择~</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/业务//" class="article-tag-list-link color3">业务</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/04/06/[业务]导出那些事/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-[网络]cdn" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1035,94 +1142,6 @@
 
 
   
-    <article id="post-[读书]JavaScript高级程序设计" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/07/13/[读书]JavaScript高级程序设计/">【读书】JavaScript高级程序设计</a>
-    </h1>
-  
-
-        
-        <a href="/2021/07/13/[读书]JavaScript高级程序设计/" class="archive-article-date">
-  	<time datetime="2021-07-13T03:21:58.359Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>script标签<br>defer vs async<br>共同点：只对外部脚本有效，src=’xxx’<br>不同：</p>
-<blockquote>
-<p>defer表明脚本立即下载，但是执行会推迟，在DOMContentLoaded之前执行。即加载无需等待，HTML5规定执行需要有序的。<br>async表明脚本会并行下载，下载完立即执行，不保证执行的顺序。会在页面loaded执行前完成。类似 DOM 内通过createElement创建script标签(可配合rel=’preload’)。</p>
-</blockquote>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/生活//" class="article-tag-list-link color3">生活</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/07/13/[读书]JavaScript高级程序设计/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -1224,6 +1243,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">CI/CD</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">React</a>
               </li>
              
@@ -1233,14 +1256,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">购房</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1260,19 +1275,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">CI/CD</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1288,7 +1307,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">投资</a>
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1300,6 +1319,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">投资</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">moment.js</a>
               </li>
              
@@ -1308,11 +1331,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">closure</a>
+                <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
+                <a href="javascript:void(0)" class="js-tag color3">closure</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1325,10 +1348,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">安全</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -237,6 +237,190 @@
 
 
   
+    <article id="post-[WebAPI]BOM" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/06/30/[WebAPI]BOM/">【WebAPI】BOM</a>
+    </h1>
+  
+
+        
+        <a href="/2021/06/30/[WebAPI]BOM/" class="archive-article-date">
+  	<time datetime="2021-06-30T02:45:57.327Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>BOM -&gt; Browser Object Model</p>
+</blockquote>
+<ul>
+<li>如何识别浏览器的类型</li>
+<li>分别拆解url各部分</li>
+</ul>
+<h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><ul>
+<li>navigator</li>
+<li>screen</li>
+<li>location</li>
+<li>history<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// 1. navigator</span><br><span class="line">const ua = navigator.userAgent;</span><br><span class="line"></span><br><span class="line">// 2. screen</span><br><span class="line">const width = screen.width;</span><br><span class="line">const height = screen.height;</span><br><span class="line"></span><br><span class="line">// 3. location</span><br><span class="line">location.href</span><br><span class="line">location.protocol</span><br><span class="line">location.pathname</span><br><span class="line">location.hash</span><br><span class="line">location.search</span><br><span class="line">location.host</span><br><span class="line"></span><br><span class="line">// 4. history</span><br><span class="line">history.back();</span><br><span class="line">history.forwards();</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/JavaScript//" class="article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/06/30/[WebAPI]BOM/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-[React]生命周期" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/06/30/[React]生命周期/">【React】生命周期</a>
+    </h1>
+  
+
+        
+        <a href="/2021/06/30/[React]生命周期/" class="archive-article-date">
+  	<time datetime="2021-06-30T02:45:57.326Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="React-15"><a href="#React-15" class="headerlink" title="React 15"></a>React 15</h2><img src="/gallery/react15life.png">
+
+<ul>
+<li>Mounting 阶段：组件的初始化渲染<br>在组件一生中仅会发生一次。组件初始化，然后被渲染到真实的 DOM 中，完成“首次渲染”。render 不会操作真实的 DOM，真实 DOM 的渲染工作，在挂载阶段是由 ReactDOM.render 来承接的。componentDidMount 在渲染后触发，此时真实的 DOM 已经挂载，可以进行数据请求，初始化等操作。</li>
+<li>Updating 阶段：组件的更新<ol>
+<li>父组件更新触发的更新。componentReceiveProps 并不是由 props 的变化触发的，而是由父组件的更新触发的</li>
+<li>组件调用 setState 触发更新。 shouldComponentUpdate 决定组件的 re-render</li>
+</ol>
+</li>
+<li>Unmounting 阶段：组件的卸载。 组件被移除了，或者设置了 key，在 render 过程中发现 key 改变了</li>
+</ul>
+<h2 id="React-16"><a href="#React-16" class="headerlink" title="React 16"></a>React 16</h2><h3 id="React-16-4"><a href="#React-16-4" class="headerlink" title="React 16.4"></a>React 16.4</h3><img src="/gallery/react16life.png">
+        
+          <a class="article-more-a" href="/2021/06/30/[React]生命周期/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">React</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/React//" class="article-tag-list-link color1">React</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/06/30/[React]生命周期/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-[React]虚拟DOM" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -344,104 +528,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/06/30/[React]虚拟DOM/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-[React]生命周期" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/30/[React]生命周期/">【React】生命周期</a>
-    </h1>
-  
-
-        
-        <a href="/2021/06/30/[React]生命周期/" class="archive-article-date">
-  	<time datetime="2021-06-30T02:45:57.326Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="React-15"><a href="#React-15" class="headerlink" title="React 15"></a>React 15</h2><img src="/gallery/react15life.png">
-
-<ul>
-<li>Mounting 阶段：组件的初始化渲染<br>在组件一生中仅会发生一次。组件初始化，然后被渲染到真实的 DOM 中，完成“首次渲染”。render 不会操作真实的 DOM，真实 DOM 的渲染工作，在挂载阶段是由 ReactDOM.render 来承接的。componentDidMount 在渲染后触发，此时真实的 DOM 已经挂载，可以进行数据请求，初始化等操作。</li>
-<li>Updating 阶段：组件的更新<ol>
-<li>父组件更新触发的更新。componentReceiveProps 并不是由 props 的变化触发的，而是由父组件的更新触发的</li>
-<li>组件调用 setState 触发更新。 shouldComponentUpdate 决定组件的 re-render</li>
-</ol>
-</li>
-<li>Unmounting 阶段：组件的卸载。 组件被移除了，或者设置了 key，在 render 过程中发现 key 改变了</li>
-</ul>
-<h2 id="React-16"><a href="#React-16" class="headerlink" title="React 16"></a>React 16</h2><h3 id="React-16-4"><a href="#React-16-4" class="headerlink" title="React 16.4"></a>React 16.4</h3><img src="/gallery/react16life.png">
-        
-          <a class="article-more-a" href="/2021/06/30/[React]生命周期/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">React</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/React//" class="article-tag-list-link color1">React</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/30/[React]生命周期/">展开全文 >></a>
         </p>
       
 
@@ -694,19 +780,19 @@
 
 
   
-    <article id="post-[React]事件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-[React]性能优化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/30/[React]事件/">【React】事件系统</a>
+      <a class="article-title" href="/2021/06/30/[React]性能优化/">【React】性能优化</a>
     </h1>
   
 
         
-        <a href="/2021/06/30/[React]事件/" class="archive-article-date">
+        <a href="/2021/06/30/[React]性能优化/" class="archive-article-date">
   	<time datetime="2021-06-30T02:45:57.323Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
 </a>
         
@@ -714,23 +800,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="DOM事件流"><a href="#DOM事件流" class="headerlink" title="DOM事件流"></a>DOM事件流</h1><ol>
-<li>事件捕获</li>
-<li>目标阶段</li>
-<li>事件冒泡</li>
-</ol>
-<h1 id="事件委托-事件代理"><a href="#事件委托-事件代理" class="headerlink" title="事件委托/事件代理"></a>事件委托/事件代理</h1><blockquote>
-<p>把多个子元素的同一类型的监听逻辑，合并到父元素上通过一个监听函数来管理的行为，就是事件委托。<br>e.target 这个属性，指的是触发事件的具体目标，记录着事件的源头。</p>
-</blockquote>
-<h1 id="React事件系统"><a href="#React事件系统" class="headerlink" title="React事件系统"></a>React事件系统</h1><h2 id="合成事件"><a href="#合成事件" class="headerlink" title="合成事件"></a>合成事件</h2><blockquote>
-<p>当事件在具体的DOM节点上被触发后，最终都会冒泡到document(或者ReactDOM.render绑定的元素)，document上所绑定的统一事件处理程序会将事件分发给具体的组件实例。</p>
-</blockquote>
-<p>合成事件是React自定义的事件对象，符合W3C规范，在底层抹平了不同浏览器的差异，在上层向开发者暴露统一的，稳定的，与DOM原生事件相同的事件接口。不必关注兼容问题，专注业务开发。<br>合成事件不是原生的事件，但是它保存了原生事件的引用，e.nativeEvent</p>
-<blockquote>
-<p>React 事件的命名采用小驼峰式（camelCase），而不是纯小写。使用 JSX 语法时你需要传入一个函数作为事件处理函数，而不是一个字符串。不能通过返回 false 的方式阻止默认行为。你必须显式的使用 preventDefault<br>比如：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">handleClick() &#123;</span><br><span class="line">  console.log(&apos;this is:&apos;, this);</span><br><span class="line">&#125;</span><br><span class="line">&lt;div onClick=&#123;()=&gt;this.handleClick()&#125;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-
+        <ul>
+<li>善用 shouldComponentUpdate</li>
+<li>PureComponent  + Immutable.js</li>
+<li>函数组件的性能优化：React.memo 和 useMemo</li>
+</ul>
 
       
 
@@ -765,7 +839,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/30/[React]事件/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/06/30/[React]性能优化/">展开全文 >></a>
         </p>
       
 
@@ -895,19 +969,19 @@
 
 
   
-    <article id="post-[React]性能优化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-[React]事件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/30/[React]性能优化/">【React】性能优化</a>
+      <a class="article-title" href="/2021/06/30/[React]事件/">【React】事件系统</a>
     </h1>
   
 
         
-        <a href="/2021/06/30/[React]性能优化/" class="archive-article-date">
+        <a href="/2021/06/30/[React]事件/" class="archive-article-date">
   	<time datetime="2021-06-30T02:45:57.323Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
 </a>
         
@@ -915,11 +989,23 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ul>
-<li>善用 shouldComponentUpdate</li>
-<li>PureComponent  + Immutable.js</li>
-<li>函数组件的性能优化：React.memo 和 useMemo</li>
-</ul>
+        <h1 id="DOM事件流"><a href="#DOM事件流" class="headerlink" title="DOM事件流"></a>DOM事件流</h1><ol>
+<li>事件捕获</li>
+<li>目标阶段</li>
+<li>事件冒泡</li>
+</ol>
+<h1 id="事件委托-事件代理"><a href="#事件委托-事件代理" class="headerlink" title="事件委托/事件代理"></a>事件委托/事件代理</h1><blockquote>
+<p>把多个子元素的同一类型的监听逻辑，合并到父元素上通过一个监听函数来管理的行为，就是事件委托。<br>e.target 这个属性，指的是触发事件的具体目标，记录着事件的源头。</p>
+</blockquote>
+<h1 id="React事件系统"><a href="#React事件系统" class="headerlink" title="React事件系统"></a>React事件系统</h1><h2 id="合成事件"><a href="#合成事件" class="headerlink" title="合成事件"></a>合成事件</h2><blockquote>
+<p>当事件在具体的DOM节点上被触发后，最终都会冒泡到document(或者ReactDOM.render绑定的元素)，document上所绑定的统一事件处理程序会将事件分发给具体的组件实例。</p>
+</blockquote>
+<p>合成事件是React自定义的事件对象，符合W3C规范，在底层抹平了不同浏览器的差异，在上层向开发者暴露统一的，稳定的，与DOM原生事件相同的事件接口。不必关注兼容问题，专注业务开发。<br>合成事件不是原生的事件，但是它保存了原生事件的引用，e.nativeEvent</p>
+<blockquote>
+<p>React 事件的命名采用小驼峰式（camelCase），而不是纯小写。使用 JSX 语法时你需要传入一个函数作为事件处理函数，而不是一个字符串。不能通过返回 false 的方式阻止默认行为。你必须显式的使用 preventDefault<br>比如：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">handleClick() &#123;</span><br><span class="line">  console.log(&apos;this is:&apos;, this);</span><br><span class="line">&#125;</span><br><span class="line">&lt;div onClick=&#123;()=&gt;this.handleClick()&#125;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
 
       
 
@@ -954,7 +1040,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/30/[React]性能优化/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/06/30/[React]事件/">展开全文 >></a>
         </p>
       
 
@@ -1044,99 +1130,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/06/30/[React]setState/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-[React]ReactDOM.render" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/30/[React]ReactDOM.render/">【React】ReactDom.render</a>
-    </h1>
-  
-
-        
-        <a href="/2021/06/30/[React]ReactDOM.render/" class="archive-article-date">
-  	<time datetime="2021-06-30T02:45:57.322Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="ReactDom-render-调用栈逻辑"><a href="#ReactDom-render-调用栈逻辑" class="headerlink" title="ReactDom.render 调用栈逻辑"></a>ReactDom.render 调用栈逻辑</h1><ul>
-<li>scheduleUpdateOnFiber</li>
-<li>commitRoot 正式渲染DOM</li>
-</ul>
-<ol>
-<li>初始化阶段 - 完成Fiber🌲基本实体的构建</li>
-<li>render阶段 - 深度优先搜索过程</li>
-<li>commit阶段</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">React</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/React//" class="article-tag-list-link color1">React</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/30/[React]ReactDOM.render/">展开全文 >></a>
         </p>
       
 
@@ -1267,6 +1260,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">CI/CD</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">React</a>
               </li>
              
@@ -1276,14 +1273,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">购房</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1303,19 +1292,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">CI/CD</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1331,7 +1324,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">投资</a>
+                <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1343,6 +1336,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">投资</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">moment.js</a>
               </li>
              
@@ -1351,11 +1348,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">closure</a>
+                <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
+                <a href="javascript:void(0)" class="js-tag color3">closure</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1368,10 +1365,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">安全</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
