@@ -130,6 +130,103 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-链表队列" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/22/链表队列/">链表</a>
+    </h1>
+  
+
+        
+        <a href="/2019/07/22/链表队列/" class="archive-article-date">
+  	<time datetime="2019-07-22T08:05:17.090Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>what?<br>链表是一种递归的数据结构，它或者为空，或者为一个指向结点的引用。该结点含有一个泛型元素和一个指向另一个链表的引用(next)。<br>其中，结点是一种含有任何类型数据的抽象实体。<br>链表表示的是一列元素。<br>在追踪链表或其他链式结构代码的时候，可用可视化的方式表示：</p>
+<ol>
+<li>用长方形表示对象</li>
+<li>将实例变量的值写在长方形中</li>
+<li>用指向被引用对象的箭头表示引用关系，链接<br>实现任意插入和删除操作的标准解决方案是双向链表，其中每个结点都含有两个链接(pervious, next)，分别指向不同的方向。</li>
+</ol>
+<p>特点：</p>
+<ol>
+<li>可以处理任意类型的数据</li>
+<li>所需的空间和集合的大小成正比</li>
+<li>操作的所需要的时间总是和集合的大小无关</li>
+</ol>
+<p>补充：</p>
+<ol>
+<li>背包(Bag)是一种不支持从中删除元素的集合数据类型，目的就是收集元素并且迭代遍历收集到的元素，迭代的顺序不确定且元素的处理顺序不重要，可以用栈也可以用队列。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">class Bag() &#123;&#125;</span><br><span class="line">  add(item)</span><br><span class="line">  isEmpty()</span><br><span class="line">  size()</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>先进先出队列 FIFO</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class Queue() &#123;&#125;</span><br><span class="line">  enqueue(item) // 添加一个元素</span><br><span class="line">  dequeue() // 删除最近添加的元素</span><br><span class="line">  isEmpty()</span><br><span class="line">  size()</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>下压栈 LIFO</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class Stack() &#123;&#125;</span><br><span class="line">  push(item)</span><br><span class="line">  pop()</span><br><span class="line">  isEmpty()</span><br><span class="line">  size()</span><br><span class="line">例如表达式的求值：遇到左括号忽略，操作数押入操作数的栈里，运算符押入运算符的栈里，遇到右括号运算符栈和操作数栈pop计算得到值，再押入栈中。</span><br><span class="line">如：(1 + ((2 + 3) * (4 * 5)))</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>在一些语言中，数组的长度一经定义就不可改变，并且数组的删除和添加操作需要对元素进行平移会很繁琐。JS 中数组和其他的不同，它是通过对象实现的，操作方便，但是效率可能较其他语言有所不足。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function Node(elem) &#123;</span><br><span class="line">  this.elem = elem;</span><br><span class="line">  this.next = null;</span><br><span class="line">  // this.prvious = null;</span><br><span class="line">&#125;</span><br><span class="line">// 查找，插入，删除结点</span><br></pre></td></tr></table></figure>
+
+<h6 id="跳表-Skip-List"><a href="#跳表-Skip-List" class="headerlink" title="跳表 Skip List"></a>跳表 Skip List</h6><p>1989 前后出现的，适用于有序元素的情况。对标的是二分查找和平衡树(二叉搜索树中的平衡树 AVL Tree)。跳表是一种插入，删除，搜索复杂度都是 logn 的数据结构。如：redis，levelDB<br>一维的数据结构要加速，一般可以升维变成二维的数据结构。空间换时间<br>LRU 缓存</p>
+<p>自己想个 5-10min 看有没有思路，有思路就写了，没思路就直接看题解，学会了。再自己写呦</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/07/22/链表队列/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-理解promise" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -908,6 +1005,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">HTTPS</a>
               </li>
              
@@ -924,15 +1025,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -940,11 +1033,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">search</a>
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -956,7 +1049,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">search</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">投资</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -968,7 +1069,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">投资</a>
+                <a href="javascript:void(0)" class="js-tag color3">closure</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -977,14 +1082,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Date</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">closure</a>
               </li>
              
               <li class="article-tag-list-item">

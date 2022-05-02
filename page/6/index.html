@@ -224,44 +224,64 @@
 
 
   
-    <article id="post-[HTML]查漏补缺" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-[JSWebAPI]DOM" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/30/[HTML]查漏补缺/">【HTML】查漏补缺</a>
+      <a class="article-title" href="/2021/06/30/[JSWebAPI]DOM/">【WebAPI】DOM</a>
     </h1>
   
 
         
-        <a href="/2021/06/30/[HTML]查漏补缺/" class="archive-article-date">
-  	<time datetime="2021-06-30T02:45:57.316Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
+        <a href="/2021/06/30/[JSWebAPI]DOM/" class="archive-article-date">
+  	<time datetime="2021-06-30T02:45:57.317Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ul>
-<li>语义化</li>
-<li>块级元素，内联元素</li>
+        <blockquote>
+<p>DOM -&gt; Document Object Model</p>
+</blockquote>
+<ul>
+<li>DOM数据结构</li>
+<li>DOM常用的API</li>
+<li>attr和property的区别</li>
+<li>如何一次插入多个DOM节点</li>
+</ul>
+<h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h1><ul>
+<li>DOM 本质</li>
+<li>DOM 节点操作</li>
+<li>DOM 结构操作</li>
+<li>DOM 性能</li>
 </ul>
 <ol>
-<li>语义化</li>
-</ol>
-<ul>
-<li>人更容易读懂，可读性</li>
-<li>搜索引擎SEO更容易懂</li>
+<li>DOM本质：从HTML解析出来的一棵树</li>
+<li>DOM节点<ul>
+<li>节点获取的常见API</li>
+<li>通过js修改页面渲染结构：节点property，直接通过属性修改，如：dom.style.width = xxxx,dom.className = ‘xxx’</li>
+<li>修改的是标签的属性：节点attribute，通过getAttibute(‘style’, ‘font-size:16px’),setAttribute()<blockquote>
+<p>property： 修改JS对象属性，不会体现在html中；attribute：修改html属性，改变html结构。都有可能引起DOM重新渲染，可以先优先用property</p>
+</blockquote>
+</li>
 </ul>
-<ol start="2">
-<li></li>
-</ol>
-<ul>
-<li>块级： block/table, div, h1, table, p, ul, li</li>
-<li>内联： inline/inline-block, span, img, input, button</li>
+</li>
+<li>DOM结构<ul>
+<li>新增/插入节点，createElement()，appendChild()未存在的节点直接创建，已存在的移动。</li>
+<li>删除节点：removeChild()</li>
 </ul>
+</li>
+<li>DOM性能<ul>
+<li>避免频繁的DOM操作</li>
+<li>对DOM查询做缓存，get操作用变量缓存一下</li>
+<li>将频繁操作改为一次操作，通过document.createDocumentFragment() 创建一个文档片段，将高频操作插入到文档片段中，最后再把文档片段插入</li>
+</ul>
+</li>
+</ol>
 
       
 
@@ -276,7 +296,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/HTML//" class="article-tag-list-link color5">HTML</a>
+        			<a href="/categories/JavaScript//" class="article-tag-list-link color1">JavaScript</a>
         		</li>
       		
 		</ul>
@@ -285,7 +305,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/30/[HTML]查漏补缺/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/06/30/[JSWebAPI]DOM/">展开全文 >></a>
         </p>
       
 
@@ -416,6 +436,97 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/06/30/[JSWebAPI]AJAX/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-[HTML]查漏补缺" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/06/30/[HTML]查漏补缺/">【HTML】查漏补缺</a>
+    </h1>
+  
+
+        
+        <a href="/2021/06/30/[HTML]查漏补缺/" class="archive-article-date">
+  	<time datetime="2021-06-30T02:45:57.316Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>语义化</li>
+<li>块级元素，内联元素</li>
+</ul>
+<ol>
+<li>语义化</li>
+</ol>
+<ul>
+<li>人更容易读懂，可读性</li>
+<li>搜索引擎SEO更容易懂</li>
+</ul>
+<ol start="2">
+<li></li>
+</ol>
+<ul>
+<li>块级： block/table, div, h1, table, p, ul, li</li>
+<li>内联： inline/inline-block, span, img, input, button</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/HTML//" class="article-tag-list-link color5">HTML</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/06/30/[HTML]查漏补缺/">展开全文 >></a>
         </p>
       
 
@@ -1081,94 +1192,6 @@
 
 
   
-    <article id="post-[实践]性能优化二三事" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/28/[实践]性能优化二三事/">&lt;Work&gt; 实践</a>
-    </h1>
-  
-
-        
-        <a href="/2020/07/28/[实践]性能优化二三事/" class="archive-article-date">
-  	<time datetime="2020-07-28T08:40:39.653Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="Performance"><a href="#Performance" class="headerlink" title="Performance"></a>Performance</h5><ol>
-<li>gzip</li>
-<li>告警系统/埋点</li>
-<li>图表优化，步骤，加载</li>
-</ol>
-<p>其他的通用的方式：秒开率控制，toB 的没有这么多顾虑<br>减少 http 请求 =&gt; JS,CSS 打包，小图片用 data-uri，svg。避免大型背景图<br>利用缓存<br>了解整个前端加载的过程。<br>DNS 解析 =&gt; HTTP DNS<br>TCP 链接三次握手。HTTP/TLS HTTP 2 / HTTPS</p>
-<p>首先得评估下现状，要配合实际情况和业务情况进行性能优化，还得设计相关的指标和标准。最后对结果进行评估，有始有终哦</p>
-<h6 id="Tool"><a href="#Tool" class="headerlink" title="Tool"></a>Tool</h6><p>开发体验，提升效率<br>工具体系构建：版本统一，避免冲突。<br>用一套统一的过程比较方便，从 init 到 dev 再到 public。重要的是构建时间，效率</p>
-<h6 id="持续性构建"><a href="#持续性构建" class="headerlink" title="持续性构建"></a>持续性构建</h6><p>手动，自动。代码提交到仓库，自动发布到测试环境，自动发布系统。<br>结构扫描 phantomjs，代码扫描 jshint，数据采集通过 performance API 检测性能，window.onerror 检测问题。<br>组件化，兼容性，适配性：ppi，dpr。PWA<br>组件化： 三大框架，web component，css houdini，不需要任何额外的运行时支持，就能在现代浏览器环境运行，也可以跟 HTML 无缝结合。<br>适配：</p>
-<ul>
-<li>PPI:Pixel Per Inch 单位英寸像素，屏幕的显示质量。文字，media query</li>
-<li>DPR:Device Pixel Ratio 设备像素比例，物理像素与逻辑像素 px 之间的关系。viewport 控制缩放比</li>
-<li>Resolution: 分辨率，屏幕区域的宽高所占像素数。用 vw，vh 解决</li>
-</ul>
-<p>单页应用</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/07/28/[实践]性能优化二三事/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/5/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/7/">Next &raquo;</a>
@@ -1286,6 +1309,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">HTTPS</a>
               </li>
              
@@ -1302,15 +1329,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1318,11 +1337,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">search</a>
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1334,7 +1353,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">search</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">投资</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1346,7 +1373,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">投资</a>
+                <a href="javascript:void(0)" class="js-tag color3">closure</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1355,14 +1386,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Date</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">closure</a>
               </li>
              
               <li class="article-tag-list-item">

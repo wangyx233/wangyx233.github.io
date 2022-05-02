@@ -130,6 +130,107 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-[JS基础]执行" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/02/15/[JS基础]执行/">【JS基础】执行</a>
+    </h1>
+  
+
+        
+        <a href="/2022/02/15/[JS基础]执行/" class="archive-article-date">
+  	<time datetime="2022-02-15T06:26:06.772Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>JavaScript 执行主要分为两个阶段：</p>
+<ul>
+<li>代码预编译阶段</li>
+<li>代码执行阶段</li>
+</ul>
+<p>代码预编译阶段</p>
+<ul>
+<li>预编译阶段进行变量声明</li>
+<li>预编译阶段变量声明进行提升，但是值为 undefined</li>
+<li>预编译阶段所有非表达式的函数声明进行提升</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">foo(10)</span><br><span class="line">function foo (num) &#123;</span><br><span class="line">    console.log(foo)</span><br><span class="line">    foo = num;</span><br><span class="line">    console.log(foo)</span><br><span class="line">    var foo</span><br><span class="line">&#125;</span><br><span class="line">console.log(foo)</span><br><span class="line">foo = 1</span><br><span class="line">console.log(foo)</span><br><span class="line">// undefined</span><br><span class="line">// 10</span><br><span class="line">// 1</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>作用域在预编译阶段确定，但是作用域链是在执行上下文的创建阶段完全生成的。执行上下文包括了：变量对象、作用域链以及 this 的指向</p>
+</blockquote>
+<p>预编译阶段创建变量对象(Variable Object, VO)，在执行阶段，变量对象转换为激活对象(Active Object)，即完成 VO -&gt; AO</p>
+<blockquote>
+<p>正常来讲，在函数执行完毕并出栈时，函数内局部变量在下一个垃圾回收节点会被回收，该函数对应的执行上下文将会被销毁，这也正是我们在外界无法访问函数内定义的变量的原因。也就是说，只有在函数执行时，相关函数可以访问该变量，该变量在预编译阶段进行创建，在执行阶段进行激活，在函数执行完毕后，相关上下文被销毁。</p>
+</blockquote>
+<blockquote>
+<p>闭包： 函数嵌套函数时，内层函数引用了外层函数作用域下的变量，并且内层函数在全局环境下可访问，就形成了闭包。</p>
+</blockquote>
+<p>浏览器的垃圾清除</p>
+<ul>
+<li>标记清除</li>
+<li>引用计数</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/JavaScript//" class="article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/02/15/[JS基础]执行/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-[读书]JavaScript高级程序设计" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1345,124 +1446,6 @@
 
 
   
-    <article id="post-[人生]购房" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/30/[人生]购房/">【生活】如果有购房需求</a>
-    </h1>
-  
-
-        
-        <a href="/2021/06/30/[人生]购房/" class="archive-article-date">
-  	<time datetime="2021-06-30T02:45:57.328Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>房产经纪人-一度觉得自己可以成为</p>
-</blockquote>
-<h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1><p>不论二手还是新房都有一些共通之处，最终要的是要多学，多看，多比较</p>
-<blockquote>
-<p>平时买个几块钱的菜都要比来比去，怎么到了几十上百万的🏡的时候就比买白菜还随意呢？</p>
-</blockquote>
-<ul>
-<li><p>现在资讯无比发达，所以在下手之前可以通过各种大v，公众号，或者直播了解一些房产的基本信息。</p>
-<h2 id="外部因素"><a href="#外部因素" class="headerlink" title="外部因素"></a>外部因素</h2><ol>
-<li>学区属性是否刚需</li>
-<li>交通地铁</li>
-<li>邻居</li>
-<li>车位</li>
-<li>流通性</li>
-<li>…</li>
-</ol>
-<h2 id="内部因素"><a href="#内部因素" class="headerlink" title="内部因素"></a>内部因素</h2><ol>
-<li>楼层，楼高</li>
-<li>采光，遮挡</li>
-<li>隔音，噪音，是否临街</li>
-<li>下水，独立下水</li>
-<li>供暖，物业</li>
-<li>窗户</li>
-<li>…</li>
-</ol>
-</li>
-<li><p>可以多实地看几套二手房，看房又不💰，实地感受一下各种因素的影响，以及自己的接受度</p>
-</li>
-<li><p>二手房尤其要注意🏡的流通性，大概率5-8年会换房，所以中介费，还有税费要注意</p>
-</li>
-<li><p>新房封顶以后才能批贷，这点要注意。</p>
-</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">购房</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/生活//" class="article-tag-list-link color3">生活</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/30/[人生]购房/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
@@ -1580,6 +1563,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">HTTPS</a>
               </li>
              
@@ -1596,15 +1583,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1612,11 +1591,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">search</a>
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1628,7 +1607,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">search</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">投资</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1640,7 +1627,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">投资</a>
+                <a href="javascript:void(0)" class="js-tag color3">closure</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1649,14 +1640,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Date</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">closure</a>
               </li>
              
               <li class="article-tag-list-item">

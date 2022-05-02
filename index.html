@@ -130,6 +130,127 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-[JS基础]手把手实现promise" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/05/02/[JS基础]手把手实现promise/">【JS基础】来，让我们手把手实现Promise 🐶</a>
+    </h1>
+  
+
+        
+        <a href="/2022/05/02/[JS基础]手把手实现promise/" class="archive-article-date">
+  	<time datetime="2022-05-02T14:28:57.795Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>学了又好像没学之二 🤦🏻‍♀️</p>
+<p>平时开发中，习惯使用<code>new Promise((resolve, reject) =&gt; {})</code> 来进行异步请求的调用。那 Promise 到底是个啥呢，能不能自己实现一下呢？</p>
+<blockquote>
+<p>不能就没有聊下去的意义了(并不是) 🤐</p>
+</blockquote>
+<p>Promise/A+ 的规范，<a href="https://promisesaplus.com/" target="_blank" rel="noopener">https://promisesaplus.com/</a></p>
+<p>简单梳理一下，</p>
+<ol>
+<li><p>Promise 其实是一个构造函数，我们用这个构造函数创建一个 Promise 实例。这个构造函数只有一个参数，<code>executor</code>。这个参数是一个函数，具有<code>resolve</code>，<code>reject</code>两个方法作为参数。</p>
+</li>
+<li><p>Promise 返回的这个 promise 对象实例，具有<code>then</code>方法。在<code>then</code>方法中，可以定义两个参数<code>onfulfilled</code>和<code>onrejected</code>，都是函数类型。其中<code>onfulfilled</code>的参数，可以获取 promise 对象<code>resolved</code>的值；<code>onrejected</code>则是<code>rejected</code>的值。</p>
+</li>
+<li><p>在使用 new 关键字调用 Promise 构造函数时，往往是异步结束时，调用 executor 的参数 resolve 方法，并将 resolved 的值作为 resolve 函数参数执行，这个值便可以后续在 then 方法第一个函数参数（onfulfilled）中拿到；在出现错误时，调用 executor 的参数 reject 方法，并将错误信息作为 reject 函数参数执行，这个错误信息可以在后续的 then 方法第二个函数参数（onrejected）中拿到。</p>
+</li>
+</ol>
+<blockquote>
+<p>所以，由于 Promise 状态的唯一性，需要一个变量来存状态（pending，fulfilled，rejected），以及一个变量来存改变后的值。同时还要提供 resolve 方法以及 reject 方法，作为 executor 的参数</p>
+</blockquote>
+<blockquote>
+<p>为什么 then 放在 Promise 构造函数的原型上，而不是放在构造函数内部呢？</p>
+</blockquote>
+<p>每个 promise 实例的 then 方法逻辑是一致的，在实例调用该方法时，可以通过原型（Promise.prototype）找到，而不需要每次实例化都新创建一个 then 方法，这样节省内存，显然更合适。</p>
+<ol start="4">
+<li><p>promise 实例状态只能从 pending 改变为 fulfilled，或者从 pending 改变为 rejected。状态一旦变更完毕，就不可再次变化或者逆转。也就是说：如果一旦变到 fulfilled，就不能再 rejected，一旦变到 rejected，就不能 fulfilled。</p>
+</li>
+<li><p>异步的实现</p>
+</li>
+</ol>
+<ul>
+<li>在“合适”的时间去调用 onfulfilled 方法呀，即<code>resolve</code>调用的时刻。所以状态是<code>pending</code>的状态，先存一下<code>onfulfilled</code>方法，在<code>resolve</code>方法中再执行。</li>
+<li>结合事件循环理解，这里需要将 resolve 和 reject 的执行，放到任务队列中。</li>
+<li>为了保证 Promise 属于 microtasks，很多 Promise 的实现库用了 MutationObserver 来模仿 nextTick）</li>
+<li>还需要判断<code>resolve</code>的值是不是 promise，如果是的话 <code>return value.then(resolve, reject)</code></li>
+<li>多个<code>then</code>方法，那<code>onfulfilled</code>，<code>onrejected</code>维持数组，依次执行。</li>
+<li>错误处理的话，<code>executor</code> 可以用<code>try...catch</code>捕获一下</li>
+</ul>
+<ol start="6">
+<li>链式调用</li>
+</ol>
+<p>一个 Promise 实例的 then 方法中的 onfulfilled 函数和 onrejected 函数中，是支持再次返回一个 Promise 实例的，也支持返回一个非 Promise 实例的普通值；并且返回的这个 Promise 实例或者这个非 Promise 实例的普通值将会传给下一个 then 方法 onfulfilled 函数或者 onrejected 函数中，这样就支持链式调用了。</p>
+<blockquote>
+<p>所以，为了能够支持 then 方法的链式调用，那么每一个 then 方法的 onfulfilled 函数和 onrejected 函数都应该返回一个 Promise 实例。</p>
+</blockquote>
+<ol start="7">
+<li>给 .then() 函数传递非函数值作为其参数时，实际上会被解析成 .then(null)，这时候的表现应该是：上一个 promise 对象的结果进行“穿透”，如果在后面链式调用仍存在第二个 .then() 函数时，将会获取被穿透下来的结果。</li>
+</ol>
+        
+          <a class="article-more-a" href="/2022/05/02/[JS基础]手把手实现promise/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/JavaScript//" class="article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/05/02/[JS基础]手把手实现promise/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-[复盘]promise并发" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1116,107 +1237,6 @@
 
 
   
-    <article id="post-[React]React18来啦" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/04/07/[React]React18来啦/">【React】React 18来辣</a>
-    </h1>
-  
-
-        
-        <a href="/2022/04/07/[React]React18来啦/" class="archive-article-date">
-  	<time datetime="2022-04-07T01:58:48.813Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-04-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>铛铛铛，React18正式发布辣</p>
-<blockquote>
-<p>前置知识： Concurrent(并发)</p>
-</blockquote>
-<h3 id="Concurrent"><a href="#Concurrent" class="headerlink" title="Concurrent"></a>Concurrent</h3><blockquote>
-<p>渲染是可中断的。（以前React中update是同步渲染，一旦update开启，在任务完成前都是不可中断的。</p>
-</blockquote>
-<p>在Concurrent模式下，update开始了可以中断，结果是可以继续，也可以选择遗弃。</p>
-<ul>
-<li>可中断。任务是有优先级，优先级高的比如用户交互，输入，点击…fiber的链表结构，指向改变。</li>
-<li>可被遗弃。比如，一个操作过程，中间的可能切走，不重要或者过期了，所以可以被遗弃，只关注最后的展示。</li>
-<li>状态复用。OffScreen，比如页面回退了，又重新进入了；或者即将要渲染的UI进行缓存准备。</li>
-</ul>
-<blockquote>
-<p>总结: 并不是API之类的新特性，而是新特性的基础，包括Suspense、transitions等。 </p>
-</blockquote>
-<h3 id="新特性"><a href="#新特性" class="headerlink" title="新特性"></a>新特性</h3><h4 id="createRoot"><a href="#createRoot" class="headerlink" title="createRoot"></a>createRoot</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const root = createRoot(document.getElementById(&apos;root&apos;))</span><br><span class="line">root.render(&lt;App /&gt;)</span><br><span class="line">root.render(&lt;App2 /&gt;)</span><br></pre></td></tr></table></figure>
-
-<h4 id="自动批量处理-Automatic-Batching"><a href="#自动批量处理-Automatic-Batching" class="headerlink" title="自动批量处理 Automatic Batching"></a>自动批量处理 Automatic Batching</h4><blockquote>
-<p>setState是同步还是异步呀，可以实现同步嘛，怎么实现，异步的原理是什么？</p>
-</blockquote>
-<p>18之前：都可以，同步：setTimeout，或者原生事件里同步。异步：批量处理，合成事件里，把多次的render合并起来，关键是依赖合成事件。<br>18之后，同步可用flushSync。就不要用setTimeout，也是异步了，why？不是依靠合成事件，而是自动批量处理。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">flushSync(() =&gt; &#123;</span><br><span class="line">  // state 变化  </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<h4 id="Suspense"><a href="#Suspense" class="headerlink" title="Suspense"></a>Suspense</h4><p>加载等待，类似loading</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;Suspense fallback=&#123;&lt;Spin /&gt;&#125;&gt;</span><br><span class="line">  &lt;Component /&gt;</span><br><span class="line">&lt;/Suspense&gt;</span><br></pre></td></tr></table></figure>
-
-<p>…_(¦3」∠)_下回再战…</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/React//" class="article-tag-list-link color1">React</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2022/04/07/[React]React18来啦/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1334,6 +1354,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">HTTPS</a>
               </li>
              
@@ -1350,15 +1374,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1366,11 +1382,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
+                <a href="javascript:void(0)" class="js-tag color4">浏览器</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">search</a>
+                <a href="javascript:void(0)" class="js-tag color5">Algorithm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1382,7 +1398,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">search</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HTTP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">投资</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1394,7 +1418,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">投资</a>
+                <a href="javascript:void(0)" class="js-tag color3">closure</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1403,14 +1431,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Date</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">RegExp</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">closure</a>
               </li>
              
               <li class="article-tag-list-item">
